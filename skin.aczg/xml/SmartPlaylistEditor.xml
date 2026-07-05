@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">12</defaultcontrol>
+	<include>dialogeffect</include>
+	<onload condition="!Control.IsEnabled(12)">SetFocus(22)</onload>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			
+			<centerleft>50%</centerleft>
+			<centertop>538</centertop>
+			<width>1200</width>
+			<height>1010</height>
+			
+			<include content="DialogBackgroundCommons">
+				<param name="DialogBackgroundWidth" value="1240" />
+				<param name="DialogBackgroundHeight" value="1050" />
+				<param name="DialogHeaderWidth" value="1180" />
+				<param name="DialogHeaderLabelWidth" value="1136" />
+				<param name="DialogHeaderLabel" value="" />
+				<param name="DialogHeaderId" value="2" />
+			</include>
+			
+			<control type="button" id="12">
+				<description>Name Button</description>
+				<left>45</left>
+				<top>105</top>
+				<width>1110</width>
+				<height>60</height>
+				<font>Regular20</font>
+				<align>left</align>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<texturenofocus border="14">button.png</texturenofocus>
+				<label>$LOCALIZE[21433]</label>
+				<onright>noop</onright>
+				<onleft>noop</onleft>
+				<onup>noop</onup>
+				<ondown>22</ondown>
+			</control>
+			
+			<control type="button" id="22">
+				<description>Set Playlist type</description>
+				<left>45</left>
+				<top>195</top>
+				<width>1110</width>
+				<height>60</height>
+				<label>467</label>
+				<font>Regular20</font>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<texturenofocus border="14">button.png</texturenofocus>
+				<onright>noop</onright>
+				<onleft>noop</onleft>
+				<onup>12</onup>
+				<ondown>10</ondown>
+			</control>
+			
+			<control type="label">
+				<description>rules label</description>
+				<left>45</left>
+				<top>285</top>
+				<width>810</width>
+				<align>left</align>
+				<label>21434</label>
+				<font>Light20</font>
+				<textcolor>blue</textcolor>
+			</control>
+			
+			<control type="scrollbar" id="60">
+				<left>864</left>
+				<top>338</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>196</height>
+				<onleft>10</onleft>
+				<onright>13</onright>
+				<ondown></ondown>
+				<onup></onup>
+				<showonepage>false</showonepage>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+			<control type="list" id="10">
+				<description>Rules List Control</description>
+				<left>45</left>
+				<top>338</top>
+				<width>810</width>
+				<height>204</height>
+				<onup>22</onup>
+				<onleft>noop</onleft>
+				<onright>13</onright>
+				<ondown>16</ondown>
+				<pagecontrol>60</pagecontrol>
+				
+				<itemlayout width="840" height="68">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>810</width>
+						<height>60</height>
+						<texture border="14">button.png</texture>
+					</control>
+					<control type="label">
+						<left>15</left>
+						<top>0</top>
+						<width>780</width>
+						<height>60</height>
+						<aligny>center</aligny>
+						<info>ListItem.Label</info>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<font>Regular20</font>
+					</control>
+				</itemlayout>
+				
+				<focusedlayout width="840" height="68">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>810</width>
+						<height>60</height>
+						<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+						<visible>Control.HasFocus(10)</visible>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>810</width>
+						<height>60</height>
+						<texture border="14">button.png</texture>
+						<visible>!Control.HasFocus(10)</visible>
+					</control>
+					<control type="label">
+						<left>15</left>
+						<top>0</top>
+						<width>780</width>
+						<height>60</height>
+						<aligny>center</aligny>
+						<info>ListItem.Label</info>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<font>Regular20</font>
+						<scroll>false</scroll>
+						<visible>!Control.HasFocus(10)</visible>
+					</control>
+					<control type="label">
+						<left>15</left>
+						<top>0</top>
+						<width>780</width>
+						<height>60</height>
+						<aligny>center</aligny>
+						<info>ListItem.Label</info>
+						<selectedcolor>selected</selectedcolor>
+						<font>Regular20</font>
+						<visible>Control.HasFocus(10)</visible>
+					</control>
+				</focusedlayout>
+				
+			</control>
+			
+			<control type="group" id="9000">
+				<left>885</left>
+				<top>338</top>
+				
+				<control type="button" id="13">
+					<description>Add Rule Button</description>
+					<left>0</left>
+					<top>0</top>
+					<width>270</width>
+					<height>60</height>
+					<label>15019</label>
+					<font>Regular19</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<include>ButtonInfoDialogsCommonValues</include>
+					<onup>22</onup>
+					<onleft>10</onleft>
+					<onright>noop</onright>
+					<ondown>14</ondown>
+				</control>
+				
+				<control type="button" id="14">
+					<description>Remove Rule Button</description>
+					<left>0</left>
+					<top>68</top>
+					<height>60</height>
+					<width>270</width>
+					<label>1210</label>
+					<font>Regular19</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<include>ButtonInfoDialogsCommonValues</include>
+					<onup>13</onup>
+					<onleft>10</onleft>
+					<onright>noop</onright>
+					<ondown>15</ondown>
+				</control>
+				
+				<control type="button" id="15">
+					<description>Edit Rule Button</description>
+					<left>0</left>
+					<top>136</top>
+					<height>60</height>
+					<width>270</width>
+					<label>21435</label>
+					<font>Regular19</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<include>ButtonInfoDialogsCommonValues</include>
+					<onup>14</onup>
+					<onleft>10</onleft>
+					<onright>noop</onright>
+					<ondown>16</ondown>
+				</control>
+				
+			</control>
+			
+			<control type="label">
+				<description>Options Label</description>
+				<left>45</left>
+				<top>549</top>
+				<width>1110</width>
+				<label>31325</label>
+				<font>Light20</font>
+				<textcolor>blue</textcolor>
+				<align>center</align>
+			</control>
+			
+			<control type="button" id="16">
+				<left>45</left>
+				<top>608</top>
+				<width>1110</width>
+				<height>60</height>
+				<label>21424</label>
+				<font>Regular20</font>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<texturenofocus border="14">button.png</texturenofocus>
+				<onright>noop</onright>
+				<onleft>noop</onleft>
+				<onup>10</onup>
+				<ondown>17</ondown>
+			</control>
+			
+			<control type="button" id="17">
+				<left>45</left>
+				<top>676</top>
+				<width>1110</width>
+				<height>60</height>
+				<label>21427</label>
+				<font>Regular20</font>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<texturenofocus border="14">button.png</texturenofocus>
+				<onright>noop</onright>
+				<onleft>noop</onleft>
+				<onup>16</onup>
+				<ondown>18</ondown>
+			</control>
+			
+			<!-- order by -->
+			<control type="button" id="18">
+				<left>45</left>
+				<top>744</top>
+				<width>825</width>
+				<height>60</height>
+				<label>21429</label>
+				<font>Regular20</font>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<texturenofocus border="14">button.png</texturenofocus>
+				<onright>19</onright>
+				<onleft>noop</onleft>
+				<onup>17</onup>
+				<ondown>23</ondown>
+			</control>
+			
+			<!-- asc desc -->
+			<control type="button" id="19">
+				<left>885</left>
+				<top>744</top>
+				<width>270</width>
+				<height>60</height>
+				<font>Regular19</font>
+				<align>right</align>
+				<aligny>center</aligny>
+				<texturenofocus border="14">button.png</texturenofocus>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<label></label>
+				<onright>noop</onright>
+				<onleft>18</onleft>
+				<onup>17</onup>
+				<ondown condition="Control.IsEnabled(24)">24</ondown>
+				<ondown condition="!Control.IsEnabled(24)">23</ondown>
+			</control>
+			
+			<!-- group by -->
+			<control type="button" id="23">
+				<left>45</left>
+				<top>812</top>
+				<width>825</width>
+				<height>60</height>
+				<label>$LOCALIZE[21458]</label>
+				<font>Regular20</font>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<texturenofocus border="14">button.png</texturenofocus>
+				<onright>24</onright>
+				<onleft>noop</onleft>
+				<onup>18</onup>
+				<ondown>9001</ondown>
+			</control>
+			
+			<!-- type: mixed -->
+			<control type="radiobutton" id="24">
+				<left>885</left>
+				<top>812</top>
+				<width>270</width>
+				<height>60</height>
+				<font>Regular19</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<texturenofocus border="14">button.png</texturenofocus>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<label>$LOCALIZE[21459]</label>
+				<onright>noop</onright>
+				<onleft>23</onleft>
+				<onup>19</onup>
+				<ondown>9001</ondown>
+			</control>
+			
+			<control type="group" id="9001">
+				<top>907</top>
+				
+				<control type="button" id="20">
+					<description>Ok Button</description>
+					<left>293</left>
+					<width>300</width>
+					<height>67</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>$LOCALIZE[186]</label>
+					<include>ButtonInfoDialogsCommonValues</include>
+					<onup>23</onup>
+					<onleft></onleft>
+					<onright>21</onright>
+					<ondown>noop</ondown>
+				</control>
+				
+				<control type="button" id="21">
+					<description>Cancel Button</description>
+					<left>608</left>
+					<width>300</width>
+					<height>67</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>$LOCALIZE[222]</label>
+					<include>ButtonInfoDialogsCommonValues</include>
+					<onup>23</onup>
+					<onleft>20</onleft>
+					<onright></onright>
+					<ondown>noop</ondown>
+				</control>
+				
+			</control>
+			
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

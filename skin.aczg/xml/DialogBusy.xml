@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<animation effect="fade" time="250" delay="250">WindowOpen</animation>
+	<animation effect="fade" time="150">WindowClose</animation>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			<depth>DepthDialog+</depth>
+			<centerleft>50%</centerleft>
+			<centertop>46%</centertop>
+			<width>91</width>
+			<height>91</height>
+			
+			<control type="image">
+				<centerleft>50%</centerleft>
+				<centertop>50%</centertop>
+				<width>91</width>
+				<height>91</height>
+				<texture colordiffuse="F1FFFFFF">osd/buffer-bg$VAR[isUhdScreenStringSuffix].png</texture>
+			</control>
+			
+			<control type="image">
+				<description>Busy animation logo</description>
+				<left>22</left>
+				<top>21</top>
+				<width>48</width>
+				<height>48</height>
+				<aligny>center</aligny>
+				<align>center</align>
+				<texture colordiffuse="$VAR[uiColorVariantKodiLogoColor]">dialogs/busy_kodi$VAR[isUhdScreenStringSuffix].png</texture>
+				<aspectratio>keep</aspectratio>
+				<animation effect="fade" start="100" end="0" time="3000" loop="true" condition="true" tween="sine" easing="in">Conditional</animation>
+			</control>
+			
+		</control>
+		
+	<!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

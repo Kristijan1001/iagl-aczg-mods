@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1182">
+	<onunload>SetProperty(CZ.StartupScreenDone,True,home)</onunload>
+</window>

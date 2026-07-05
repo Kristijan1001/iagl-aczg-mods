@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	
+	
+	
+	<include>Check_And_Set_Skin_Settings_Defaults</include>
+	
+	
+	
+	<!-- disable large text feature for deprecated Kodi 17.6 -->
+	<onload condition="String.StartsWith(System.BuildVersion,17.) + !String.StartsWith(System.BuildAppName,KodiDS)">Skin.Reset(UIFontSize)</onload>
+	<onload condition="![String.StartsWith(System.BuildVersion,17.) + !String.StartsWith(System.BuildAppName,KodiDS)] + Skin.HasSetting(AccessibilityLargeText)">Skin.SetString(UIFontSize,accessibility)</onload>
+	<onload condition="Skin.HasSetting(AccessibilityLargeText)">Skin.Reset(AccessibilityLargeText)</onload>
+	
+	
+	<!-- Reset Exit Screen -->
+	<onload>CancelAlarm(CZ.ShutdownScreenActiveCancelIfNotWorking,silent)</onload>
+	<onload>ClearProperty(CZ.ShutdownScreenActiveText,home)</onload>
+	
+	
+	<!-- Reset Startup Screen -->
+	<onload>SetProperty(CZ.StartupScreenDone,,home)</onload>
+	<onload>SetProperty(CZ.StartupScreenDoneDelayed,,home)</onload>
+	
+	<onload>CancelAlarm(CZ.StartupScreenAlarm1,silent)</onload>
+	<onload>CancelAlarm(CZ.StartupScreenAlarm2,silent)</onload>
+	<onload>CancelAlarm(CZ.StartupScreenAlarm3,silent)</onload>
+	
+	
+	<!-- Reset New Version Screen -->
+	<onload>CancelAlarm(WelcomeNewVersion,silent)</onload>
+	
+	
+	<!-- Reset Custom Busy Dialog -->
+	<onload>CancelAlarm(BusyDialog_Alarm,silent)</onload>
+	<onload>ClearProperty(BusyDialog_Active,home)</onload>
+	<onload>ClearProperty(BusyDialog_AutoClose_Sec,home)</onload>
+	
+	
+	<!-- Reset Weather -->
+	<onload>ClearProperty(Weather_Addon_Settings_Edit_Locations,home)</onload>
+	<onload>ClearProperty(Weather_Addon_Settings_Edit_Locations_Refresh,home)</onload>
+	<onload>ClearProperty(Weather_Busy,home)</onload>
+	
+	
+	<!-- Reset changelog -->
+	<onload>ClearProperty(Full_Changelog_Active,home)</onload>
+	<onload>SetProperty(CZ.Changelog.Fetch,True,home)</onload>
+	
+	
+	<!-- Reset home focus -->
+	<onload>ClearProperty(Home_Focus_Last_Saved_Index,home)</onload>
+	
+	
+	<onload>ReplaceWindow($INFO[System.StartupWindow])</onload>
+	<controls></controls>
+	
+	
+</window>

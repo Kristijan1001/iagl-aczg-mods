@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>20</defaultcontrol>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<include>CommonBackground</include>
+		<include>ContentPanelBackgrounds</include>
+		
+		
+		
+		<control type="group">
+			<left>45</left>
+			<top>60</top>
+			<include>Window_OpenClose_Animation_Full</include>
+			<control type="image">
+				<animation effect="fade" end="28" time="0" condition="true">Conditional</animation>
+				<left>30</left>
+				<top>30</top>
+				<width>120</width>
+				<height>120</height>
+				<aspectratio scalediffuse="false">stretch</aspectratio>
+				<texture diffuse="colors/diffuse/120x120-rounded.png">colors/black.png</texture>
+			</control>
+			<control type="image">
+				<left>30</left>
+				<top>30</top>
+				<width>120</width>
+				<height>120</height>
+				<aspectratio scalediffuse="false">keep</aspectratio>
+				<texture diffuse="colors/diffuse/120x120-rounded.png">$INFO[Container(20).ListItem.Icon]</texture>
+			</control>
+			<control type="label" id="101">
+				<description>current directory text label</description>
+				<left>165</left>
+				<top>105</top>
+				<width>705</width>
+				<height>45</height>
+				<font>Regular19</font>
+				<textcolor>selected</textcolor>
+				<scroll>true</scroll>
+				<align>left</align>
+				<aligny>center</aligny>
+			</control>
+			<control type="list" id="20">
+				<left>30</left>
+				<top>165</top>
+				<width>825</width>
+				<height>737</height>
+				<onleft>20</onleft>
+				<onright>30</onright>
+				<onup>20</onup>
+				<ondown>20</ondown>
+				<pagecontrol>30</pagecontrol>
+				<include>ScrollTimeOld</include>
+				<itemlayout height="60" width="825">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>825</width>
+						<height>62</height>
+						<texture border="0,3,0,3">MenuItemNF.png</texture>
+					</control>
+					<control type="label">
+						<left>15</left>
+						<top>0</top>
+						<width>750</width>
+						<height>60</height>
+						<font>Regular20</font>
+						<aligny>center</aligny>
+						<selectedcolor>selected</selectedcolor>
+						<textcolor>grey2</textcolor>
+						<align>left</align>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<left>510</left>
+						<top>0</top>
+						<width>300</width>
+						<height>60</height>
+						<font>Regular17</font>
+						<aligny>center</aligny>
+						<selectedcolor>selected</selectedcolor>
+						<textcolor>grey</textcolor>
+						<align>right</align>
+						<info>ListItem.Label2</info>
+					</control>
+				</itemlayout>
+				<focusedlayout height="60" width="825">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>825</width>
+						<height>62</height>
+						<visible>!Control.HasFocus(20)</visible>
+						<texture border="0,3,0,3">MenuItemNF.png</texture>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>825</width>
+						<height>62</height>
+						<visible>Control.HasFocus(20)</visible>
+						<texture border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texture>
+						<include>FocusAnimationType1Short</include>
+					</control>
+					<control type="label">
+						<left>15</left>
+						<top>0</top>
+						<width>750</width>
+						<height>60</height>
+						<font>Regular20</font>
+						<aligny>center</aligny>
+						<selectedcolor>selected</selectedcolor>
+						<textcolor>white</textcolor>
+						<align>left</align>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<left>510</left>
+						<top>0</top>
+						<width>300</width>
+						<height>60</height>
+						<font>Regular17</font>
+						<aligny>center</aligny>
+						<selectedcolor>selected</selectedcolor>
+						<textcolor>grey</textcolor>
+						<align>right</align>
+						<info>ListItem.Label2</info>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="30">
+				<left>873</left>
+				<top>165</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>723</height>
+				<onleft>20</onleft>
+				<onright>21</onright>
+				<ondown>30</ondown>
+				<onup>30</onup>
+				<showonepage>false</showonepage>
+				<include>scrollBarStyleDefault</include>
+			</control>
+		</control>
+		
+		
+		
+		<control type="group">
+			<left>975</left>
+			<top>60</top>
+			<include>Window_OpenClose_Animation_Full</include>
+			<control type="image">
+				<animation effect="fade" end="28" time="0" condition="true">Conditional</animation>
+				<left>30</left>
+				<top>30</top>
+				<width>120</width>
+				<height>120</height>
+				<aspectratio scalediffuse="false">stretch</aspectratio>
+				<texture diffuse="colors/diffuse/120x120-rounded.png">colors/black.png</texture>
+			</control>
+			<control type="image">
+				<left>30</left>
+				<top>30</top>
+				<width>120</width>
+				<height>120</height>
+				<aspectratio scalediffuse="false">keep</aspectratio>
+				<texture diffuse="colors/diffuse/120x120-rounded.png">$INFO[Container(21).ListItem.Icon]</texture>
+			</control>
+			<control type="label" id="102">
+				<description>current directory text label</description>
+				<left>165</left>
+				<top>105</top>
+				<width>705</width>
+				<height>45</height>
+				<font>Regular19</font>
+				<textcolor>selected</textcolor>
+				<scroll>true</scroll>
+				<align>left</align>
+				<aligny>center</aligny>
+			</control>
+			<control type="list" id="21">
+				<left>30</left>
+				<top>165</top>
+				<width>825</width>
+				<height>737</height>
+				<onleft>30</onleft>
+				<onright>31</onright>
+				<onup>21</onup>
+				<ondown>21</ondown>
+				<pagecontrol>31</pagecontrol>
+				<include>ScrollTimeOld</include>
+				<itemlayout height="60" width="825">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>825</width>
+						<height>62</height>
+						<texture border="0,3,0,3">MenuItemNF.png</texture>
+					</control>
+					<control type="label">
+						<left>15</left>
+						<top>0</top>
+						<width>750</width>
+						<height>60</height>
+						<font>Regular20</font>
+						<aligny>center</aligny>
+						<selectedcolor>selected</selectedcolor>
+						<textcolor>grey2</textcolor>
+						<align>left</align>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<left>510</left>
+						<top>0</top>
+						<width>300</width>
+						<height>60</height>
+						<font>Regular17</font>
+						<aligny>center</aligny>
+						<selectedcolor>selected</selectedcolor>
+						<textcolor>grey</textcolor>
+						<align>right</align>
+						<info>ListItem.Label2</info>
+					</control>
+				</itemlayout>
+				<focusedlayout height="60" width="825">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>825</width>
+						<height>62</height>
+						<visible>!Control.HasFocus(21)</visible>
+						<texture border="0,3,0,3">MenuItemNF.png</texture>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>825</width>
+						<height>62</height>
+						<visible>Control.HasFocus(21)</visible>
+						<texture border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texture>
+						<include>FocusAnimationType1Short</include>
+					</control>
+					<control type="label">
+						<left>15</left>
+						<top>0</top>
+						<width>750</width>
+						<height>60</height>
+						<font>Regular20</font>
+						<aligny>center</aligny>
+						<selectedcolor>selected</selectedcolor>
+						<textcolor>white</textcolor>
+						<align>left</align>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<left>510</left>
+						<top>0</top>
+						<width>300</width>
+						<height>60</height>
+						<font>Regular17</font>
+						<aligny>center</aligny>
+						<selectedcolor>selected</selectedcolor>
+						<textcolor>grey</textcolor>
+						<align>right</align>
+						<info>ListItem.Label2</info>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="31">
+				<left>873</left>
+				<top>165</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>723</height>
+				<onleft>21</onleft>
+				<onright>31</onright>
+				<ondown>31</ondown>
+				<onup>31</onup>
+				<showonepage>false</showonepage>
+				<include>scrollBarStyleDefault</include>
+			</control>
+		</control>
+		<control type="group">
+			<include>Window_OpenClose_Animation</include>
+			<depth>DepthFooter</depth>
+			<control type="label">
+				<description>number of files/pages in left list text label</description>
+				<left>45</left>
+				<top>1001</top>
+				<width>915</width>
+				<font>Light17</font>
+				<align>center</align>
+				<scroll>true</scroll>
+				<textcolor>grey</textcolor>
+				<label>$INFO[Container(20).NumItems] $LOCALIZE[31025]</label>
+			</control>
+			<control type="label">
+				<description>number of files/pages in left list text label</description>
+				<left>975</left>
+				<top>1001</top>
+				<width>915</width>
+				<font>Light17</font>
+				<align>center</align>
+				<scroll>true</scroll>
+				<textcolor>grey</textcolor>
+				<label>$INFO[Container(21).NumItems] $LOCALIZE[31025]</label>
+			</control>
+		</control>
+		
+		<include content="CommonWindowHeader">
+			<param name="Icon" value="icon_system" />
+			<param name="Label" value="$LOCALIZE[7]" />
+		</include>
+		
+		
+		
+		<include>CommonNowPlaying_PIP</include>
+		
+		
+		
+		<include>BehindDialogFadeOut</include>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

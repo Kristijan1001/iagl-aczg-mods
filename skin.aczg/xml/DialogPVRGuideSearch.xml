@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">9</defaultcontrol>
+	<include>dialogeffect</include>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		
+		<control type="group">
+			
+			<centerleft>50%</centerleft>
+			<centertop>49%</centertop>
+			<width>1305</width>
+			<height>903</height>
+			
+			<include content="DialogBackgroundCommons">
+				<param name="DialogBackgroundWidth" value="1345" />
+				<param name="DialogBackgroundHeight" value="943" />
+				<param name="DialogHeaderWidth" value="1285" />
+				<param name="DialogHeaderLabelWidth" value="1234" />
+				<param name="DialogHeaderLabel" value="$LOCALIZE[19142]" />
+				<param name="DialogHeaderId" value="2" />
+			</include>
+			
+			<control type="label">
+				<description>Search string</description>
+				<left>45</left>
+				<top>89</top>
+				<width>480</width>
+				<height>60</height>
+				<font>Light21</font>
+				<label>$LOCALIZE[19133]</label>
+				<align>left</align>
+				<aligny>center</aligny>
+				<textcolor>blue</textcolor>
+			</control>
+			
+			<!--KeyboardEditArea-->
+			<control type="edit" id="9">
+				<description>Search string</description>
+				<left>45</left>
+				<top>151</top>
+				<width>1215</width>
+				<height>69</height>
+				<font>Regular21</font>
+				<textcolor>white</textcolor>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<texturenofocus border="14">button.png</texturenofocus>
+				<align>left</align>
+				<onleft>9</onleft>
+				<onright>9</onright>
+				<onup>noop</onup>
+				<ondown>10</ondown>
+			</control>
+			
+			<control type="textbox">
+				<description>Search help</description>
+				<left>45</left>
+				<top>230</top>
+				<width>1215</width>
+				<height>102</height>
+				<align>left</align>
+				<font>Light17</font>
+				<textcolor>grey2</textcolor>
+				<label>$LOCALIZE[19001] $LOCALIZE[19002]</label>
+			</control>
+			
+			<control type="group">
+				<left>45</left>
+				<top>335</top>
+				<control type="radiobutton" id="10"><include>Button_TextOffset_Small</include><include>PVR_Guide_Search_Radio_Button</include>
+					<description>Include Description</description>
+					<left>0</left>
+					<top>0</top>
+					<height>53</height>
+					<width>600</width>
+					<font>Regular17</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<align>left</align>
+					<aligny>center</aligny>
+					<label>19134</label>
+					<onleft>noop</onleft>
+					<onright>12</onright>
+					<onup>9</onup>
+					<ondown>11</ondown>
+				</control>
+				<control type="radiobutton" id="11"><include>Button_TextOffset_Small</include><include>PVR_Guide_Search_Radio_Button</include>
+					<description>Case Sensitive</description>
+					<left>0</left>
+					<top>53</top>
+					<height>53</height>
+					<width>600</width>
+					<font>Regular17</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<align>left</align>
+					<aligny>center</aligny>
+					<label>19135</label>
+					<onleft>noop</onleft>
+					<onright>13</onright>
+					<onup>10</onup>
+					<ondown>14</ondown>
+				</control>
+				<control type="edit" id="14"><include>Button_TextOffset_Small</include>
+					<description>Start Date</description>
+					<left>0</left>
+					<top>105</top>
+					<width>600</width>
+					<height>53</height>
+					<font>Regular17</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19128</label>
+					<onright>16</onright>
+					<onleft>noop</onleft>
+					<onup>11</onup>
+					<ondown>15</ondown>
+				</control>
+				<control type="edit" id="15"><include>Button_TextOffset_Small</include>
+					<description>Stop Date</description>
+					<left>0</left>
+					<top>158</top>
+					<width>600</width>
+					<height>53</height>
+					<font>Regular17</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19129</label>
+					<onright>17</onright>
+					<onleft>noop</onleft>
+					<onup>14</onup>
+					<ondown>18</ondown>
+				</control>
+				<control type="spincontrolex" id="18"><include>Button_TextOffset_Small</include>
+					<description>Genre</description>
+					<left>0</left>
+					<top>210</top>
+					<width>600</width>
+					<height>53</height>
+					<font>Regular17</font>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>515</label>
+					<onright>19</onright>
+					<onleft>noop</onleft>
+					<onup>15</onup>
+					<ondown>20</ondown>
+				</control>
+				<control type="radiobutton" id="20"><include>Button_TextOffset_Small</include><include>PVR_Guide_Search_Radio_Button</include>
+					<description>Include unknown Genres</description>
+					<left>0</left>
+					<top>263</top>
+					<height>53</height>
+					<width>600</width>
+					<font>Regular17</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19132</label>
+					<onleft>noop</onleft>
+					<onright>21</onright>
+					<onup>18</onup>
+					<ondown>22</ondown>
+				</control>
+				<control type="radiobutton" id="22"><include>Button_TextOffset_Small</include><include>PVR_Guide_Search_Radio_Button</include>
+					<description>FTA only</description>
+					<left>0</left>
+					<top>315</top>
+					<height>53</height>
+					<width>600</width>
+					<font>Regular17</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19123</label>
+					<onleft>noop</onleft>
+					<onright>23</onright>
+					<onup>20</onup>
+					<ondown>24</ondown>
+				</control>
+				<control type="radiobutton" id="24"><include>Button_TextOffset_Small</include><include>PVR_Guide_Search_Radio_Button</include>
+					<description>Ignore Timers</description>
+					<left>0</left>
+					<top>368</top>
+					<height>53</height>
+					<width>600</width>
+					<font>Regular17</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19124</label>
+					<onleft>noop</onleft>
+					<onright>27</onright>
+					<onup>22</onup>
+					<ondown>26</ondown>
+				</control>
+			</control>
+			
+			<control type="group">
+				<left>660</left>
+				<top>335</top>
+				<control type="spincontrolex" id="12"><include>Button_TextOffset_Small</include>
+					<description>Min Duration</description>
+					<left>0</left>
+					<top>0</top>
+					<width>600</width>
+					<height>53</height>
+					<font>Regular17</font>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19130</label>
+					<onright>noop</onright>
+					<onleft>10</onleft>
+					<onup>9</onup>
+					<ondown>13</ondown>
+				</control>
+				<control type="spincontrolex" id="13"><include>Button_TextOffset_Small</include>
+					<description>Max Duration</description>
+					<left>0</left>
+					<top>53</top>
+					<width>600</width>
+					<height>53</height>
+					<font>Regular17</font>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19131</label>
+					<onright>noop</onright>
+					<onleft>11</onleft>
+					<onup>12</onup>
+					<ondown>16</ondown>
+				</control>
+				<control type="edit" id="16"><include>Button_TextOffset_Small</include>
+					<description>Start time</description>
+					<left>0</left>
+					<top>105</top>
+					<width>600</width>
+					<height>53</height>
+					<font>Regular17</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19126</label>
+					<onright>noop</onright>
+					<onleft>14</onleft>
+					<onup>13</onup>
+					<ondown>17</ondown>
+				</control>
+				<control type="edit" id="17"><include>Button_TextOffset_Small</include>
+					<description>Stop time</description>
+					<left>0</left>
+					<top>158</top>
+					<width>600</width>
+					<height>53</height>
+					<font>Regular17</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19127</label>
+					<onright>noop</onright>
+					<onleft>15</onleft>
+					<onup>16</onup>
+					<ondown>19</ondown>
+				</control>
+				<control type="radiobutton" id="19"><include>Button_TextOffset_Small</include><include>PVR_Guide_Search_Radio_Button</include>
+					<description>avoid repeats</description>
+					<left>0</left>
+					<top>210</top>
+					<height>53</height>
+					<width>600</width>
+					<font>Regular17</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19121</label>
+					<onright>noop</onright>
+					<onleft>18</onleft>
+					<onup>17</onup>
+					<ondown>21</ondown>
+				</control>
+				<control type="spincontrolex" id="21"><include>Button_TextOffset_Small</include>
+					<description>Groups</description>
+					<left>0</left>
+					<top>263</top>
+					<width>600</width>
+					<height>53</height>
+					<font>Regular17</font>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19141</label>
+					<onright>noop</onright>
+					<onleft>20</onleft>
+					<onup>19</onup>
+					<ondown>23</ondown>
+				</control>
+				<control type="spincontrolex" id="23"><include>Button_TextOffset_Small</include>
+					<description>Channels</description>
+					<left>0</left>
+					<top>315</top>
+					<width>600</width>
+					<height>53</height>
+					<font>Regular17</font>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19148</label>
+					<onleft>22</onleft>
+					<onright>noop</onright>
+					<onup>21</onup>
+					<ondown>27</ondown>
+				</control>
+				<control type="radiobutton" id="27"><include>Button_TextOffset_Small</include><include>PVR_Guide_Search_Radio_Button</include>
+					<description>Ignore Recordings</description>
+					<left>0</left>
+					<top>368</top>
+					<height>53</height>
+					<width>600</width>
+					<font>Regular17</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus />
+					<label>19125</label>
+					<onleft>24</onleft>
+					<onright>noop</onright>
+					<onup>23</onup>
+					<ondown>26</ondown>
+				</control>
+			</control>
+			
+			<control type="group" id="9000">
+				<top>796</top>
+				<left>187</left>
+				
+				<control type="button" id="26">
+					<description>Search Button</description>
+					<left>0</left>
+					<top>0</top>
+					<width>300</width>
+					<height>67</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>137</label>
+					<onleft>noop</onleft>
+					<onright>25</onright>
+					<onup>24</onup>
+					<ondown>noop</ondown>
+					<include>ButtonInfoDialogsCommonValues</include>
+				</control>
+				
+				<control type="button" id="25">
+					<description>Cancel Button</description>
+					<left>315</left>
+					<top>0</top>
+					<width>300</width>
+					<height>67</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>222</label>
+					<onleft>26</onleft>
+					<onright>28</onright>
+					<onup>24</onup>
+					<ondown>noop</ondown>
+					<include>ButtonInfoDialogsCommonValues</include>
+				</control>
+				
+				<control type="button" id="28">
+					<description>Defaults Button</description>
+					<left>630</left>
+					<top>0</top>
+					<width>300</width>
+					<height>67</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>13007</label>
+					<onleft>25</onleft>
+					<onright>noop</onright>
+					<onup>24</onup>
+					<ondown>noop</ondown>
+					<include>ButtonInfoDialogsCommonValues</include>
+				</control>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

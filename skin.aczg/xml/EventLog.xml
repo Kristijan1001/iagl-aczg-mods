@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">570</defaultcontrol>
+	<menucontrol>7000</menucontrol>
+	<onload condition="!Skin.HasSetting(FirstTimeRun)">ActivateWindow(1112)</onload>
+	<views>570</views>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<include>CommonBackground</include>
+		<include>ContentPanelBackgrounds</include>
+		
+		<control type="group">
+			<visible>Control.IsVisible(570)</visible>
+			<include>Window_OpenClose_Animation</include>
+			<include>VisibleFadeEffect</include>
+			
+			<control type="list" id="570">
+				<left>126</left>
+				<top>129</top>
+				<width>1620</width>
+				<height>756</height>
+				<onleft>21</onleft>
+				<onright>60</onright>
+				<onup>570</onup>
+				<ondown>570</ondown>
+				<viewtype label="535">list</viewtype>
+				<pagecontrol>60</pagecontrol>
+				<include>ScrollTimeOld</include>
+				
+				<itemlayout height="126" width="1620">
+					
+					<control type="image">
+						<left>14</left>
+						<top>11</top>
+						<width>98</width>
+						<height>98</height>
+						<texture fallback="DefaultIconInfo-solid.png" diffuse="colors/diffuse/98x98-rounded.png">$INFO[Listitem.Icon]</texture>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<visible>!String.IsEqual(Listitem.Icon,DefaultFile.png)</visible>
+					</control>
+					
+					<control type="image">
+						<left>14</left>
+						<top>11</top>
+						<width>98</width>
+						<height>98</height>
+						<texture fallback="DefaultIconInfo-solid.png" diffuse="colors/diffuse/98x98-rounded.png">DefaultIconInfo-solid.png</texture>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<visible>String.IsEqual(Listitem.Icon,DefaultFile.png)</visible>
+					</control>
+					
+					<control type="label">
+						<left>135</left>
+						<top>10</top>
+						<width>1200</width>
+						<height>45</height>
+						<font>Regular20</font>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>left</align>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					
+					<control type="label">
+						<left>135</left>
+						<top>10</top>
+						<width>1455</width>
+						<height>45</height>
+						<font>Regular17</font>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>right</align>
+						<label>$INFO[ListItem.Label2]</label>
+					</control>
+					
+					<control type="textbox">
+						<left>135</left>
+						<top>48</top>
+						<width>1200</width>
+						<height>72</height>
+						<font>Light17</font>
+						<textcolor>grey</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>left</align>
+						<label>$INFO[ListItem.Property(Event.Description)]</label>
+					</control>
+					
+				</itemlayout>
+				
+				<focusedlayout height="126" width="1620">
+					
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>1620</width>
+						<height>120</height>
+						<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+						<visible>Control.HasFocus(570)</visible>
+						<include>VisibleFadeEffect</include>
+						<include>FocusAnimationType1</include>
+					</control>
+					
+					<control type="image">
+						<left>14</left>
+						<top>11</top>
+						<width>98</width>
+						<height>98</height>
+						<texture fallback="DefaultIconInfo-solid.png" diffuse="colors/diffuse/98x98-rounded.png">$INFO[Listitem.Icon]</texture>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<visible>!String.IsEqual(Listitem.Icon,DefaultFile.png)</visible>
+					</control>
+					
+					<control type="image">
+						<left>14</left>
+						<top>11</top>
+						<width>98</width>
+						<height>98</height>
+						<texture fallback="DefaultIconInfo-solid.png" diffuse="colors/diffuse/98x98-rounded.png">DefaultIconInfo-solid.png</texture>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<visible>String.IsEqual(Listitem.Icon,DefaultFile.png)</visible>
+					</control>
+					
+					<control type="label">
+						<left>135</left>
+						<top>10</top>
+						<width>1200</width>
+						<height>45</height>
+						<font>Regular20</font>
+						<textcolor>white</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>left</align>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					
+					<control type="label">
+						<left>135</left>
+						<top>10</top>
+						<width>1455</width>
+						<height>45</height>
+						<font>Regular17</font>
+						<textcolor>white</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>right</align>
+						<label>$INFO[ListItem.Label2]</label>
+					</control>
+					
+					<control type="textbox">
+						<left>135</left>
+						<top>48</top>
+						<width>1200</width>
+						<height>72</height>
+						<font>Light17</font>
+						<textcolor>grey</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>left</align>
+						<label>$INFO[ListItem.Property(Event.Description)]</label>
+					</control>
+					
+				</focusedlayout>
+				
+			</control>
+			
+			<control type="scrollbar" id="60">
+				<left>1767</left>
+				<top>129</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>750</height>
+				<onleft>570</onleft>
+				<onright>60</onright>
+				<showonepage>false</showonepage>
+				<visible>Control.IsVisible(570)</visible>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+		
+		
+		<!--<include>ScrollOffsetLabel</include>-->
+		
+		<include content="CommonWindowHeader">
+			<param name="Icon" value="icon_system" />
+			<param name="Label" value="$LOCALIZE[10050]" />
+		</include>
+		
+		
+		
+		<control type="group">
+			
+			<left>-429</left>
+			
+			<include>SideBladeLeft</include>
+			
+			<control type="grouplist" id="7000">
+				<include>SideBladeLeftFadeInAni</include>
+				<left>24</left>
+				<top>165</top>
+				<width>375</width>
+				<height>900</height>
+				<onleft>7000</onleft>
+				<onright>570</onright>
+				<onup>7000</onup>
+				<ondown>7000</ondown>
+				<onback>570</onback>
+				<itemgap>0</itemgap>
+				
+				<control type="button" id="21">
+					<description>Level button</description>
+					<include>SideBar_Button_Common</include>
+					<label></label>
+				</control>
+				
+				<control type="radiobutton" id="22">
+					<description>Only show current level</description>
+					<include>SideBar_Button_Common_Radio</include>
+					<include>SideBar_Button_Common</include>
+					<label></label>
+				</control>
+				
+				<control type="togglebutton" id="4">
+					<description>Sort asc</description>
+					<include>SideBar_Button_Common</include>
+					<alttexturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</alttexturefocus>
+					<alttexturenofocus></alttexturenofocus>
+					<label>31051</label>
+					<altlabel>31050</altlabel>
+					<usealttexture>Container.SortDirection(Ascending)</usealttexture>
+				</control>
+				
+				<control type="image" id="7101">
+					<width>375</width>
+					<height>15</height>
+				</control>
+				<control type="image" id="7102">
+					<width>375</width>
+					<height>1</height>
+					<texture colordiffuse="$VAR[SeparatorColorDiffuse]">separator-uni.png</texture>
+				</control>
+				<control type="image" id="7103">
+					<width>375</width>
+					<height>15</height>
+				</control>
+				
+				<control type="button" id="20">
+					<description>Clear button</description>
+					<include>SideBar_Button_Common</include>
+					<label>192</label>
+				</control>
+				
+				<include>CommonNowPlaying_Controls</include>
+				
+			</control>
+		</control>
+		
+		
+		
+		<include>CommonNowPlaying_PIP</include>
+		
+		
+		
+		<include>BehindDialogFadeOut</include>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1199">
+	
+	<visible>Skin.HasSetting(DevVolumeAmpFeaturesEnabled) + Skin.HasSetting(DevVolumeAmpUseAutoDRC) +      Player.Playing +    Player.HasMedia + !String.IsEqual(Player.FileNameAndPath,Window(Home).Property(DRCid)) + [[Player.HasVideo + VideoPlayer.IsFullscreen] | [!Player.HasVideo + Player.HasAudio]]</visible>
+	
+	<include condition="!Player.Passthrough + !String.IsEqual(Player.FileNameAndPath,Window(Home).Property(DRCid)) + [[!String.StartsWith(Window(Home).Property(DRCidFileName),pvr.) + !String.EndsWith(Window(Home).Property(DRCidFileName),.pvr)] | [!String.StartsWith(Player.Filename,pvr.) + !String.EndsWith(Player.Filename,.pvr)]] +        ![!Player.IsInternetStream + [ [ [String.IsEqual(Skin.String(DevVolumeAmpTypes),0) | String.IsEmpty(Skin.String(DevVolumeAmpTypes))] + VideoPlayer.Content(Movies) ] | [ String.IsEqual(Skin.String(DevVolumeAmpTypes),1) + [VideoPlayer.Content(Movies) | VideoPlayer.Content(Episodes)] ] | [ String.IsEqual(Skin.String(DevVolumeAmpTypes),2) + [VideoPlayer.Content(Movies) | VideoPlayer.Content(Episodes) | VideoPlayer.Content(Files)] ] ]]">VolumeAmplification_Preset_DRC_OnLoad_OFF</include>
+	<include condition="!Player.Passthrough + !String.IsEqual(Player.FileNameAndPath,Window(Home).Property(DRCid)) + [[!String.StartsWith(Window(Home).Property(DRCidFileName),pvr.) + !String.EndsWith(Window(Home).Property(DRCidFileName),.pvr)] | [!String.StartsWith(Player.Filename,pvr.) + !String.EndsWith(Player.Filename,.pvr)]] +         [!Player.IsInternetStream + [ [ [String.IsEqual(Skin.String(DevVolumeAmpTypes),0) | String.IsEmpty(Skin.String(DevVolumeAmpTypes))] + VideoPlayer.Content(Movies) ] | [ String.IsEqual(Skin.String(DevVolumeAmpTypes),1) + [VideoPlayer.Content(Movies) | VideoPlayer.Content(Episodes)] ] | [ String.IsEqual(Skin.String(DevVolumeAmpTypes),2) + [VideoPlayer.Content(Movies) | VideoPlayer.Content(Episodes) | VideoPlayer.Content(Files)] ] ]]">VolumeAmplification_Preset_DRC_OnLoad_ON</include>
+	
+	<onload condition="!Player.Passthrough">SetProperty(DRCid,"$INFO[Player.FileNameAndPath]",home)</onload>
+	<onload condition="!Player.Passthrough">SetProperty(DRCidFileName,"$INFO[Player.Filename]",home)</onload>
+	
+	<onload condition="Player.Passthrough">Notification(VolumeAmplification-DRC Error,Disable audio passthrough first,5000,DefaultIconError.png)</onload>
+	
+	<controls></controls>
+</window>

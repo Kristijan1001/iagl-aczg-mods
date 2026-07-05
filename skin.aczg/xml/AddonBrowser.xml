@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">51</defaultcontrol>
+	<menucontrol>7000</menucontrol>
+	<!--
+	Disable only here to prevent first install helper dialog spam while being in add-on browser
+	<onload condition="!Skin.HasSetting(FirstTimeRun)">ActivateWindow(1112)</onload>
+	-->
+	<views>51,50,550,551,500,908,909,910</views>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<include>CommonBackground</include>
+		<include>ContentPanelBackgrounds</include>
+		
+		<control type="group">
+			<include>Window_OpenClose_Animation</include>
+			<!-- view id = 51 -->
+			<include>FullWidthList</include>
+			<!-- view id = 50 -->
+			<include>CommonRootView</include>
+			<!-- view id = 550 -->
+			<include condition="Skin.HasSetting(ViewTypesShowLegacy)">AddonInfoListView1</include>
+			<!-- view id = 551 -->
+			<include condition="Skin.HasSetting(ViewTypesShowLegacy)">AddonInfoThumbView1</include>
+			
+			<include>Wall_View_2X</include>
+			<include>Wall_View_3X</include>
+			<include>Wall_View_4X</include>
+			<include>Wall_View_5X</include>
+			
+		</control>
+		
+		
+		<!--<include>ScrollOffsetLabel</include>-->
+		
+		<include content="CommonWindowHeader">
+			<param name="Icon" value="icon_addons" />
+			<param name="Label" value="$LOCALIZE[24001]" />
+		</include>
+		
+		
+		
+		<control type="group">
+			
+			<left>-429</left>
+			
+			<include>SideBladeLeft</include>
+			
+			<control type="grouplist" id="7000">
+				<include>SideBladeLeftFadeInAni</include>
+				<left>24</left>
+				<top>120</top>
+				<width>375</width>
+				<height>915</height>
+				<onleft>7000</onleft>
+				<onright>50</onright>
+				<onup>7000</onup>
+				<ondown>7000</ondown>
+				<onback>50</onback>
+				<itemgap>0</itemgap>
+				
+				<control type="image" id="7100">
+					<width>375</width>
+					<height>15</height>
+				</control>
+				
+				
+				
+				<control type="button" id="9">
+					<description>Check for updates</description>
+					<include>SideBar_Button_Common</include>
+					<label>24034</label>
+				</control>
+				
+				<control type="button" id="2562">
+					<description>My add-ons</description>
+					<include>SideBar_Button_Common</include>
+					<label>$VAR[SideBar_Button_MyAddons_Label]</label>
+					<onclick>ActivateWindow(AddonBrowser,addons://user/all/,return)</onclick>
+				</control>
+				
+				
+				
+				
+				
+				<control type="image" id="7107">
+					<width>375</width>
+					<height>15</height>
+				</control>
+				<control type="image" id="7108">
+					<width>375</width>
+					<height>1</height>
+					<texture colordiffuse="$VAR[SeparatorColorDiffuse]">separator-uni.png</texture>
+				</control>
+				<control type="image" id="7109">
+					<width>375</width>
+					<height>15</height>
+				</control>
+				
+				
+				
+				<control type="button" id="2">
+					<description>View As button</description>
+					<include>SideBar_Button_Common</include>
+					<label></label>
+				</control>
+				
+				<include>Wall_Views_Higher_Density_Sidebar_Button</include>
+				<include>List_View_Full_Width_Sidebar_Button</include>
+				
+				<control type="button" id="3">
+					<description>Sort by button</description>
+					<include>SideBar_Button_Common</include>
+					<label>103</label>
+					<visible>Control.IsEnabled(3)</visible>
+				</control>
+				
+				<control type="togglebutton" id="4">
+					<description>Sort asc</description>
+					<include>SideBar_Button_Common</include>
+					<alttexturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</alttexturefocus>
+					<alttexturenofocus></alttexturenofocus>
+					<label>31051</label>
+					<altlabel>31050</altlabel>
+					<usealttexture>Container.SortDirection(Ascending)</usealttexture>
+					<visible>Control.IsEnabled(4)</visible>
+				</control>
+				
+				
+				
+				<control type="image" id="7101">
+					<visible>Control.IsVisible(7) | Control.IsVisible(8)</visible>
+					<width>375</width>
+					<height>15</height>
+				</control>
+				<control type="image" id="7102">
+					<visible>Control.IsVisible(7) | Control.IsVisible(8)</visible>
+					<width>375</width>
+					<height>1</height>
+					<texture colordiffuse="$VAR[SeparatorColorDiffuse]">separator-uni.png</texture>
+				</control>
+				<control type="image" id="7103">
+					<visible>Control.IsVisible(7) | Control.IsVisible(8)</visible>
+					<width>375</width>
+					<height>15</height>
+				</control>
+				
+				
+				
+				<control type="radiobutton" id="7">
+					<description>Hide foreign</description>
+					<include>SideBar_Button_Common_Radio</include>
+					<include>SideBar_Button_Common</include>
+					<label>25001</label>
+					<visible>Control.IsEnabled(7)</visible>
+				</control>
+				
+				<control type="radiobutton" id="8">
+					<description>Hide broken</description>
+					<include>SideBar_Button_Common_Radio</include>
+					<include>SideBar_Button_Common</include>
+					<label>24999</label>
+					<visible>Control.IsEnabled(8)</visible>
+				</control>
+				
+				
+				
+				<control type="image" id="7104">
+					<width>375</width>
+					<height>15</height>
+				</control>
+				<control type="image" id="7105">
+					<width>375</width>
+					<height>1</height>
+					<texture colordiffuse="$VAR[SeparatorColorDiffuse]">separator-uni.png</texture>
+				</control>
+				<control type="image" id="7106">
+					<width>375</width>
+					<height>15</height>
+				</control>
+				
+				
+				
+				
+				<control type="button" id="3364">
+					<description>Manage dependencies</description>
+					<include>SideBar_Button_Common</include>
+					<label>$VAR[SideBar_Button_Dependencies_Label]</label>
+					<onclick>ActivateWindow(AddonBrowser,addons://dependencies/,return)</onclick>
+					<onclick>SetFocus(50)</onclick>
+				</control>
+				
+				<control type="button" id="7454">
+					<description>Running</description>
+					<include>SideBar_Button_Common</include>
+					<label>$VAR[SideBar_Button_Running_Label]</label>
+					<onclick>ActivateWindow(AddonBrowser,addons://running/,return)</onclick>
+					<onclick>SetFocus(50)</onclick>
+				</control>
+				
+				<control type="button" id="5">
+					<description>Settings shortcut</description>
+					<include>SideBar_Button_Common</include>
+					<label>10004</label>
+				</control>
+				
+				
+				
+				<include>CommonNowPlaying_Controls</include>
+				
+			</control>
+			
+			<control type="group">
+				
+				<include>SideBladeLeftFadeInAni</include>
+				
+				<left>42</left>
+				<top>19</top>
+				
+				<control type="label">
+					<description>Last updated</description>
+					<left>0</left>
+					<top>0</top>
+					<height>90</height>
+					<width>360</width>
+					<label>$LOCALIZE[12014]$INFO[Window(AddonBrowser).Property(Updated),[CR][COLOR=grey],[/COLOR]]</label>
+					<align>left</align>
+					<aligny>top</aligny>
+					<font>Light18+</font>
+					<textcolor>selected</textcolor>
+					<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+				</control>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		<include>CommonNowPlaying_PIP</include>
+		
+		
+		
+		<include>BehindDialogFadeOut</include>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

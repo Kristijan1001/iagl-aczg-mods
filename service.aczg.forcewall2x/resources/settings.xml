@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings version="1">
+    <section id="service.aczg.forcewall2x">
+        <category id="general" label="View">
+            <group id="1">
+                <setting id="enabled" type="boolean" label="Force a view in the Videos window">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="view_id" type="integer" label="View to force">
+                    <level>0</level>
+                    <default>500</default>
+                    <constraints>
+                        <options>
+                            <option label="Wall 2X">500</option>
+                            <option label="Wall 3X">908</option>
+                            <option label="Wall 4X">909</option>
+                            <option label="Wall 5X">910</option>
+                            <option label="Fanart">508</option>
+                            <option label="List (full width)">51</option>
+                            <option label="Modern">52</option>
+                            <option label="Seasons">509</option>
+                            <option label="Episodes">510</option>
+                        </options>
+                    </constraints>
+                    <dependencies>
+                        <dependency type="enable" setting="enabled">true</dependency>
+                    </dependencies>
+                    <control type="list" format="integer">
+                        <heading>View to force</heading>
+                    </control>
+                </setting>
+            </group>
+        </category>
+    </section>
+</settings>

@@ -1,0 +1,924 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	
+	
+	<!-- Game dialog for Video settings -->
+	<include name="GameDialogSelectLayout">
+		
+		<control type="group">
+			
+			<left>0</left>
+			<top>580</top>
+			
+			<control type="image">
+				<description>background image</description>
+				
+				<include>BackgroundDimensions</include>
+				
+				<left>0</left>
+				<top>0</top>
+				
+				<texture>colors/black.png</texture>
+				
+				<include>dialogeffect</include>
+				
+				<visible>![Window.IsVisible(GameVideoFilter) | Window.IsVisible(GameStretchMode) | Window.IsVisible(GameVideoRotation)]</visible>
+			</control>
+			
+			<control type="group">
+				
+				<include>dialogeffectSlower</include>
+				
+				<control type="label">
+					<description>header label</description>
+					<left>30</left>
+					<top>30</top>
+					<width>1860</width>
+					<height>45</height>
+					<font>Light26</font>
+					<label>$VAR[GameSelectHeader]</label>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>white</textcolor>
+					
+					<visible>![Window.IsVisible(GameVideoFilter) | Window.IsVisible(GameStretchMode) | Window.IsVisible(GameVideoRotation)]</visible>
+				</control>
+				
+				<include>GameDialogSelectLayoutFixedListFallback</include>
+				
+			</control>
+			
+		</control>
+		
+	</include>
+	
+	
+	
+	<include name="GameDialogSelectLayoutFixedListFallback">
+		<!-- Kodi 19+ -->
+		<include condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.)]">GameDialogSelectLayoutFixedListFallbackNew</include>
+		<include>GameDialogSelectLayoutFixedListFallbackOld</include>
+	</include>
+	
+	
+	
+	<include name="GameDialogSelectLayoutFixedListFallbackNew">
+		
+		<control type="fixedlist" id="10811">
+			
+			<animation effect="slide" start="0,0" end="-189,0" time="0" condition="Integer.IsEqual(Container(10811).NumItems,2)">Conditional</animation>
+			<animation effect="slide" start="0,0" end="-189,0" time="0" condition="Integer.IsEqual(Container(10811).NumItems,4)">Conditional</animation>
+			
+			<left>0</left>
+			<top>98</top>
+			<width>1920</width>
+			<height>323</height>
+			<onleft>10811</onleft>
+			<onright>10811</onright>
+			<ondown>noop</ondown>
+			<onup>noop</onup>
+			<!--<include>ScrollTimeOld</include>--><include>StandardScrollTime</include>
+			<orientation>horizontal</orientation>
+			<focusposition>2</focusposition>
+			<movement>2</movement>
+			
+			<pagecontrol>108110</pagecontrol>
+			
+			<include condition="[String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems1</include>
+			<include condition="![String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems2</include>
+			
+			<include>GameDialogSelectLayoutFixedListInnerCode</include>
+			
+		</control>
+		
+		<control type="scrollbar" id="108110">
+			<left>27</left>
+			<top>450</top>
+			<width>1866</width>
+			<include>scrollBarStyleDefaultHeight</include>
+			
+			<onleft>108110</onleft>
+			<onright>108110</onright>
+			
+			<onup>10811</onup>
+			
+			<showonepage>false</showonepage>
+			<animation effect="fade" end="75" time="0" condition="true">Conditional</animation>
+			<include>scrollBarStyleDefault</include>
+		</control>
+		
+	</include>
+	
+	
+	
+	<include name="GameDialogSelectLayoutFixedListFallbackOld">
+		
+		<control type="fixedlist" id="11">
+			
+			<animation effect="slide" start="0,0" end="-189,0" time="0" condition="Integer.IsEqual(Container(11).NumItems,2)">Conditional</animation>
+			<animation effect="slide" start="0,0" end="-189,0" time="0" condition="Integer.IsEqual(Container(11).NumItems,4)">Conditional</animation>
+			
+			<left>0</left>
+			<top>98</top>
+			
+			<width>1920</width>
+			<height>323</height>
+			
+			<onleft>11</onleft>
+			<onright>11</onright>
+			<ondown>noop</ondown>
+			<onup>noop</onup>
+			
+			<!--<include>ScrollTimeOld</include>--><include>StandardScrollTime</include>
+			<orientation>horizontal</orientation>
+			<focusposition>2</focusposition>
+			<movement>2</movement>
+			
+			<pagecontrol>110</pagecontrol>
+			
+			<include condition="[String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems1</include>
+			<include condition="![String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems2</include>
+			
+			<include>GameDialogSelectLayoutFixedListInnerCode</include>
+		</control>
+		
+		<control type="scrollbar" id="110">
+			<left>27</left>
+			<top>450</top>
+			<width>1866</width>
+			<include>scrollBarStyleDefaultHeight</include>
+			
+			<onleft>110</onleft>
+			<onright>110</onright>
+			
+			<onup>11</onup>
+			
+			<showonepage>false</showonepage>
+			<animation effect="fade" end="75" time="0" condition="true">Conditional</animation>
+			<include>scrollBarStyleDefault</include>
+		</control>
+		
+	</include>
+	
+	
+	
+	<include name="GameDialogSelectLayoutFixedListInnerCode">
+		
+		<itemlayout height="323" width="378">
+			<control type="group">
+				<left>24</left>
+				<control type="image">
+					<left>3</left>
+					<top>3</top>
+					<width>354</width>
+					<height>317</height>
+					<texture background="true" colordiffuse="FF111111" border="12">colors/white_border12.png</texture>
+					<visible>String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+				</control>
+				<control type="image">
+					<left>16</left>
+					<top>30</top>
+					<width>328</width>
+					<height>225</height>
+					<texture background="true">colors/black.png</texture>
+					<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+				</control>
+				
+				<control type="gamewindow">
+					<left>16</left>
+					<top>30</top>
+					<width>328</width>
+					<height>225</height>
+					<videofilter>$INFO[ListItem.Property(game.videofilter)]</videofilter>
+					<stretchmode>$INFO[ListItem.Property(game.stretchmode)]</stretchmode>
+					<rotation>$INFO[ListItem.Property(game.videorotation)]</rotation>
+					
+					<visible>!String.IsEqual(ListItem.Label,$LOCALIZE[21452])</visible><!-- Hide for "Get more..." -->
+				</control>
+				
+				<control type="image">
+					<left>16</left>
+					<top>30</top>
+					<width>328</width>
+					<height>225</height>
+					<texture background="true">$INFO[ListItem.Icon]</texture>
+					<aspectratio>keep</aspectratio>
+					
+					<visible>String.IsEqual(ListItem.Label,$LOCALIZE[21452])</visible><!-- Plus Icon for "Get more..." -->
+				</control>
+				
+				<control type="image">
+					<left>3</left>
+					<top>3</top>
+					<width>354</width>
+					<height>317</height>
+					<texture background="true" border="23,37,23,75" colordiffuse="FF111111">_added_img/uni_border-label.png</texture>
+					<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+				</control>
+				
+				<control type="label">
+					<left>13</left>
+					<top>278</top>
+					<width>333</width>
+					<height>23</height>
+					<font>Regular17</font>
+					<selectedcolor>selected</selectedcolor>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, (,)]</label>
+					<textcolor>grey</textcolor>
+				</control>
+			</control>
+		</itemlayout>
+		
+		<focusedlayout height="323" width="378">
+			<control type="group">
+				<left>24</left>
+				<control type="image">
+					<left>3</left>
+					<top>3</top>
+					<width>354</width>
+					<height>317</height>
+					<texture colordiffuse="FF111111" border="12">colors/white_border12.png</texture>
+					<visible>String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+				</control>
+				<control type="group">
+					<control type="image">
+						<left>3</left>
+						<top>3</top>
+						<width>354</width>
+						<height>317</height>
+						<texture colordiffuse="$VAR[accentColorDiffuseSpecialWindow]" border="12">colors/white_border12.png</texture>
+						<!--<include>DimFocusTextureAdditionally</include>-->
+						<visible>[Control.HasFocus(10811) | Control.HasFocus(11)]</visible>
+					</control>
+					<include>FocusAnimationType1</include>
+				</control>
+				<control type="image">
+					<left>16</left>
+					<top>30</top>
+					<width>328</width>
+					<height>225</height>
+					<texture>colors/black.png</texture>
+					<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+				</control>
+				
+				<control type="gamewindow">
+					<left>16</left>
+					<top>30</top>
+					<width>328</width>
+					<height>225</height>
+					<videofilter>$INFO[ListItem.Property(game.videofilter)]</videofilter>
+					<stretchmode>$INFO[ListItem.Property(game.stretchmode)]</stretchmode>
+					<rotation>$INFO[ListItem.Property(game.videorotation)]</rotation>
+					
+					<visible>!String.IsEqual(ListItem.Label,$LOCALIZE[21452])</visible><!-- Hide for "Get more..." -->
+				</control>
+				
+				<control type="image">
+					<left>16</left>
+					<top>30</top>
+					<width>328</width>
+					<height>225</height>
+					<texture background="true">$INFO[ListItem.Icon]</texture>
+					<aspectratio>keep</aspectratio>
+					
+					<visible>String.IsEqual(ListItem.Label,$LOCALIZE[21452])</visible><!-- Plus Icon for "Get more..." -->
+				</control>
+				
+				<control type="image">
+					<left>3</left>
+					<top>3</top>
+					<width>354</width>
+					<height>317</height>
+					<texture border="23,37,23,75" colordiffuse="FF111111">_added_img/uni_border-label.png</texture>
+					<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+				</control>
+				
+				<control type="group">
+					<control type="image">
+						<left>3</left>
+						<top>3</top>
+						<width>354</width>
+						<height>317</height>
+						<texture border="23,37,23,75" colordiffuse="$VAR[accentColorDiffuseSpecialWindow]">_added_img/uni_border-label.png</texture>
+						<visible>[Control.HasFocus(10811) | Control.HasFocus(11)]</visible>
+						<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+					</control>
+					<include>FocusAnimationType1</include>
+				</control>
+				
+				<control type="label">
+					<left>13</left>
+					<top>278</top>
+					<width>333</width>
+					<height>23</height>
+					<font>Regular17</font>
+					<selectedcolor>selected</selectedcolor>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, (,)]</label>
+					<textcolor>grey</textcolor>
+					<visible>![Control.HasFocus(10811) | Control.HasFocus(11)]</visible>
+				</control>
+				<control type="label">
+					<left>13</left>
+					<top>278</top>
+					<width>333</width>
+					<height>23</height>
+					<font>Regular17</font>
+					<selectedcolor>selected</selectedcolor>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, (,)]</label>
+					<visible>[Control.HasFocus(10811) | Control.HasFocus(11)]</visible>
+				</control>
+			</control>
+		</focusedlayout>
+		
+	</include>
+	
+	
+	
+	<!-- Load Game before Launch -->
+	<include name="GameDialogGameSavesLayout">
+		<control type="group">
+			<left>0</left>
+			<top>440</top>
+			<control type="image">
+				<description>background image</description>
+				
+				<include>BackgroundDimensions</include>
+				
+				<left>0</left>
+				<top>0</top>
+				
+				<texture>colors/black.png</texture>
+				
+				<include>dialogeffect</include>
+				
+			</control>
+			<control type="group">
+				
+				<include>dialogeffectSlower</include>
+				
+				<control type="label">
+					<description>header label</description>
+					<left>30</left>
+					<top>30</top>
+					<width>1860</width>
+					<height>45</height>
+					<font>Light26</font>
+					<label>$VAR[GameSelectHeader]</label>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>white</textcolor>
+				</control>
+				
+				<control type="fixedlist" id="3">
+					
+					<animation effect="slide" start="0,0" end="-189,0" time="0" condition="Integer.IsEqual(Container(3).NumItems,2)">Conditional</animation>
+					<animation effect="slide" start="0,0" end="-189,0" time="0" condition="Integer.IsEqual(Container(3).NumItems,4)">Conditional</animation>
+					
+					<left>0</left>
+					<top>98</top>
+					<width>1920</width>
+					<height>323</height>
+					<onleft>3</onleft>
+					<onright>3</onright>
+					<ondown>10825</ondown>
+					<onup>noop</onup>
+					<!--<include>ScrollTimeOld</include>--><include>StandardScrollTime</include>
+					<orientation>horizontal</orientation>
+					<focusposition>2</focusposition>
+					<movement>2</movement>
+					
+					<pagecontrol>61</pagecontrol>
+					
+					<include condition="[String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems1</include>
+					<include condition="![String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems2</include>
+					
+					<itemlayout height="323" width="378">
+						<control type="group">
+							<left>24</left>
+							<control type="image">
+								<left>3</left>
+								<top>3</top>
+								<width>354</width>
+								<height>317</height>
+								<texture background="true" colordiffuse="FF111111" border="12">colors/white_border12.png</texture>
+								<visible>String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture background="true">colors/black.png</texture>
+								<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture background="true">$INFO[ListItem.Icon]</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture background="true">$INFO[ListItem.Art(screenshot)]</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+							<control type="gamewindow">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<pixels>$INFO[ListItem.FileNameAndPath]</pixels>
+							</control>
+							
+							<control type="image">
+								<left>3</left>
+								<top>3</top>
+								<width>354</width>
+								<height>317</height>
+								<texture background="true" border="23,37,23,75" colordiffuse="FF111111">_added_img/uni_border-label.png</texture>
+								<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							
+							<control type="label">
+								<left>13</left>
+								<top>278</top>
+								<width>333</width>
+								<height>23</height>
+								<font>Regular17</font>
+								<selectedcolor>selected</selectedcolor>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, ,]</label>
+								<textcolor>grey</textcolor>
+							</control>
+						</control>
+					</itemlayout>
+					
+					<focusedlayout height="323" width="378">
+						<control type="group">
+							<left>24</left>
+							<control type="image">
+								<left>3</left>
+								<top>3</top>
+								<width>354</width>
+								<height>317</height>
+								<texture colordiffuse="FF111111" border="12">colors/white_border12.png</texture>
+								<visible>String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							<control type="group">
+								<control type="image">
+									<left>3</left>
+									<top>3</top>
+									<width>354</width>
+									<height>317</height>
+									<texture colordiffuse="$VAR[accentColorDiffuseSpecialWindow]" border="12">colors/white_border12.png</texture>
+									<!--<include>DimFocusTextureAdditionally</include>-->
+									<visible>Control.HasFocus(3)</visible>
+								</control>
+								<include>FocusAnimationType1</include>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture>colors/black.png</texture>
+								<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture background="true">$INFO[ListItem.Icon]</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture background="true">$INFO[ListItem.Art(screenshot)]</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+							<control type="gamewindow">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<pixels>$INFO[ListItem.FileNameAndPath]</pixels>
+							</control>
+							
+							<control type="image">
+								<left>3</left>
+								<top>3</top>
+								<width>354</width>
+								<height>317</height>
+								<texture border="23,37,23,75" colordiffuse="FF111111">_added_img/uni_border-label.png</texture>
+								<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							
+							<control type="group">
+								<control type="image">
+									<left>3</left>
+									<top>3</top>
+									<width>354</width>
+									<height>317</height>
+									<texture border="23,37,23,75" colordiffuse="$VAR[accentColorDiffuseSpecialWindow]">_added_img/uni_border-label.png</texture>
+									<visible>Control.HasFocus(3)</visible>
+									<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+								</control>
+								<include>FocusAnimationType1</include>
+							</control>
+							
+							<control type="label">
+								<left>13</left>
+								<top>278</top>
+								<width>333</width>
+								<height>23</height>
+								<font>Regular17</font>
+								<selectedcolor>selected</selectedcolor>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, ,]</label>
+								<textcolor>grey</textcolor>
+								<visible>!Control.HasFocus(3)</visible>
+							</control>
+							<control type="label">
+								<left>13</left>
+								<top>278</top>
+								<width>333</width>
+								<height>23</height>
+								<font>Regular17</font>
+								<selectedcolor>selected</selectedcolor>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, ,]</label>
+								<visible>Control.HasFocus(3)</visible>
+							</control>
+						</control>
+					</focusedlayout>
+					
+				</control>
+				
+				<control type="scrollbar" id="61">
+					<left>27</left>
+					<top>450</top>
+					<width>1866</width>
+					<include>scrollBarStyleDefaultHeight</include>
+					
+					<onleft></onleft>
+					<onright></onright>
+					
+					<onup>3</onup>
+					<ondown>10825</ondown>
+					
+					<showonepage>false</showonepage>
+					<animation effect="fade" end="75" time="0" condition="true">Conditional</animation>
+					<include>scrollBarStyleDefault</include>
+				</control>
+				
+				
+				
+				
+				
+				<control type="grouplist" id="9001">
+					<left>0</left>
+					<top>510</top>
+					<width>1920</width>
+					<height>72</height>
+					<itemgap>15</itemgap>
+					<align>center</align>
+					<orientation>horizontal</orientation>
+					<onleft>Noop</onleft>
+					<onright>Noop</onright>
+					<onup>3</onup>
+					
+					<control type="button" id="10825">
+						<width>354</width>
+						<height>72</height>
+						<label>35261</label>
+						<include>ButtonInfoDialogsCommonValues</include>
+					</control>
+					
+				</control>
+				
+				<control type="group">
+					
+					<description>Emulator name and icon</description>
+					
+					<left>280</left>
+					<top>500</top>
+					
+					<width>488</width>
+					
+					<control type="group">
+						
+						<left>0</left>
+						
+						<control type="label">
+							<description>Label for Saved with: text</description>
+							<top>10</top>
+							<left>114</left>
+							<width>100%</width>
+							<font>Light18</font>
+							<label>35255</label>
+						</control>
+						<control type="label" id="10823">
+							<description>Emulator name</description>
+							<top>46</top>
+							<left>114</left>
+							<width>100%</width>
+							<font>Light18</font>
+						</control>
+						<control type="image" id="10824">
+							<description>Emulator icon</description>
+							<height>98</height>
+							<width>98</width>
+							<texture fallback="defaultaddon_solid.png" diffuse="colors/diffuse/98x98-rounded.png"></texture>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<fadetime>150</fadetime>
+						</control>
+					</control>
+				</control>
+				
+			</control>
+			
+			
+			
+		</control>
+	</include>
+	
+	
+	
+	<!-- Save/Load Game while running -->
+	<include name="GameDialogInGameSavesLayout">
+		
+		<control type="group">
+			<left>0</left>
+			<top>580</top>
+			<control type="image">
+				<description>background image</description>
+				
+				<include>BackgroundDimensions</include>
+				
+				<left>0</left>
+				<top>0</top>
+				
+				<texture>colors/black.png</texture>
+				
+				<include>dialogeffect</include>
+				
+			</control>
+			
+			<control type="group">
+				
+				<include>dialogeffectSlower</include>
+				
+				<control type="label">
+					<description>header label</description>
+					<left>30</left>
+					<top>30</top>
+					<width>1860</width>
+					<height>45</height>
+					<font>Light26</font>
+					<label>$VAR[GameSelectHeader]</label>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>white</textcolor>
+				</control>
+				
+				<control type="fixedlist" id="10811">
+					
+					<animation effect="slide" start="0,0" end="-189,0" time="0" condition="Integer.IsEqual(Container(10811).NumItems,2)">Conditional</animation>
+					<animation effect="slide" start="0,0" end="-189,0" time="0" condition="Integer.IsEqual(Container(10811).NumItems,4)">Conditional</animation>
+					
+					<left>0</left>
+					<top>98</top>
+					<width>1920</width>
+					<height>323</height>
+					<onleft>10811</onleft>
+					<onright>10811</onright>
+					<ondown>noop</ondown>
+					<onup>noop</onup>
+					<!--<include>ScrollTimeOld</include>--><include>StandardScrollTime</include>
+					<orientation>horizontal</orientation>
+					<focusposition>2</focusposition>
+					<movement>2</movement>
+					
+					<pagecontrol>61</pagecontrol>
+					
+					<include condition="[String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems1</include>
+					<include condition="![String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems2</include>
+					
+					<itemlayout height="323" width="378">
+						<control type="group">
+							<left>24</left>
+							<control type="image">
+								<left>3</left>
+								<top>3</top>
+								<width>354</width>
+								<height>317</height>
+								<texture background="true" colordiffuse="FF111111" border="12">colors/white_border12.png</texture>
+								<visible>String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture background="true">colors/black.png</texture>
+								<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture background="true">$INFO[ListItem.Icon]</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture background="true">$INFO[ListItem.Art(screenshot)]</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+							<control type="gamewindow">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<pixels>$INFO[ListItem.FileNameAndPath]</pixels>
+							</control>
+							
+							<control type="image">
+								<left>3</left>
+								<top>3</top>
+								<width>354</width>
+								<height>317</height>
+								<texture background="true" border="23,37,23,75" colordiffuse="FF111111">_added_img/uni_border-label.png</texture>
+								<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							
+							<control type="label">
+								<left>13</left>
+								<top>278</top>
+								<width>333</width>
+								<height>23</height>
+								<font>Regular17</font>
+								<selectedcolor>selected</selectedcolor>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, ,]</label>
+								<textcolor>grey</textcolor>
+							</control>
+						</control>
+					</itemlayout>
+					
+					<focusedlayout height="323" width="378">
+						<control type="group">
+							<left>24</left>
+							<control type="image">
+								<left>3</left>
+								<top>3</top>
+								<width>354</width>
+								<height>317</height>
+								<texture colordiffuse="FF111111" border="12">colors/white_border12.png</texture>
+								<visible>String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							<control type="group">
+								<control type="image">
+									<left>3</left>
+									<top>3</top>
+									<width>354</width>
+									<height>317</height>
+									<texture colordiffuse="$VAR[accentColorDiffuseSpecialWindow]" border="12">colors/white_border12.png</texture>
+									<!--<include>DimFocusTextureAdditionally</include>-->
+									<visible>Control.HasFocus(10811)</visible>
+									<visible>String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+								</control>
+								<include>FocusAnimationType1</include>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture>colors/black.png</texture>
+								<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture background="true">$INFO[ListItem.Icon]</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<texture background="true">$INFO[ListItem.Art(screenshot)]</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+							<control type="gamewindow">
+								<left>16</left>
+								<top>30</top>
+								<width>328</width>
+								<height>225</height>
+								<pixels>$INFO[ListItem.FileNameAndPath]</pixels>
+							</control>
+							
+							<control type="image">
+								<left>3</left>
+								<top>3</top>
+								<width>354</width>
+								<height>317</height>
+								<texture border="23,37,23,75" colordiffuse="FF111111">_added_img/uni_border-label.png</texture>
+								<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+							</control>
+							
+							<control type="group">
+								<control type="image">
+									<left>3</left>
+									<top>3</top>
+									<width>354</width>
+									<height>317</height>
+									<texture border="23,37,23,75" colordiffuse="$VAR[accentColorDiffuseSpecialWindow]">_added_img/uni_border-label.png</texture>
+									<visible>Control.HasFocus(10811)</visible>
+									<visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+								</control>
+								<include>FocusAnimationType1</include>
+							</control>
+							
+							<control type="label">
+								<left>13</left>
+								<top>278</top>
+								<width>333</width>
+								<height>23</height>
+								<font>Regular17</font>
+								<selectedcolor>selected</selectedcolor>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, ,]</label>
+								<textcolor>grey</textcolor>
+								<visible>!Control.HasFocus(10811)</visible>
+							</control>
+							<control type="label">
+								<left>13</left>
+								<top>278</top>
+								<width>333</width>
+								<height>23</height>
+								<font>Regular17</font>
+								<selectedcolor>selected</selectedcolor>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, ,]</label>
+								<visible>Control.HasFocus(10811)</visible>
+							</control>
+						</control>
+					</focusedlayout>
+					
+				</control>
+				
+				<control type="scrollbar" id="61">
+					<left>27</left>
+					<top>450</top>
+					<width>1866</width>
+					<include>scrollBarStyleDefaultHeight</include>
+					
+					<onleft></onleft>
+					<onright></onright>
+					
+					<onup>10811</onup>
+					
+					<showonepage>false</showonepage>
+					<animation effect="fade" end="75" time="0" condition="true">Conditional</animation>
+					<include>scrollBarStyleDefault</include>
+				</control>
+				
+			</control>
+		</control>
+		
+	</include>
+	
+	
+	
+</includes>

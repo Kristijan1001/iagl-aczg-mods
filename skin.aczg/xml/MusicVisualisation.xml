@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol></defaultcontrol>
+	
+	
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		
+		<!-- Internal note:  Music Visualization needs to have an id of 2 in this window to be able to lock or change preset -->
+		<control type="visualisation" id="2">
+			<description>visualisation</description>
+			
+			<include>BackgroundDimensions</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+		</control>
+		
+		
+		
+		<include condition="Skin.HasSetting(HideVisualizationFanart) + !Skin.HasSetting(Visualization_Darken_Disable)">Darken_Visualization</include>
+		
+		
+		
+		<control type="image">
+			<description>Fanart Image for Artist</description>
+			
+			<include>BackgroundDimensions</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<aspectratio>scale</aspectratio>
+			<texture background="true">$VAR[MusicVisualisationFanart]</texture>
+			<colordiffuse>AAFFFFFF</colordiffuse><!-- 70% -->
+			
+			<visible>![Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)] | [[Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)] + !Skin.HasSetting(HideVisualizationFanart)]</visible>
+			
+			<fadetime>600</fadetime>
+		</control>
+		
+		
+		
+		<!-- FADEOUT TOP -->
+		<!-- Has to be separate from FADEOUT BOTTOM because can be activated without everything else -->
+		<control type="image">
+			
+			<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_MoveUp_60px</include>
+			
+			<!-- SkinOutOfBounds -->
+			<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsBgDimensionsVideoFullScreen</include>
+			
+			<left>0</left>
+			<top>-150</top>
+			<width>1920</width>
+			<height>270</height>
+			<texture flipy="true" border="0">osd/shadow_gradient_osd-bg.png</texture>
+			<animation effect="fade" end="60" time="0" condition="true">Conditional</animation>
+			
+			<visible>Window.IsActive(MusicOSD) + !Window.IsVisible(SliderDialog)</visible>
+			
+			<include>VisibleFadeEffect4</include>
+			
+		</control>
+		
+		<control type="group">
+			<depth>DepthOSD</depth>
+			
+			<visible>[Window.IsVisible(SeekBar) | Player.ShowInfo | Window.IsActive(MusicOSD)] + !Window.IsVisible(SliderDialog)</visible>
+			
+			<include>VisibleFadeEffect4</include>
+			
+			<!-- PARTY MODE LABEL -->
+			<control type="label">
+				<description>Partymode Header label</description>
+				<left>19</left>
+				<top>10</top>
+				<width>1200</width>
+				<height>39</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>Light20</font>
+				<textcolor>white</textcolor>
+				<label>$LOCALIZE[589]</label>
+				<visible>MusicPartyMode.Enabled</visible>
+				
+				<visible>Window.IsActive(VideoOSD) | Window.IsActive(MusicOSD)</visible>
+				<include>FullScreenInfoVisibleAnimations</include>
+				
+			</control>
+			
+			<!-- PLAYLIST STATUS -->
+			<control type="group">
+				
+				<include>SkinVariant_16by10_MoveUp_60px_Or_21by9_MoveLeft_330px</include>
+				
+				<left>19</left>
+				<control type="image">
+					<left>0</left>
+					<top>15</top>
+					<width>30</width>
+					<height>30</height>
+					<texture>_added_img/playlist_icon_large.png</texture>
+					<aspectratio>keep</aspectratio>
+					<visible>!MusicPartyMode.Enabled + [!String.IsEmpty(MusicPlayer.Playlistposition) | !String.IsEmpty(MusicPlayer.Playlistlength)]</visible>
+				</control>
+			
+				<control type="label">
+					<description>Normal Header label</description>
+					<left>42</left>
+					<top>10</top>
+					<width>1200</width>
+					<height>39</height>
+					<align>left</align>
+					<aligny>center</aligny>
+					<font>Light20</font>
+					<textcolor>white</textcolor>
+					<label>$INFO[MusicPlayer.Playlistposition]$INFO[MusicPlayer.Playlistlength,/]</label>
+					<visible>!MusicPartyMode.Enabled</visible>
+				</control>
+				
+				<visible>Window.IsActive(VideoOSD) | Window.IsActive(MusicOSD)</visible>
+				<include>FullScreenInfoVisibleAnimations</include>
+				
+			</control>
+			
+			<include>FullScreenClock</include>
+			
+			<!-- FADEOUT BOTTOM -->
+			<control type="image">
+				
+				<!-- SkinOutOfBounds -->
+				<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsBgDimensionsVideoFullScreen</include>
+				
+				<left>0</left>
+				<top>387r</top>
+				<width>1920</width>
+				<height>390</height>
+				<texture border="0">osd/shadow_gradient_osd-bg.png</texture>
+				<animation effect="fade" end="90" time="0" condition="true">Conditional</animation>
+			</control>
+			
+			<!-- SkinOutOfBounds -->
+			<!-- Extend y-mirrored bottom fade out only for 16:10 Skin AR -->
+			<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsBgDimensionsVideoFullScreenBottomGradientExtendFor16by10</include>
+			
+			<!-- cover -->
+			<!-- background base -->
+			<control type="image">
+				<depth>DepthOSDPopout</depth>
+				<left>245</left>
+				<top>480r</top>
+				<width>180</width>
+				<height>180</height>
+				<texture border="10" colordiffuse="FF1a1a1a">colors/white_border10.png</texture>
+				<animation effect="fade" end="50" time="0" condition="true">Conditional</animation>
+			</control>
+			<!-- Non-LiveTV (music) -->
+			<control type="image">
+				<depth>DepthOSDPopout</depth>
+				<left>245</left>
+				<top>480r</top>
+				<width>180</width>
+				<height>180</height>
+				<texture background="true" fallback="DefaultAlbumCover.png" diffuse="colors/diffuse/180x180-rounded.png">$INFO[Player.Art(thumb)]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<visible>![MusicPlayer.Content(LiveTV) | PVR.IsPlayingRecording]</visible>
+				<fadetime>100</fadetime>
+			</control>
+			
+			<!-- LiveTV -->
+			<control type="image">
+				<depth>DepthOSDPopout</depth>
+				<left>254</left>
+				<top>471r</top>
+				<width>162</width>
+				<height>162</height>
+				<texture background="true" fallback="DefaultPVRChannels.png">$INFO[Player.Art(thumb)]</texture>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<visible>MusicPlayer.Content(LiveTV) | PVR.IsPlayingRecording</visible>
+				<fadetime>100</fadetime>
+			</control>
+			
+			
+			
+			<!-- AUDIO CODEC -->
+			<control type="group">
+				<left>100</left>
+				<top>104r</top>
+				<width>114</width>
+				<height>54</height>
+				<control type="image">
+					<description>Audio Codec Image</description>
+					<width>114</width>
+					<height>54</height>
+					<aspectratio align="center">keep</aspectratio>
+					<texture>$INFO[MusicPlayer.Codec,flagging/audio/codecs/,.png]</texture>
+					<include>FullScreenInfoFlaggingTransparencyText</include>
+					<fadetime>150</fadetime>
+				</control>
+				<visible>!String.IsEmpty(MusicPlayer.Codec) + Skin.HasSetting(ReducedFullScreenInfoOSDAudioCodec) + Window.IsActive(MusicOSD) + !Player.ChannelPreviewActive</visible>
+				<animation effect="fade" end="100" time="0" condition="true">Conditional</animation>
+				<include>VisibleFadeEffect</include>
+			</control>
+			
+			
+			
+			<control type="group">
+				<left>245</left>
+				<top>393r</top>
+				
+				<!-- NOW RECORDING ICON for LiveTV -->
+				<control type="image">
+					<top>62</top>
+					<left>4</left>
+					<width>28</width>
+					<height>28</height>
+					<aspectratio align="center" aligny="center">keep</aspectratio>
+					<texture>PVR-IsRecording.png</texture>
+					<visible>VideoPlayer.Content(LiveTV) + PVR.IsRecordingPlayingChannel + !Player.ChannelPreviewActive</visible>
+					<animation effect="fade" start="0" end="100" time="3000" pulse="true" reversible="true" condition="true" tween="sine" easing="out">Conditional</animation>
+				</control>
+				
+				<!-- Secondary Title above large Title -->
+				<control type="label">
+					<description>Sub label</description>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_Secondary_Title_CRT</include>
+					
+					<left>3</left>
+					<top>114</top>
+					<width>1200</width>
+					<height>38</height>
+					<align>left</align>
+					<font>Light17</font>
+					<label>$VAR[MusicVisualisationSubLabel]</label>
+					<textcolor>grey</textcolor>
+				</control>
+				
+				<!-- LARGE TITLE -->
+				<control type="label">
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_Title_CRT</include>
+					
+					<left>3</left>
+					<top>153</top>
+					<width>1140</width>
+					<height>45</height>
+					<font>Light30</font>
+					<align>left</align>
+					<aligny>center</aligny>
+					<label>$VAR[MusicVisualisationTitle]</label>
+					<textcolor>white</textcolor>
+					<scroll>false</scroll>
+				</control>
+				
+				<control type="grouplist">
+					<left>410r</left>
+					<top>243r</top>
+					<width>1080</width>
+					<height>54</height>
+					<itemgap>0</itemgap>
+					<orientation>horizontal</orientation>
+					
+					<include>FullScreenMusicRatingGroup</include>
+					
+				</control>
+				
+				
+				<control type="label">
+					<left>262</left>
+					<top>253</top>
+					<width>900</width>
+					<height>39</height>
+					<label>$VAR[FullScreenMusicNextTrackArtist]</label>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>Light17</font>
+					<textcolor>grey</textcolor>
+					<scroll>false</scroll>
+					<visible>MusicPlayer.HasNext + !Window.IsVisible(MusicOSD)</visible>
+					<animation effect="fade" time="150">VisibleChange</animation>
+				</control>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		<include condition="[Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)] + !String.IsEqual(Skin.AspectRatio,16:10)">SkinOutOfBoundsMasksTopBottom</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

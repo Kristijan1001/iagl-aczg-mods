@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1102">
+	<defaultcontrol always="true">3000</defaultcontrol>
+	
+	<include>dialogeffect</include>
+	
+	<onload>SetFocus(3000)</onload>
+	<onload>SetProperty(set_focus_now,3000,home)</onload>
+	
+	<onunload>ClearProperty(set_focus_now,home)</onunload>
+	
+	<onunload condition="Window.IsVisible(tvrecordings) + [Window.IsActive(PVRGuideInfo) | Window.IsActive(PVRRecordingInfo)]">SetProperty(set_focus_now,8,home)</onunload>
+	<onunload condition="!Window.IsVisible(tvrecordings) + [Window.IsActive(PVRGuideInfo) | Window.IsActive(PVRRecordingInfo)]">SetProperty(set_focus_now,888,home)</onunload>
+	
+	
+	<onunload condition="Window.IsVisible(MovieInformation) + String.IsEmpty(Window(Home).Property(OSDinfodialogButtonActive))">SetProperty(set_focus_now,8,home)</onunload>
+	<onunload condition="Window.IsVisible(MovieInformation) + !String.IsEmpty(Window(Home).Property(OSDinfodialogButtonActive))">SetProperty(set_focus_now,888,home)</onunload>
+	
+	<onunload condition="Window.IsVisible(AddonInformation)">SetProperty(set_focus_now,900,home)</onunload>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			<include>BehindDialogBlackBackground</include>
+		</control>
+		
+		<control type="group">
+			<left>278</left>
+			<top>60</top>
+			
+			<control type="group">
+				<left>0</left>
+				<top>0</top>
+				<include content="DialogBackgroundCommonsNoBackground">
+					<param name="DialogBackgroundWidth" value="1380" />
+					<param name="DialogBackgroundHeight" value="959" />
+					<param name="DialogHeaderWidth" value="1360" />
+					<param name="DialogHeaderLabel" value="$INFO[Window(Home).Property(TextViewer_Header)]" />
+					<param name="DialogHeaderId" value="2" />
+					<param name="WorkaroundRemoveHeader" value="-invisible" />
+				</include>
+			</control>
+			
+			<control type="textbox" id="2000">
+				<left>45</left>
+				<top>114</top>
+				<width>1254</width>
+				<height>890</height>
+				<pagecontrol>3000</pagecontrol>
+				<font>Light20+</font>
+				<label>$INFO[Window(Home).Property(TextViewer_Text_Pre),,[CR]]$INFO[Window(Home).Property(TextViewer_Text)]</label>
+			</control>
+			
+			<control type="scrollbar" id="3000">
+				<left>1362</left>
+				<top>123</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>882</height>
+				<onleft>2000</onleft>
+				<onup>3000</onup>
+				<ondown>3000</ondown>
+				<onright>3000</onright>
+				<showonepage>true</showonepage>
+				<animation effect="fade" start="100" end="0" time="0" condition="!Integer.IsGreater(Container(2000).NumPages,1)">Conditional</animation>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

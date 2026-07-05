@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1166">
+	<zorder>2</zorder>
+	
+	<animation effect="fade" time="250" delay="250">WindowOpen</animation>
+	<animation effect="fade" time="150">WindowClose</animation>
+	
+	
+	
+	<visible>!String.IsEmpty(Window(Home).Property(BusyDialog_Active)) | [ Window.IsActive(Weather) + [String.IsEmpty(Window(Weather).Property(Location)) | String.IsEmpty(Window(Weather).Property(Location1)) | String.IsEmpty(Window(Weather).Property(Locations)) | !Weather.IsFetched | Weather.IsUpdating] ]</visible>
+	
+	
+	
+	<onload condition="[ Window.IsActive(Weather) + [String.IsEmpty(Window(Weather).Property(Location)) | String.IsEmpty(Window(Weather).Property(Location1)) | String.IsEmpty(Window(Weather).Property(Locations)) | !Weather.IsFetched | Weather.IsUpdating] ]">SetProperty(Weather_Busy,True,home)</onload>
+	<onunload>ClearProperty(Weather_Busy,home)</onunload>
+	
+	
+	
+	<onload condition="!String.IsEmpty(Window(Home).Property(BusyDialog_Active)) + !System.HasAlarm(BusyDialog_Alarm) + String.IsEmpty(Window(Home).Property(BusyDialog_AutoClose_Sec)) | String.IsEqual(Window(Home).Property(BusyDialog_AutoClose_Sec),1)">AlarmClock(BusyDialog_Alarm,ClearProperty(BusyDialog_Active,home),00:00:01,silent)</onload>
+	<onload condition="!String.IsEmpty(Window(Home).Property(BusyDialog_Active)) + !System.HasAlarm(BusyDialog_Alarm) + String.IsEqual(Window(Home).Property(BusyDialog_AutoClose_Sec),2)">AlarmClock(BusyDialog_Alarm,ClearProperty(BusyDialog_Active,home),00:00:02,silent)</onload>
+	<onload condition="!String.IsEmpty(Window(Home).Property(BusyDialog_Active)) + !System.HasAlarm(BusyDialog_Alarm) + String.IsEqual(Window(Home).Property(BusyDialog_AutoClose_Sec),3)">AlarmClock(BusyDialog_Alarm,ClearProperty(BusyDialog_Active,home),00:00:03,silent)</onload>
+	<onload condition="!String.IsEmpty(Window(Home).Property(BusyDialog_Active)) + !System.HasAlarm(BusyDialog_Alarm) + String.IsEqual(Window(Home).Property(BusyDialog_AutoClose_Sec),4)">AlarmClock(BusyDialog_Alarm,ClearProperty(BusyDialog_Active,home),00:00:04,silent)</onload>
+	<onload condition="!String.IsEmpty(Window(Home).Property(BusyDialog_Active)) + !System.HasAlarm(BusyDialog_Alarm) + String.IsEqual(Window(Home).Property(BusyDialog_AutoClose_Sec),5)">AlarmClock(BusyDialog_Alarm,ClearProperty(BusyDialog_Active,home),00:00:05,silent)</onload>
+	
+	
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		
+		<control type="group">
+			
+			<visible>![Window.IsVisible(Weather) | !String.IsEmpty(Window(Home).Property(Weather_Busy))]</visible>
+			
+			<depth>DepthDialog+</depth>
+			<centerleft>50%</centerleft>
+			<centertop>46%</centertop>
+			<width>91</width>
+			<height>91</height>
+			
+			<control type="image">
+				<centerleft>50%</centerleft>
+				<centertop>50%</centertop>
+				<width>91</width>
+				<height>91</height>
+				<texture colordiffuse="F1FFFFFF">osd/buffer-bg$VAR[isUhdScreenStringSuffix].png</texture>
+			</control>
+			<control type="image">
+				<description>Busy animation logo</description>
+				<left>22</left>
+				<top>21</top>
+				<width>48</width>
+				<height>48</height>
+				<aligny>center</aligny>
+				<align>center</align>
+				<texture colordiffuse="$VAR[uiColorVariantKodiLogoColor]">dialogs/busy_kodi$VAR[isUhdScreenStringSuffix].png</texture>
+				<aspectratio>keep</aspectratio>
+				<animation effect="fade" start="100" end="0" time="3000" loop="true" condition="true" tween="sine" easing="in">Conditional</animation>
+			</control>
+		</control>
+		
+		<control type="group">
+			
+			<visible>Window.IsVisible(Weather) | !String.IsEmpty(Window(Home).Property(Weather_Busy))</visible>
+			
+			<depth>DepthDialog+</depth>
+			<centerleft>50%</centerleft>
+			<centertop>46%</centertop>
+			<width>130</width>
+			<height>130</height>
+			
+			<control type="image">
+				<centerleft>50%</centerleft>
+				<centertop>50%</centertop>
+				<width>130</width>
+				<height>130</height>
+				<texture background="true">colors/diffuse/170x170.png</texture>
+				<animation effect="fade" end="8" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="image">
+				<description>Busy animation logo</description>
+				<left>15</left>
+				<top>16</top>
+				<width>100</width>
+				<height>100</height>
+				<aligny>center</aligny>
+				<align>center</align>
+				<texture background="true">icons/weather/cloud_emoji.png</texture>
+				<aspectratio>keep</aspectratio>
+				<animation effect="slide" end="0,-4" time="1250" condition="true" pulse="true">Conditional</animation>
+			</control>
+		</control>
+		
+		
+		
+	<!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

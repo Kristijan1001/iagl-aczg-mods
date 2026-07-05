@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="1111" type="dialog">
+	<defaultcontrol always="true">100</defaultcontrol>
+	<include>dialogeffect</include>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		
+		
+		
+		
+		<control type="group">
+			
+			<animation effect="slide" start="0,0" end="0,211" time="0" condition="String.IsEqual(Skin.String(HomeScreenStyle),top)">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,230" time="0" condition="String.IsEqual(Skin.String(HomeScreenStyle),bottom)">Conditional</animation>
+			
+			<control type="group">
+				
+				<left>300</left>
+				<top>216</top>
+				
+				<include content="DialogBackgroundCommons">
+					<param name="DialogBackgroundWidth" value="1360" />
+					<param name="DialogBackgroundHeight" value="470" />
+					<param name="DialogHeaderWidth" value="1190" />
+					<param name="DialogHeaderLabelWidth" value="1146" />
+					<param name="DialogHeaderLabel" value="" />
+					<param name="DialogHeaderId" value="" />
+					<param name="WorkaroundRemoveHeader" value="-invisible" />
+				</include>
+			</control>
+			<control type="label">
+				<left>370</left>
+				<top>275</top>
+				<width>1020</width>
+				<font>Regular35</font>
+				<textcolor>blue</textcolor>
+				<label>31411</label>
+			</control>
+			<control type="textbox">
+				<left>370</left>
+				<top>365</top>
+				<width>1020</width>
+				<height>372</height>
+				<font>Light22</font>
+				<textcolor>white</textcolor>
+				<label>Sub menus automatically fade out when they are not focused.
+Press DOWN while on main menu and they will become visible.
+
+Visit    $LOCALIZE[5] – My Skin – Sub menus
+for more information and options.</label>
+			</control>
+			<control type="button" id="100">
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_FS_HitRect_Dimensions</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_FS_HitRect_Dimensions_And_MoveUp_60px</include>
+				
+				<hitrect x="0" y="0" w="1920" h="1080" />
+				
+				<description>OK button</description>
+				<left>1250</left>
+				<top>530</top>
+				<width>300</width>
+				<height>72</height>
+				<label>12321</label>
+				<onclick>Skin.Setbool(FirstTimeRunHomeSubMenuInfo)</onclick>
+				<onclick>back</onclick>
+				<onleft>100</onleft>
+				<onright>100</onright>
+				<onup>100</onup>
+				<ondown>100</ondown>
+				
+				<include>ButtonInfoDialogsCommonValues</include>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

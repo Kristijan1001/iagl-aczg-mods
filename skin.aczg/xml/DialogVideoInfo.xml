@@ -1,0 +1,2038 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">8</defaultcontrol>
+	
+	<onload condition="!String.IsEmpty(Window(10000).Property(OSDinfodialogButtonActive))">Dialog.Close(VideoOSD,true)</onload>
+	
+	
+	<!-- condition = Don't do focus when Movie Set Redirector in progress -->
+	<onload condition="![Container.Content(Sets) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,plugin://)] + !String.IsEmpty(Window(10000).Property(OSDinfodialogButtonActive))">Control.SetFocus(888)</onload>
+	<onload condition="![Container.Content(Sets) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,plugin://)] + String.IsEmpty(Window(10000).Property(OSDinfodialogButtonActive))">Control.SetFocus(8)</onload>
+	
+	
+	
+	<!-- Suppress/avoid this dialog for unwanted content types until this is potentially fixed in Kodi core -->
+	<onload condition="String.IsEmpty(Container.PluginName) + [Container.Content(Genres) | Container.Content(Years) | Container.Content(Actors) | Container.Content(Tags) | Container.Content(Countries) | Container.Content(Studios) | Container.Content(Directors) | Container.Content(Albums) | Container.Content(Files)]">Dialog.Close(MovieInformation,true)</onload>
+	
+	
+	
+	<!--
+	Movie Set Redirector
+	Avoid this dialog for movie sets and jump into the set
+	-->
+	<onload condition="Container.Content(Sets) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,plugin://)">SetProperty(MovieSetDBID_TMP,$INFO[ListItem.DBID],home)</onload>
+	<onload condition="Container.Content(Sets) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,plugin://)">Dialog.Close(MovieInformation,true)</onload>
+	<onunload condition="Container.Content(Sets) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,plugin://)">ActivateWindow(Videos,videodb://movies/sets/$INFO[Window(Home).Property(MovieSetDBID_TMP)]/?setid=$INFO[Window(Home).Property(MovieSetDBID_TMP)],return)</onunload>
+	
+	
+	
+	<onload>ClearProperty(dialogvideoinfo_art_blurred,home)</onload>
+	<onload>ClearProperty(dialogvideoinfo_art_color,home)</onload>
+	<onload>ClearProperty(dialogvideoinfo_art_color_noalpha,home)</onload>
+	
+	<onunload>ClearProperty(dialogvideoinfo_art_blurred,home)</onunload>
+	<onunload>ClearProperty(dialogvideoinfo_art_color,home)</onunload>
+	<onunload>ClearProperty(dialogvideoinfo_art_color_noalpha,home)</onunload>
+	
+	
+	<onload>ClearProperty(CinemaHelper.UserRating.PROCESS,home)</onload>
+	<onload>ClearProperty(CinemaHelper.UserRating.DbId,home)</onload>
+	<onload>ClearProperty(CinemaHelper.UserRating.DbType,home)</onload>
+	<onload>ClearProperty(CinemaHelper.UserRating.Action,home)</onload>
+	
+	
+	<onload>ClearProperty(CinemaHelper.WatchedState.PROCESS,home)</onload>
+	<onload>ClearProperty(CinemaHelper.WatchedState.DbId,home)</onload>
+	<onload>ClearProperty(CinemaHelper.WatchedState.DbType,home)</onload>
+	<onload>ClearProperty(CinemaHelper.WatchedState.Action,home)</onload>
+	
+	<onload>ClearProperty(DialogVideoInfoPlaySpamProtection,home)</onload>
+	<onunload>ClearProperty(DialogVideoInfoPlaySpamProtection,home)</onunload>
+	
+	<onload>ClearProperty(DialogVideoInfoTrailerSearchSpamProtection,home)</onload>
+	<onunload>ClearProperty(DialogVideoInfoTrailerSearchSpamProtection,home)</onunload>
+	
+	<onload condition="!String.IsEmpty(Control.GetLabel(234236)) + System.HasAddon(service.listitem.helper) + ![!String.IsEmpty(Window(Home).Property(VideoInfoDialogRefreshBlur)) | !String.IsEmpty(Window(Home).Property(CinemaPostPlaybackDialogOpensNow))]">RunScript(service.listitem.helper,action=blurimg,file='"$VAR[PosterInfoDialogSpecial]"',prop=dialogvideoinfo_art,radius=30)</onload>
+	
+	<onload condition="!String.IsEmpty(Control.GetLabel(234236)) + System.HasAddon(service.listitem.helper) + [!String.IsEmpty(Window(Home).Property(VideoInfoDialogRefreshBlur)) | !String.IsEmpty(Window(Home).Property(CinemaPostPlaybackDialogOpensNow))]">RunScript(service.listitem.helper,action=blurimg,file='"$VAR[PosterInfoDialogSpecial]"',prop=dialogvideoinfo_art,radius=30,force=true)</onload>
+	
+	<onload condition="System.HasAddon(service.listitem.helper) + !String.IsEmpty(Window(Home).Property(VideoInfoDialogRefreshBlur))">ClearProperty(VideoInfoDialogRefreshBlur,home)</onload>
+	
+	<onunload condition="!String.IsEmpty(Window(10000).Property(OSDinfodialogButtonActive)) + String.IsEmpty(Window(Home).Property(VideoInfoDialogRefreshBlur))">ClearProperty(OSDinfodialogButtonActive,home)</onunload>
+	
+	<onunload condition="!String.IsEmpty(Window(10000).Property(OSDinfodialogButtonActive)) + Skin.HasSetting(FullScreenOsdInfoButtonPauseResume) + Player.Paused">Play</onunload>
+	
+	<onunload condition="!String.IsEmpty(Window(Home).Property(CinemaPostPlaybackDialogOpensNow)) 
+												+ String.IsEqual(Skin.String(CinemaPostPlaybackDialogType),1)">ClearProperty(PlayerArtPosterTemp,home)</onunload>
+	<onunload condition="!String.IsEmpty(Window(Home).Property(CinemaPostPlaybackDialogOpensNow)) 
+												+ String.IsEqual(Skin.String(CinemaPostPlaybackDialogType),1)">ClearProperty(CinemaPostPlaybackDialogOpensNow,home)</onunload>
+	
+	
+	<onload>ClearProperty(VideoInfoShowCast,home)</onload>
+	<onunload>ClearProperty(VideoInfoShowCast,home)</onunload>
+	
+	
+	<onunload>ClearProperty(set_focus_now,home)</onunload>
+	
+	
+	
+	<onload>ClearProperty(VideoInfoDialog_MoreOptions_ShowNow,home)</onload>
+	<onunload>ClearProperty(VideoInfoDialog_MoreOptions_ShowNow,home)</onunload>
+	
+	<onload>ClearProperty(VideoInfoDialog_MoreOptions_Visited,home)</onload>
+	<onunload>ClearProperty(VideoInfoDialog_MoreOptions_Visited,home)</onunload>
+	
+	
+	
+	<!-- Always Force-Reset "VideoInfoDialog_MoreOptions_Visited" OnLoad -->
+	<onload>CancelAlarm(Alarm_ClearProperty_VideoInfoDialog_MoreOptions_Visited,silent)</onload>
+	<onload>AlarmClock(Alarm_ClearProperty_VideoInfoDialog_MoreOptions_Visited,ClearProperty(VideoInfoDialog_MoreOptions_Visited,home),00:00:01,silent)</onload>
+	<onunload>CancelAlarm(Alarm_ClearProperty_VideoInfoDialog_MoreOptions_Visited,silent)</onunload>
+	
+	
+	
+	
+	
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="label" id="234236">
+			<label>$VAR[PosterInfoDialogSpecial]</label>
+			<visible>false</visible>
+			
+			<!--
+			WindowOpen/WindowClose animation copied from Estuary
+			Needed for weird Kodi bug where panel id 50 (actors) does NOT get populated correctly on some actor>search>dialofvideoinfo reloads otherwise and can even cause crashes as found out in extensive debugging sessions
+			Using the dummy animation on an already hidden label should make no visible difference and just fix/work around the issue
+			-->
+			<animation effect="fade" start="0" end="100" time="300" delay="300">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+			
+		</control>
+		
+		<control type="group">
+			
+			<depth>DepthSideBlade</depth>
+			
+			<animation effect="fade" start="0" end="100" time="1000">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="600">WindowClose</animation>
+			
+			<!-- Black background full dimensions -->
+			<control type="image">
+				
+				<include>BackgroundDimensions</include>
+				
+				<left>0</left>
+				<top>0</top>
+				
+				<texture>colors/black.png</texture>
+			</control>
+			
+			<!-- Add dithering noise on black background -->
+			<control type="image">
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_VideoInfo_LeftHalfWidth_Plus_330px_And_MoveLeft_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<top>0</top>
+				<left>0</left>
+				
+				<width>720</width>
+				<height>1080</height>
+				<depth>DepthBackground</depth>
+				<aspectratio align="right" aligny="top">scale</aspectratio>
+				<texture>special://home/addons/resource.images.aczg/resources/_added_img/noise00.jpg</texture>
+				<animation effect="fade" end="25" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="image">
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_VideoInfo_RightHalfWidth_Plus_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<top>0</top>
+				<left>720</left>
+				
+				<width>1201</width>
+				<height>1080</height>
+				<depth>DepthBackground</depth>
+				<aspectratio align="left" aligny="top">scale</aspectratio>
+				<texture>special://home/addons/resource.images.aczg/resources/_added_img/noise00.jpg</texture>
+				<animation effect="fade" end="25" time="0" condition="true">Conditional</animation>
+			</control>
+			
+			<!-- Fallback to default mood bg if no real mood bg available -->
+			<control type="image">
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_VideoInfo_LeftHalfWidth_Plus_330px_And_MoveLeft_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<top>0</top>
+				<left>0</left>
+				
+				<width>720</width>
+				<height>1080</height>
+				<depth>DepthBackground</depth>
+				<texture flipx="true">special://home/addons/resource.images.aczg/resources/backgrounds/mood_background_default.png</texture>
+				<aspectratio align="center" aligny="center">stretch</aspectratio>
+				<include>backgroundfade</include>
+				<fadetime>FanartCrossfadeTime</fadetime>
+				<animation effect="fade" end="30" time="0" condition="true">Conditional</animation>
+				<visible>![System.HasAddon(service.listitem.helper) + !String.IsEmpty(Control.GetLabel(234236)) + !String.IsEqual(Control.GetLabel(234236),DefaultVideo.png) + !String.IsEqual(Control.GetLabel(234236),DefaultFolder.png)]</visible>
+			</control>
+			<control type="image">
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_VideoInfo_RightHalfWidth_Plus_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<top>0</top>
+				<left>720</left>
+				
+				<width>1201</width>
+				<height>1080</height>
+				<depth>DepthBackground</depth>
+				<texture>special://home/addons/resource.images.aczg/resources/backgrounds/mood_background_default.png</texture>
+				<aspectratio align="center" aligny="center">stretch</aspectratio>
+				<include>backgroundfade</include>
+				<fadetime>FanartCrossfadeTime</fadetime>
+				<animation effect="fade" end="30" time="0" condition="true">Conditional</animation>
+				<visible>![System.HasAddon(service.listitem.helper) + !String.IsEmpty(Control.GetLabel(234236)) + !String.IsEqual(Control.GetLabel(234236),DefaultVideo.png) + !String.IsEqual(Control.GetLabel(234236),DefaultFolder.png)]</visible>
+			</control>
+			
+			<!-- Real mood background -->
+			<control type="image">
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_VideoInfo_LeftHalfWidth_Plus_330px_And_MoveLeft_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<top>0</top>
+				<left>0</left>
+				
+				<width>720</width>
+				<height>1080</height>
+				<depth>DepthBackground</depth>
+				<texture flipx="true">$INFO[Window(Home).Property(dialogvideoinfo_art_blurred)]</texture>
+				<aspectratio align="center" aligny="center">stretch</aspectratio>
+				<include>backgroundfade</include>
+				<fadetime>FanartCrossfadeTime</fadetime>
+				<animation effect="fade" end="30" time="0" condition="true">Conditional</animation>
+				<visible>[System.HasAddon(service.listitem.helper) + !String.IsEmpty(Control.GetLabel(234236)) + !String.IsEqual(Control.GetLabel(234236),DefaultVideo.png) + !String.IsEqual(Control.GetLabel(234236),DefaultFolder.png)]</visible>
+			</control>
+			<control type="image">
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_VideoInfo_RightHalfWidth_Plus_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<top>0</top>
+				<left>720</left>
+				
+				<width>1201</width>
+				<height>1080</height>
+				<depth>DepthBackground</depth>
+				<texture>$INFO[Window(Home).Property(dialogvideoinfo_art_blurred)]</texture>
+				<aspectratio align="center" aligny="center">stretch</aspectratio>
+				<include>backgroundfade</include>
+				<fadetime>FanartCrossfadeTime</fadetime>
+				<animation effect="fade" end="30" time="0" condition="true">Conditional</animation>
+				<visible>[System.HasAddon(service.listitem.helper) + !String.IsEmpty(Control.GetLabel(234236)) + !String.IsEqual(Control.GetLabel(234236),DefaultVideo.png) + !String.IsEqual(Control.GetLabel(234236),DefaultFolder.png)]</visible>
+			</control>
+			
+			<!-- Top full-width gradient for text visibility and dithering -->
+			<control type="image">
+				
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_InfoDialog_TopDither_Height</include>
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_Background_Width_Plus_660px_And_MoveLeft_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_MoveUp_60px</include>
+				
+				<top>0</top>
+				<left>0</left>
+				
+				<width>1920</width>
+				<height>150</height>
+				<texture>special://home/addons/resource.images.aczg/resources/_added_img/edge_fadeout_new_dither_2.png</texture>
+				<aspectratio>stretch</aspectratio>
+			</control>
+			
+			
+			
+			
+			
+			
+			<!-- Add white brightener gradient to left screen half to ensure image contour contrast -->
+			<control type="image">
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_VideoInfo_LeftHalf_Brightener_Plus_330px_MoveLeft_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<left>0</left>
+				<top>0</top>
+				
+				<width>800</width>
+				<height>1080</height>
+				<texture border="0,0,179,0">_added_img/infodialog-brightener-left.png</texture>
+			</control>
+			
+			
+			<control type="group">
+				
+				<!-- MAIN Images -->
+				
+				
+				
+				<!-- Real Poster | scale/crop -->
+				<control type="image" id="18264">
+					<left>76</left>
+					<top>50</top>
+					<width>653</width>
+					<height>980</height>
+					
+					
+					<aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+					
+					<texture background="true" diffuse="colors/diffuse/653x980-rounded.png">$VAR[PosterThumbInfoDialog]</texture>
+					
+					<animation type="WindowOpen">
+						<effect type="slide" start="-729,0" end="0,0" time="750" tween="quadratic" easing="out" />
+						<effect type="fade" start="0" end="100" time="750" />
+					</animation>
+					<animation type="WindowClose">
+						<effect type="slide" start="0,0" end="-729,0" time="300" tween="quadratic" easing="out" />
+					</animation>
+					
+					<visible>!Container.Content(Episodes) + !Container.Content(MusicVideos) + String.IsEmpty(Container.PluginName) 
+										+ [
+										[!String.IsEmpty(ListItem.Art(poster)) | [!String.IsEmpty(Window(Home).Property(CinemaPostPlaybackDialogOpensNow)) + !String.IsEmpty(Window(Home).Property(PlayerArtPosterTemp))]] | 
+										
+										[!Container.Content(Episodes) + !String.IsEmpty(Window(10000).Property(OSDinfodialogButtonActive)) + !String.IsEmpty(Player.Art(poster))]
+										
+										]</visible>
+					<fadetime>250</fadetime>
+				</control>
+				
+				
+				
+				<!-- Episodes Thumbnail or fallback to fanart | scale/crop -->
+				<control type="image">
+					<left>76</left>
+					<top>50</top>
+					<width>653</width>
+					<height>383</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="colors/diffuse/653x383-rounded.png">$VAR[PosterThumbInfoDialog]</texture>
+					
+					<animation type="WindowOpen">
+						<effect type="slide" start="-729,0" end="0,0" time="750" tween="quadratic" easing="out" />
+						<effect type="fade" start="0" end="100" time="750" />
+					</animation>
+					<animation type="WindowClose">
+						<effect type="slide" start="0,0" end="-729,0" time="300" tween="quadratic" easing="out" />
+					</animation>
+					
+					<visible>String.IsEmpty(Container.PluginName) + !Container.Content(MusicVideos) + Container.Content(Episodes) + !Control.IsVisible(18264)</visible>
+					<fadetime>250</fadetime>
+				</control>
+				
+				
+				
+				<!-- Music Video Album Art / Albums 1:1 | scale/crop -->
+				<control type="image">
+					<left>76</left>
+					<top>50</top>
+					<width>653</width>
+					<height>653</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="colors/diffuse/653x653-rounded.png">$VAR[PosterThumbInfoDialog]</texture>
+					
+					<animation type="WindowOpen">
+						<effect type="slide" start="-729,0" end="0,0" time="750" tween="quadratic" easing="out" />
+						<effect type="fade" start="0" end="100" time="750" />
+					</animation>
+					<animation type="WindowClose">
+						<effect type="slide" start="0,0" end="-729,0" time="300" tween="quadratic" easing="out" />
+					</animation>
+					
+					<visible>String.IsEmpty(Container.PluginName) + Container.Content(MusicVideos)</visible>
+					<fadetime>250</fadetime>
+				</control>
+				
+				
+				
+				<!-- Universal | keep ar/no crop -->
+				<control type="image">
+					<left>76</left>
+					<top>50</top>
+					<width>653</width>
+					<height>980</height>
+					<aspectratio aligny="top">keep</aspectratio>
+					<texture background="true">$VAR[PosterThumbInfoDialog]</texture>
+					
+					<animation type="WindowOpen">
+						<effect type="slide" start="-729,0" end="0,0" time="750" tween="quadratic" easing="out" />
+						<effect type="fade" start="0" end="100" time="750" />
+					</animation>
+					<animation type="WindowClose">
+						<effect type="slide" start="0,0" end="-729,0" time="300" tween="quadratic" easing="out" />
+					</animation>
+					
+					<visible>!String.IsEmpty(Container.PluginName) | [!Container.Content(Episodes) + !Control.IsVisible(18264) + !Container.Content(MusicVideos)]</visible>
+					<fadetime>250</fadetime>
+				</control>
+				
+				
+				<control type="image">
+					<left>220</left>
+					<top>481</top>
+					<width>366</width>
+					<height>549</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					
+					<texture background="true" diffuse="colors/diffuse/366x549-rounded.png">$VAR[PosterInfoDialogSpecial]</texture>
+					
+					<animation type="WindowOpen">
+						<effect type="slide" start="-720,0" end="0,0" time="750" tween="quadratic" easing="out" />
+						<effect type="fade" start="0" end="100" time="750" />
+					</animation>
+					<animation type="WindowClose">
+						<effect type="slide" start="0,0" end="-720,0" time="300" tween="quadratic" easing="out" />
+					</animation>
+					
+					
+					<visible>String.IsEmpty(Container.PluginName) + Container.Content(Episodes)</visible>
+					<fadetime>250</fadetime>
+				</control>
+				
+				
+				
+			</control>
+			
+			
+			
+			<control type="group">
+				
+				<animation effect="slide" start="1191,0" end="0,0" time="750" tween="quadratic" easing="out">WindowOpen</animation>
+				<animation effect="slide" start="0,0" end="1191,0" time="300" tween="quadratic" easing="out">WindowClose</animation>
+				
+				<left>747</left>
+				<top>37</top>
+				
+				<width>1191</width>
+				<height>1140</height><!-- 1080 + (120/2 from 16:10 max AR) -->
+				
+				<control type="group">
+					<top>0</top>
+					<!-- STANDARD -->
+					<control type="label">
+						<description>subheader label</description>
+						<left>54</left>
+						<top>8</top>
+						<width>1050</width>
+						<height>300</height>
+						<label>$INFO[ListItem.Year]$VAR[InfoDialogSubHeaderSpaceYearAndStudio]$VAR[ListItemStudioLabelShort]</label>
+						<textcolor>grey3</textcolor>
+						<align>left</align>
+						<visible>!Container.Content(TvShows) + !Container.Content(Episodes) + !Container.Content(Seasons)</visible>
+						<font>Light20</font>
+					</control>
+					<!-- TV SHOWS -->
+					<control type="label">
+						<description>subheader label</description>
+						<left>54</left>
+						<top>8</top>
+						<width>1050</width>
+						<height>300</height>
+						<label>$INFO[ListItem.Year]$VAR[InfoDialogSubHeaderSpaceYearAndStudio]$VAR[ListItemStudioLabelShort]</label>
+						<textcolor>grey3</textcolor>
+						<align>left</align>
+						<visible>Container.Content(TvShows) + !Container.Content(Episodes) + !Container.Content(Seasons)</visible>
+						<font>Light20</font>
+					</control>
+					<!-- TV SHOW EPISODES -->
+					<control type="label">
+						<description>subheader label</description>
+						<left>54</left>
+						<top>8</top>
+						<width>1050</width>
+						<height>300</height>
+						<label>$INFO[ListItem.TVShowTitle]$VAR[InfoDialogSubHeaderSpaceYearOrStudio]$INFO[ListItem.Year]$VAR[InfoDialogSubHeaderSpaceStudioAndYearOrTvShowTitle]$INFO[ListItem.Studio]</label>
+						<textcolor>grey3</textcolor>
+						<align>left</align>
+						<visible>!Container.Content(TvShows) + [Container.Content(Episodes) | Container.Content(Seasons)]</visible>
+						<font>Light20</font>
+					</control>
+				</control>
+				
+				
+				
+				<control type="label">
+					
+					<animation effect="slide" start="0,0" end="0,-2" time="0" condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">Conditional</animation>
+					
+					<description>header label</description>
+					<left>51</left>
+					<top>56</top>
+					<width>1074</width>
+					<height>57</height>
+					<font>LightUltraLarge3</font>
+					<label>$INFO[Listitem.Title]</label>
+					<align>left</align>
+					<textcolor>white</textcolor>
+					<scroll>false</scroll>
+				</control>
+				
+				
+				<!-- BACKGROUND RIGHT TOP SEMI-TRANSPARENT GREY SCROLL AREA -->
+				<control type="image">
+					<left>52</left>
+					<top>151</top>
+					<width>1088</width>
+					<height>245</height>
+					<texture colordiffuse="0bc6c6c6" border="24">colors/white_border24.png</texture>
+				</control>
+				
+				
+				<control type="group">
+					<top>0</top>
+					
+					<!-- CODEC INFO -->
+					<control type="grouplist">
+						<description>Media Codec Flagging Images</description>
+						<left>54</left>
+						<top>420</top>
+						<width>1110</width>
+						<align>left</align>
+						<itemgap>9</itemgap>
+						<orientation>horizontal</orientation>
+						<include>VisibleFadeEffect</include>
+						<visible>[Container.Content(Movies) | Container.Content(TVShows) | Container.Content(Episodes) | Container.Content(Seasons) | Container.Content(MusicVideos)]</visible>
+						
+						<include>VideoMPAAFlaggingConditions</include>
+						<include>VideoRatingStars</include>
+						
+						
+						
+						<control type="group">
+							<include>FlaggingConditionsPlaceholderDimensions2X</include>
+							<visible>!String.IsEmpty(ListItem.Mpaa) | [[String.Contains(ListItem.rating,.) 
+								| 
+								[String.IsEqual(ListItem.DBID,Window(Home).Property(ListItemHelper.DBID)) 
+									+ !String.Empty(Window(Home).Property(ListItemHelper.rating.highestScaleTo10))]
+								] 
+								+ !Skin.HasSetting(HideVideoRatings)]</visible>
+						</control>
+						
+						
+						
+						<!-- more space for episodes because of hidden stars rating -->
+						<control type="group">
+							<include>FlaggingConditionsPlaceholderDimensions</include>
+							<visible>[   !String.IsEmpty(ListItem.Mpaa) | [[String.Contains(ListItem.rating,.) 
+								| 
+								[String.IsEqual(ListItem.DBID,Window(Home).Property(ListItemHelper.DBID)) 
+									+ !String.Empty(Window(Home).Property(ListItemHelper.rating.highestScaleTo10))]
+								] 
+								+ !Skin.HasSetting(HideVideoRatings)]   ] + Container.Content(Episodes)</visible>
+						</control>
+						
+						
+						
+						<include>VideoCodecFlaggingConditions</include>
+						
+						
+						
+						<include condition="!Skin.HasSetting(HideHdrType) + [String.IsEqual(ListItem.HdrType,hdr10) | String.IsEqual(ListItem.HdrType,hdr10plus) | String.IsEqual(ListItem.HdrType,dolbyvision) | String.IsEqual(ListItem.HdrType,hlg)]">VideoHdrTypeIcons</include>
+						
+						
+						
+						<include>VideoDiscFlaggingConditions</include>
+						
+						
+						<include>VideoStereoscopicsFlaggingConditions</include>
+						
+						
+						
+						<control type="group">
+							<include>FlaggingConditionsPlaceholderDimensions</include>
+							<visible>!String.IsEmpty(ListItem.VideoResolution) | !String.IsEmpty(ListItem.VideoCodec) | [ListItem.IsStereoscopic | String.Contains(ListItem.FileName,.3D.)] | [String.IsEqual(ListItem.FileExtension,iso) | String.IsEqual(ListItem.FileName,menu) | String.StartsWith(ListItem.FileNameAndPath,bluray://) | String.IsEqual(ListItem.FileExtension,ifo)]</visible>
+						</control>
+						
+						
+						
+						<include condition="Skin.HasSetting(ShowAudioInfo)">AudioCodecFlaggingConditions</include>
+						<include condition="Skin.HasSetting(ShowAudioInfo)">AudioChannelsFlaggingConditions</include>
+						
+						
+						<control type="group">
+							<include>FlaggingConditionsPlaceholderDimensions</include>
+							<visible>!String.IsEmpty(ListItem.AudioCodec) | !String.IsEmpty(ListItem.AudioChannels)</visible>
+						</control>
+						
+						
+						
+						<include>StingerIcon</include>
+						
+					</control>
+					
+					
+					
+					<!-- MOVIES and Generic -->
+					<control type="group">
+						<visible>!Container.Content(TvShows) + !Container.Content(Episodes) + !Container.Content(Seasons) + !Container.Content(MusicVideos)</visible>
+						<top>30</top>
+						<left>-8</left>
+						<include>VisibleFadeEffect</include>
+						
+						<control type="list" id="49">
+							<left>77</left>
+							<top>131</top>
+							<width>1041</width>
+							<height>225</height>
+							
+							<onleft>pageup</onleft><onleft>pageup</onleft><onleft>pageup</onleft>
+							<onleft>9000</onleft>
+							<onright>pageup</onright><onright>pageup</onright><onright>pageup</onright>
+							<onright>9000</onright>
+							<onup>9000</onup>
+							
+							<ondown>pageup</ondown><ondown>pageup</ondown><ondown>pageup</ondown>
+							<ondown>9000</ondown>
+							
+							<pagecontrol>80</pagecontrol>
+							<scrolltime>200</scrolltime>
+							
+							<preloaditems>2</preloaditems>
+							
+							<include>InfoDialogListItemLayout</include>
+							<include>InfoDialogListFocusedLayout</include>
+							
+							<content>
+								<item>
+									<label>$LOCALIZE[515]</label>
+									<label2>$VAR[ListItemGenreFormatted]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Genre)</visible>
+									
+									<include>ShowNtsFileActions</include>
+									
+								</item>
+								<item>
+									<label>$LOCALIZE[2050]</label>
+									<label2>$VAR[Item_Duration_1]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Duration)</visible>
+									
+									<property name="rottentomatoesaudience">$VAR[ItemRatingExternalOptionalRottenTomatoesAudience]</property>
+									<property name="letterboxd">$VAR[ItemRatingExternalOptionalLetterboxd]</property>
+									<property name="trakt">$VAR[ItemRatingExternalOptionalTrakt]</property>
+									
+								</item>
+								<item>
+									<label>$LOCALIZE[563]</label>
+									<label2>$VAR[ItemRating]</label2>
+									<onclick>noop</onclick>
+									
+									<property name="rottentomatoes">$VAR[ItemRatingExternalOptionalRottenTomatoes]</property>
+									
+									<property name="metacritic">$VAR[ItemRatingExternalOptionalMetacritic]</property>
+									<property name="imdb">$VAR[ItemRatingExternalOptionalIMDB]</property>
+									
+									<visible>!Skin.HasSetting(HideVideoRatings) + [String.IsEmpty(Container.PluginName) | [!String.IsEmpty(Container.PluginName) + !String.IsEmpty(ListItem.Rating)]]</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[20339]</label>
+									<label2>$VAR[ListItemDirectorFormatted]</label2>
+									
+									<onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBID,Window(Home).Property(ListItemHelper.DBID)) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(Window(Home).Property(ListItemHelper.director.1)) + System.HasAddon(script.extendedinfo)">RunScript(script.extendedinfo,info=extendedactorinfo,name=$ESCINFO[Window(Home).Property(ListItemHelper.director.1])</onclick>
+									
+									<onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBID,Window(Home).Property(ListItemHelper.DBID)) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(Window(Home).Property(ListItemHelper.director.1)) + !System.HasAddon(script.extendedinfo)">InstallAddon(script.extendedinfo)</onclick>
+									
+									
+									<!-- Kodi 19+ AddonIsEnabled check -->
+									<onclick condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.)] + !System.AddonIsEnabled(script.extendedinfo)">EnableAddon(script.extendedinfo)</onclick>
+									
+									
+									<onclick condition="![!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBID,Window(Home).Property(ListItemHelper.DBID)) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(Window(Home).Property(ListItemHelper.director.formatted))]">SendClick(12003,13)</onclick>
+									
+									<visible>!String.IsEmpty(ListItem.Director)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[20417]</label>
+									<label2>$VAR[ListItemWriterFormatted,$LOCALIZE[20417]  ·  ]</label2>
+									
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Writer)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[20416]</label>
+									<label2>$INFO[ListItem.Premiered]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Premiered)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[20376]</label>
+									<label2>$INFO[ListItem.OriginalTitle]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.OriginalTitle) + !String.IsEqual(ListItem.OriginalTitle,Listitem.Title)</visible>
+								</item>
+								<item>
+									<label>Budget / Revenue</label>
+									<label2>$VAR[ListItemBudgetFormatted]</label2>
+									<onclick>noop</onclick>
+									<visible>System.HasAddon(service.listitem.helper) + 
+											!String.IsEmpty(ListItem.IMDBNumber) + 
+											String.IsEqual(ListItem.DBID,Window(Home).Property(ListItemHelper.DBID)) + 
+											[!String.IsEmpty(Window(Home).Property(ListItemHelper.budget.million)) | !String.IsEmpty(Window(Home).Property(ListItemHelper.revenue.million))]</visible>
+								</item>
+								
+								<item>
+									<label>$LOCALIZE[573]</label>
+									<label2>$INFO[ListItem.FileNameAndPath]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.FileNameAndPath)</visible>
+									
+									<include>ShowNtsFileActions</include>
+									
+								</item>
+								<item>
+									<label>$LOCALIZE[21800]</label>
+									<label2>$INFO[ListItem.Filename]</label2>
+									
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Filename) + Skin.HasSetting(DialogVideoInfoFilenameEnable)</visible>
+									
+									<include>ShowNtsFileActions</include>
+									
+								</item>
+								<item>
+									<label>$LOCALIZE[38018]</label>
+									<label2>$INFO[ListItem.Userrating,$LOCALIZE[38018]  ·  ]</label2>
+									<onclick>noop</onclick>
+									<visible>!Skin.HasSetting(EnableMyList) + !String.IsEmpty(ListItem.Userrating)</visible>
+								</item>
+								<item>
+									<label>Awards</label>
+									<label2>$INFO[Window(Home).Property(ListItemHelper.awards)]</label2>
+									<onclick>noop</onclick>
+									<visible>System.HasAddon(service.listitem.helper) + 
+											!String.IsEmpty(ListItem.IMDBNumber) + 
+											String.IsEqual(ListItem.DBID,Window(Home).Property(ListItemHelper.DBID)) + 
+											!String.IsEmpty(Window(Home).Property(ListItemHelper.awards))</visible>
+								</item>
+								
+								
+								
+								<item>
+									<label>$LOCALIZE[21875]</label>
+									<label2>$INFO[ListItem.Country]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Country)</visible>
+								</item>
+								
+							</content>
+						</control>
+					</control>
+					
+					
+					
+					
+					<!-- TV SHOWS -->
+					<control type="group">
+						<visible>Container.Content(TvShows) | Container.Content(Seasons)</visible>
+						<top>30</top>
+						<left>-8</left>
+						<include>VisibleFadeEffect</include>
+						
+						<control type="list" id="49">
+							<left>77</left>
+							<top>131</top>
+							<width>1041</width>
+							<height>225</height>
+							<onleft>pageup</onleft><onleft>pageup</onleft><onleft>pageup</onleft>
+							<onleft>9000</onleft>
+							<onright>pageup</onright><onright>pageup</onright><onright>pageup</onright>
+							<onright>9000</onright>
+							<onup>9000</onup>
+							
+							<ondown>pageup</ondown><ondown>pageup</ondown><ondown>pageup</ondown>
+							<ondown>9000</ondown>
+							
+							<pagecontrol>80</pagecontrol>
+							<scrolltime>200</scrolltime>
+							
+							<include>InfoDialogListItemLayout</include>
+							<include>InfoDialogListFocusedLayout</include>
+							
+							<content>
+								<item>
+									<label>$LOCALIZE[515]</label>
+									<label2>$VAR[ListItemGenreFormatted]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Genre)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[20360]</label>
+									<label2>$INFO[ListItem.Property(TotalSeasons),,  $LOCALIZE[33054]  ·  ]$INFO[ListItem.Episode,,  $LOCALIZE[20360]][COLOR=grey2]  ·  $INFO[ListItem.Property(UnWatchedEpisodes),,  $LOCALIZE[16101]][/COLOR]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Property(TotalSeasons)) | !String.IsEmpty(ListItem.Episode)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[20416]</label>
+									<label2>$INFO[ListItem.Premiered]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Premiered)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[563]</label>
+									<label2>$INFO[ListItem.RatingAndVotes]</label2>
+									<onclick>noop</onclick>
+									<visible>!Skin.HasSetting(HideVideoRatings) + !String.IsEmpty(ListItem.RatingAndVotes)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[38018]</label>
+									<label2>$INFO[ListItem.Userrating,$LOCALIZE[38018]  ·  ]</label2>
+									<onclick>noop</onclick>
+									<visible>!Skin.HasSetting(EnableMyList) + !String.IsEmpty(ListItem.Userrating)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[573]</label>
+									<label2>$INFO[ListItem.FileNameAndPath]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.FileNameAndPath)</visible>
+								</item>
+							</content>
+						</control>
+					</control>
+					
+					
+					
+					<!-- EPISODES -->
+					<control type="group">
+						<visible>Container.Content(Episodes)</visible>
+						<top>30</top>
+						<left>-8</left>
+						<include>VisibleFadeEffect</include>
+						
+						<control type="list" id="49">
+							<left>77</left>
+							<top>131</top>
+							<width>1041</width>
+							<height>225</height>
+							<onleft>pageup</onleft><onleft>pageup</onleft><onleft>pageup</onleft>
+							<onleft>9000</onleft>
+							<onright>pageup</onright><onright>pageup</onright><onright>pageup</onright>
+							<onright>9000</onright>
+							<onup>9000</onup>
+							
+							<ondown>pageup</ondown><ondown>pageup</ondown><ondown>pageup</ondown>
+							<ondown>9000</ondown>
+							
+							<pagecontrol>80</pagecontrol>
+							<scrolltime>200</scrolltime>
+							
+							<include>InfoDialogListItemLayout</include>
+							<include>InfoDialogListFocusedLayout</include>
+							
+							<content>
+								<item>
+									<label>$LOCALIZE[20359]</label>
+									<label2>$INFO[ListItem.Season,S, ]$INFO[ListItem.Episode,E,]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Episode) | String.IsEmpty(ListItem.Season)</visible>
+									
+									<include>ShowNtsFileActions</include>
+									
+								</item>
+								<item>
+									<label>$LOCALIZE[20416]</label>
+									<label2>$INFO[ListItem.Premiered]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Premiered)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[2050]</label>
+									<label2>$VAR[Item_Duration_1]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Duration)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[20339]</label>
+									<label2>$VAR[ListItemDirectorFormatted]</label2>
+									
+									<onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBID,Window(Home).Property(ListItemHelper.DBID)) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(Window(Home).Property(ListItemHelper.director.1)) + System.HasAddon(script.extendedinfo)">RunScript(script.extendedinfo,info=extendedactorinfo,name=$ESCINFO[Window(Home).Property(ListItemHelper.director.1])</onclick>
+									
+									<onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBID,Window(Home).Property(ListItemHelper.DBID)) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(Window(Home).Property(ListItemHelper.director.1)) + !System.HasAddon(script.extendedinfo)">InstallAddon(script.extendedinfo)</onclick>
+									
+									<onclick condition="![!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBID,Window(Home).Property(ListItemHelper.DBID)) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(Window(Home).Property(ListItemHelper.director.formatted))]">SendClick(12003,13)</onclick>
+									
+									<visible>!String.IsEmpty(ListItem.Director)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[20417]</label>
+									<label2>$VAR[ListItemWriterFormatted,$LOCALIZE[20417]  ·  ]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Writer)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[38018]</label>
+									<label2>$INFO[ListItem.Userrating,$LOCALIZE[38018]  ·  ]</label2>
+									<onclick>noop</onclick>
+									<visible>!Skin.HasSetting(EnableMyList) + !String.IsEmpty(ListItem.Userrating)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[573]</label>
+									<label2>$INFO[ListItem.FileNameAndPath]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.FileNameAndPath)</visible>
+								</item>
+							</content>
+						</control>
+					</control>
+					
+					
+					
+					<!-- MUSIC VIDEOS -->
+					<control type="group">
+						<visible>Container.Content(MusicVideos)</visible>
+						<top>30</top>
+						<left>-8</left>
+						<include>VisibleFadeEffect</include>
+						
+						<control type="list" id="49">
+							<left>77</left>
+							<top>131</top>
+							<width>1041</width>
+							<height>225</height>
+							<onleft>pageup</onleft><onleft>pageup</onleft><onleft>pageup</onleft>
+							<onleft>9000</onleft>
+							<onright>pageup</onright><onright>pageup</onright><onright>pageup</onright>
+							<onright>9000</onright>
+							<onup>9000</onup>
+							
+							<ondown>pageup</ondown><ondown>pageup</ondown><ondown>pageup</ondown>
+							<ondown>9000</ondown>
+							
+							<pagecontrol>80</pagecontrol>
+							<scrolltime>200</scrolltime>
+							
+							<include>InfoDialogListItemLayout</include>
+							<include>InfoDialogListFocusedLayout</include>
+							
+							<content>
+								<item>
+									<label>$LOCALIZE[557]</label>
+									<label2>$INFO[ListItem.Artist]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Artist)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[558]</label>
+									<label2>$INFO[ListItem.Album,$LOCALIZE[558]  ·  ]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Album)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[515]</label>
+									<label2>$VAR[ListItemGenreFormatted,$LOCALIZE[515]  ·  ]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Genre)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[20339]</label>
+									<label2>$VAR[ListItemDirectorFormatted,$LOCALIZE[20339]  ·  ]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Director)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[20417]</label>
+									<label2>$VAR[ListItemWriterFormatted,$LOCALIZE[20417]  ·  ]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Writer)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[2050]</label>
+									<label2>$VAR[Item_Duration_1]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.Duration)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[38018]</label>
+									<label2>$INFO[ListItem.Userrating,$LOCALIZE[38018]  ·  ]</label2>
+									<onclick>noop</onclick>
+									<visible>!Skin.HasSetting(EnableMyList) + !String.IsEmpty(ListItem.Userrating)</visible>
+								</item>
+								<!-- move FileNameAndPath out of view on first sight -->
+								<item>
+									<label></label>
+									<label2></label2>
+									<onclick>noop</onclick>
+									<visible>Integer.IsLess(Container(49).NumItems,5)</visible>
+								</item>
+								<item>
+									<label>$LOCALIZE[573]</label>
+									<label2>$INFO[ListItem.FileNameAndPath]</label2>
+									<onclick>noop</onclick>
+									<visible>!String.IsEmpty(ListItem.FileNameAndPath)</visible>
+								</item>
+							</content>
+						</control>
+					</control>
+					
+					
+					
+					<control type="scrollbar" id="80">
+						
+						<include>ElementHasNoHitBox</include><!-- disable scrollbar access by user -->
+						
+						<left>1117</left>
+						<top>161</top>
+						<include>scrollBarStyleDefaultWidth</include>
+						<height>225</height>
+						<showonepage>false</showonepage>
+						<visible>Control.HasFocus(49)</visible>
+						<animation effect="fade" start="100" end="50" time="0" condition="true">Conditional</animation>
+						<enable>false</enable>
+						<include>VisibleFadeEffect</include>
+						<include>scrollBarStyleDefault</include>
+					</control>
+					
+					
+					
+					
+					
+					<control type="group">
+					<top>16</top>
+					
+					<visible>!Control.IsVisible(50)</visible>
+					<include>VisibleFadeEffectSlower2</include>
+					
+					<control type="image">
+						<include>VisibleFadeEffectSpecial</include>
+						<left>37</left>
+						<top>593</top>
+						<width>1056</width>
+						<height>384</height>
+						<texture border="24" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">_added_img/focus_border_2px-rounded-neutral-new.png</texture>
+						<visible>Control.HasFocus(499)</visible>
+						
+						<include>DimFocusTextureAdditionally</include>
+						
+					</control>
+					<control type="button" id="499">
+						<description>Plot Text Viewer button</description>
+						<left>42</left>
+						<top>593</top>
+						<width>1044</width>
+						<height>384</height>
+						<visible>!Control.IsVisible(50)</visible>
+						
+						<texturefocus></texturefocus>
+						<texturenofocus></texturenofocus>
+						
+						<onclick condition="!String.IsEmpty(ListItem.Plot)">SetProperty(TextViewer_Header,$ESCINFO[ListItem.Title],home)</onclick>
+						<onclick condition="!String.IsEmpty(ListItem.Plot)">SetProperty(TextViewer_Text_Pre,$ESCINFO[ListItem.TagLine],home)</onclick>
+						<onclick condition="!String.IsEmpty(ListItem.Plot)">SetProperty(TextViewer_Text,$ESCINFO[ListItem.Plot],home)</onclick>
+						
+						<onclick condition="!String.IsEmpty(ListItem.Plot)">ActivateWindow(1102)</onclick>
+						
+						<visible>!String.IsEmpty(ListItem.Plot) + [true | System.GetBool(videolibrary.showunwatchedplots) | !String.IsEmpty(ListItem.PlayCount)]</visible>
+						<onup>9000</onup>
+					</control>
+					
+					<control type="group">
+						
+						<animation effect="fade" start="0" end="99" time="1500" delay="0">WindowOpen</animation>
+						
+						<!-- dummy scrollbar to check if plot preview text is cut off with ... -->
+						<control type="scrollbar" id="45566">
+							
+							<include>ElementHasNoHitBox</include><!-- disable scrollbar access by user -->
+							
+							<left>2000</left>
+							<top>2000</top>
+							<width>1</width>
+							<height>1</height>
+							<showonepage>false</showonepage>
+							<animation effect="fade" end="0" time="0" condition="true">Conditional</animation>
+						</control>
+						
+						<control type="label">
+							
+							<!-- AccessibilityLargeText -->
+							<animation effect="slide" start="0,0" end="0,19" time="0" condition="!String.IsEmpty(Skin.String(UIFontSize))">Conditional</animation>
+							
+							<description>...</description>
+							<left>54</left>
+							<top>801</top>
+							<width>150</width>
+							<height>60</height>
+							
+							<font>Light20</font>
+							<align>left</align>
+							<textcolor>white</textcolor>
+							<label>...</label>
+							
+							<visible>Control.IsVisible(45566) + !String.IsEmpty(ListItem.Plot) + !Control.IsVisible(50) + !Control.HasFocus(499) + [true | System.GetBool(videolibrary.showunwatchedplots) | !String.IsEmpty(ListItem.PlayCount)]</visible>
+							
+							<animation effect="fade" time="350" delay="500">Visible</animation>
+							<animation effect="fade" time="300">Hidden</animation>
+							
+						</control>
+						
+						<control type="textbox">
+							<description>Plot Text</description>
+							<left>54</left>
+							<top>600</top>
+							<width>1023</width>
+							
+							<!-- AccessibilityLargeText -->
+							<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">FontCorrections_LargeText_DialogVideoInfo_Plot_Height_NonFocus_CRT</include>
+							<include condition="!String.IsEmpty(Skin.String(UIFontSize))">FontCorrections_LargeText_DialogVideoInfo_Plot_Height_NonFocus_Accessibility</include>
+							
+							<height>206</height>
+							
+							<font>Light20+</font>
+							<align>left</align>
+							<textcolor>white</textcolor>
+							<pagecontrol>45566</pagecontrol>
+							<label>$INFO[ListItem.TagLine,,[CR]]$INFO[ListItem.Plot]</label>
+							<visible>!Control.IsVisible(50) + !Control.HasFocus(499) + [true | System.GetBool(videolibrary.showunwatchedplots) | !String.IsEmpty(ListItem.PlayCount)]</visible>
+							
+							<animation effect="fade" time="350">Visible</animation>
+							<animation effect="fade" time="300" delay="350">Hidden</animation>
+							
+						</control>
+						
+						<control type="textbox">
+							<description>Plot Text</description>
+							<left>54</left>
+							<top>600</top>
+							<width>1023</width>
+							
+							<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">FontCorrections_LargeText_DialogVideoInfo_Plot_Height_Focus_CRT</include>
+							<include condition="!String.IsEmpty(Skin.String(UIFontSize))">FontCorrections_LargeText_DialogVideoInfo_Plot_Height_Focus_Accessibility</include>
+							
+							<height>366</height>
+							
+							<font>Light20+</font>
+							<align>left</align>
+							<textcolor>white</textcolor>
+							<pagecontrol></pagecontrol>
+							<label>$INFO[ListItem.TagLine,,[CR]]$INFO[ListItem.Plot]</label>
+							
+							<autoscroll>false</autoscroll>
+							
+							<visible>!Control.IsVisible(50) + Control.HasFocus(499) + [true | System.GetBool(videolibrary.showunwatchedplots) | !String.IsEmpty(ListItem.PlayCount)]</visible>
+							
+							<animation effect="fade" time="350">Visible</animation>
+							<animation effect="fade" time="300" delay="350">Hidden</animation>
+							
+						</control>
+						
+					</control>
+					
+					</control>
+					
+					
+					
+					
+					
+				</control>
+				
+				
+				
+				
+				
+				<!-- 
+				ACTORS panel
+				id 50
+				-->
+				<control type="panel" id="50">
+					
+					
+					<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_VideoInfo_Actors_Panel</include>
+					
+					
+					<left>-18</left>
+					<top>620</top>
+					
+					<width>1200</width>
+					<height>525</height>
+					
+					<ondown condition="System.HasAddon(script.extendedinfo) + Control.HasFocus(50) + !String.IsEmpty(Container(50).ListItem.Label)">RunScript(script.extendedinfo,info=extendedactorinfo,name=$INFO[Container(50).ListItem.Label])</ondown>
+					<ondown condition="!System.HasAddon(script.extendedinfo)">InstallAddon(script.extendedinfo)</ondown>
+					<onup>9000</onup>
+					
+					<scrolltime tween="sine" easing="inout">325</scrolltime>
+					<orientation>horizontal</orientation>
+					
+					<visible>!String.IsEmpty(Window(Home).Property(VideoInfoShowCast))</visible>
+					<include>VisibleFadeEffectSlower2</include>
+					
+					<!--
+					don't use preload for actors panel it causes issues in certain situations!
+					<include condition="[String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems1</include>
+					<include condition="![String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems2</include>
+					-->
+					
+					<itemlayout width="270" height="525">
+						<control type="group">
+							<left>50</left>
+							<control type="image">
+								<left>30</left>
+								<top>6</top>
+								<width>210</width>
+								<height>300</height>
+								<aspectratio scalediffuse="false">scale</aspectratio>
+								<texture background="true" fallback="DefaultActorSolid.png" colordiffuse="ffb2b2b2" diffuse="colors/diffuse/210x300-rounded.png">$INFO[Listitem.Art(thumb)]</texture>
+							</control>
+							<control type="textbox">
+								
+								<!-- AccessibilityLargeText -->
+								<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">FontCorrections_LargeText_DialogVideoInfo_Actors_Height_CRT</include>
+								<include condition="!String.IsEmpty(Skin.String(UIFontSize))">FontCorrections_LargeText_DialogVideoInfo_Actors_Height</include>
+								
+								<description>Actor and Role</description>
+								<left>12</left>
+								<top>318</top>
+								<width>246</width>
+								<height>87</height>
+								<font>Light15</font>
+								<align>center</align>
+								<selectedcolor>white</selectedcolor>
+								<label>$INFO[ListItem.Label]$INFO[ListItem.Label2,[COLOR=FF999999][CR],[/COLOR]]</label>
+								<animation effect="fade" end="65" time="0" condition="true">Conditional</animation>
+							</control>
+						</control>
+					</itemlayout>
+					
+					<focusedlayout width="270" height="525">
+						<control type="group">
+							<left>50</left>
+							<control type="image">
+								<left>30</left>
+								<top>6</top>
+								<width>210</width>
+								<height>300</height>
+								<aspectratio scalediffuse="false">scale</aspectratio>
+								<texture background="true" fallback="DefaultActorSolid.png" colordiffuse="ffb2b2b2" diffuse="colors/diffuse/210x300-rounded.png">$INFO[Listitem.Art(thumb)]</texture>
+							</control>
+							<control type="image">
+								<left>30</left>
+								<top>6</top>
+								<width>210</width>
+								<height>300</height>
+								<aspectratio scalediffuse="false">scale</aspectratio>
+								<texture background="true" fallback="DefaultActorSolid.png" diffuse="colors/diffuse/210x300-rounded.png">$INFO[Listitem.Art(thumb)]</texture>
+								<include>FocusAnimationType2</include>
+							</control>
+							<control type="group">
+								<control type="image">
+									<left>24</left>
+									<top>0</top>
+									<width>222</width>
+									<height>312</height>
+									<texture border="20" colordiffuse="$VAR[accentColorDiffuse]">_added_img/focus_border_thick.png</texture>
+									<include>FocusAnimationType2</include>
+								</control>
+								<include>DimFocusTextureAdditionally</include>
+							</control>
+							<control type="textbox">
+								
+								<!-- AccessibilityLargeText -->
+								<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">FontCorrections_LargeText_DialogVideoInfo_Actors_Height_CRT</include>
+								<include condition="!String.IsEmpty(Skin.String(UIFontSize))">FontCorrections_LargeText_DialogVideoInfo_Actors_Height</include>
+								
+								<description>Actor and Role</description>
+								<left>12</left>
+								<top>318</top>
+								<width>246</width>
+								<height>87</height>
+								<font>Light15</font>
+								<align>center</align>
+								<selectedcolor>white</selectedcolor>
+								<label>$INFO[ListItem.Label]$INFO[ListItem.Label2,[COLOR=FF999999][CR],[/COLOR]]</label>
+							</control>
+						</control>
+					</focusedlayout>
+					
+				</control>
+				
+				
+				
+				
+				
+				<!--
+				Hidden Nav Button
+				"Play" / "Browse" Button
+				Handles all click actions set by Kodi with some additional skin set onclick-actions (Spam protection)
+				-->
+				<control type="button" id="8"><include>HiddenObject</include><include>ElementHasNoHitBox</include><!-- disable access by user -->
+					
+					<!-- condition = Don't do onfocus when Movie Set Redirector in progress -->
+					<onfocus condition="![Container.Content(Sets) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,plugin://)] + Control.IsVisible(881)">Control.SetFocus(881)</onfocus>
+					<onfocus condition="![Container.Content(Sets) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,plugin://)] + Control.IsVisible(882)">Control.SetFocus(882)</onfocus>
+					<onfocus condition="![Container.Content(Sets) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,plugin://)] + Control.IsVisible(88)">Control.SetFocus(88)</onfocus>
+					
+					<onclick condition="!String.IsEmpty(Window(Home).Property(DialogVideoInfoPlaySpamProtection))">Dialog.Close(MovieInformation,true)</onclick>
+					<onclick condition="String.IsEmpty(Window(Home).Property(DialogVideoInfoPlaySpamProtection))">SetProperty(DialogVideoInfoPlaySpamProtection,True,home)</onclick>
+					
+					<onclick>AlarmClock(DialogVideoInfoPlaySpamProtectionTimer,ClearProperty(DialogVideoInfoPlaySpamProtection,home),00:00:01,silent)</onclick>
+					
+				</control>
+				
+				
+				
+				
+				<!--
+				Buttons Container (grouplist)
+				-->
+				<control type="grouplist" id="9000">
+					
+					
+					<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_VideoInfo_Buttons_Grouplist</include>
+					
+					
+					<left>54</left>
+					<top>509</top>
+					
+					<width>1119</width>
+					<height>180</height>
+					
+					<itemgap>4</itemgap>
+					<align>left</align>
+					<orientation>horizontal</orientation>
+					<onleft>9000</onleft>
+					<onright>9000</onright>
+					<onup>49</onup>
+					<ondown condition="Control.IsVisible(50)">50</ondown>
+					<ondown condition="!Control.IsVisible(50)">499</ondown>
+					
+					
+					<scrolltime tween="sine" easing="inout">260</scrolltime>
+					
+					
+					
+					
+					
+					
+					
+					<!-- "Close" Button -->
+					<control type="radiobutton" id="888"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Close Info</description>
+						<width>216</width>
+						<height>75</height>
+						
+						<label>$INFO[Window(10000).Property(CinemaHelper.Language.Properties.15067)]</label>
+						
+						<onclick>Dialog.Close(all,true)</onclick>
+						<visible>!String.IsEmpty(Window(10000).Property(OSDinfodialogButtonActive))</visible>
+						
+						<textureradiooffnofocus colordiffuse="c6ffffff">_added_img/icons/close.png</textureradiooffnofocus>
+						<textureradioofffocus>_added_img/icons/close.png</textureradioofffocus>
+						<textureradiooffdisabled />
+						<textureradioonnofocus></textureradioonnofocus>
+						<textureradioonfocus />
+						<textureradioondisabled />
+						<selected>false</selected>
+						
+						<include condition="!String.IsEmpty(Window(10000).Property(CinemaHelper.Language.Properties.15067.short))">Play_Button_ShortTextStyle</include>
+						
+						<align>left</align>
+						<radiowidth>42</radiowidth>
+						<radioheight>42</radioheight>
+						
+						<radioposx>24</radioposx>
+						<radioposy>18</radioposy>
+						
+						<textoffsetx>72</textoffsetx>
+						<textwidth>136</textwidth>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					
+					
+					<!--
+					"Play" / "Browse" Button | Default Variant for non-english type languages with mostly longer "Play"/"Browse" translation
+					-->
+					<control type="radiobutton" id="88"><include>VideoInfoDialogButtonsAnimations</include>
+						
+						<onclick>SendClick(12003,8)</onclick>
+						
+						<width>216</width>
+						<height>75</height>
+						<label>$VAR[PlayBrowse_Button_Label]</label>
+						
+						<visible>String.IsEmpty(Window(10000).Property(OSDinfodialogButtonActive))</visible>
+						
+						<!-- Play Icon -->
+						<textureradiooffnofocus colordiffuse="c6ffffff">_added_img/icons/play.png</textureradiooffnofocus>
+						<textureradioofffocus>_added_img/icons/play.png</textureradioofffocus>
+						<textureradiooffdisabled />
+						<!-- Browse Icon -->
+						<textureradioonnofocus colordiffuse="c6ffffff">_added_img/icons/browse.png</textureradioonnofocus>
+						<textureradioonfocus>_added_img/icons/browse.png</textureradioonfocus>
+						<textureradioondisabled />
+						
+						<selected>Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Sets)</selected>
+						
+						
+						<visible>!Control.IsVisible(881) + !Control.IsVisible(882)</visible>
+						
+						
+						<align>left</align>
+						<radiowidth>42</radiowidth>
+						<radioheight>42</radioheight>
+						
+						<radioposx>24</radioposx>
+						<radioposy>18</radioposy>
+						
+						<textoffsetx>72</textoffsetx>
+						<textwidth>136</textwidth>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					<!--
+					"Play" Button (Short Label) | Corrected icon and text position for english type languages with short "Play" translation
+					-->
+					<control type="radiobutton" id="881"><include>VideoInfoDialogButtonsAnimations</include>
+						
+						<onclick>SendClick(12003,8)</onclick>
+						
+						<width>216</width>
+						<height>75</height>
+						<label>$VAR[PlayBrowse_Button_Label]</label>
+						
+						<visible>String.IsEmpty(Window(10000).Property(OSDinfodialogButtonActive))</visible>
+						
+						<!-- Play Icon -->
+						<textureradiooffnofocus colordiffuse="c6ffffff">_added_img/icons/play.png</textureradiooffnofocus>
+						<textureradioofffocus>_added_img/icons/play.png</textureradioofffocus>
+						<textureradiooffdisabled />
+						<!-- Browse Icon -->
+						<textureradioonnofocus colordiffuse="c6ffffff">_added_img/icons/browse.png</textureradioonnofocus>
+						<textureradioonfocus>_added_img/icons/browse.png</textureradioonfocus>
+						<textureradioondisabled />
+						
+						<selected>Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Sets)</selected>
+						
+						
+						<visible>![Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Sets)] + !String.IsEmpty(Window(10000).Property(CinemaHelper.Language.Properties.208.short))</visible>
+						<include>Play_Button_ShortTextStyle</include>
+						
+						
+						<align>left</align>
+						<radiowidth>42</radiowidth>
+						<radioheight>42</radioheight>
+						
+						<radioposx>24</radioposx>
+						<radioposy>18</radioposy>
+						
+						<textoffsetx>72</textoffsetx>
+						<textwidth>136</textwidth>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					<!--
+					"Browse" (Short Label) | Corrected icon and text position for english type languages with short "Browse" translation
+					-->
+					<control type="radiobutton" id="882"><include>VideoInfoDialogButtonsAnimations</include>
+						
+						<onclick>SendClick(12003,8)</onclick>
+						
+						<width>216</width>
+						<height>75</height>
+						<label>$VAR[PlayBrowse_Button_Label]</label>
+						
+						<visible>String.IsEmpty(Window(10000).Property(OSDinfodialogButtonActive))</visible>
+						
+						<!-- Play Icon -->
+						<textureradiooffnofocus colordiffuse="c6ffffff">_added_img/icons/play.png</textureradiooffnofocus>
+						<textureradioofffocus>_added_img/icons/play.png</textureradioofffocus>
+						<textureradiooffdisabled />
+						<!-- Browse Icon -->
+						<textureradioonnofocus colordiffuse="c6ffffff">_added_img/icons/browse.png</textureradioonnofocus>
+						<textureradioonfocus>_added_img/icons/browse.png</textureradioonfocus>
+						<textureradioondisabled />
+						
+						<selected>Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Sets)</selected>
+						
+						
+						<visible>[Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Sets)] + !String.IsEmpty(Window(10000).Property(CinemaHelper.Language.Properties.1024.short))</visible>
+						<include>Browse_Button_ShortTextStyle</include>
+						
+						
+						<align>left</align>
+						<radiowidth>42</radiowidth>
+						<radioheight>42</radioheight>
+						
+						<radioposx>24</radioposx>
+						<radioposy>18</radioposy>
+						
+						<textoffsetx>72</textoffsetx>
+						<textwidth>136</textwidth>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<!-- My List -->
+					
+					<control type="radiobutton" id="98155"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>My List</description>
+						<width>216</width>
+						<height>75</height>
+						
+						<label>My List</label>
+						
+						<onclick>SetProperty(CinemaHelper.UserRating.DbId,$ESCINFO[ListItem.DBID],home)</onclick>
+						<onclick>SetProperty(CinemaHelper.UserRating.DbType,$ESCINFO[ListItem.DBTYPE],home)</onclick>
+						
+						
+						<!-- NOT on My List -->
+						<onclick condition="[ String.IsEmpty(Window(Home).Property(CinemaHelper.UserRating.Action)) + !String.IsEqual(ListItem.UserRating,1) ] 
+																	| String.IsEqual(Window(Home).Property(CinemaHelper.UserRating.Action),WatchListRemove)">
+																	SetProperty(CinemaHelper.UserRating.Action,WatchListAdd,home)</onclick>
+						
+						<!-- IS on  My List -->
+						<onclick condition="[ String.IsEmpty(Window(Home).Property(CinemaHelper.UserRating.Action)) + String.IsEqual(ListItem.UserRating,1) ]  
+																	| String.IsEqual(Window(Home).Property(CinemaHelper.UserRating.Action),WatchListAdd)">
+																	SetProperty(CinemaHelper.UserRating.Action,WatchListRemove,home)</onclick>
+						
+						
+						<onclick>SetProperty(CinemaHelper.UserRating.PROCESS,True,home)</onclick>
+						
+						<visible>Skin.HasSetting(EnableMyList) + [String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode) | String.IsEqual(ListItem.DBTYPE,tvshow)]  + !String.IsEmpty(ListItem.IMDBNumber) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName) + [Container.Content(TvShows) | Container.Content(Episodes) | Container.Content(Movies)]</visible>
+						
+						
+						<textureradiooffnofocus colordiffuse="ffe2e2e2">_added_img/icons/plus.png</textureradiooffnofocus>
+						<textureradioofffocus>_added_img/icons/plus.png</textureradioofffocus>
+						<textureradiooffdisabled />
+						<textureradioonnofocus colordiffuse="$VAR[uiColorVariantSliderNibFocus]">_added_img/icons/mylist.png</textureradioonnofocus>
+						<textureradioonfocus>_added_img/icons/minus.png</textureradioonfocus>
+						<textureradioondisabled />
+						
+						<selected>[ String.IsEmpty(Window(Home).Property(CinemaHelper.UserRating.Action)) + String.IsEqual(ListItem.UserRating,1) ]  
+																	| String.IsEqual(Window(Home).Property(CinemaHelper.UserRating.Action),WatchListAdd)</selected>
+						
+						
+						<align>right</align>
+						<radiowidth>42</radiowidth>
+						<radioheight>42</radioheight>
+						
+						<radioposx>150</radioposx>
+						<radioposy>18</radioposy>
+						
+						<textoffsetx>69</textoffsetx>
+						<textwidth>138</textwidth>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<!-- Watched State -->
+					
+					<control type="radiobutton" id="98156"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Watched State</description>
+						<width>216</width>
+						<height>75</height>
+						
+						<label>$INFO[Window(10000).Property(CinemaHelper.Language.Properties.16102)]</label>
+						
+						<onclick>SetProperty(CinemaHelper.WatchedState.DbId,$ESCINFO[ListItem.DBID],home)</onclick>
+						<onclick>SetProperty(CinemaHelper.WatchedState.DbType,$ESCINFO[ListItem.DBTYPE],home)</onclick>
+						
+						
+						<!-- NOT Watched -->
+						<onclick condition="[ String.IsEmpty(Window(Home).Property(CinemaHelper.WatchedState.Action)) + String.IsEmpty(ListItem.PlayCount) ]  
+																	| String.IsEqual(Window(Home).Property(CinemaHelper.WatchedState.Action),SetNotWatched)">
+																	SetProperty(CinemaHelper.WatchedState.Action,SetWatched,home)</onclick>
+						<!-- IS Watched -->
+						<onclick condition="[ String.IsEmpty(Window(Home).Property(CinemaHelper.WatchedState.Action)) + !String.IsEmpty(ListItem.PlayCount) ] 
+																	| String.IsEqual(Window(Home).Property(CinemaHelper.WatchedState.Action),SetWatched)">
+																	SetProperty(CinemaHelper.WatchedState.Action,SetNotWatched,home)</onclick>
+						<onclick>SetProperty(CinemaHelper.WatchedState.PROCESS,True,home)</onclick>
+						
+						
+						<visible>[String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode)]  + !String.IsEmpty(ListItem.IMDBNumber) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName) + [Container.Content(Episodes) | Container.Content(Movies)]</visible>
+						
+						
+						<textureradiooffnofocus colordiffuse="ffe2e2e2">_added_img/icons/plus.png</textureradiooffnofocus>
+						<textureradioofffocus>_added_img/icons/plus.png</textureradioofffocus>
+						<textureradiooffdisabled />
+						<textureradioonnofocus colordiffuse="$VAR[uiColorVariantSliderNibFocus]">_added_img/icons/watched.png</textureradioonnofocus>
+						<textureradioonfocus>_added_img/icons/minus.png</textureradioonfocus>
+						<textureradioondisabled />
+						
+						<selected>[ String.IsEmpty(Window(Home).Property(CinemaHelper.WatchedState.Action)) + !String.IsEmpty(ListItem.PlayCount) ] 
+																					| String.IsEqual(Window(Home).Property(CinemaHelper.WatchedState.Action),SetWatched)</selected>
+						
+						
+						<include condition="!String.IsEqual(System.Language,Korean) + !String.IsEmpty(Window(10000).Property(CinemaHelper.Language.Properties.16102.short)) + String.IsEmpty(Window(10000).Property(CinemaHelper.Language.Properties.16102.supershort))">WatchedState_Button_ShortTextStyle</include>
+						
+						<include condition="!String.IsEqual(System.Language,Korean) + !String.IsEmpty(Window(10000).Property(CinemaHelper.Language.Properties.16102.supershort))">WatchedState_Button_ShortTextStyle2</include>
+						
+						<include condition="String.IsEqual(System.Language,Korean)">WatchedState_Button_ShortTextStyle3</include>
+						
+						
+						<radioposx>159</radioposx>
+						<radioposy>18</radioposy>
+						
+						<align>right</align>
+						<radiowidth>42</radiowidth>
+						<radioheight>42</radioheight>
+						
+						<textoffsetx>56</textoffsetx>
+						<textwidth>144</textwidth>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					
+					
+					
+					
+					
+					<!-- Cast/Plot -->
+					<control type="button" id="5"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Cast/Plot</description>
+						<width>216</width>
+						<height>75</height>
+						
+						<label>$VAR[VideoInfoPlotCastLabel]</label>
+						
+						<enable>!String.IsEmpty(ListItem.Cast)</enable>
+						<visible>!Container.Content(Seasons) + Control.IsEnabled(5)</visible>
+						
+						<onclick condition="String.IsEmpty(Window(Home).Property(VideoInfoShowCast))">SetProperty(VideoInfoShowCast,True,home)</onclick>
+						<onclick condition="!String.IsEmpty(Window(Home).Property(VideoInfoShowCast))">ClearProperty(VideoInfoShowCast,home)</onclick>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					<!-- Trailer -->
+					<control type="button" id="11"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Play Trailer</description>
+						<width>216</width>
+						<height>75</height>
+						
+						<label>$INFO[Window(10000).Property(CinemaHelper.Language.Properties.20410)]</label>
+						
+						<visible>!String.IsEmpty(ListItem.Trailer) + !Skin.HasSetting(HideTrailerButtonInVideoInfoDialog)</visible>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					<!-- Trailer Search -->
+					<control type="radiobutton" id="998965"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Trailer Search</description>
+						<width>216</width>
+						<height>75</height>
+						
+						<label>$INFO[Window(10000).Property(CinemaHelper.Language.Properties.20410)]</label>
+						
+						
+						
+						<onclick condition="String.IsEqual(Skin.String(TrailerSearchMethod),0) | String.IsEmpty(Skin.String(TrailerSearchMethod))">Dialog.Close(all,true)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(TrailerSearchMethod),0) | String.IsEmpty(Skin.String(TrailerSearchMethod))">RunScript("special://skin/xml/py/yt_trailer_search_yt_addon.py",$ESCINFO[ListItem.Title],$ESCINFO[ListItem.Year],$ESCVAR[TrailerSearchLanguageString])</onclick>
+						
+						
+						
+						<onclick condition="String.IsEqual(Skin.String(TrailerSearchMethod),1) + String.IsEmpty(Window(Home).Property(DialogVideoInfoTrailerSearchSpamProtection))">RunScript("special://skin/xml/py/yt_trailer_search_ext_browser.py",$ESCINFO[ListItem.Title],$ESCINFO[ListItem.Year],$ESCVAR[TrailerSearchLanguageString])</onclick>
+						
+						<onclick condition="String.IsEqual(Skin.String(TrailerSearchMethod),1) + String.IsEmpty(Window(Home).Property(DialogVideoInfoTrailerSearchSpamProtection))">SetProperty(DialogVideoInfoTrailerSearchSpamProtection,True,home)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(TrailerSearchMethod),1) + String.IsEmpty(Window(Home).Property(DialogVideoInfoTrailerSearchSpamProtection))">AlarmClock(DialogVideoInfoTrailerSearchSpamProtectionTimer,ClearProperty(DialogVideoInfoTrailerSearchSpamProtection,home),00:00:01,silent)</onclick>
+						
+						<textureradiooffnofocus colordiffuse="c6ffffff">icon_search_large.png</textureradiooffnofocus>
+						<textureradioofffocus>icon_search_large.png</textureradioofffocus>
+						<textureradiooffdisabled />
+						<textureradioonnofocus></textureradioonnofocus>
+						<textureradioonfocus />
+						<textureradioondisabled />
+						<selected>false</selected>
+						
+						<radioposx>150</radioposx>
+						<radioposy>22</radioposy>
+						
+						<align>right</align>
+						<radiowidth>34</radiowidth>
+						<radioheight>34</radioheight>
+						
+						<textoffsetx>76</textoffsetx>
+						<textwidth>120</textwidth>
+						
+						<visible>[Container.Content(Movies) | Container.Content(TvShows)] + String.IsEmpty(Container.PluginName)</visible>
+						
+						<visible>!Skin.HasSetting(HideTrailerSearchButtonInVideoInfoDialog)</visible>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					<!-- Extended Info -->
+					<control type="button" id="90"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Extended Info</description>
+						<width>216</width>
+						<height>75</height>
+						
+						<label>Extended Info</label>
+						
+						<onclick condition="System.HasAddon(script.extendedinfo)">RunScript(script.extendedinfo,info=extendedinfo,dbid=$INFO[ListItem.DBID])</onclick>
+						
+						<onclick condition="!System.HasAddon(script.extendedinfo)">InstallAddon(script.extendedinfo)</onclick>
+						<visible>String.IsEmpty(Container.PluginName) + Container.Content(Movies) + !String.IsEmpty(ListItem.DBID)</visible>
+						
+						<visible>!Skin.HasSetting(HideExtendedInfoButtonInVideoInfoDialog)</visible>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					<!-- Same Director -->
+					<control type="button" id="89"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Same Director</description>
+						<width>216</width>
+						<height>75</height>
+						
+						<label>$INFO[Window(10000).Property(CinemaHelper.Language.Properties.20339)]</label>
+						
+						<onclick>SendClick(12003,13)</onclick>
+						
+						<visible>!String.IsEmpty(ListItem.Director) + Control.IsVisible(13) + Control.IsEnabled(13)</visible>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					<!-- Movie Set -->
+					<control type="radiobutton" id="87"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Movie Set</description>
+						<width>216</width>
+						<height>75</height>
+						
+						<label>[CAPITALIZE]$INFO[Window(10000).Property(CinemaHelper.Language.Properties.36910)][/CAPITALIZE]</label>
+						
+						
+						
+						<include condition="!String.IsEmpty(Window(10000).Property(CinemaHelper.Language.Properties.36910.short))">Set_Button_ShortTextStyle</include>
+						
+						
+						
+						<align>left</align>
+						<radiowidth>42</radiowidth>
+						<radioheight>42</radioheight>
+						
+						<radioposx>26</radioposx>
+						<radioposy>18</radioposy>
+						
+						<textoffsetx>74</textoffsetx>
+						<textwidth>134</textwidth>
+						
+						<textureradiooffnofocus colordiffuse="c6ffffff">_added_img/icons/set.png</textureradiooffnofocus>
+						<textureradioofffocus>_added_img/icons/set.png</textureradioofffocus>
+						<textureradiooffdisabled />
+						<textureradioonnofocus></textureradioonnofocus>
+						<textureradioonfocus />
+						<textureradioondisabled />
+						<selected>false</selected>
+						
+						<onclick condition="!String.IsEmpty(ListItem.SetId)">RunScript("special://skin/xml/py/movieset_opener.py")</onclick>
+						
+						
+						<visible>!String.IsEmpty(ListItem.SetId)</visible>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					<!-- Versions -->
+					<control type="button" id="14"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Versions</description>
+						<width>216</width>
+						<height>75</height>
+						
+						<label>$INFO[Window(10000).Property(CinemaHelper.Language.Properties.40000)]</label>
+						
+						<!-- Kodi 21+ -->
+						<visible>![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)] + Skin.HasSetting(DialogVideoInfoVersionsExtrasButtons) + String.IsEqual(ListItem.DBTYPE,movie) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName)</visible>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					<!-- Extras -->
+					<control type="button" id="15"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Extras</description>
+						<width>216</width>
+						<height>75</height>
+						
+						<label>$INFO[Window(10000).Property(CinemaHelper.Language.Properties.40211)]</label>
+						
+						<!-- Kodi 21+ -->
+						<visible>![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)] + Skin.HasSetting(DialogVideoInfoVersionsExtrasButtons) + String.IsEqual(ListItem.DBTYPE,movie) + !String.IsEmpty(ListItem.DBID) + String.IsEmpty(Container.PluginName)</visible>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					<!-- More Options -->
+					<control type="radiobutton" id="9100"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>More Options</description>
+						<width>80</width>
+						<height>75</height>
+						
+						<textureradiooffnofocus colordiffuse="c6ffffff">_added_img/icons/more_options.png</textureradiooffnofocus>
+						<textureradioofffocus>_added_img/icons/more_options.png</textureradioofffocus>
+						<textureradioonnofocus></textureradioonnofocus>
+						<textureradioonfocus />
+						<textureradiooffdisabled colordiffuse="3bffffff">_added_img/icons/more_options.png</textureradiooffdisabled>
+						<textureradioondisabled />
+						<selected>false</selected>
+						
+						<radiowidth>45</radiowidth>
+						<radioheight>45</radioheight>
+						
+						<radioposx>18</radioposx>
+						<radioposy>16</radioposy>
+						
+						<label></label>
+						
+						<onclick condition="String.IsEmpty(Window(Home).Property(VideoInfoDialog_MoreOptions_ShowNow)) + [Control.IsVisible(6) + Control.IsEnabled(6)]">SetProperty(set_focus_now,9106,home)</onclick>
+						<onclick condition="String.IsEmpty(Window(Home).Property(VideoInfoDialog_MoreOptions_ShowNow)) + ![Control.IsVisible(6) + Control.IsEnabled(6)] + [Control.IsVisible(10) + Control.IsEnabled(10)]">SetProperty(set_focus_now,9110,home)</onclick>
+						<onclick condition="String.IsEmpty(Window(Home).Property(VideoInfoDialog_MoreOptions_ShowNow)) + ![Control.IsVisible(6) + Control.IsEnabled(6)] + ![Control.IsVisible(10) + Control.IsEnabled(10)] + [Control.IsVisible(7) + Control.IsEnabled(7)]">SetProperty(set_focus_now,9107,home)</onclick>
+						<onclick condition="String.IsEmpty(Window(Home).Property(VideoInfoDialog_MoreOptions_ShowNow))">SetProperty(VideoInfoDialog_MoreOptions_ShowNow,True,home)</onclick>
+						
+						<visible>[Control.IsVisible(7) + Control.IsEnabled(7)] | [Control.IsVisible(6) + Control.IsEnabled(6)] | [Control.IsVisible(10) + Control.IsEnabled(10)]</visible>
+						
+						<enable>!Control.HasFocus(9107) + !Control.HasFocus(9106) + !Control.HasFocus(9110) + String.IsEmpty(Window(Home).Property(VideoInfoDialog_MoreOptions_Visited))</enable>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					<!-- My rating -->
+					<control type="radiobutton" id="9107"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>My rating</description>
+						<width>80</width>
+						<height>75</height>
+						
+						<textureradiooffnofocus colordiffuse="c6ffffff">_added_img/icons/ratingstar.png</textureradiooffnofocus>
+						<textureradioofffocus>_added_img/icons/ratingstar.png</textureradioofffocus>
+						<textureradioonnofocus></textureradioonnofocus>
+						<textureradioonfocus />
+						<textureradiooffdisabled />
+						<textureradioondisabled />
+						<selected>false</selected>
+						
+						<radiowidth>45</radiowidth>
+						<radioheight>45</radioheight>
+						
+						<radioposx>18</radioposx>
+						<radioposy>16</radioposy>
+						
+						<label></label>
+						
+						<visible>Control.IsVisible(7) + Control.IsEnabled(7)</visible>
+						<visible>!String.IsEmpty(Window(Home).Property(VideoInfoDialog_MoreOptions_ShowNow))</visible>
+						
+						<onfocus>SetProperty(VideoInfoDialog_MoreOptions_Visited,True,home)</onfocus>
+						<onunfocus>SetProperty(VideoInfoDialog_MoreOptions_Visited,True,home)</onunfocus>
+						
+						<onclick>SendClick(12003,7)</onclick>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					<!-- Choose Art -->
+					<control type="radiobutton" id="9110"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Choose Art</description>
+						<width>80</width>
+						<height>75</height>
+						
+						<textureradiooffnofocus colordiffuse="c6ffffff">_added_img/icons/choose_art.png</textureradiooffnofocus>
+						<textureradioofffocus>_added_img/icons/choose_art.png</textureradioofffocus>
+						<textureradioonnofocus></textureradioonnofocus>
+						<textureradioonfocus />
+						<textureradiooffdisabled />
+						<textureradioondisabled />
+						<selected>false</selected>
+						
+						<radiowidth>45</radiowidth>
+						<radioheight>45</radioheight>
+						
+						<radioposx>18</radioposx>
+						<radioposy>16</radioposy>
+						
+						<label></label>
+						
+						<visible>Control.IsVisible(10) + Control.IsEnabled(10)</visible>
+						<visible>!String.IsEmpty(Window(Home).Property(VideoInfoDialog_MoreOptions_ShowNow))</visible>
+						
+						<onfocus>SetProperty(VideoInfoDialog_MoreOptions_Visited,True,home)</onfocus>
+						<onunfocus>SetProperty(VideoInfoDialog_MoreOptions_Visited,True,home)</onunfocus>
+						
+						<onclick>SendClick(12003,10)</onclick>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					<!-- Refresh -->
+					<control type="radiobutton" id="9106"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Refresh</description>
+						<width>80</width>
+						<height>75</height>
+						
+						<textureradiooffnofocus colordiffuse="c6ffffff">_added_img/icons/refresh.png</textureradiooffnofocus>
+						<textureradioofffocus>_added_img/icons/refresh.png</textureradioofffocus>
+						<textureradioonnofocus></textureradioonnofocus>
+						<textureradioonfocus />
+						<textureradiooffdisabled />
+						<textureradioondisabled />
+						<selected>false</selected>
+						
+						<radiowidth>60</radiowidth>
+						<radioheight>34</radioheight>
+						
+						<radioposx>12</radioposx>
+						<radioposy>21</radioposy>
+						
+						<label></label>
+						
+						<visible>Control.IsVisible(6) + Control.IsEnabled(6)</visible>
+						<visible>!String.IsEmpty(Window(Home).Property(VideoInfoDialog_MoreOptions_ShowNow))</visible>
+						
+						<onfocus>SetProperty(VideoInfoDialog_MoreOptions_Visited,True,home)</onfocus>
+						<onunfocus>SetProperty(VideoInfoDialog_MoreOptions_Visited,True,home)</onunfocus>
+						
+						<onclick>SendClick(12003,6)</onclick>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					
+					<control type="button" id="99">
+						<description>Dummy</description>
+						<width>15</width>
+						<height>75</height>
+						
+						<label></label>
+						
+						<enable>false</enable>
+						
+						<animation effect="fade" end="0" time="0" condition="true">Conditional</animation>
+						
+						<include content="ButtonInfoDialogsCommonValues"><param name="colordiffuseNF" value="77202020" /></include>
+					</control>
+					
+					
+					
+				</control>
+				
+				
+				
+				<!-- Semi-Hidden "More Options" original buttons -->
+				<!-- My rating -->
+				<control type="button" id="7">
+					<include>HiddenObject</include>
+					<visible>!Control.IsVisible(98155) + Control.IsEnabled(7) + String.IsEmpty(Container.PluginName)</visible>
+					<visible>!Skin.HasSetting(HideTrailerSearchButtonInVideoInfoDialog)</visible>
+				</control>
+				<!-- Choose Art -->
+				<control type="button" id="10">
+					<include>HiddenObject</include>
+					<visible>String.IsEmpty(Container.PluginName)</visible>
+				</control>
+				<!-- Refresh -->
+				<control type="button" id="6">
+					<include>HiddenObject</include>
+					<onclick>SetProperty(VideoInfoDialogRefreshBlur,True,home)</onclick>
+					<visible>String.IsEmpty(Container.PluginName) + !Container.Content(Sets)</visible>
+				</control>
+				<!-- Director -->
+				<control type="button" id="13">
+					<include>HiddenObject</include>
+				</control>
+				
+				
+				
+				<!-- Play button resume progress bar indicator -->
+				<control type="group">
+					<left>72</left>
+					<top>578</top>
+					
+					<control type="group">
+						
+						<width>180</width>
+						<height>6</height>
+						
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>2</width>
+							<height>6</height>
+							<texture colordiffuse="5aFFFFFF">osd/progress/progress-6px-start-end.png</texture>
+						</control>
+						<control type="image">
+							<left>178</left>
+							<top>0</top>
+							<width>2</width>
+							<height>6</height>
+							<texture colordiffuse="5aFFFFFF" flipx="true">osd/progress/progress-6px-start-end.png</texture>
+						</control>
+						
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>2</width>
+							<height>6</height>
+							<texture colordiffuse="bbFFFFFF">osd/progress/progress-6px-start-end.png</texture>
+						</control>
+						
+						<control type="progress">
+							<description>Progressbar</description>
+							<left>2</left>
+							<top>0</top>
+							<width>176</width>
+							<height>6</height>
+							<info>ListItem.PercentPlayed</info>
+							
+							<texturebg colordiffuse="5aFFFFFF">osd/progress/progress-bg.png</texturebg>
+							<midtexture colordiffuse="bbFFFFFF">osd/progress/progress-mid-2px.png</midtexture>
+							
+						</control>
+						
+						<visible>[Control.HasFocus(88) | Control.HasFocus(881) | Control.HasFocus(882)] + Integer.IsGreater(ListItem.PercentPlayed,0)</visible>
+						
+						<animation effect="zoom" start="100" end="96" time="500" center="auto" condition="true">Conditional</animation>
+						<animation effect="zoom" start="96" end="100" time="500" center="auto">Visible</animation>
+						<animation effect="zoom" end="96" start="100" time="500" center="auto">Hidden</animation>
+						
+					</control>
+					
+					<visible>[Control.HasFocus(88) | Control.HasFocus(881) | Control.HasFocus(882)] + Integer.IsGreater(ListItem.PercentPlayed,0)</visible>
+					
+					<animation effect="fade" time="600">Visible</animation>
+					<animation effect="fade" time="300">Hidden</animation>
+					
+				</control>
+				
+				
+			</control>
+			
+			
+			
+		</control>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

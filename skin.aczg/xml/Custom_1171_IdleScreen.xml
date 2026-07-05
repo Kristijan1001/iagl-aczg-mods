@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1171">
+	
+	<defaultcontrol always="true">11711</defaultcontrol>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="button" id="11711">
+			
+			<include>BackgroundDimensions</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<texturefocus></texturefocus>
+			<texturenofocus></texturenofocus>
+			
+			<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_FS_HitRect_Dimensions</include>
+			<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_FS_HitRect_Dimensions</include>
+			
+			<hitrect x="0" y="0" w="1920" h="1080" />
+			<onclick>noop</onclick>
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

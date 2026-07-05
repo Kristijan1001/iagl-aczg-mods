@@ -1,0 +1,3307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	
+	<include file="_ViewsFileMode_walls_layouts_2X.xml" />
+	<include file="_ViewsFileMode_walls_layouts_3X.xml" />
+	<include file="_ViewsFileMode_walls_layouts_4X.xml" />
+	<include file="_ViewsFileMode_walls_layouts_5X.xml" />
+	
+	
+	<include name="Transparency50">
+		<animation effect="fade" end="50" time="0" condition="true">Conditional</animation>
+	</include>
+	
+	<include name="WallViewOverlayTexture">
+		<texture background="true">$INFO[ListItem.Overlay]</texture>
+	</include>
+	<include name="WallViewOverlayVisible">
+		<visible>!String.IsEmpty(ListItem.Overlay) + !String.IsEqual(ListItem.Overlay,OverlayUnwatched.png) + !String.IsEqual(ListItem.Overlay,OverlayHD.png) + !String.IsEqual(Container.Content,Albums) + !String.IsEqual(Container.Content,MusicVideos)</visible>
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="Wall_Views_Higher_Density_Sidebar_Button">
+		
+		<control type="radiobutton" id="99">
+			
+			<include>SideBar_Button_Common_Radio</include>
+			<include>SideBar_Button_Common</include>
+			
+			<label>– Higher density</label>
+			
+			<onclick>Skin.ToggleSetting(WallViewsHigherDensity)</onclick>
+			
+			<selected>Skin.HasSetting(WallViewsHigherDensity)</selected>
+			
+			<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)] + [Control.IsVisible(500) | Control.IsVisible(908) | Control.IsVisible(909) | Control.IsVisible(910)]</visible>
+		</control>
+		
+	</include>
+	
+	<include name="MoveUpOverlayIconsIfSquaredVariant2X">
+		<animation effect="slide" start="0,0" end="0,-57" delay="0" time="0" condition="![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+	</include>
+	<include name="MoveUpOverlayIconsIfSquaredVariant3X">
+		<animation effect="slide" start="0,0" end="0,-43" delay="0" time="0" condition="![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+	</include>
+	<include name="MoveUpOverlayIconsIfSquaredVariant4X">
+		<animation effect="slide" start="0,0" end="0,-31" delay="0" time="0" condition="![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+	</include>
+	<include name="MoveUpOverlayIconsIfSquaredVariant5X">
+		<animation effect="slide" start="0,0" end="0,-27" delay="0" time="0" condition="![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+	</include>
+	
+	<include name="WallViewImageVisiblePosterVariantArScale">
+		<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + [!String.IsEmpty(ListItem.Art(poster)) | [String.IsEqual(Container.Content,Seasons) + String.IsEqual(ListItem.Label,$LOCALIZE[20366]) + !String.IsEmpty(ListItem.Art(tvshow.poster))] | String.IsEqual(Container.Content,Actors) | ListItem.IsParentFolder | ListItem.IsCollection | String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)]</visible>
+	</include>
+	<include name="WallViewImageVisiblePosterVariantArKeep">
+		<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)] + String.IsEmpty(ListItem.Art(poster)) + ![String.IsEqual(Container.Content,Seasons) + String.IsEqual(ListItem.Label,$LOCALIZE[20366]) + !String.IsEmpty(ListItem.Art(tvshow.poster))] + !ListItem.IsParentFolder + !ListItem.IsCollection + !String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,VideoVersions) + !String.IsEqual(Container.Content,TvShows) + !String.IsEqual(Container.Content,Seasons)</visible>
+	</include>
+	
+	<include name="WallViewImageVisiblePosterVariant">
+		<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]</visible>
+	</include>
+	<include name="WallViewImageVisibleSquaredVariant">
+		<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]</visible>
+	</include>
+	
+	<include name="WallViewImageVisibleSquaredVariantArScale">
+		<visible>!System.Platform.Android | !String.StartsWith(Container.FolderPath,androidapp://sources/apps/)</visible>
+		<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + [[!String.IsEqual(Container.Content,Addons) + !String.IsEqual(Container.Content,Files) + !String.IsEqual(Container.Content,Images) + !String.IsEqual(Container.Content,Videos) + !String.IsEqual(Container.Content,Games) + !String.IsEmpty(Container.Content)] | ListItem.IsParentFolder]</visible>
+	</include>
+	<include name="WallViewImageVisibleSquaredVariantArScaleAddonsFallbackImage">
+		<visible>!System.Platform.Android | !String.StartsWith(Container.FolderPath,androidapp://sources/apps/)</visible>
+		<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + [String.IsEqual(Container.Content,Addons) + !String.IsEqual(Container.Content,Files) + !String.IsEqual(Container.Content,Images) + !String.IsEqual(Container.Content,Videos) + !String.IsEqual(Container.Content,Games) + !String.IsEmpty(Container.Content)] + !ListItem.IsParentFolder</visible>
+	</include>
+	
+	<include name="WallViewImageVisibleSquaredVariantArKeepAddonsFallbackImage">
+		<visible>System.Platform.Android + String.StartsWith(Container.FolderPath,androidapp://sources/apps/) + !ListItem.IsParentFolder</visible>
+	</include>
+	
+	<include name="WallViewImageVisibleSquaredVariantArKeep">
+		<visible>!System.Platform.Android | !String.StartsWith(Container.FolderPath,androidapp://sources/apps/)</visible>
+		<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + [String.IsEqual(Container.Content,Files) | String.IsEqual(Container.Content,Images) | String.IsEqual(Container.Content,Videos) | String.IsEqual(Container.Content,Games) | String.IsEmpty(Container.Content)] + !ListItem.IsParentFolder</visible>
+	</include>
+	
+	
+	
+	<include name="WallViewFlagUHDVisible">
+		<visible>[String.IsEqual(ListItem.VideoResolution,4K) | String.IsEqual(ListItem.VideoResolution,8K) | String.Contains(ListItem.FileName,"(UHD)") | String.Contains(ListItem.FileName,"(UHD-2)") | String.Contains(ListItem.FileName,2160p) | String.Contains(ListItem.FileName,4320p)]</visible>
+	</include>
+	<include name="WallViewFlagHFRVisible">
+		<visible>[String.IsEqual(ListItem.VideoResolution,4K) | String.IsEqual(ListItem.VideoResolution,8K) | String.Contains(ListItem.FileName,"(UHD)") | String.Contains(ListItem.FileName,"(UHD-2)") | String.Contains(ListItem.FileName,2160p) | String.Contains(ListItem.FileName,4320p)] 
+									+ [String.Contains(ListItem.FileName,"(HFR)") | String.Contains(ListItem.FileName,.HFR.)]</visible>
+	</include>
+	<include name="WallViewFlag3DVisible">
+		<visible>[ListItem.IsStereoscopic | String.Contains(ListItem.FileName,.3D.)] + ![String.IsEqual(ListItem.VideoResolution,4K) | String.IsEqual(ListItem.VideoResolution,8K) | String.Contains(ListItem.FileName,"(UHD)") | String.Contains(ListItem.FileName,"(UHD-2)") | String.Contains(ListItem.FileName,2160p) | String.Contains(ListItem.FileName,4320p)] + !ListItem.IsCollection</visible>
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	<include name="OverlayFlagsVisible">
+		<visible>String.IsEqual(Skin.String(OverlayFlagsShowType),1)</visible>
+	</include>
+	<include name="OverlaySetFlagVisible">
+		<visible>!String.IsEqual(Container.Content,Sets)</visible>
+	</include>
+	<include name="OverlayFlagsFocusVisible">
+		<visible>!String.IsEqual(Skin.String(OverlayFlagsShowType),2)</visible>
+	</include>
+	
+	<include name="OverlayWatchedFlagsVisible">
+		<visible>String.IsEqual(Skin.String(OverlayWatchedFlagsShowType),1) | String.IsEqual(Container.Content,Files)</visible>
+	</include>
+	<include name="OverlayWatchedFlagsFocusVisible">
+		<visible>!String.IsEqual(Skin.String(OverlayWatchedFlagsShowType),2) + !String.IsEqual(Container.Content,Files)</visible>
+	</include>
+	<include name="OverlayWatchedFlagsFocusVisibleSpecial">
+		<visible>String.IsEqual(Container.Content,Files)</visible>
+	</include>
+	
+	
+	
+	<include name="OverlayFlagsFocusAni">
+		<animation effect="fade" time="750" easing="out">Focus</animation>
+		<animation effect="fade" time="500" easing="out">UnFocus</animation>
+	</include>
+	<include name="OverlayFlagsFocusAniWithPixelMover">
+		<animation type="Focus">
+			<effect type="slide" start="0,0"   end="0,-1" time="750" tween="sine" easing="inout" />
+			<effect type="fade" time="750" easing="out" />
+		</animation>
+		<animation type="UnFocus">
+			<effect type="slide"   end="0,0" start="0,-1" time="500" tween="sine" easing="inout" />
+			<effect type="fade" time="500" easing="out" />
+		</animation>
+	</include>
+	<include name="OverlayFlagsFocusAniInclude">
+		<include condition="String.IsEqual(Skin.String(OverlayFlagsShowType),0) | String.IsEmpty(Skin.String(OverlayFlagsShowType))">OverlayFlagsFocusAni</include>
+	</include>
+	<include name="OverlayFlagsFocusAniIncludeAndPixelMover">
+		<include condition="String.IsEqual(Skin.String(OverlayFlagsShowType),0) | String.IsEmpty(Skin.String(OverlayFlagsShowType))">OverlayFlagsFocusAniWithPixelMover</include>
+		<include condition="![String.IsEqual(Skin.String(OverlayFlagsShowType),0) | String.IsEmpty(Skin.String(OverlayFlagsShowType))]">OverlayFlagsFocusAniPixelMover</include>
+	</include>
+	
+	<include name="OverlayFlagsFocusAniPixelMover">
+		<animation effect="slide" start="0,0"   end="0,-1" time="750" tween="sine" easing="inout">Focus</animation>
+		<animation effect="slide"   end="0,0" start="0,-1" time="500" tween="sine" easing="inout">UnFocus</animation>
+	</include>
+	
+	<include name="OverlayWatchedFlagsFocusAni">
+		<animation effect="fade" time="750" easing="out">Focus</animation>
+		<animation effect="fade" time="500" easing="out">UnFocus</animation>
+	</include>
+	<include name="OverlayWatchedFlagsFocusAniInclude">
+		<include condition="String.IsEqual(Skin.String(OverlayWatchedFlagsShowType),0) | String.IsEmpty(Skin.String(OverlayWatchedFlagsShowType))">OverlayWatchedFlagsFocusAni</include>
+	</include>
+	<include name="OverlayWatchedFlagsFocusAniIncludeSpecial">
+		<animation effect="fade" start="50" end="100" time="750" easing="out">Focus</animation>
+		<animation effect="fade" start="100" end="50" time="500" easing="out">UnFocus</animation>
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	<include name="WallViewFlagDiscVisible">
+		<visible>String.IsEqual(ListItem.FileExtension,iso) | String.IsEqual(ListItem.FileName,menu) | String.StartsWith(ListItem.FileNameAndPath,bluray://) | String.IsEqual(ListItem.FileExtension,ifo)</visible>
+	</include>
+	<include name="WallViewFlagIsCollection">
+		<visible>ListItem.IsCollection</visible>
+	</include>
+	<include name="WallViewProgressBarVisible">
+		<visible>String.IsEqual(Container.Content,Files) + ListItem.IsResumable</visible>
+	</include>
+	
+	
+	
+	<include name="Wall_View_Item_Layout_Label_Visible">
+		<visible>[!String.IsEqual(Container.Content,Albums) | [String.IsEqual(Container.Content,Albums) + [String.IsEqual(Container.FolderPath,library://video/musicvideos/albums/) | String.IsEqual(Container.FolderPath,videodb://musicvideos/albums/) | String.IsEqual(ListItem.Label,$LOCALIZE[15102])]]] + [ ListItem.IsPlaying | [String.IsEmpty(ListItem.Art(poster)) + !ListItem.IsParentFolder] | String.IsEqual(Container.Content,MusicVideos) ]</visible>
+		
+		<visible>[String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | String.IsEqual(Skin.String(WallViewFocusLabel),always)]</visible>
+		
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="Wall_View_Scrollbar_Style_Transparent">
+		<animation effect="fade" end="60" time="0" condition="true">Conditional</animation>
+	</include>
+	
+	
+	
+	<include name="Wall_View_Scrollbar_Left_X_SkinVariant_21by9">
+		<left>2565</left>
+	</include>
+	
+	<include name="Wall_View_Scrollbar_Left_X_SkinVariant_21by9_Cinemascope">
+		<left>2572</left>
+	</include>
+	
+	
+	
+	<include name="Wall_View_Scrollbar_Dimensions">
+		
+		<include condition="[Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]">Wall_View_Scrollbar_Left_X_SkinVariant_21by9_Cinemascope</include>
+		
+		<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">Wall_View_Scrollbar_Left_X_SkinVariant_21by9</include>
+		
+		<left>1905</left>
+		<top>5</top>
+		
+		<include>scrollBarStyleDefaultWidth</include>
+		
+		<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_WallViews_Scrollbar_Height</include>
+		
+		<height>1070</height>
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="itemFocusFadeInAnimation">
+		<animation effect="fade" time="475" easing="out" reversible="true">Focus</animation>
+		<animation effect="fade" time="350" easing="out" reversible="true">UnFocus</animation>
+	</include>
+	<include name="itemFocusFadeInAnimationHide">
+		<animation effect="fade" start="100" end="0" time="475" easing="out" reversible="true">Focus</animation>
+	</include>
+	
+	<include name="wallScrollStyle2X">
+		<scrolltime tween="sine" easing="inout">450</scrolltime>
+	</include>
+	<include name="wallScrollStyle3X">
+		<scrolltime tween="sine" easing="inout">425</scrolltime>
+	</include>
+	<include name="wallScrollStyle4X">
+		<scrolltime tween="sine" easing="inout">425</scrolltime>
+	</include>
+	<include name="wallScrollStyle5X">
+		<scrolltime tween="sine" easing="inout">400</scrolltime>
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<include name="WallViewAddonFlags_SizeVariant_RadioDisabled_Texture_4K">
+		<texture background="true" colordiffuse="ffd2d2d2">controls/uhd/radiobutton-off.png</texture>
+	</include>
+	
+	
+	
+	
+	
+	<include name="WallViewAddonFlags_SizeVariant_1_Flag_Dimensions">
+		<left>15</left>
+		<top>3</top>
+		<width>40</width>
+		<height>40</height>
+		<aspectratio>stretch</aspectratio>
+	</include>
+	<include name="WallViewAddonFlags_SizeVariant_1_RadioDisabled_Dimensions">
+		<left>0</left>
+		<top>8</top>
+		<width>68</width>
+		<height>34</height>
+		<aspectratio>stretch</aspectratio>
+	</include>
+	<include name="WallViewAddonFlags_SizeVariant_1">
+		<control type="image">
+			<include>WallViewAddonFlags_SizeVariant_1_Flag_Dimensions</include>
+			<texture background="true">DefaultIconInfo-flag.png</texture>
+			<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[24995])</visible>
+		</control>
+		<control type="image">
+			<include>WallViewAddonFlags_SizeVariant_1_Flag_Dimensions</include>
+			<texture background="true">DefaultIconError-flag.png</texture>
+			<visible>!String.IsEmpty(ListItem.AddonBroken) | !String.IsEmpty(ListItem.AddonLifecycleDesc)</visible>
+		</control>
+		<control type="image">
+			<include>WallViewAddonFlags_SizeVariant_1_Flag_Dimensions</include>
+			<texture background="true">DefaultAddonsUpdates-flag.png</texture>
+			<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[24068])</visible>
+		</control>
+		<control type="image">
+			<include>WallViewAddonFlags_SizeVariant_1_Flag_Dimensions</include>
+			<texture background="true">DefaultAddonsRepo-flag.png</texture>
+			<visible>![!String.IsEmpty(ListItem.Property(Addon.Status)) | String.StartsWith(Container.FolderPath,addons://user/) | String.StartsWith(Container.FolderPath,addons://sources/) | String.StartsWith(Container.FolderPath,addons://outdated/) | String.IsEqual(Container.FolderPath,addons://repos/)]</visible>
+		</control>
+		<control type="image">
+			<include>WallViewAddonFlags_SizeVariant_1_RadioDisabled_Dimensions</include>
+			<include condition="[ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]">WallViewAddonFlags_SizeVariant_RadioDisabled_Texture_4K</include>
+			<texture background="true" colordiffuse="ffd2d2d2">controls/radiobutton-off.png</texture>
+			<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[13106])</visible>
+		</control>
+		
+		<!-- manual add-on indicator -->
+		<control type="image">
+			<left>-175</left>
+			<include>WallViewAddonFlags_SizeVariant_1_Flag_Dimensions</include>
+			<texture background="true">addon-flag-manual.png</texture>
+			<visible>String.IsEqual(ListItem.AddonOrigin,$LOCALIZE[25014])</visible>
+		</control>
+		
+	</include>
+	
+	
+	
+	
+	<include name="WallViewAddonFlags_SizeVariant_2_Flag_Dimensions">
+		<left>11</left>
+		<top>2</top>
+		<width>29</width>
+		<height>29</height>
+		<aspectratio>stretch</aspectratio>
+	</include>
+	<include name="WallViewAddonFlags_SizeVariant_2_RadioDisabled_Dimensions">
+		<left>0</left>
+		<top>6</top>
+		<width>50</width>
+		<height>25</height>
+		<aspectratio>stretch</aspectratio>
+	</include>
+	<include name="WallViewAddonFlags_SizeVariant_2">
+		<control type="group">
+			
+			<left>8</left>
+			<top>6</top>
+			
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_2_Flag_Dimensions</include>
+				<texture background="true">DefaultIconInfo-flag.png</texture>
+				<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[24995])</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_2_Flag_Dimensions</include>
+				<texture background="true">DefaultIconError-flag.png</texture>
+				<visible>!String.IsEmpty(ListItem.AddonBroken) | !String.IsEmpty(ListItem.AddonLifecycleDesc)</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_2_Flag_Dimensions</include>
+				<texture background="true">DefaultAddonsUpdates-flag.png</texture>
+				<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[24068])</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_2_Flag_Dimensions</include>
+				<texture background="true">DefaultAddonsRepo-flag.png</texture>
+				<visible>![!String.IsEmpty(ListItem.Property(Addon.Status)) | String.StartsWith(Container.FolderPath,addons://user/) | String.StartsWith(Container.FolderPath,addons://sources/) | String.StartsWith(Container.FolderPath,addons://outdated/) | String.IsEqual(Container.FolderPath,addons://repos/)]</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_2_RadioDisabled_Dimensions</include>
+				<include condition="[ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]">WallViewAddonFlags_SizeVariant_RadioDisabled_Texture_4K</include>
+				<texture background="true" colordiffuse="ffd2d2d2">controls/radiobutton-off.png</texture>
+				<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[13106])</visible>
+			</control>
+			
+			<!-- manual add-on indicator -->
+			<control type="image">
+				<left>-136</left>
+				<include>WallViewAddonFlags_SizeVariant_2_Flag_Dimensions</include>
+				<texture background="true">addon-flag-manual.png</texture>
+				<visible>String.IsEqual(ListItem.AddonOrigin,$LOCALIZE[25014])</visible>
+			</control>
+			
+		</control>
+	</include>
+	
+	
+	
+	
+	<include name="WallViewAddonFlags_SizeVariant_3_Flag_Dimensions">
+		<left>11</left>
+		<top>2</top>
+		<width>28</width>
+		<height>28</height>
+		<aspectratio>stretch</aspectratio>
+	</include>
+	<include name="WallViewAddonFlags_SizeVariant_3_RadioDisabled_Dimensions">
+		<left>0</left>
+		<top>6</top>
+		<width>48</width>
+		<height>24</height>
+		<aspectratio>stretch</aspectratio>
+	</include>
+	<include name="WallViewAddonFlags_SizeVariant_3">
+		<control type="group">
+			
+			<left>9</left>
+			<top>8</top>
+			
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_3_Flag_Dimensions</include>
+				<texture background="true">DefaultIconInfo-flag.png</texture>
+				<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[24995])</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_3_Flag_Dimensions</include>
+				<texture background="true">DefaultIconError-flag.png</texture>
+				<visible>!String.IsEmpty(ListItem.AddonBroken) | !String.IsEmpty(ListItem.AddonLifecycleDesc)</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_3_Flag_Dimensions</include>
+				<texture background="true">DefaultAddonsUpdates-flag.png</texture>
+				<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[24068])</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_3_Flag_Dimensions</include>
+				<texture background="true">DefaultAddonsRepo-flag.png</texture>
+				<visible>![!String.IsEmpty(ListItem.Property(Addon.Status)) | String.StartsWith(Container.FolderPath,addons://user/) | String.StartsWith(Container.FolderPath,addons://sources/) | String.StartsWith(Container.FolderPath,addons://outdated/) | String.IsEqual(Container.FolderPath,addons://repos/)]</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_3_RadioDisabled_Dimensions</include>
+				<include condition="[ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]">WallViewAddonFlags_SizeVariant_RadioDisabled_Texture_4K</include>
+				<texture background="true" colordiffuse="ffd2d2d2">controls/radiobutton-off.png</texture>
+				<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[13106])</visible>
+			</control>
+			
+			<!-- manual add-on indicator -->
+			<control type="image">
+				<left>-89</left>
+				<include>WallViewAddonFlags_SizeVariant_3_Flag_Dimensions</include>
+				<texture background="true">addon-flag-manual.png</texture>
+				<visible>String.IsEqual(ListItem.AddonOrigin,$LOCALIZE[25014])</visible>
+			</control>
+			
+		</control>
+	</include>
+	
+	
+	
+	<include name="WallViewAddonFlags_SizeVariant_4_Flag_Dimensions">
+		<left>9</left>
+		<top>2</top>
+		<width>23</width>
+		<height>23</height>
+		<aspectratio>stretch</aspectratio>
+	</include>
+	<include name="WallViewAddonFlags_SizeVariant_4_RadioDisabled_Dimensions">
+		<left>0</left>
+		<top>5</top>
+		<width>39</width>
+		<height>20</height>
+		<aspectratio>stretch</aspectratio>
+	</include>
+	<include name="WallViewAddonFlags_SizeVariant_4">
+		<control type="group">
+			
+			<left>13</left>
+			<top>13</top>
+			
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_4_Flag_Dimensions</include>
+				<texture background="true">DefaultIconInfo-flag.png</texture>
+				<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[24995])</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_4_Flag_Dimensions</include>
+				<texture background="true">DefaultIconError-flag.png</texture>
+				<visible>!String.IsEmpty(ListItem.AddonBroken) | !String.IsEmpty(ListItem.AddonLifecycleDesc)</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_4_Flag_Dimensions</include>
+				<texture background="true">DefaultAddonsUpdates-flag.png</texture>
+				<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[24068])</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_4_Flag_Dimensions</include>
+				<texture background="true">DefaultAddonsRepo-flag.png</texture>
+				<visible>![!String.IsEmpty(ListItem.Property(Addon.Status)) | String.StartsWith(Container.FolderPath,addons://user/) | String.StartsWith(Container.FolderPath,addons://sources/) | String.StartsWith(Container.FolderPath,addons://outdated/) | String.IsEqual(Container.FolderPath,addons://repos/)]</visible>
+			</control>
+			<control type="image">
+				<include>WallViewAddonFlags_SizeVariant_4_RadioDisabled_Dimensions</include>
+				<include condition="[ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]">WallViewAddonFlags_SizeVariant_RadioDisabled_Texture_4K</include>
+				<texture background="true" colordiffuse="ffd2d2d2">controls/radiobutton-off.png</texture>
+				<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[13106])</visible>
+			</control>
+			
+			<!-- manual add-on indicator -->
+			<control type="image">
+				<left>-72</left>
+				<include>WallViewAddonFlags_SizeVariant_4_Flag_Dimensions</include>
+				<texture background="true">addon-flag-manual.png</texture>
+				<visible>String.IsEqual(ListItem.AddonOrigin,$LOCALIZE[25014])</visible>
+			</control>
+			
+		</control>
+	</include>
+	
+	
+	
+	<include name="WallViewAddonFlagsVisible">
+		<visible>String.IsEqual(Container.Content,Addons) + !ListItem.IsParentFolder</visible>
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<include name="Wall_View_2X_itemLayout">
+		
+		<control type="group">
+			<left>22</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>11</top>
+			<width>246</width>
+			<height>360</height>
+			
+			
+			
+			
+			<!-- poster image option a: scaled (if poster IS available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>246</width>
+				<height>360</height>
+				<texture background="true" diffuse="colors/diffuse/246x360-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArScale</include>
+			</control>
+			<!-- poster image option b: keep (if poster is NOT available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>246</width>
+				<height>360</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArKeep</include>
+			</control>
+			<!-- squared with rounded corners for add-ons and possibly more -->
+			<control type="image">
+				<left>0</left>
+				<top>57</top>
+				<width>246</width>
+				<height>246</height>
+				<texture background="true" diffuse="colors/diffuse/246x246-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScale</include>
+			</control>
+			<!-- add-ons variant with fallback image -->
+			<control type="image">
+				<left>0</left>
+				<top>57</top>
+				<width>246</width>
+				<height>246</height>
+				<texture background="true" diffuse="colors/diffuse/246x246-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScaleAddonsFallbackImage</include>
+			</control>
+			<!-- add-ons variant with fallback image - Android apps -->
+			<control type="image">
+				<left>0</left>
+				<top>57</top>
+				<width>246</width>
+				<height>246</height>
+				<texture background="true" diffuse="colors/diffuse/246x246-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeepAddonsFallbackImage</include>
+			</control>
+			<!-- squared for pictures with kept aspect ratio -->
+			<control type="image">
+				<left>0</left>
+				<top>57</top>
+				<width>246</width>
+				<height>246</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeep</include>
+			</control>
+			
+			<!-- ADDON FLAGS -->
+			<control type="group">
+				<left>183</left>
+				<top>252</top>
+				<include>WallViewAddonFlags_SizeVariant_1</include>
+				<include>WallViewAddonFlagsVisible</include>
+			</control>
+			
+			<!-- 4K BANNER -->
+			<control type="image">
+				<left>5</left>
+				<top>337</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">$VAR[OverlayUHDTexture]</texture>
+				<include>WallViewFlagUHDVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- HFR BANNER -->
+			<control type="image">
+				<left>40</left>
+				<top>337</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">_added_img/OverlayHFR.png</texture>
+				<include>WallViewFlagHFRVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- ISO / DISC IMAGE OVERLAY -->
+			<control type="image">
+				<left>109</left>
+				<top>345</top>
+				<width>27</width>
+				<height>16</height>
+				<aspectratio scalediffuse="false" aligny="top">stretch</aspectratio>
+				<texture background="true" diffuse="colors/diffuse/27x16.png">_added_img/OverlayDiscImage.png</texture>
+				<include>WallViewFlagDiscVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- MOVIE SET OVERLAY -->
+			<control type="image">
+				<left>-3</left>
+				<top>328</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/OverlaySet.png</texture>
+				<include>WallViewFlagIsCollection</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>OverlayFlagsVisible</include>
+				
+				<include>OverlaySetFlagVisible</include>
+			</control>
+			<!-- 3D OVERLAY -->
+			<control type="image">
+				<left>3</left>
+				<top>328</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/Overlay3D.png</texture>
+				<include>WallViewFlag3DVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>67</left>
+				<top>333</top>
+				<include>WatchedProgressGeneric1</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+			</control>
+			
+			<!-- overlay (watched etc.) -->
+			<control type="image">
+				<left>213</left>
+				<top>325</top>
+				<width>32</width>
+				<height>32</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>Transparency50</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsVisible</include>
+			</control>
+			
+		</control>
+		
+		<!-- FOCUS BORDER OR LABEL -->
+		
+		<control type="group">
+			
+			
+			
+			<!-- label text -->
+			<control type="label">
+				<left>21</left>
+				<top>320</top>
+				<width>249</width>
+				<height>38</height>
+				<font>Regular14</font>
+				<textcolor>grey2</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$VAR[WallViewLabel]</label>
+				<visible>!ListItem.IsParentFolder</visible><!-- ACZG-MOD: always show title under cover in Wall 2X -->
+				<animation effect="slide" start="0,0" end="0,50" delay="0" time="0" condition="[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+			</control>
+			
+			
+			
+			
+		</control>
+		
+		
+		
+	</include>
+
+	
+	
+	<include name="Wall_View_2X_focusedLayout">
+		
+		<control type="group">
+			<left>22</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>11</top>
+			<width>246</width>
+			<height>360</height>
+			
+			<animation effect="zoom" start="22,11,246,360"   end="15,1,260,380" time="750" tween="sine" easing="inout">Focus</animation>
+			<animation effect="zoom"   end="22,11,246,360" start="15,1,260,380" time="500" tween="sine" easing="inout">UnFocus</animation>
+			
+			<!-- poster image option a: scaled (if poster IS available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>246</width>
+				<height>360</height>
+				<texture background="true" diffuse="colors/diffuse/246x360-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArScale</include>
+			</control>
+			<!-- poster image option b: keep (if poster is NOT available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>246</width>
+				<height>360</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArKeep</include>
+			</control>
+			<!-- squared with rounded corners for add-ons and possibly more -->
+			<control type="image">
+				<left>0</left>
+				<top>57</top>
+				<width>246</width>
+				<height>246</height>
+				<texture background="true" diffuse="colors/diffuse/246x246-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScale</include>
+			</control>
+			<!-- add-ons variant with fallback image -->
+			<control type="image">
+				<left>0</left>
+				<top>57</top>
+				<width>246</width>
+				<height>246</height>
+				<texture diffuse="colors/diffuse/246x246-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<!-- don't use background="true" background loader to avoid loading flicker bug for fallback image -->
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScaleAddonsFallbackImage</include>
+			</control>
+			<!-- add-ons variant with fallback image - Android apps -->
+			<control type="image">
+				<left>0</left>
+				<top>57</top>
+				<width>246</width>
+				<height>246</height>
+				<texture diffuse="colors/diffuse/246x246-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<!-- don't use background="true" background loader to avoid loading flicker bug for fallback image -->
+				<aspectratio scalediffuse="false">keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeepAddonsFallbackImage</include>
+			</control>
+			<!-- squared for pictures with kept aspect ratio -->
+			<control type="image">
+				<left>0</left>
+				<top>57</top>
+				<width>246</width>
+				<height>246</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeep</include>
+			</control>
+			
+			<!-- ADDON FLAGS -->
+			<control type="group">
+				<left>183</left>
+				<top>252</top>
+				<include>WallViewAddonFlags_SizeVariant_1</include>
+				<include>WallViewAddonFlagsVisible</include>
+			</control>
+			
+			<!-- 4K BANNER -->
+			<control type="image">
+				<left>5</left>
+				<top>337</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">$VAR[OverlayUHDTexture]</texture>
+				<include>WallViewFlagUHDVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+				
+			</control>
+			<!-- HFR BANNER -->
+			<control type="image">
+				<left>40</left>
+				<top>337</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">_added_img/OverlayHFR.png</texture>
+				<include>WallViewFlagHFRVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+				
+			</control>
+			<!-- ISO / DISC IMAGE OVERLAY -->
+			<control type="image">
+				<left>109</left>
+				<top>345</top>
+				<width>27</width>
+				<height>16</height>
+				<texture background="true">_added_img/OverlayDiscImage.png</texture>
+				<include>WallViewFlagDiscVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+				
+			</control>
+			<!-- MOVIE SET OVERLAY -->
+			<control type="image">
+				<left>-3</left>
+				<top>328</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/OverlaySet.png</texture>
+				<include>WallViewFlagIsCollection</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniInclude</include>
+				
+				<include>OverlaySetFlagVisible</include>
+			</control>
+			<!-- 3D OVERLAY -->
+			<control type="image">
+				<left>3</left>
+				<top>328</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/Overlay3D.png</texture>
+				<include>WallViewFlag3DVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniInclude</include>
+			</control>
+			
+			
+			<!-- overlay (watched etc.) -->
+			<control type="image">
+				<left>213</left>
+				<top>325</top>
+				<width>32</width>
+				<height>32</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsFocusVisible</include>
+				<include>OverlayWatchedFlagsFocusAniInclude</include>
+			</control>
+			<control type="image">
+				<left>213</left>
+				<top>325</top>
+				<width>32</width>
+				<height>32</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsFocusVisibleSpecial</include>
+				<include>OverlayWatchedFlagsFocusAniIncludeSpecial</include>
+			</control>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		<control type="group">
+			<left>25</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>11</top>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>64</left>
+				<top>333</top>
+				
+				<width>112</width>
+				<height>5</height>
+				
+				<include>WatchedProgressGeneric1</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>WallViewImageVisiblePosterVariant</include>
+				
+				<animation type="Focus">
+					<effect type="zoom" start="100,100" end="106,100" time="750" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,0" end="0,8" time="750" tween="sine" easing="inout" />
+				</animation>
+				<animation type="UnFocus">
+					<effect type="zoom" start="106,100" end="100,100" time="500" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,8" end="0,0" time="500" tween="sine" easing="inout" />
+				</animation>
+				
+			</control>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>64</left>
+				<top>333</top>
+				
+				<width>112</width>
+				<height>5</height>
+				
+				<include>WatchedProgressGeneric1</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant2X</include>
+				
+				<include>WallViewImageVisibleSquaredVariant</include>
+				
+				<animation type="Focus">
+					<effect type="zoom" start="100,100" end="106,100" time="750" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,0" end="0,5" time="750" tween="sine" easing="inout" />
+				</animation>
+				<animation type="UnFocus">
+					<effect type="zoom" start="106,100" end="100,100" time="500" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,5" end="0,0" time="500" tween="sine" easing="inout" />
+				</animation>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		<!-- FOCUS BORDER OR LABEL -->
+		
+		<control type="group">
+			<left>4</left>
+			<top>-9</top>
+			<width>282</width>
+			<height>429</height>
+			
+			<animation effect="zoom" start="12,1,266,409"   end="4,-9,282,429" time="750" tween="sine" easing="inout">Focus</animation>
+			<animation effect="zoom"   end="12,1,266,409" start="4,-9,282,429" time="500" tween="sine" easing="inout">UnFocus</animation>
+			
+			<!-- border texture only: poster variant -->
+			<!-- w/ label -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>282</width>
+				<height>429</height>
+				<texture background="true" border="22,22,22,51" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v2-label.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + [String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | true]</visible>
+			</control>
+			<!-- wo/ label -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>282</width>
+				<height>400</height>
+				<texture background="true" border="22,22,22,22" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v2.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + ![String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | true]</visible>
+			</control>
+			
+			<!-- border texture only: squared variant -->
+			<!-- generic, root, albums -->
+			<control type="image">
+				<left>0</left>
+				<top>60</top>
+				<width>282</width>
+				<height>323</height>
+				<texture background="true" border="22,22,22,64" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v2-label+.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]</visible>
+				
+				<visible>![[[String.IsEqual(Container.Content,Addons) | Container.Content(Addons)] + !String.IsEmpty(ListItem.AddonName)] | [System.Platform.Android + String.StartsWith(Container.FolderPath,androidapp://sources/apps/) + !ListItem.IsParentFolder]]</visible>
+				
+			</control>
+			
+			<!-- add-ons -->
+			<control type="image">
+				<left>0</left>
+				<top>60</top>
+				<width>282</width>
+				<height>323</height>
+				<texture background="true" border="39,39,39,82" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v2-label+addon.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]</visible>
+				
+				<visible>[[String.IsEqual(Container.Content,Addons) | Container.Content(Addons)] + !String.IsEmpty(ListItem.AddonName)] | [System.Platform.Android + String.StartsWith(Container.FolderPath,androidapp://sources/apps/) + !ListItem.IsParentFolder]</visible>
+				
+			</control>
+			
+			<!-- label text -->
+			<control type="label">
+				<left>13</left>
+				<top>337</top>
+				<width>256</width>
+				<height>38</height>
+				<font>Regular14.5</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>white</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$VAR[WallViewLabel]</label>
+				<animation effect="slide" start="0,0" end="0,53" delay="0" time="0" condition="[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+				
+				<visible>[String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | true]</visible>
+				
+			</control>
+			
+		</control>
+		
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="Wall_View_3X_itemLayout">
+		
+		<control type="group">
+			<left>22</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>9</top>
+			<width>189</width>
+			<height>276</height>
+			
+			
+			
+			
+			<!-- poster image option a: scaled (if poster IS available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>189</width>
+				<height>276</height>
+				<texture background="true" diffuse="colors/diffuse/189x276-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArScale</include>
+			</control>
+			<!-- poster image option b: keep (if poster is NOT available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>189</width>
+				<height>276</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArKeep</include>
+			</control>
+			<!-- squared with rounded corners for add-ons and possibly more -->
+			<control type="image">
+				<left>0</left>
+				<top>44</top>
+				<width>189</width>
+				<height>189</height>
+				<texture background="true" diffuse="colors/diffuse/189x189-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScale</include>
+			</control>
+			<!-- add-ons variant with fallback image -->
+			<control type="image">
+				<left>0</left>
+				<top>44</top>
+				<width>189</width>
+				<height>189</height>
+				<texture background="true" diffuse="colors/diffuse/189x189-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScaleAddonsFallbackImage</include>
+			</control>
+			<!-- add-ons variant with fallback image - Android apps -->
+			<control type="image">
+				<left>0</left>
+				<top>44</top>
+				<width>189</width>
+				<height>189</height>
+				<texture background="true" diffuse="colors/diffuse/189x189-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeepAddonsFallbackImage</include>
+			</control>
+			<!-- squared for pictures with kept aspect ratio -->
+			<control type="image">
+				<left>0</left>
+				<top>44</top>
+				<width>189</width>
+				<height>189</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeep</include>
+			</control>
+			
+			<!-- ADDON FLAGS -->
+			<control type="group">
+				<left>134</left>
+				<top>188</top>
+				<include>WallViewAddonFlags_SizeVariant_2</include>
+				<include>WallViewAddonFlagsVisible</include>
+			</control>
+			
+			<!-- 4K BANNER -->
+			<control type="image">
+				<left>4</left>
+				<top>254</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">$VAR[OverlayUHDTexture]</texture>
+				<include>WallViewFlagUHDVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- HFR BANNER -->
+			<control type="image">
+				<left>39</left>
+				<top>254</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">_added_img/OverlayHFR.png</texture>
+				<include>WallViewFlagHFRVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- ISO / DISC IMAGE OVERLAY -->
+			<control type="image">
+				<left>81</left>
+				<top>261</top>
+				<width>27</width>
+				<height>16</height>
+				<aspectratio scalediffuse="false" aligny="top">stretch</aspectratio>
+				<texture background="true" diffuse="colors/diffuse/27x16.png">_added_img/OverlayDiscImage.png</texture>
+				<include>WallViewFlagDiscVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- MOVIE SET OVERLAY -->
+			<control type="image">
+				<left>-3</left>
+				<top>245</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/OverlaySet.png</texture>
+				<include>WallViewFlagIsCollection</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>OverlayFlagsVisible</include>
+				
+				<include>OverlaySetFlagVisible</include>
+			</control>
+			<!-- 3D OVERLAY -->
+			<control type="image">
+				<left>2</left>
+				<top>245</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/Overlay3D.png</texture>
+				<include>WallViewFlag3DVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>51</left>
+				<top>251</top>
+				<include>WatchedProgressGeneric2</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+			</control>
+			
+			<!-- overlay (watched etc.) -->
+			<control type="image">
+				<left>157</left>
+				<top>240</top>
+				<width>32</width>
+				<height>32</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>Transparency50</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsVisible</include>
+			</control>
+			
+		</control>
+		
+		
+		
+		<!-- FOCUS BORDER OR LABEL -->
+		
+		<control type="group">
+			
+			
+			<!-- label text -->
+			<control type="label">
+				<left>22</left>
+				<top>243</top>
+				<width>189</width>
+				<height>36</height>
+				<font>Regular11</font>
+				<textcolor>grey2</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$VAR[WallViewLabel]</label>
+				<include>Wall_View_Item_Layout_Label_Visible</include>
+				<animation effect="slide" start="0,0" end="0,37" delay="0" time="0" condition="[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+			</control>
+			
+			
+			
+			
+		</control>
+		
+		
+		
+	</include>
+	
+	
+	
+	<include name="Wall_View_3X_focusedLayout">
+		
+		<control type="group">
+			<left>22</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>9</top>
+			<width>189</width>
+			<height>276</height>
+			
+			<animation effect="zoom" start="22,9,189,276"   end="14,-5,205,299" time="750" tween="sine" easing="inout">Focus</animation>
+			<animation effect="zoom"   end="22,9,189,276" start="14,-5,205,299" time="500" tween="sine" easing="inout">UnFocus</animation>
+			
+			<!-- poster image option a: scaled (if poster IS available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>189</width>
+				<height>276</height>
+				<texture background="true" diffuse="colors/diffuse/189x276-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArScale</include>
+			</control>
+			<!-- poster image option b: keep (if poster is NOT available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>189</width>
+				<height>276</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArKeep</include>
+			</control>
+			<!-- squared with rounded corners for add-ons and possibly more -->
+			<control type="image">
+				<left>0</left>
+				<top>44</top>
+				<width>189</width>
+				<height>189</height>
+				<texture background="true" diffuse="colors/diffuse/189x189-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScale</include>
+			</control>
+			<!-- add-ons variant with fallback image -->
+			<control type="image">
+				<left>0</left>
+				<top>44</top>
+				<width>189</width>
+				<height>189</height>
+				<texture diffuse="colors/diffuse/189x189-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<!-- don't use background="true" background loader to avoid loading flicker bug for fallback image -->
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScaleAddonsFallbackImage</include>
+			</control>
+			<!-- add-ons variant with fallback image - Android apps -->
+			<control type="image">
+				<left>0</left>
+				<top>44</top>
+				<width>189</width>
+				<height>189</height>
+				<texture diffuse="colors/diffuse/189x189-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<!-- don't use background="true" background loader to avoid loading flicker bug for fallback image -->
+				<aspectratio scalediffuse="false">keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeepAddonsFallbackImage</include>
+			</control>
+			<!-- squared for pictures with kept aspect ratio -->
+			<control type="image">
+				<left>0</left>
+				<top>44</top>
+				<width>189</width>
+				<height>189</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeep</include>
+			</control>
+			
+			<!-- ADDON FLAGS -->
+			<control type="group">
+				<left>134</left>
+				<top>188</top>
+				<include>WallViewAddonFlags_SizeVariant_2</include>
+				<include>WallViewAddonFlagsVisible</include>
+			</control>
+			
+			<!-- 4K BANNER -->
+			<control type="image">
+				<left>4</left>
+				<top>254</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">$VAR[OverlayUHDTexture]</texture>
+				<include>WallViewFlagUHDVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+			</control>
+			<!-- HFR BANNER -->
+			<control type="image">
+				<left>39</left>
+				<top>254</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">_added_img/OverlayHFR.png</texture>
+				<include>WallViewFlagHFRVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+			</control>
+			<!-- ISO / DISC IMAGE OVERLAY -->
+			<control type="image">
+				<left>81</left>
+				<top>261</top>
+				<width>27</width>
+				<height>16</height>
+				<texture background="true">_added_img/OverlayDiscImage.png</texture>
+				<include>WallViewFlagDiscVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+			</control>
+			<!-- MOVIE SET OVERLAY -->
+			<control type="image">
+				<left>-3</left>
+				<top>245</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/OverlaySet.png</texture>
+				<include>WallViewFlagIsCollection</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniInclude</include>
+				
+				<include>OverlaySetFlagVisible</include>
+			</control>
+			<!-- 3D OVERLAY -->
+			<control type="image">
+				<left>2</left>
+				<top>245</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/Overlay3D.png</texture>
+				<include>WallViewFlag3DVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniInclude</include>
+			</control>
+			
+			
+			<!-- overlay (watched etc.) -->
+			<control type="image">
+				<left>157</left>
+				<top>240</top>
+				<width>32</width>
+				<height>32</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsFocusVisible</include>
+				<include>OverlayWatchedFlagsFocusAniInclude</include>
+			</control>
+			<control type="image">
+				<left>157</left>
+				<top>240</top>
+				<width>32</width>
+				<height>32</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsFocusVisibleSpecial</include>
+				<include>OverlayWatchedFlagsFocusAniIncludeSpecial</include>
+			</control>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		<control type="group">
+			<left>22</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>9</top>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>51</left>
+				<top>251</top>
+				
+				<width>87</width>
+				<height>5</height>
+				
+				<include>WatchedProgressGeneric2</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>WallViewImageVisiblePosterVariant</include>
+				
+				<animation type="Focus">
+					<effect type="zoom" start="100,100" end="108,100" time="750" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,0" end="0,7" time="750" tween="sine" easing="inout" />
+				</animation>
+				<animation type="UnFocus">
+					<effect type="zoom" start="108,100" end="100,100" time="500" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,7" end="0,0" time="500" tween="sine" easing="inout" />
+				</animation>
+				
+			</control>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>51</left>
+				<top>251</top>
+				
+				<width>87</width>
+				<height>5</height>
+				
+				<include>WatchedProgressGeneric2</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant3X</include>
+				
+				<include>WallViewImageVisibleSquaredVariant</include>
+				
+				<animation type="Focus">
+					<effect type="zoom" start="100,100" end="108,100" time="750" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,0" end="0,3" time="750" tween="sine" easing="inout" />
+				</animation>
+				<animation type="UnFocus">
+					<effect type="zoom" start="108,100" end="100,100" time="500" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,3" end="0,0" time="500" tween="sine" easing="inout" />
+				</animation>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		<!-- FOCUS BORDER OR LABEL -->
+		
+		<control type="group">
+			<left>5</left>
+			<top>-13</top>
+			<width>223</width>
+			<height>333</height>
+			
+			<animation effect="zoom" start="14,1,205,310"   end="5,-13,223,333" time="750" tween="sine" easing="inout">Focus</animation>
+			<animation effect="zoom"   end="14,1,205,310" start="5,-13,223,333" time="500" tween="sine" easing="inout">UnFocus</animation>
+			
+			<!-- border texture only: poster variant -->
+			<!-- w/ label -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>223</width>
+				<height>333</height>
+				<texture background="true" border="20,20,20,38" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v3-label.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + [String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | String.IsEqual(Skin.String(WallViewFocusLabel),always)]</visible>
+			</control>
+			<!-- wo/ label -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>223</width>
+				<height>315</height>
+				<texture background="true" border="20,20,20,20" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v3.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + ![String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | String.IsEqual(Skin.String(WallViewFocusLabel),always)]</visible>
+			</control>
+			
+			<!-- border texture only: squared variant -->
+			<!-- generic, root, albums -->
+			<control type="image">
+				<left>0</left>
+				<top>48</top>
+				<width>223</width>
+				<height>252</height>
+				<texture background="true" border="20,20,20,52" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v3-label+.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]</visible>
+				
+				<visible>![[[String.IsEqual(Container.Content,Addons) | Container.Content(Addons)] + !String.IsEmpty(ListItem.AddonName)] | [System.Platform.Android + String.StartsWith(Container.FolderPath,androidapp://sources/apps/) + !ListItem.IsParentFolder]]</visible>
+				
+			</control>
+			
+			<!-- add-ons -->
+			<control type="image">
+				<left>0</left>
+				<top>48</top>
+				<width>223</width>
+				<height>252</height>
+				<texture background="true" border="30,30,30,62" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v3-label+addon.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]</visible>
+				
+				<visible>[[String.IsEqual(Container.Content,Addons) | Container.Content(Addons)] + !String.IsEmpty(ListItem.AddonName)] | [System.Platform.Android + String.StartsWith(Container.FolderPath,androidapp://sources/apps/) + !ListItem.IsParentFolder]</visible>
+				
+			</control>
+			
+			<!-- label text -->
+			<control type="label">
+				<left>11</left>
+				<top>261</top>
+				<width>201</width>
+				<height>36</height>
+				<font>Regular12</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>white</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$VAR[WallViewLabel]</label>
+				<animation effect="slide" start="0,0" end="0,39" delay="0" time="0" condition="[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+				
+				<visible>[String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | String.IsEqual(Skin.String(WallViewFocusLabel),always)]</visible>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="Wall_View_4X_itemLayout">
+		
+		<control type="group">
+			<left>24</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>8</top>
+			<width>137</width>
+			<height>201</height>
+			
+			
+			
+			
+			<!-- poster image option a: scaled (if poster IS available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>137</width>
+				<height>201</height>
+				<texture background="true" diffuse="colors/diffuse/137x201-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArScale</include>
+			</control>
+			<!-- poster image option b: keep (if poster is NOT available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>137</width>
+				<height>201</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArKeep</include>
+			</control>
+			<!-- squared with rounded corners for add-ons and possibly more -->
+			<control type="image">
+				<left>0</left>
+				<top>32</top>
+				<width>137</width>
+				<height>137</height>
+				<texture background="true" diffuse="colors/diffuse/137x137-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScale</include>
+			</control>
+			<!-- add-ons variant with fallback image -->
+			<control type="image">
+				<left>0</left>
+				<top>32</top>
+				<width>137</width>
+				<height>137</height>
+				<texture background="true" diffuse="colors/diffuse/137x137-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScaleAddonsFallbackImage</include>
+			</control>
+			<!-- add-ons variant with fallback image - Android apps -->
+			<control type="image">
+				<left>0</left>
+				<top>32</top>
+				<width>137</width>
+				<height>137</height>
+				<texture background="true" diffuse="colors/diffuse/137x137-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeepAddonsFallbackImage</include>
+			</control>
+			<!-- squared for pictures with kept aspect ratio -->
+			<control type="image">
+				<left>0</left>
+				<top>32</top>
+				<width>137</width>
+				<height>137</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeep</include>
+			</control>
+			
+			<!-- ADDON FLAGS -->
+			<control type="group">
+				<left>85</left>
+				<top>125</top>
+				<include>WallViewAddonFlags_SizeVariant_3</include>
+				<include>WallViewAddonFlagsVisible</include>
+			</control>
+			
+			<!-- 4K BANNER -->
+			<control type="image">
+				<left>4</left>
+				<top>179</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">$VAR[OverlayUHDTexture]</texture>
+				<include>WallViewFlagUHDVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- HFR BANNER -->
+			<control type="image">
+				<left>4</left>
+				<top>158</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">_added_img/OverlayHFR.png</texture>
+				<include>WallViewFlagHFRVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- ISO / DISC IMAGE OVERLAY -->
+			<control type="image">
+				<left>55</left>
+				<top>186</top>
+				<width>27</width>
+				<height>16</height>
+				<aspectratio scalediffuse="false" aligny="top">stretch</aspectratio>
+				<texture background="true" diffuse="colors/diffuse/27x16.png">_added_img/OverlayDiscImage.png</texture>
+				<include>WallViewFlagDiscVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- MOVIE SET OVERLAY -->
+			<control type="image">
+				<left>-4</left>
+				<top>170</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/OverlaySet.png</texture>
+				<include>WallViewFlagIsCollection</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>OverlayFlagsVisible</include>
+				
+				<include>OverlaySetFlagVisible</include>
+			</control>
+			<!-- 3D OVERLAY -->
+			<control type="image">
+				<left>2</left>
+				<top>170</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/Overlay3D.png</texture>
+				<include>WallViewFlag3DVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>37</left>
+				<top>179</top>
+				<include>WatchedProgressGeneric3</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+			</control>
+			
+			<!-- overlay (watched etc.) -->
+			<control type="image">
+				<left>109</left>
+				<top>171</top>
+				<width>29</width>
+				<height>29</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>Transparency50</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsVisible</include>
+			</control>
+			
+		</control>
+		
+		
+		
+		<!-- FOCUS BORDER OR LABEL -->
+		
+		<control type="group">
+			
+			
+			
+			<!-- label text -->
+			<control type="label">
+				<left>24</left>
+				<top>177</top>
+				<width>137</width>
+				<height>36</height>
+				<font>Regular11</font>
+				<textcolor>grey2</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$VAR[WallViewLabel]</label>
+				<include>Wall_View_Item_Layout_Label_Visible</include>
+				<animation effect="slide" start="0,0" end="0,26" delay="0" time="0" condition="[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+			</control>
+			
+			
+			
+			
+		</control>
+		
+		
+		
+	</include>
+	
+	
+	
+	<include name="Wall_View_4X_focusedLayout">
+		
+		<control type="group">
+			<left>24</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>8</top>
+			<width>137</width>
+			<height>201</height>
+			
+			<animation effect="zoom" start="24,0,137,201" end="20,-5,144,212" time="750" tween="sine" easing="inout">Focus</animation>
+			<animation effect="zoom" end="24,0,137,201" start="20,-5,144,212" time="500" tween="sine" easing="inout">UnFocus</animation>
+			
+			<!-- poster image option a: scaled (if poster IS available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>137</width>
+				<height>201</height>
+				<texture background="true" diffuse="colors/diffuse/137x201-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArScale</include>
+			</control>
+			<!-- poster image option b: keep (if poster is NOT available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>137</width>
+				<height>201</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArKeep</include>
+			</control>
+			<!-- squared with rounded corners for add-ons and possibly more -->
+			<control type="image">
+				<left>0</left>
+				<top>32</top>
+				<width>137</width>
+				<height>137</height>
+				<texture background="true" diffuse="colors/diffuse/137x137-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScale</include>
+			</control>
+			<!-- add-ons variant with fallback image -->
+			<control type="image">
+				<left>0</left>
+				<top>32</top>
+				<width>137</width>
+				<height>137</height>
+				<texture diffuse="colors/diffuse/137x137-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<!-- don't use background="true" background loader to avoid loading flicker bug for fallback image -->
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScaleAddonsFallbackImage</include>
+			</control>
+			<!-- add-ons variant with fallback image - Android apps -->
+			<control type="image">
+				<left>0</left>
+				<top>32</top>
+				<width>137</width>
+				<height>137</height>
+				<texture diffuse="colors/diffuse/137x137-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<!-- don't use background="true" background loader to avoid loading flicker bug for fallback image -->
+				<aspectratio scalediffuse="false">keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeepAddonsFallbackImage</include>
+			</control>
+			<!-- squared for pictures with kept aspect ratio -->
+			<control type="image">
+				<left>0</left>
+				<top>32</top>
+				<width>137</width>
+				<height>137</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeep</include>
+			</control>
+			
+			<!-- ADDON FLAGS -->
+			<control type="group">
+				<left>85</left>
+				<top>125</top>
+				<include>WallViewAddonFlags_SizeVariant_3</include>
+				<include>WallViewAddonFlagsVisible</include>
+			</control>
+			
+			<!-- 4K BANNER -->
+			<control type="image">
+				<left>4</left>
+				<top>179</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">$VAR[OverlayUHDTexture]</texture>
+				<include>WallViewFlagUHDVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+			</control>
+			<!-- HFR BANNER -->
+			<control type="image">
+				<left>4</left>
+				<top>158</top>
+				<width>32</width>
+				<height>18</height>
+				<texture background="true">_added_img/OverlayHFR.png</texture>
+				<include>WallViewFlagHFRVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+			</control>
+			<!-- ISO / DISC IMAGE OVERLAY -->
+			<control type="image">
+				<left>55</left>
+				<top>186</top>
+				<width>27</width>
+				<height>16</height>
+				<texture background="true">_added_img/OverlayDiscImage.png</texture>
+				<include>WallViewFlagDiscVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+			</control>
+			<!-- MOVIE SET OVERLAY -->
+			<control type="image">
+				<left>-4</left>
+				<top>170</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/OverlaySet.png</texture>
+				<include>WallViewFlagIsCollection</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniInclude</include>
+				
+				<include>OverlaySetFlagVisible</include>
+			</control>
+			<!-- 3D OVERLAY -->
+			<control type="image">
+				<left>2</left>
+				<top>170</top>
+				<width>40</width>
+				<height>30</height>
+				<texture background="true">_added_img/Overlay3D.png</texture>
+				<include>WallViewFlag3DVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniInclude</include>
+			</control>
+			
+			
+			<!-- overlay (watched etc.) -->
+			<control type="image">
+				<left>109</left>
+				<top>171</top>
+				<width>29</width>
+				<height>29</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsFocusVisible</include>
+				<include>OverlayWatchedFlagsFocusAniInclude</include>
+			</control>
+			<control type="image">
+				<left>109</left>
+				<top>171</top>
+				<width>29</width>
+				<height>29</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsFocusVisibleSpecial</include>
+				<include>OverlayWatchedFlagsFocusAniIncludeSpecial</include>
+			</control>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		<control type="group">
+			<left>24</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>8</top>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>37</left>
+				<top>179</top>
+				
+				<width>65</width>
+				<height>5</height>
+				
+				<include>WatchedProgressGeneric3</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>WallViewImageVisiblePosterVariant</include>
+				
+				<animation type="Focus">
+					<effect type="zoom" start="100,100" end="105,100" time="750" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,0" end="0,6" time="750" tween="sine" easing="inout" />
+				</animation>
+				<animation type="UnFocus">
+					<effect type="zoom" start="105,100" end="100,100" time="500" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,6" end="0,0" time="500" tween="sine" easing="inout" />
+				</animation>
+				
+			</control>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>37</left>
+				<top>179</top>
+				
+				<width>65</width>
+				<height>5</height>
+				
+				<include>WatchedProgressGeneric3</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant4X</include>
+				
+				<include>WallViewImageVisibleSquaredVariant</include>
+				
+				<animation type="Focus">
+					<effect type="zoom" start="100,100" end="105,100" time="750" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,0" end="0,4" time="750" tween="sine" easing="inout" />
+				</animation>
+				<animation type="UnFocus">
+					<effect type="zoom" start="105,100" end="100,100" time="500" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,4" end="0,0" time="500" tween="sine" easing="inout" />
+				</animation>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		<!-- FOCUS BORDER OR LABEL -->
+		
+		<control type="group">
+			<left>12</left>
+			<top>-4</top>
+			<width>160</width>
+			<height>243</height>
+			
+			<animation effect="zoom" start="17,0,151,233"   end="12,-4,160,243" time="750" tween="sine" easing="inout">Focus</animation>
+			<animation effect="zoom"   end="17,0,151,233" start="12,-4,160,243" time="500" tween="sine" easing="inout">UnFocus</animation>
+			
+			<!-- border texture only: poster variant -->
+			<!-- w/ label -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>160</width>
+				<height>243</height>
+				<texture background="true" border="20,20,20,36" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v4-label.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + [String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | String.IsEqual(Skin.String(WallViewFocusLabel),always)]</visible>
+			</control>
+			<!-- wo/ label -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>160</width>
+				<height>226</height>
+				<texture background="true" border="20,20,20,20" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v4.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + ![String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | String.IsEqual(Skin.String(WallViewFocusLabel),always)]</visible>
+			</control>
+			
+			<!-- border texture only: squared variant -->
+			<!-- generic, root, albums -->
+			<control type="image">
+				<left>0</left>
+				<top>34</top>
+				<width>160</width>
+				<height>190</height>
+				<texture background="true" border="20,20,20,50" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v4-label+.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]</visible>
+				
+				<visible>![[[String.IsEqual(Container.Content,Addons) | Container.Content(Addons)] + !String.IsEmpty(ListItem.AddonName)] | [System.Platform.Android + String.StartsWith(Container.FolderPath,androidapp://sources/apps/) + !ListItem.IsParentFolder]]</visible>
+				
+			</control>
+			
+			<!-- add-ons -->
+			<control type="image">
+				<left>0</left>
+				<top>34</top>
+				<width>160</width>
+				<height>190</height>
+				<texture background="true" border="23,23,23,54" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v4-label+addon.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]</visible>
+				
+				<visible>[[String.IsEqual(Container.Content,Addons) | Container.Content(Addons)] + !String.IsEmpty(ListItem.AddonName)] | [System.Platform.Android + String.StartsWith(Container.FolderPath,androidapp://sources/apps/) + !ListItem.IsParentFolder]</visible>
+				
+			</control>
+			
+			<!-- label text -->
+			<control type="label">
+				<left>9</left>
+				<top>186</top>
+				<width>142</width>
+				<height>36</height>
+				<font>Regular12</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>white</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$VAR[WallViewLabel]</label>
+				<animation effect="slide" start="0,0" end="0,25" delay="0" time="0" condition="[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+				
+				<visible>[String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | String.IsEqual(Skin.String(WallViewFocusLabel),always)]</visible>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="Wall_View_5X_itemLayout">
+		
+		<control type="group">
+			<left>20</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>7</top>
+			<width>112</width>
+			<height>165</height>
+			
+			
+			
+			
+			<!-- poster image option a: scaled (if poster IS available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>112</width>
+				<height>165</height>
+				<texture background="true" diffuse="colors/diffuse/112x165-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArScale</include>
+			</control>
+			<!-- poster image option b: keep (if poster is NOT available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>112</width>
+				<height>165</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArKeep</include>
+			</control>
+			<!-- squared with rounded corners for add-ons and possibly more -->
+			<control type="image">
+				<left>0</left>
+				<top>26</top>
+				<width>112</width>
+				<height>112</height>
+				<texture background="true" diffuse="colors/diffuse/112x112-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScale</include>
+			</control>
+			<!-- add-ons variant with fallback image -->
+			<control type="image">
+				<left>0</left>
+				<top>26</top>
+				<width>112</width>
+				<height>112</height>
+				<texture background="true" diffuse="colors/diffuse/112x112-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScaleAddonsFallbackImage</include>
+			</control>
+			<!-- add-ons variant with fallback image - Android apps -->
+			<control type="image">
+				<left>0</left>
+				<top>26</top>
+				<width>112</width>
+				<height>112</height>
+				<texture background="true" diffuse="colors/diffuse/112x112-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeepAddonsFallbackImage</include>
+			</control>
+			<!-- squared for pictures with kept aspect ratio -->
+			<control type="image">
+				<left>0</left>
+				<top>26</top>
+				<width>112</width>
+				<height>112</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeep</include>
+			</control>
+			
+			<!-- ADDON FLAGS -->
+			<control type="group">
+				<left>63</left>
+				<top>96</top>
+				<include>WallViewAddonFlags_SizeVariant_4</include>
+				<include>WallViewAddonFlagsVisible</include>
+			</control>
+			
+			<!-- 4K BANNER -->
+			<control type="image">
+				<left>4</left>
+				<top>146</top>
+				<width>26</width>
+				<height>15</height>
+				<texture background="true">$VAR[OverlayUHDTexture]</texture>
+				<include>WallViewFlagUHDVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- HFR BANNER -->
+			<control type="image">
+				<left>4</left>
+				<top>128</top>
+				<width>26</width>
+				<height>15</height>
+				<texture background="true">_added_img/OverlayHFR.png</texture>
+				<include>WallViewFlagHFRVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- ISO / DISC IMAGE OVERLAY -->
+			<control type="image">
+				<left>44</left>
+				<top>152</top>
+				<width>24</width>
+				<height>14</height>
+				<aspectratio scalediffuse="false" aligny="top">stretch</aspectratio>
+				<texture background="true" diffuse="colors/diffuse/24x14.png">_added_img/OverlayDiscImage.png</texture>
+				<include>WallViewFlagDiscVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			<!-- MOVIE SET OVERLAY -->
+			<control type="image">
+				<left>-2</left>
+				<top>138</top>
+				<width>33</width>
+				<height>25</height>
+				<texture background="true">_added_img/OverlaySet.png</texture>
+				<include>WallViewFlagIsCollection</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>OverlayFlagsVisible</include>
+				
+				<include>OverlaySetFlagVisible</include>
+			</control>
+			<!-- 3D OVERLAY -->
+			<control type="image">
+				<left>3</left>
+				<top>138</top>
+				<width>33</width>
+				<height>25</height>
+				<texture background="true">_added_img/Overlay3D.png</texture>
+				<include>WallViewFlag3DVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>OverlayFlagsVisible</include>
+			</control>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>31</left>
+				<top>146</top>
+				<include>WatchedProgressGeneric4</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+			</control>
+			
+			<!-- overlay (watched etc.) -->
+			<control type="image">
+				<left>88</left>
+				<top>140</top>
+				<width>24</width>
+				<height>24</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>Transparency50</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsVisible</include>
+			</control>
+			
+		</control>
+		
+		
+		
+		<!-- FOCUS BORDER OR LABEL -->
+		
+		<control type="group">
+			
+			
+			
+			<!-- label text -->
+			<control type="label">
+				<left>20</left>
+				<top>150</top>
+				<width>112</width>
+				<height>20</height>
+				<font>Regular9</font>
+				<textcolor>grey2</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$VAR[WallViewLabel]</label>
+				<include>Wall_View_Item_Layout_Label_Visible</include>
+				<animation effect="slide" start="0,0" end="0,23" delay="0" time="0" condition="[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+			</control>
+			
+			
+			
+			
+		</control>
+		
+		
+		
+	</include>
+	
+	
+	
+	<include name="Wall_View_5X_focusedLayout">
+		
+		<control type="group">
+			<left>20</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>7</top>
+			<width>112</width>
+			<height>165</height>
+			
+			<animation effect="zoom" start="20,7,112,165" end="17,3,118,174" time="750" tween="sine" easing="inout" delay="0">Focus</animation>
+			<animation effect="zoom" end="20,7,112,165" start="17,3,118,174" time="500" tween="sine" easing="inout" delay="0">UnFocus</animation>
+			
+			<!-- poster image option a: scaled (if poster IS available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>112</width>
+				<height>165</height>
+				<texture background="true" diffuse="colors/diffuse/112x165-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArScale</include>
+			</control>
+			<!-- poster image option b: keep (if poster is NOT available) -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>112</width>
+				<height>165</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisiblePosterVariantArKeep</include>
+			</control>
+			<!-- squared with rounded corners for add-ons and possibly more -->
+			<control type="image">
+				<left>0</left>
+				<top>26</top>
+				<width>112</width>
+				<height>112</height>
+				<texture background="true" diffuse="colors/diffuse/112x112-rounded.png">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScale</include>
+			</control>
+			<!-- add-ons variant with fallback image -->
+			<control type="image">
+				<left>0</left>
+				<top>26</top>
+				<width>112</width>
+				<height>112</height>
+				<texture diffuse="colors/diffuse/112x112-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<!-- don't use background="true" background loader to avoid loading flicker bug for fallback image -->
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArScaleAddonsFallbackImage</include>
+			</control>
+			<!-- add-ons variant with fallback image - Android apps -->
+			<control type="image">
+				<left>0</left>
+				<top>26</top>
+				<width>112</width>
+				<height>112</height>
+				<texture diffuse="colors/diffuse/112x112-rounded-addon.png" fallback="DefaultAddon_solid.png">$VAR[PosterThumbWallViews]</texture>
+				<!-- don't use background="true" background loader to avoid loading flicker bug for fallback image -->
+				<aspectratio scalediffuse="false">keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeepAddonsFallbackImage</include>
+			</control>
+			<!-- squared for pictures with kept aspect ratio -->
+			<control type="image">
+				<left>0</left>
+				<top>26</top>
+				<width>112</width>
+				<height>112</height>
+				<texture background="true">$VAR[PosterThumbWallViews]</texture>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewImageVisibleSquaredVariantArKeep</include>
+			</control>
+			
+			<!-- ADDON FLAGS -->
+			<control type="group">
+				<left>63</left>
+				<top>96</top>
+				<include>WallViewAddonFlags_SizeVariant_4</include>
+				<include>WallViewAddonFlagsVisible</include>
+			</control>
+			
+			<!-- 4K BANNER -->
+			<control type="image">
+				<left>4</left>
+				<top>146</top>
+				<width>26</width>
+				<height>15</height>
+				<texture background="true">$VAR[OverlayUHDTexture]</texture>
+				<include>WallViewFlagUHDVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+			</control>
+			<!-- HFR BANNER -->
+			<control type="image">
+				<left>4</left>
+				<top>128</top>
+				<width>26</width>
+				<height>15</height>
+				<texture background="true">_added_img/OverlayHFR.png</texture>
+				<include>WallViewFlagHFRVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+			</control>
+			<!-- ISO / DISC IMAGE OVERLAY -->
+			<control type="image">
+				<left>44</left>
+				<top>152</top>
+				<width>24</width>
+				<height>14</height>
+				<texture background="true">_added_img/OverlayDiscImage.png</texture>
+				<include>WallViewFlagDiscVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniIncludeAndPixelMover</include>
+			</control>
+			<!-- MOVIE SET OVERLAY -->
+			<control type="image">
+				<left>-2</left>
+				<top>138</top>
+				<width>33</width>
+				<height>25</height>
+				<texture background="true">_added_img/OverlaySet.png</texture>
+				<include>WallViewFlagIsCollection</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniInclude</include>
+				
+				<include>OverlaySetFlagVisible</include>
+			</control>
+			<!-- 3D OVERLAY -->
+			<control type="image">
+				<left>3</left>
+				<top>138</top>
+				<width>33</width>
+				<height>25</height>
+				<texture background="true">_added_img/Overlay3D.png</texture>
+				<include>WallViewFlag3DVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>OverlayFlagsFocusVisible</include>
+				<include>OverlayFlagsFocusAniInclude</include>
+			</control>
+			
+			
+			<!-- overlay (watched etc.) -->
+			<control type="image">
+				<left>88</left>
+				<top>140</top>
+				<width>24</width>
+				<height>24</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsFocusVisible</include>
+				<include>OverlayWatchedFlagsFocusAniInclude</include>
+			</control>
+			<control type="image">
+				<left>88</left>
+				<top>140</top>
+				<width>24</width>
+				<height>24</height>
+				<aspectratio>keep</aspectratio>
+				<include>WallViewOverlayTexture</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				<include>WallViewOverlayVisible</include>
+				
+				<include>OverlayWatchedFlagsFocusVisibleSpecial</include>
+				<include>OverlayWatchedFlagsFocusAniIncludeSpecial</include>
+			</control>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		<control type="group">
+			<left>20</left><!-- move right a bit to avoid focus zoom cut-off at the left -->
+			<top>7</top>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>31</left>
+				<top>146</top>
+				
+				<width>50</width>
+				<height>4</height>
+				
+				<include>WatchedProgressGeneric4</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>WallViewImageVisiblePosterVariant</include>
+				
+				<animation type="Focus">
+					<effect type="zoom" start="100,100" end="105,100" time="750" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,0" end="0,2" time="750" tween="sine" easing="inout" />
+				</animation>
+				<animation type="UnFocus">
+					<effect type="zoom" start="105,100" end="100,100" time="500" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,2" end="0,0" time="500" tween="sine" easing="inout" />
+				</animation>
+				
+			</control>
+			
+			<!-- progress bar for non-db files mode -->
+			<control type="group">
+				<left>31</left>
+				<top>146</top>
+				
+				<width>50</width>
+				<height>4</height>
+				
+				<include>WatchedProgressGeneric4</include>
+				<include>WallViewProgressBarVisible</include>
+				<include>MoveUpOverlayIconsIfSquaredVariant5X</include>
+				
+				<include>WallViewImageVisibleSquaredVariant</include>
+				
+				<animation type="Focus">
+					<effect type="zoom" start="100,100" end="105,100" time="750" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,0" end="0,2" time="750" tween="sine" easing="inout" />
+				</animation>
+				<animation type="UnFocus">
+					<effect type="zoom" start="105,100" end="100,100" time="500" tween="sine" easing="inout" center="auto" />
+					<effect type="slide" start="0,2" end="0,0" time="500" tween="sine" easing="inout" />
+				</animation>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		<!-- FOCUS BORDER OR LABEL -->
+		
+		<control type="group">
+			<left>11</left>
+			<top>-2</top>
+			<width>130</width>
+			<height>198</height>
+			
+			<animation effect="zoom" start="14,2,124,189"   end="11,-2,130,198" time="750" tween="sine" easing="inout">Focus</animation>
+			<animation effect="zoom"   end="14,2,124,189" start="11,-2,130,198" time="500" tween="sine" easing="inout">UnFocus</animation>
+			
+			<!-- border texture only: poster variant -->
+			<!-- w/ label -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>130</width>
+				<height>198</height>
+				<texture background="true" border="18,18,18,30" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v5-label.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + [String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | String.IsEqual(Skin.String(WallViewFocusLabel),always)]</visible>
+			</control>
+			<!-- wo/ label -->
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>130</width>
+				<height>184</height>
+				<texture background="true" border="18,18,18,18" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v5.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)] + ![String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | String.IsEqual(Skin.String(WallViewFocusLabel),always)]</visible>
+			</control>
+			
+			<!-- border texture only: squared variant -->
+			<!-- generic, root, albums -->
+			<control type="image">
+				<left>0</left>
+				<top>27</top>
+				<width>130</width>
+				<height>155</height>
+				<texture background="true" border="16,16,16,42" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v5-label+.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]</visible>
+				
+				<visible>![[[String.IsEqual(Container.Content,Addons) | Container.Content(Addons)] + !String.IsEmpty(ListItem.AddonName)] | [System.Platform.Android + String.StartsWith(Container.FolderPath,androidapp://sources/apps/) + !ListItem.IsParentFolder]]</visible>
+				
+			</control>
+			
+			<!-- add-ons -->
+			<control type="image">
+				<left>0</left>
+				<top>27</top>
+				<width>130</width>
+				<height>155</height>
+				<texture background="true" border="18,18,18,44" colordiffuse="$VAR[accentColorDiffuse]">_added_img/poster_border_v5-label+addon.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>itemFocusFadeInAnimation</include>
+				<visible>![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]</visible>
+				
+				<visible>[[String.IsEqual(Container.Content,Addons) | Container.Content(Addons)] + !String.IsEmpty(ListItem.AddonName)] | [System.Platform.Android + String.StartsWith(Container.FolderPath,androidapp://sources/apps/) + !ListItem.IsParentFolder]</visible>
+				
+			</control>
+			
+			<!-- label text -->
+			<control type="label">
+				<left>8</left>
+				<top>155</top>
+				<width>114</width>
+				<height>20</height>
+				<font>Regular10</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>white</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$VAR[WallViewLabel]</label>
+				<animation effect="slide" start="0,0" end="0,22" delay="0" time="0" condition="[String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,VideoVersions) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors)]">Conditional</animation>
+				
+				<visible>[String.IsEmpty(ListItem.Art(poster)) | [!String.IsEqual(Container.Content,Movies) + !String.IsEqual(Container.Content,TvShows)] | String.IsEqual(Skin.String(WallViewFocusLabel),always)]</visible>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- WALL VIEW 2X -->
+	
+	<!-- 16:X -->
+	<constant name="CON__Wall_2X_Width">1903</constant>
+	<constant name="CON__Wall_2X_Height">1080</constant>
+	<constant name="CON__Wall_2X_Left">35</constant>
+	<constant name="CON__Wall_2X_Top">0</constant>
+	<constant name="CON__Wall_2X_Dense_Slide_X">-34</constant>
+	
+	<!-- 21:9 -->
+	<constant name="CON__Wall_2X_Width_21by9">2246</constant>
+	<constant name="CON__Wall_2X_Left_21by9">207</constant>
+	<constant name="CON__Wall_2X_Dense_Slide_X_21by9">-46</constant>
+	
+	
+	<!-- 16:X -->
+	<include name="SkinVariant_16byX_Wall_2X_Panel">
+		<animation effect="slide" start="0,0" end="CON__Wall_2X_Dense_Slide_X,0" delay="0" time="0" condition="Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)]">Conditional</animation>
+	</include>
+	
+	<!-- 21:9 -->
+	<include name="SkinVariant_21by9_WallViews_2X_Panel">
+		<include>SkinVariant_21by9_WallViews_2X_Panel_NonMaxx</include>
+	</include>
+	<include name="SkinVariant_21by9_WallViews_2X_Panel_NonMaxx">
+		<animation effect="slide" start="0,0" end="CON__Wall_2X_Dense_Slide_X_21by9,0" delay="0" time="0" condition="Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)]">Conditional</animation>
+		<left>CON__Wall_2X_Left_21by9</left>
+		<width>CON__Wall_2X_Width_21by9</width>
+	</include>
+	
+	
+	
+	<include name="Wall_View_2X">
+		<control type="group">
+			
+			<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_Left_X_-330px</include>
+			
+			<visible>Control.IsVisible(500)</visible>
+			<include>VisibleFadeEffect</include>
+			
+			<control type="panel" id="500">
+				
+				
+				
+				<visible>!String.IsEqual(Container.Content,Songs) + !String.IsEqual(Container.Content,Years) + !String.IsEqual(Container.Content,Tags) + !String.IsEqual(Container.Content,Genres) + !String.IsEqual(Container.Content,Countries) + !String.IsEqual(Container.Content,Studios) + !String.IsEqual(Container.Content,Directors) + !String.IsEqual(Container.Content,Episodes)</visible>
+				
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_WallViews_2X_Panel</include>
+				
+				
+				<include condition="![String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_16byX_Wall_2X_Panel</include>
+				
+				
+				<left>CON__Wall_2X_Left</left>
+				<top>CON__Wall_2X_Top</top>
+				
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+
+				<width>CON__Wall_2X_Width</width>
+				<height>CON__Wall_2X_Height</height>
+				
+				<onleft condition="!Container.Filtered | [Container.Filtered + !Control.IsVisible(98) + !Control.IsVisible(19)]">2</onleft>
+				<onleft condition="Container.Filtered + Control.IsVisible(98)">98</onleft>
+				<onleft condition="Container.Filtered + !Control.IsVisible(98) + Control.IsVisible(19)">19</onleft>
+				
+				<onright>noop</onright>
+				<onup>500</onup>
+				<ondown>500</ondown>
+				<viewtype label="Wall 2X">list</viewtype>
+				<pagecontrol>62</pagecontrol>
+				<include>wallScrollStyle2X</include>
+				
+				<unloadearly>false</unloadearly><unloaddelayed>true</unloaddelayed><!-- WIP: fix early unload (only works on custom builds atm) -->
+				
+				<include condition="[String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems1</include>
+				<include condition="![String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems2</include>
+				
+				
+				
+				<include condition="!String.IsEqual(Skin.AspectRatio,16:10) + ![String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">WallView_Layouts_2X</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">WallView_Layouts_2X_16by10</include>
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">WallView_Layouts_2X_21by9</include>
+				
+				
+			</control>
+			
+			<control type="scrollbar" id="62">
+				<include>ElementHasNoHitBox</include><!-- disable scrollbar access by user -->
+				<include>Wall_View_Scrollbar_Dimensions</include>
+				<include>Wall_View_Scrollbar_Style_Transparent</include>
+				<onleft>500</onleft>
+				<onright>62</onright>
+				<showonepage>false</showonepage>
+				<visible>Control.IsVisible(500)</visible>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- WALL VIEW 3X -->
+	
+	<!-- 16:X -->
+	<constant name="CON__Wall_3X_Width">1903</constant>
+	<constant name="CON__Wall_3X_Height">1080</constant>
+	<constant name="CON__Wall_3X_Left">17</constant>
+	<constant name="CON__Wall_3X_Top">0</constant>
+	<constant name="CON__Wall_3X_Dense_Slide_X">-17</constant>
+	
+	<!-- 21:9 -->
+	<constant name="CON__Wall_3X_Width_21by9">2278</constant>
+	<constant name="CON__Wall_3X_Left_21by9">174</constant>
+	<constant name="CON__Wall_3X_Dense_Slide_X_21by9">-30</constant>
+	
+	
+	<!-- 16:X -->
+	<include name="SkinVariant_16byX_Wall_3X_Panel">
+		<animation effect="slide" start="0,0" end="CON__Wall_3X_Dense_Slide_X,0" delay="0" time="0" condition="Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)]">Conditional</animation>
+	</include>
+	
+	<!-- 21:9 -->
+	<include name="SkinVariant_21by9_WallViews_3X_Panel">
+		<include>SkinVariant_21by9_WallViews_3X_Panel_NonMaxx</include>
+	</include>
+	<include name="SkinVariant_21by9_WallViews_3X_Panel_NonMaxx">
+		<animation effect="slide" start="0,0" end="CON__Wall_3X_Dense_Slide_X_21by9,0" delay="0" time="0" condition="Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)]">Conditional</animation>
+		<left>CON__Wall_3X_Left_21by9</left>
+		<width>CON__Wall_3X_Width_21by9</width>
+	</include>
+	
+	
+	
+	<include name="Wall_View_3X">
+		<control type="group">
+			
+			<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_Left_X_-330px</include>
+			
+			<visible>Control.IsVisible(908)</visible>
+			<include>VisibleFadeEffect</include>
+			
+			<control type="panel" id="908">
+				
+				
+				
+				<visible>!String.IsEqual(Container.Content,Songs) + !String.IsEqual(Container.Content,Years) + !String.IsEqual(Container.Content,Tags) + !String.IsEqual(Container.Content,Genres) + !String.IsEqual(Container.Content,Countries) + !String.IsEqual(Container.Content,Studios) + !String.IsEqual(Container.Content,Directors) + !String.IsEqual(Container.Content,Episodes)</visible>
+				
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_WallViews_3X_Panel</include>
+				
+				
+				<include condition="![String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_16byX_Wall_3X_Panel</include>
+				
+				
+				<left>CON__Wall_3X_Left</left>
+				<top>CON__Wall_3X_Top</top>
+				
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<width>CON__Wall_3X_Width</width>
+				<height>CON__Wall_3X_Height</height>
+				
+				<onleft condition="!Container.Filtered | [Container.Filtered + !Control.IsVisible(98) + !Control.IsVisible(19)]">2</onleft>
+				<onleft condition="Container.Filtered + Control.IsVisible(98)">98</onleft>
+				<onleft condition="Container.Filtered + !Control.IsVisible(98) + Control.IsVisible(19)">19</onleft>
+				
+				<onright>noop</onright>
+				<onup>908</onup>
+				<ondown>908</ondown>
+				<viewtype label="Wall 3X">list</viewtype>
+				<pagecontrol>63</pagecontrol>
+				<include>wallScrollStyle3X</include>
+				
+				<unloadearly>false</unloadearly><unloaddelayed>true</unloaddelayed><!-- WIP: fix early unload (only works on custom builds atm) -->
+				
+				<include condition="[String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems1</include>
+				<include condition="![String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems2</include>
+				
+				
+				
+				<include condition="!String.IsEqual(Skin.AspectRatio,16:10) + ![String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">WallView_Layouts_3X</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">WallView_Layouts_3X_16by10</include>
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">WallView_Layouts_3X_21by9</include>
+				
+				
+				
+			</control>
+			
+			<control type="scrollbar" id="63">
+				<include>ElementHasNoHitBox</include><!-- disable scrollbar access by user -->
+				<include>Wall_View_Scrollbar_Dimensions</include>
+				<include>Wall_View_Scrollbar_Style_Transparent</include>
+				<onleft>908</onleft>
+				<onright>63</onright>
+				<showonepage>false</showonepage>
+				<visible>Control.IsVisible(908)</visible>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- WALL VIEW 4X -->
+	
+	<!-- 16:X -->
+	<constant name="CON__Wall_4X_Width">1894</constant>
+	<constant name="CON__Wall_4X_Height">1080</constant>
+	<constant name="CON__Wall_4X_Left">5</constant>
+	<constant name="CON__Wall_4X_Top">0</constant>
+	<constant name="CON__Wall_4X_Dense_Slide_X">-3</constant>
+	
+	<!-- 21:9 -->
+	<constant name="CON__Wall_4X_Width_21by9">2172</constant>
+	<constant name="CON__Wall_4X_Left_21by9">210</constant>
+	<constant name="CON__Wall_4X_Dense_Slide_X_21by9">-16</constant>
+	
+	
+	<!-- 16:X -->
+	<include name="SkinVariant_16byX_Wall_4X_Panel">
+		<animation effect="slide" start="0,0" end="CON__Wall_4X_Dense_Slide_X,0" delay="0" time="0" condition="Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)]">Conditional</animation>
+	</include>
+	
+	<!-- 21:9 -->
+	<include name="SkinVariant_21by9_WallViews_4X_Panel">
+		<include>SkinVariant_21by9_WallViews_4X_Panel_NonMaxx</include>
+	</include>
+	<include name="SkinVariant_21by9_WallViews_4X_Panel_NonMaxx">
+		<animation effect="slide" start="0,0" end="CON__Wall_4X_Dense_Slide_X_21by9,0" delay="0" time="0" condition="Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)]">Conditional</animation>
+		<left>CON__Wall_4X_Left_21by9</left>
+		<width>CON__Wall_4X_Width_21by9</width>
+	</include>
+	
+	
+	
+	<include name="Wall_View_4X">
+		<control type="group">
+			
+			<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_Left_X_-330px</include>
+			
+			<visible>Control.IsVisible(909)</visible>
+			<include>VisibleFadeEffect</include>
+			
+			<control type="panel" id="909">
+				
+				
+				
+				<visible>!String.IsEqual(Container.Content,Songs) + !String.IsEqual(Container.Content,Years) + !String.IsEqual(Container.Content,Tags) + !String.IsEqual(Container.Content,Genres) + !String.IsEqual(Container.Content,Countries) + !String.IsEqual(Container.Content,Studios) + !String.IsEqual(Container.Content,Directors) + !String.IsEqual(Container.Content,Episodes)</visible>
+				
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_WallViews_4X_Panel</include>
+				
+				
+				<include condition="![String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_16byX_Wall_4X_Panel</include>
+				
+				
+				<left>CON__Wall_4X_Left</left>
+				<top>CON__Wall_4X_Top</top>
+				
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<width>CON__Wall_4X_Width</width>
+				<height>CON__Wall_4X_Height</height>
+				
+				<onleft condition="!Container.Filtered | [Container.Filtered + !Control.IsVisible(98) + !Control.IsVisible(19)]">2</onleft>
+				<onleft condition="Container.Filtered + Control.IsVisible(98)">98</onleft>
+				<onleft condition="Container.Filtered + !Control.IsVisible(98) + Control.IsVisible(19)">19</onleft>
+				
+				<onright>noop</onright>
+				<onup>909</onup>
+				<ondown>909</ondown>
+				<viewtype label="Wall 4X">list</viewtype>
+				<pagecontrol>64</pagecontrol>
+				<include>wallScrollStyle4X</include>
+				
+				<unloadearly>false</unloadearly><unloaddelayed>true</unloaddelayed><!-- WIP: fix early unload (only works on custom builds atm) -->
+				
+				<include condition="[String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems1</include>
+				<include condition="![String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems2</include>
+				
+				
+				
+				<include condition="!String.IsEqual(Skin.AspectRatio,16:10) + ![String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">WallView_Layouts_4X</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">WallView_Layouts_4X_16by10</include>
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">WallView_Layouts_4X_21by9</include>
+				
+				
+				
+			</control>
+			
+			<control type="scrollbar" id="64">
+				<include>ElementHasNoHitBox</include><!-- disable scrollbar access by user -->
+				<include>Wall_View_Scrollbar_Dimensions</include>
+				<include>Wall_View_Scrollbar_Style_Transparent</include>
+				<onleft>909</onleft>
+				<onright>64</onright>
+				<showonepage>false</showonepage>
+				<visible>Control.IsVisible(909)</visible>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- WALL VIEW 5X -->
+	
+	<!-- 16:X -->
+	<constant name="CON__Wall_5X_Width">1874</constant>
+	<constant name="CON__Wall_5X_Height">1080</constant>
+	<constant name="CON__Wall_5X_Left">19</constant>
+	<constant name="CON__Wall_5X_Top">0</constant>
+	<!--<constant name="CON__Wall_5X_Dense_Slide_X">0</constant>-->
+	
+	<!-- 21:9 -->
+	<constant name="CON__Wall_5X_Width_21by9">2234</constant>
+	<constant name="CON__Wall_5X_Left_21by9">184</constant>
+	<constant name="CON__Wall_5X_Dense_Slide_X_21by9">-20</constant>
+	
+	
+	<!-- 16:X -->
+	<include name="SkinVariant_16byX_Wall_5X_Panel">
+		<!--<animation effect="slide" start="0,0" end="CON__Wall_5X_Dense_Slide_X,0" delay="0" time="0" condition="Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)]">Conditional</animation>-->
+	</include>
+	
+	<!-- 21:9 -->
+	<include name="SkinVariant_21by9_WallViews_5X_Panel">
+		<include>SkinVariant_21by9_WallViews_5X_Panel_NonMaxx</include>
+	</include>
+	<include name="SkinVariant_21by9_WallViews_5X_Panel_NonMaxx">
+		<animation effect="slide" start="0,0" end="CON__Wall_5X_Dense_Slide_X_21by9,0" delay="0" time="0" condition="Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)]">Conditional</animation>
+		<left>CON__Wall_5X_Left_21by9</left>
+		<width>CON__Wall_5X_Width_21by9</width>
+	</include>
+	
+	
+	
+	<include name="Wall_View_5X">
+		<control type="group">
+			
+			<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_Left_X_-330px</include>
+			
+			<visible>Control.IsVisible(910)</visible>
+			<include>VisibleFadeEffect</include>
+			
+			<control type="panel" id="910">
+				
+				
+				
+				<visible>!String.IsEqual(Container.Content,Songs) + !String.IsEqual(Container.Content,Years) + !String.IsEqual(Container.Content,Tags) + !String.IsEqual(Container.Content,Genres) + !String.IsEqual(Container.Content,Countries) + !String.IsEqual(Container.Content,Studios) + !String.IsEqual(Container.Content,Directors) + !String.IsEqual(Container.Content,Episodes)</visible>
+				
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_WallViews_5X_Panel</include>
+				
+				
+				<include condition="![String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_16byX_Wall_5X_Panel</include>
+				
+				
+				<left>CON__Wall_5X_Left</left>
+				<top>CON__Wall_5X_Top</top>
+				
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<width>CON__Wall_5X_Width</width>
+				<height>CON__Wall_5X_Height</height>
+				
+				<onleft condition="!Container.Filtered | [Container.Filtered + !Control.IsVisible(98) + !Control.IsVisible(19)]">2</onleft>
+				<onleft condition="Container.Filtered + Control.IsVisible(98)">98</onleft>
+				<onleft condition="Container.Filtered + !Control.IsVisible(98) + Control.IsVisible(19)">19</onleft>
+				
+				<onright>noop</onright>
+				<onup>910</onup>
+				<ondown>910</ondown>
+				<viewtype label="Wall 5X">list</viewtype>
+				<pagecontrol>65</pagecontrol>
+				<include>wallScrollStyle5X</include>
+				
+				<unloadearly>false</unloadearly><unloaddelayed>true</unloaddelayed><!-- WIP: fix early unload (only works on custom builds atm) -->
+				
+				<include condition="[String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems1</include>
+				<include condition="![String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems2</include>
+				
+				
+				
+				<include condition="!String.IsEqual(Skin.AspectRatio,16:10) + ![String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">WallView_Layouts_5X</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">WallView_Layouts_5X_16by10</include>
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">WallView_Layouts_5X_21by9</include>
+				
+				
+				
+			</control>
+			
+			<control type="scrollbar" id="65">
+				<include>ElementHasNoHitBox</include><!-- disable scrollbar access by user -->
+				<include>Wall_View_Scrollbar_Dimensions</include>
+				<include>Wall_View_Scrollbar_Style_Transparent</include>
+				<onleft>910</onleft>
+				<onright>65</onright>
+				<showonepage>false</showonepage>
+				<visible>Control.IsVisible(910)</visible>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</includes>

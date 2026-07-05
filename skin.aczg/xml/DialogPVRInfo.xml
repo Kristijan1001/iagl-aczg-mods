@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">8</defaultcontrol>
+	
+	<onload>ClearProperty(dialogvideoinfo_art_blurred,home)</onload>
+	<onload>ClearProperty(dialogvideoinfo_art_color,home)</onload>
+	<onload>ClearProperty(dialogvideoinfo_art_color_noalpha,home)</onload>
+	<onunload>ClearProperty(dialogvideoinfo_art_blurred,home)</onunload>
+	<onunload>ClearProperty(dialogvideoinfo_art_color,home)</onunload>
+	<onunload>ClearProperty(dialogvideoinfo_art_color_noalpha,home)</onunload>
+	
+	
+	<onload condition="!Window.IsVisible(tvrecordings) + !Window.IsVisible(radiorecordings)">Control.SetFocus(5)</onload>
+	
+	
+	<onunload>ClearProperty(set_focus_now,home)</onunload>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			<depth>DepthSideBlade</depth>
+			
+			<animation effect="fade" start="0" end="100" time="1000">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="600">WindowClose</animation>
+			
+			<!-- BACKGROUND -->
+			<control type="image">
+				
+				<!-- SkinOutOfBounds -->
+				<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsBgDimensionsPvrInfoRightHalf</include>
+				
+				<left>729</left>
+				<top>0</top>
+				<width>2191</width>
+				<height>1080</height>
+				
+				<texture>colors/black.png</texture>
+			</control>
+			
+			<!-- BACKGROUND LEFT GREY -->
+			<control type="image">
+				
+				<!-- SkinOutOfBounds -->
+				<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsBgDimensionsPvrInfoLeftHalf</include>
+				
+				<left>0</left>
+				<top>0</top>
+				<width>729</width>
+				<height>1080</height>
+				
+				<texture>colors/black.png</texture>
+				<animation effect="fade" end="75" time="0" condition="true">Conditional</animation>
+			</control>
+			
+			
+			
+			<control type="group">
+				
+				<animation effect="slide" start="1191,0" end="0,0" time="750" tween="quadratic" easing="out">WindowOpen</animation>
+				<animation effect="slide" start="0,0" end="1191,0" time="300" tween="quadratic" easing="out">WindowClose</animation>
+				
+				<left>747</left>
+				<top>37</top>
+				<width>1191</width>
+				<height>1080</height>
+				
+				
+				
+				<!-- STANDARD -->
+				<control type="label">
+					<description>subheader label</description>
+					<left>54</left>
+					<top>8</top>
+					<width>1050</width>
+					<height>300</height>
+					<label>$INFO[ListItem.ChannelName]</label>
+					<textcolor>grey3</textcolor>
+					<align>left</align>
+					<font>Light20</font>
+				</control>
+				
+				
+				
+				<control type="label">
+					
+					<animation effect="slide" start="0,0" end="0,-2" time="0" condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">Conditional</animation>
+					
+					<description>header label</description>
+					<left>52</left>
+					<top>64</top>
+					<width>1074</width>
+					<height>57</height>
+					<font>Regular_Wider+_31</font>
+					<label>$INFO[Listitem.Title]</label>
+					<align>left</align>
+					<textcolor>white</textcolor>
+					<scroll>false</scroll>
+				</control>
+				
+				
+				<!-- BACKGROUND RIGHT TOP SEMI-TRANSPARENT GREY SCROLL AREA -->
+				<control type="image">
+					<left>52</left>
+					<top>151</top>
+					<width>1088</width>
+					<height>245</height>
+					<!-- slightly less transparent for pvr info instead of video info -->
+					<texture colordiffuse="0ec6c6c6" border="24">colors/white_border24.png</texture>
+				</control>
+				
+				
+				<control type="group">
+					<top>30</top>
+					<left>-8</left>
+					<include>VisibleFadeEffect</include>
+					
+					<control type="list" id="49">
+						<left>77</left>
+						<top>131</top>
+						<width>1041</width>
+						<height>225</height>
+						
+						<onleft>9000</onleft>
+						<onright>9000</onright>
+						<onup>9000</onup>
+						<ondown>9000</ondown>
+						
+						<pagecontrol>80</pagecontrol>
+						<scrolltime>200</scrolltime>
+						
+						<preloaditems>2</preloaditems>
+						
+						<include>InfoDialogListItemLayout</include>
+						<include>InfoDialogListFocusedLayout</include>
+						
+						<content>
+							<item>
+								<label>$LOCALIZE[20373]</label>
+								<label2>$INFO[ListItem.Season]</label2>
+								<onclick>noop</onclick>
+								<visible>!String.IsEmpty(ListItem.Season)</visible>
+							</item>
+							<item>
+								<label>$LOCALIZE[20359]</label>
+								<label2>$INFO[ListItem.Episode]</label2>
+								<onclick>noop</onclick>
+								<visible>!String.IsEmpty(ListItem.Episode)</visible>
+							</item>
+							<item>
+								<label>$LOCALIZE[555]</label>
+								<label2>$INFO[ListItem.StartTime] - $INFO[ListItem.EndTime]</label2>
+								<onclick>noop</onclick>
+							</item>
+							<item>
+								<label>$LOCALIZE[552]</label>
+								<label2>$INFO[ListItem.StartDate]</label2>
+								<onclick>noop</onclick>
+							</item>
+							<item>
+								<label>$LOCALIZE[180]</label>
+								<label2>$INFO[ListItem.Duration,$LOCALIZE[180]  ·  ]</label2>
+								<onclick>noop</onclick>
+							</item>
+							<item>
+								<label>$LOCALIZE[515]</label>
+								<label2>$INFO[ListItem.Genre]</label2>
+								<onclick>noop</onclick>
+							</item>
+							<item>
+								<label>$LOCALIZE[20417]</label>
+								<label2>$INFO[ListItem.Writer]</label2>
+								<onclick>noop</onclick>
+								<visible>!String.IsEmpty(ListItem.Writer)</visible>
+							</item>
+							<item>
+								<label>$LOCALIZE[20339]</label>
+								<label2>$INFO[ListItem.Director]</label2>
+								<onclick>noop</onclick>
+								<visible>!String.IsEmpty(ListItem.Director)</visible>
+							</item>
+							<item>
+								<label>$LOCALIZE[206]</label>
+								<label2>$INFO[ListItem.Cast]</label2>
+								<onclick>noop</onclick>
+								<visible>!String.IsEmpty(ListItem.Cast)</visible>
+							</item>
+						</content>
+					</control>
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				<control type="scrollbar" id="80">
+					
+					<include>ElementHasNoHitBox</include><!-- disable scrollbar access by user -->
+					
+					<left>1117</left>
+					<top>161</top>
+					<include>scrollBarStyleDefaultWidth</include>
+					<height>225</height>
+					<showonepage>false</showonepage>
+					<visible>Control.HasFocus(49)</visible>
+					<animation effect="fade" start="100" end="50" time="0" condition="true">Conditional</animation>
+					<enable>false</enable>
+					<include>VisibleFadeEffect</include>
+					<include>scrollBarStyleDefault</include>
+				</control>
+				
+				
+				
+				
+				
+				<control type="group">
+				<top>16</top>
+				
+				<control type="image">
+					<include>VisibleFadeEffectSpecial</include>
+					<left>37</left>
+					<top>593</top>
+					<width>1056</width>
+					<height>384</height>
+					<texture border="24" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">_added_img/focus_border_2px-rounded-neutral-new.png</texture>
+					<visible>Control.HasFocus(499)</visible>
+					
+					<include>DimFocusTextureAdditionally</include>
+					
+				</control>
+				
+				<control type="button" id="499">
+					<description>Plot Text Viewer button</description>
+					<left>42</left>
+					<top>593</top>
+					<width>1044</width>
+					<height>384</height>
+					<visible>!Control.IsVisible(50)</visible>
+					
+					<texturefocus></texturefocus>
+					<texturenofocus></texturenofocus>
+					
+					<onclick condition="!String.IsEmpty(ListItem.Plot)">SetProperty(TextViewer_Header,$ESCINFO[ListItem.Title],home)</onclick>
+					<onclick condition="!String.IsEmpty(ListItem.Plot) + !String.IsEqual(ListItem.EpisodeName,ListItem.Plot)">SetProperty(TextViewer_Text_Pre,$ESCINFO[ListItem.EpisodeName,,[CR]],home)</onclick>
+					<onclick condition="!String.IsEmpty(ListItem.Plot) + String.IsEqual(ListItem.EpisodeName,ListItem.Plot)">ClearProperty(TextViewer_Text_Pre,home)</onclick>
+					<onclick condition="!String.IsEmpty(ListItem.Plot)">SetProperty(TextViewer_Text,$ESCINFO[ListItem.Plot],home)</onclick>
+					
+					<onclick condition="!String.IsEmpty(ListItem.Plot)">ActivateWindow(1102)</onclick>
+					
+					<visible>!String.IsEmpty(ListItem.Plot)</visible>
+					<onup>9000</onup>
+				</control>
+				
+				<control type="group">
+					<animation effect="fade" start="0" end="99" time="1500" delay="0">WindowOpen</animation>
+					
+					<!-- dummy scrollbar to check if plot preview text is cut off with ... -->
+					<control type="scrollbar" id="45566">
+						
+						<include>ElementHasNoHitBox</include><!-- disable scrollbar access by user -->
+						
+						<left>2000</left>
+						<top>2000</top>
+						<width>1</width>
+						<height>1</height>
+						<showonepage>false</showonepage>
+						<animation effect="fade" end="0" time="0" condition="true">Conditional</animation>
+					</control>
+					
+					<control type="label">
+						<description>...</description>
+						<left>54</left>
+						<top>801</top>
+						<width>150</width>
+						<height>60</height>
+						
+						<font>Light20</font>
+						<align>left</align>
+						<textcolor>white</textcolor>
+						<label>...</label>
+						
+						<visible>Control.IsVisible(45566) + !String.IsEmpty(ListItem.Plot) + !Control.IsVisible(50) + !Control.HasFocus(499)</visible>
+						
+						<animation effect="fade" time="350" delay="500">Visible</animation>
+						<animation effect="fade" time="300">Hidden</animation>
+							
+					</control>
+					
+					<control type="textbox">
+						<description>Plot Text</description>
+						<left>54</left>
+						<top>600</top>
+						<width>1023</width>
+						<height>206</height>
+						<font>Light20+</font>
+						<align>left</align>
+						<textcolor>white</textcolor>
+						<pagecontrol>45566</pagecontrol>
+						<label>$VAR[PVRPlotText]</label>
+						
+						<visible>!Control.IsVisible(50) + !Control.HasFocus(499)</visible>
+						
+						<animation effect="fade" time="350">Visible</animation>
+						<animation effect="fade" time="300" delay="350">Hidden</animation>
+						
+					</control>
+					
+					<control type="textbox">
+						<description>Plot Text</description>
+						<left>54</left>
+						<top>600</top>
+						<width>1023</width>
+						<height>366</height>
+						
+						<font>Light20+</font>
+						<align>left</align>
+						<textcolor>white</textcolor>
+						
+						<label>$VAR[PVRPlotText]</label>
+						
+						<autoscroll>false</autoscroll>
+						
+						<visible>!Control.IsVisible(50) + Control.HasFocus(499)</visible>
+						
+						<animation effect="fade" time="350">Visible</animation>
+						<animation effect="fade" time="300" delay="350">Hidden</animation>
+						
+					</control>
+					
+					</control>
+					
+				</control>
+				
+				
+				
+				
+				<control type="grouplist" id="9000">
+					<left>54</left>
+					<top>509</top>
+					<width>1119</width>
+					<height>180</height>
+					<itemgap>4</itemgap>
+					<align>left</align>
+					<orientation>horizontal</orientation>
+					<onleft>9000</onleft>
+					<onright>9000</onright>
+					<onup>49</onup>
+					<ondown condition="Control.IsVisible(50)">50</ondown>
+					<ondown condition="!Control.IsVisible(50)">499</ondown>
+					
+					
+					
+					<control type="button" id="5"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Switch to Channel</description>
+						<width>216</width>
+						<height>75</height>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label>19165</label>
+						<visible>Window.IsVisible(PVRGuideInfo)</visible>
+					</control>
+					<control type="button" id="4"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Find similar</description>
+						<width>216</width>
+						<height>75</height>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label>19003</label>
+						<visible>Window.IsVisible(PVRGuideInfo)</visible>
+					</control>
+					<control type="button" id="8"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Play recording</description>
+						<width>216</width>
+						<height>75</height>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label>208</label>
+						<visible>Window.IsVisible(PVRGuideInfo) | Window.IsVisible(PVRRecordingInfo)</visible>
+					</control>
+					<control type="button" id="6"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Record</description>
+						<width>216</width>
+						<height>75</height>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label></label>
+						<visible>Window.IsVisible(PVRGuideInfo)</visible>
+					</control>
+					<control type="button" id="9"><include>VideoInfoDialogButtonsAnimations</include>
+						<description>Timer</description>
+						<width>216</width>
+						<height>75</height>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label>19061</label>
+						<visible>!Window.IsVisible(PVRRecordingInfo)</visible>
+					</control>
+					<control type="button" id="99">
+						<description>Dummy</description>
+						<width>15</width>
+						<height>75</height>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label></label>
+						<enable>false</enable>
+						<animation effect="fade" end="0" time="0" condition="true">Conditional</animation>
+					</control>
+					
+					
+					
+					
+				</control>
+				
+				
+				
+				
+			</control>
+			
+			
+			
+			
+			
+		</control>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

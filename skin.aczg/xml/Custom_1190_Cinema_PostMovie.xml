@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1190">
+	
+	<defaultcontrol always="true">11901</defaultcontrol>
+	
+	<onunload condition="String.IsEqual(Skin.String(CinemaPostPlaybackDialogType),2)">ClearProperty(PlayerArtPosterTemp,home)</onunload>
+	<onunload condition="String.IsEqual(Skin.String(CinemaPostPlaybackDialogType),2)">ClearProperty(CinemaPostPlaybackDialogOpensNow,home)</onunload>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="button" id="11901">
+			
+			<include>BackgroundDimensions</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<texturenofocus></texturenofocus>
+			<texturefocus></texturefocus>
+			
+			<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_FS_HitRect_Dimensions</include>
+			<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_FS_HitRect_Dimensions</include>
+			
+			<hitrect x="0" y="0" w="1920" h="1080" />
+			<onclick>noop</onclick>
+		</control>
+		
+		<control type="group">
+			<control type="image">
+				
+				<include>BackgroundDimensions</include>
+				
+				<left>0</left>
+				<top>0</top>
+				
+				<texture>colors/black.png</texture>
+			</control>
+			<animation effect="fade" end="0" time="500" delay="0">WindowClose</animation>
+			<visible>String.IsEqual(Skin.String(CinemaPostPlaybackDialogType),2)</visible>
+		</control>
+		
+		<control type="group">
+			<control type="group">
+				<control type="image">
+					
+					<include>BackgroundDimensions</include>
+					
+					<left>0</left>
+					<top>0</top>
+					
+					<texture background="true">$VAR[CinemaPostPlaybackDialogImage]</texture>
+					
+					<include condition="String.IsEqual(Skin.String(CinemaPostPlaybackDialogBackgroundType),2)">CinemaPostPlaybackDialogBackgroundAnimationsVariant1</include>
+					<include condition="!String.IsEqual(Skin.String(CinemaPostPlaybackDialogBackgroundType),2)">CinemaPostPlaybackDialogBackgroundAnimationsVariant2</include>
+					
+				</control>
+			</control>
+			<animation effect="fade" start="0" end="100" time="10000" delay="15000">WindowOpen</animation>
+			<animation effect="fade" end="0" time="500" delay="0">WindowClose</animation>
+			<visible>String.IsEqual(Skin.String(CinemaPostPlaybackDialogType),2)</visible>
+		</control>
+		
+		<control type="group">
+			<control type="textbox" id="2000">
+				<left>323</left>
+				<top>0</top>
+				<width>1254</width>
+				<height>1050</height>
+				<font>LightUltraLarge</font>
+				<textcolor>grey</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$INFO[Skin.String(CinemaPostPlaybackDialogText)]</label>
+			</control>
+			
+			<include condition="![String.IsEqual(Skin.String(CinemaPostPlaybackDialogBackgroundType),0) | String.IsEmpty(Skin.String(CinemaPostPlaybackDialogBackgroundType))]">CinemaPostPlaybackDialogTextAnimationsVariant1</include>
+			<include condition="String.IsEqual(Skin.String(CinemaPostPlaybackDialogBackgroundType),0) | String.IsEmpty(Skin.String(CinemaPostPlaybackDialogBackgroundType))">CinemaPostPlaybackDialogTextAnimationsVariant2</include>
+			
+			<animation effect="fade" end="0" time="500" delay="0">WindowClose</animation>
+			<visible>Window.IsActive(1190) + String.IsEqual(Skin.String(CinemaPostPlaybackDialogType),2) + Skin.HasSetting(CinemaPostPlaybackDialogEnable) + !String.IsEmpty(Skin.String(CinemaPostPlaybackDialogText))</visible>
+		</control>
+		<control type="list" id="43260">
+			<left>0</left>
+			<top>0</top>
+			<width>1</width>
+			<height>1</height>
+			<itemlayout />
+			<focusedlayout />
+			<content>$VAR[CinemaPostPlaybackContentUrl]</content>
+		</control>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

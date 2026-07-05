@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">5</defaultcontrol>
+	<include>dialogeffect</include>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			
+			<centerleft>50%</centerleft>
+			<centertop>49%</centertop>
+			<width>1200</width>
+			<height>905</height>
+			
+			<animation effect="fade" start="100" end="80" time="0" condition="Window.IsVisible(Slideshow)">Conditional</animation>
+			
+			<control type="image">
+				<description>background image</description>
+				<left>-20</left>
+				<top>-20</top>
+				<width>1240</width>
+				<height>945</height>
+				<texture border="54">DialogBack-rounded.png</texture>
+			</control>
+			<control type="image">
+				<description>Dialog Header image</description>
+				<left>10</left>
+				<top>10</top>
+				<width>1180</width>
+				<height>65</height>
+				<texture border="28">dialogheader-rounded-24px.png</texture>
+			</control>
+			<control type="label">
+				<description>header label</description>
+				<left>60</left>
+				<top>18</top>
+				<width>1080</width>
+				<height>45</height>
+				<font>Light26</font>
+				<label>$LOCALIZE[13406]</label>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>white</textcolor>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1147</left>
+				<top>110</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>750</height>
+				<onup>noop</onup>
+				<onleft>5</onleft>
+				<onright>noop</onright>
+				<ondown>noop</ondown>
+				<showonepage>false</showonepage>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			<control type="list" id="5">
+				<animation effect="slide" start="0,0" end="15,0" time="0" condition="!Control.IsVisible(60)">Conditional</animation>
+				<left>45</left>
+				<top>110</top>
+				<width>1080</width>
+				<height>759</height>
+				<onup>noop</onup>
+				<onleft>noop</onleft>
+				<onright>60</onright>
+				<ondown>noop</ondown>
+				<pagecontrol>60</pagecontrol>
+				<scrolltime>200</scrolltime>
+				<itemlayout height="69">
+					<control type="label">
+						<left>15</left>
+						<top>0</top>
+						<width>750</width>
+						<height>60</height>
+						<font>Regular20</font>
+						<aligny>center</aligny>
+						<textcolor>white</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>left</align>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<left>90</left>
+						<top>0</top>
+						<width>975</width>
+						<height>60</height>
+						<font>Regular20</font>
+						<aligny>center</aligny>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>right</align>
+						<info>ListItem.Label2</info>
+					</control>
+				</itemlayout>
+				<focusedlayout height="69">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>1080</width>
+						<height>60</height>
+						<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+						<visible>Control.HasFocus(5)</visible>
+					</control>
+					<control type="label">
+						<left>15</left>
+						<top>0</top>
+						<width>750</width>
+						<height>60</height>
+						<font>Regular20</font>
+						<aligny>center</aligny>
+						<textcolor>white</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>left</align>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<left>90</left>
+						<top>0</top>
+						<width>975</width>
+						<height>60</height>
+						<font>Regular20</font>
+						<aligny>center</aligny>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>right</align>
+						<info>ListItem.Label2</info>
+					</control>
+				</focusedlayout>
+			</control>
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="buttonMenu">
+	<defaultcontrol always="true">9001</defaultcontrol>
+	<include>dialogeffect</include>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="button" id="9001">
+			<include>HiddenObject</include>
+			
+			<description>Make sure we hit the first button in the grouplist</description>
+			
+			<onleft>2</onleft>
+			<onright>2</onright>
+			<onup>2</onup>
+			<ondown>2</ondown>
+			
+			<onfocus>down</onfocus>
+			
+		</control>
+		
+		
+		<include>BehindDialogBlackBackground</include>
+		
+		
+		<control type="grouplist" id="9000">
+			<itemgap>5</itemgap>
+			<align>center</align>
+			
+			<left>705</left>
+			<top>0</top>
+			
+			<width>510</width>
+			<height>1080</height>
+			
+			<onleft>noop</onleft>
+			<onright>noop</onright>
+			<onup>noop</onup>
+			<ondown>noop</ondown>
+			
+			<control type="group" id="1">
+				<width>510</width>
+				<height>99</height>
+				<control type="image">
+					<description>Power Icon</description>
+					<left>222</left>
+					<top>9</top>
+					<width>66</width>
+					<height>66</height>
+					<aspectratio>keep</aspectratio>
+					<texture colordiffuse="21ffffff">icon_power_uhd.png</texture>
+				</control>
+			</control>
+			
+			<control type="button" id="2"><include>ShutDownButtonsFocusStyle</include>
+				<description>Exit button</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick condition="!Skin.HasSetting(ShutdownScreenDisabled)">SetProperty(CZ.ShutdownScreenActiveText,$LOCALIZE[13012],home)</onclick>
+				
+				<onclick condition="System.HasAddon(service.libreelec.settings) | System.HasAddon(service.coreelec.settings)">RunScript("special://skin/xml/py/exit_kodi_helper.py")</onclick>
+				
+				<onclick condition="![System.HasAddon(service.libreelec.settings) | System.HasAddon(service.coreelec.settings)]">Quit()</onclick>
+				
+				<font>Regular22</font>
+				<label>$LOCALIZE[13012]</label>
+				<visible>!Skin.HasSetting(ShutdownHideExit)</visible>
+			</control>
+			
+			<control type="button" id="3"><include>ShutDownButtonsFocusStyle</include>
+				<description>Shutdown button</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick condition="!Skin.HasSetting(ShutdownScreenDisabled)">SetProperty(CZ.ShutdownScreenActiveText,$LOCALIZE[13016],home)</onclick>
+				
+				<onclick>Powerdown()</onclick>
+				
+				<visible>!Skin.HasSetting(ShutdownHideShutdown) + System.CanPowerDown</visible>
+				
+				<font>Regular22</font>
+				<label>$LOCALIZE[13016]</label>
+			</control>
+			
+			<control type="button" id="4"><include>ShutDownButtonsFocusStyle</include>
+				<description>Custom Shutdown Timer</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick>AlarmClock(shutdowntimer,Shutdown())</onclick>
+				
+				<font>Regular22</font>
+				<label>20150</label>
+				<visible>!System.HasAlarm(shutdowntimer)</visible>
+				<visible>Skin.HasSetting(ShutdownShowShutdownTimer) + [System.CanPowerDown | System.CanSuspend | System.CanHibernate]</visible>
+			</control>
+			
+			<control type="button" id="5"><include>ShutDownButtonsFocusStyle</include>
+				<description>Cancel Shutdown Timer</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>selected</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick>CancelAlarm(shutdowntimer)</onclick>
+				
+				<font>Regular22</font>
+				<label>20151</label>
+				<visible>System.HasAlarm(shutdowntimer)</visible>
+			</control>
+			
+			<control type="button" id="6"><include>ShutDownButtonsFocusStyle</include>
+				<description>Suspend button</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick>Suspend()</onclick>
+				
+				<visible>!Skin.HasSetting(ShutdownHideSuspend) + System.CanSuspend</visible>
+				
+				<font>Regular22</font>
+				<label>$LOCALIZE[13011]</label>
+			</control>
+			
+			<control type="button" id="7"><include>ShutDownButtonsFocusStyle</include>
+				<description>Hibernate button</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick>Hibernate()</onclick>
+				
+				<visible>Skin.HasSetting(ShutdownShowHibernate) + System.CanHibernate</visible>
+				
+				<font>Regular22</font>
+				<label>$LOCALIZE[13010]</label>
+			</control>
+			
+			<control type="button" id="8"><include>ShutDownButtonsFocusStyle</include>
+				<description>Reboot button</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick condition="!Skin.HasSetting(ShutdownScreenDisabled)">SetProperty(CZ.ShutdownScreenActiveText,$LOCALIZE[13013],home)</onclick>
+				
+				<onclick>Reset()</onclick>
+				
+				<visible>!Skin.HasSetting(ShutdownHideReboot) + System.CanReboot</visible>
+				
+				<font>Regular22</font>
+				<label>$LOCALIZE[13013]</label>
+			</control>
+			
+			<control type="button" id="14"><include>ShutDownButtonsFocusStyle</include>
+				<description>Reboot button</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick condition="!Skin.HasSetting(ShutdownScreenDisabled)">SetProperty(CZ.ShutdownScreenActiveText,$LOCALIZE[13013],home)</onclick>
+				
+				<onclick>System.ExecWait("/usr/sbin/rebootfromnand")</onclick>
+				<onclick>Reset()</onclick>
+				<visible>System.HasAddon(service.coreelec.settings) + !Skin.HasSetting(ShutdownHideRebootNand) + System.CanReboot</visible>
+				
+				<font>Regular22</font>
+				<label>$LOCALIZE[13013] eMMC/NAND</label>
+			</control>
+			
+			<control type="button" id="16"><include>ShutDownButtonsFocusStyle</include>
+				<description>Restart Kodi button</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick condition="!Skin.HasSetting(ShutdownScreenDisabled)">SetProperty(CZ.ShutdownScreenActiveText,$LOCALIZE[13013],home)</onclick>
+				
+				<onclick>RestartApp()</onclick>
+				
+				<visible>System.Platform.Linux + [System.Platform.Android | System.HasAddon(service.coreelec.settings)] + Skin.HasSetting(ShutdownShowRestartApp)</visible>
+				
+				<font>Regular22</font>
+				<label>Kodi $LOCALIZE[13313]</label>
+			</control>
+			
+			<control type="button" id="9"><include>ShutDownButtonsFocusStyle</include>
+				<description>Logoff button</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick>Dialog.Close(all,true)</onclick>
+				
+				<onclick condition="!Skin.HasSetting(ShutdownScreenDisabled)">SetProperty(CZ.ShutdownScreenActiveText,$LOCALIZE[20126],home)</onclick>
+				
+				<!-- workaround for missing shutdown screen when using System.LogOff -->
+				<onclick condition="!Skin.HasSetting(ShutdownScreenDisabled)">AlarmClock(DialogButtonMenuAlarmTemp,System.LogOff,00:00:01,silent)</onclick>
+				<onclick condition="Skin.HasSetting(ShutdownScreenDisabled)">System.LogOff</onclick>
+				
+				<font>Regular22</font>
+				<label>$LOCALIZE[20126][LIGHT]   $INFO[System.ProfileName][/LIGHT]</label>
+				<visible>System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1) | String.IsEqual(Skin.String(ActiveProfilePictureType),0)</visible>
+				<visible>System.Loggedon</visible>
+			</control>
+			
+			<control type="group" id="15">
+				<width>510</width>
+				<height>100</height>
+				
+				<control type="image">
+					<left>222</left>
+					<top>23</top>
+					<width>66</width>
+					<height>66</height>
+					<texture diffuse="colors/diffuse/66x66.png">$VAR[ActiveProfileIcon]</texture>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+				</control>
+				<control type="label">
+					<left>222</left>
+					<top>23</top>
+					<width>66</width>
+					<height>63</height>
+					<label>[UPPERCASE]$INFO[Window(Home).Property(CinemaHelper.ProfileNameInitial)][/UPPERCASE]</label>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>Regular31</font>
+					<visible>!String.IsEmpty(Window(Home).Property(CinemaHelper.ProfileNameInitial)) + String.IsEqual(System.ProfileThumb,DefaultUser.png)</visible>
+					<include>VisibleFadeEffect</include>
+				</control>
+				<visible>System.Loggedon</visible>
+				
+				<visible>String.IsEqual(Skin.String(ActiveProfilePictureType),0) | 
+							[ [String.IsEqual(Skin.String(ActiveProfilePictureType),1) | String.IsEqual(Skin.String(ActiveProfilePictureType),2)] + [System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)] ]
+							</visible>
+			</control>
+			
+			<control type="group" id="11">
+				<width>510</width>
+				<height>100</height>
+				<visible>System.HasAlarm(shutdowntimer)</visible>
+				<control type="textbox">
+					<left>0</left>
+					<top>33</top>
+					<width>510</width>
+					<height>72</height>
+					<font>Light20</font>
+					<textcolor>blue</textcolor>
+					<align>center</align>
+					<label>$INFO[System.Alarmpos]</label>
+				</control>
+			</control>
+			
+			<control type="button" id="10"><include>ShutDownButtonsFocusStyle</include>
+				<description>Master mode button</description>
+				<width>510</width>
+				<height>75</height>
+				<label>$VAR[masterModeLabel]</label>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>grey3</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick>mastermode</onclick>
+				
+				<font>Regular22</font>
+				<visible>System.HasLocks</visible>
+			</control>
+			
+			<control type="button" id="12"><include>ShutDownButtonsFocusStyle</include>
+				<description>Inhibit idle shutdown</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>grey3</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick>InhibitIdleShutdown(true)</onclick>
+				
+				<font>Regular22</font>
+				<label>13017</label>
+				<visible>System.HasShutdown +!System.IsInhibit</visible>
+			</control>
+			<control type="button" id="13"><include>ShutDownButtonsFocusStyle</include>
+				<description>Allow idle shutdown</description>
+				<width>510</width>
+				<height>75</height>
+				<textcolor>grey3</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<align>center</align>
+				<texturefocus border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border24.png</texturefocus>
+				<texturenofocus />
+				
+				<onclick>InhibitIdleShutdown(false)</onclick>
+				
+				<font>Regular22</font>
+				<label>13018</label>
+				<visible>System.HasShutdown + System.IsInhibit</visible>
+			</control>
+			
+		</control>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

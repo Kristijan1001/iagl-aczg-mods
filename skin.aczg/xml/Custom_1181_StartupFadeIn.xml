@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1181">
+	<zorder>2</zorder>
+	
+	<animation effect="fade" start="100" end="0" tween="quadratic" easing="in" time="5000">WindowClose</animation>
+	
+	<visible>Window.IsVisible(1180)</visible>
+	
+	
+	<onload condition="String.IsEmpty(Skin.String(StartScreenDelay))">AlarmClock(CZ.StartupScreenAlarm1,SetProperty(CZ.StartupScreenDone,True,home),00:00:01,silent)</onload>
+	<onload condition="String.IsEqual(Skin.String(StartScreenDelay),1)">AlarmClock(CZ.StartupScreenAlarm1,SetProperty(CZ.StartupScreenDone,True,home),00:00:02,silent)</onload>
+	<onload condition="String.IsEqual(Skin.String(StartScreenDelay),2)">AlarmClock(CZ.StartupScreenAlarm1,SetProperty(CZ.StartupScreenDone,True,home),00:00:03,silent)</onload>
+	<onload condition="String.IsEqual(Skin.String(StartScreenDelay),3)">AlarmClock(CZ.StartupScreenAlarm1,SetProperty(CZ.StartupScreenDone,True,home),00:00:04,silent)</onload>
+	<onload condition="String.IsEqual(Skin.String(StartScreenDelay),4)">AlarmClock(CZ.StartupScreenAlarm1,SetProperty(CZ.StartupScreenDone,True,home),00:00:07,silent)</onload>
+	<onload condition="String.IsEqual(Skin.String(StartScreenDelay),5)">AlarmClock(CZ.StartupScreenAlarm1,SetProperty(CZ.StartupScreenDone,True,home),00:00:10,silent)</onload>
+	
+	<onunload>AlarmClock(CZ.StartupScreenAlarm2,SetProperty(CZ.StartupScreenDoneDelayed,True,home),00:00:25,silent)</onunload>
+	
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		<control type="image">
+			<include>BackgroundDimensions</include>
+			<texture>colors/black.png</texture>
+		</control>
+		
+		<control type="image">
+			<animation effect="fade" start="100" end="0" time="250">WindowClose</animation>
+			
+			<centerleft>50%</centerleft>
+			<centertop>50%</centertop>
+			
+			<width>108</width>
+			<height>108</height>
+			<texture colordiffuse="$VAR[uiColorVariantKodiLogoColor]">_added_img/kodi-logo-large$VAR[isUhdScreenStringSuffix].png</texture>
+			<aspectratio>keep</aspectratio>
+		</control>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">900</defaultcontrol>
+	
+	<onload condition="Control.IsEnabled(9)">SetFocus(9)</onload>
+	<onload condition="!Control.IsEnabled(9) + Control.IsVisible(8)">SetFocus(8)</onload>
+	
+	<onload condition="!Control.IsEnabled(9) + !Control.IsVisible(8)">SetFocus(14)</onload>
+	
+	<onload condition="!Control.IsEnabled(9) + !Control.IsVisible(8)">SetFocus(900)</onload>
+	
+	<onload condition="!Control.IsEnabled(9) + !Control.IsVisible(8)">SetProperty(set_focus_now,900,home)</onload>
+	
+	<onload>ClearProperty(dialogaddoninfo_art_blurred,home)</onload>
+	<onload>ClearProperty(dialogaddoninfo_art_color,home)</onload>
+	<onload>ClearProperty(dialogaddoninfo_art_color_noalpha,home)</onload>
+	<onunload>ClearProperty(dialogaddoninfo_art_blurred,home)</onunload>
+	<onunload>ClearProperty(dialogaddoninfo_art_color,home)</onunload>
+	<onunload>ClearProperty(dialogaddoninfo_art_color_noalpha,home)</onunload>
+	
+	
+	
+	<onload condition="!String.IsEqual(ListItem.AddonName,YouTube) + !String.IsEmpty(ListItem.Icon) + System.HasAddon(service.listitem.helper)">RunScript(service.listitem.helper,action=blurimg,file='"$INFO[ListItem.Icon]"',prop=dialogaddoninfo_art,radius=30)</onload>
+	<!--
+	YouTube icon blur fix
+	Edge case: on some Linux or Amlogic builds (tbc), the original YouTube add-on PNG-8 icon causes a glitched blur image. Fixed by converting to PNG-24
+	-->
+	<onload condition="String.IsEqual(ListItem.AddonName,YouTube) + System.HasAddon(service.listitem.helper)">RunScript(service.listitem.helper,action=blurimg,file='"special://skin/media/blur/yt_icon.png"',prop=dialogaddoninfo_art,radius=30)</onload>
+	
+	
+	
+	<onunload>ClearProperty(set_focus_now,home)</onunload>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="label" id="234237">
+			<label>$INFO[Window(Home).Property(dialogaddoninfo_art_blurred)]</label>
+			<visible>false</visible>
+		</control>
+		
+		
+		
+		<control type="group">
+			<animation effect="fade" start="0" end="100" time="1000">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="600">WindowClose</animation>
+
+			<control type="image">
+				<include>BackgroundDimensions</include>
+				<texture>colors/black.png</texture>
+			</control>
+			<control type="image">
+				
+				<include>BackgroundDimensions</include>
+				
+				<aspectratio align="center" aligny="center">stretch</aspectratio>
+				<texture>$INFO[Window(Home).Property(dialogaddoninfo_art_blurred)]</texture>
+				<include>backgroundfade</include>
+				<fadetime>FanartCrossfadeTime</fadetime>
+				<visible>System.HasAddon(service.listitem.helper) + !String.IsEmpty(Control.GetLabel(234237))</visible>
+			</control>
+			<control type="image">
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_AddonInfo_LeftHalf_Plus_330px_MoveLeft_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<width>960</width>
+				<height>1080</height>
+				<aspectratio align="center" aligny="center">stretch</aspectratio>
+				<texture>special://home/addons/resource.images.aczg/resources/backgrounds/mood_background_default2.png</texture>
+				<animation effect="fade" end="65" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="image">
+				<left>960</left>
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_AddonInfo_RightHalf_Plus_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<width>960</width>
+				<height>1080</height>
+				<aspectratio align="center" aligny="center">stretch</aspectratio>
+				<texture>special://home/addons/resource.images.aczg/resources/backgrounds/mood_background_default2.png</texture>
+				<animation effect="fade" end="65" time="0" condition="true">Conditional</animation>
+			</control>
+			
+			
+			
+		</control>
+		
+		
+		
+		<control type="group">
+			<left>226</left>
+			<top>-44</top>
+			<include>dialogeffect</include>
+			
+			<control type="image">
+				<left>45</left>
+				<top>105</top>
+				<width>330</width>
+				<height>330</height>
+				<aspectratio>keep</aspectratio>
+				<texture diffuse="colors/diffuse/330x330-rounded.png">$INFO[ListItem.Icon]</texture>
+			</control>
+			<control type="image">
+				<left>321</left>
+				<top>381</top>
+				<width>43</width>
+				<height>43</height>
+				<aspectratio>scale</aspectratio>
+				<texture>DefaultAddonsUpdates-flag.png</texture>
+				<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[24068])</visible>
+				<include>VisibleFadeEffect</include>
+			</control>
+			<control type="label">
+				<description>Addon Title value</description>
+				<left>452</left>
+				<top>125</top>
+				<width>885</width>
+				<height>48</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>Regular_Wider+_29</font>
+				<label>$INFO[ListItem.AddonName]</label>
+				<textcolor>white</textcolor>
+				<scroll>false</scroll>
+			</control>
+			
+			<control type="image">
+				<left>420</left>
+				<top>105</top>
+				<width>1000</width>
+				<height>330</height>
+				<texture colordiffuse="27111111" border="34">colors/white_border34.png</texture>
+			</control>
+			
+			<control type="image">
+				<left>420</left>
+				<top>996</top>
+				<width>1000</width>
+				<height>90</height>
+				<texture colordiffuse="cc111111" border="24">colors/white_border24.png</texture>
+				<visible>Control.IsVisible(242424)</visible>
+			</control>
+			
+			<control type="group">
+				<left>405</left>
+				<top>177</top>
+				
+				<control type="group">
+					<top>13</top>
+					<left>35</left>
+					<control type="label">
+						<description>Type txt</description>
+						<left>17</left>
+						<top>0</top>
+						<width>208</width>
+						<height>38</height>
+						<label>$LOCALIZE[21870]/$LOCALIZE[146]</label>
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>Light20</font>
+						<textcolor>grey</textcolor>
+					</control>
+					
+					<control type="image">
+						<left>240</left>
+						<top>1</top>
+						<width>40</width>
+						<height>40</height>
+						<texture>addon-flag-manual.png</texture>
+						<visible>String.IsEqual(ListItem.AddonOrigin,$LOCALIZE[25014])</visible>
+					</control>
+					
+					<control type="label">
+						
+						<visible>String.IsEqual(ListItem.AddonOrigin,$LOCALIZE[25014])</visible>
+						<animation effect="slide" start="0,0" end="47,0" time="0" condition="String.IsEqual(ListItem.AddonOrigin,$LOCALIZE[25014])">Conditional</animation>
+						
+						<description>Type Value</description>
+						<left>240</left>
+						<top>0</top>
+						<width>653</width>
+						<height>38</height>
+						<label fallback="-">$INFO[ListItem.AddonOrigin,,  ·  ]$INFO[ListItem.AddonType]</label>
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>Light20</font>
+						<scroll>false</scroll>
+						<textcolor>white2</textcolor>
+					</control>
+					<control type="label">
+						
+						<visible>!String.IsEqual(ListItem.AddonOrigin,$LOCALIZE[25014])</visible>
+						
+						<description>Type Value</description>
+						<left>240</left>
+						<top>0</top>
+						<width>700</width>
+						<height>38</height>
+						<label fallback="-">$INFO[ListItem.AddonOrigin,,  ·  ]$INFO[ListItem.AddonType]</label>
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>Light20</font>
+						<scroll>false</scroll>
+						<textcolor>white2</textcolor>
+					</control>
+					
+					<control type="label">
+						<description>Author txt</description>
+						<left>17</left>
+						<top>45</top>
+						<width>208</width>
+						<height>38</height>
+						<label>$LOCALIZE[21863]:</label>
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>Light20</font>
+						<textcolor>grey</textcolor>
+					</control>
+					<control type="label">
+						<description>Author Value</description>
+						<left>240</left>
+						<top>45</top>
+						<width>700</width>
+						<height>38</height>
+						<label fallback="-">$INFO[ListItem.AddonCreator]</label>
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>Light20</font>
+						<scroll>false</scroll>
+						<textcolor>white2</textcolor>
+					</control>
+					<control type="label">
+						<description>Version txt</description>
+						<left>17</left>
+						<top>90</top>
+						<width>208</width>
+						<height>38</height>
+						<label>$LOCALIZE[24051]</label>
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>Light20</font>
+						<textcolor>grey</textcolor>
+					</control>
+					<control type="label">
+						<description>Version Value</description>
+						<left>240</left>
+						<top>90</top>
+						<width>700</width>
+						<height>38</height>
+						<label fallback="-">$INFO[ListItem.AddonVersion]$VAR[AddonVersionUpdateAvailable]</label>
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>Light20</font>
+						<scroll>false</scroll>
+						<textcolor>white2</textcolor>
+					</control>
+					<control type="label">
+						<description>Summary txt</description>
+						<left>17</left>
+						<top>135</top>
+						<width>208</width>
+						<height>38</height>
+						<label>$LOCALIZE[20037]:</label>
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>Light20</font>
+						<textcolor>grey</textcolor>
+					</control>
+					<control type="label">
+						<description>Summary Value</description>
+						<left>240</left>
+						<top>135</top>
+						<width>700</width>
+						<height>38</height>
+						<label fallback="-">$INFO[ListItem.AddonSummary]</label>
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>Light20</font>
+						<scroll>false</scroll>
+						<textcolor>white2</textcolor>
+					</control>
+					
+					
+					
+					<control type="group">
+						<visible>!String.IsEmpty(ListItem.AddonSize)</visible>
+						<control type="label">
+							<description>Size txt</description>
+							<left>17</left>
+							<top>180</top>
+							<width>208</width>
+							<height>38</height>
+							<label>$LOCALIZE[22031]:</label>
+							<align>left</align>
+							<aligny>center</aligny>
+							<font>Light20</font>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<description>Size Value</description>
+							<left>240</left>
+							<top>180</top>
+							<width>700</width>
+							<height>38</height>
+							<label fallback="-">$INFO[ListItem.AddonSize]</label>
+							<align>left</align>
+							<aligny>center</aligny>
+							<font>Light20</font>
+							<scroll>false</scroll>
+							<textcolor>white2</textcolor>
+						</control>
+					</control>
+					
+					<control type="group">
+						<visible>String.IsEmpty(ListItem.AddonSize)</visible>
+						<control type="label">
+							<description>Size txt</description>
+							<left>17</left>
+							<top>180</top>
+							<width>208</width>
+							<height>38</height>
+							<label>Internal ID:</label>
+							<align>left</align>
+							<aligny>center</aligny>
+							<font>Light20</font>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<description>Size Value</description>
+							<left>240</left>
+							<top>180</top>
+							<width>700</width>
+							<height>38</height>
+							<label fallback="-">$INFO[ListItem.Property(Addon.ID)]</label>
+							<align>left</align>
+							<aligny>center</aligny>
+							<font>Light20</font>
+							<scroll>false</scroll>
+							<textcolor>white2</textcolor>
+						</control>
+					</control>
+					
+					
+					
+				</control>
+				
+				
+				
+				
+				
+				
+				<!-- Broken or Orphaned info -->
+				<control type="group" id="242424">
+					<visible>!String.IsEmpty(ListItem.AddonBroken) | !String.IsEmpty(ListItem.AddonLifecycleDesc) | String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[24995])</visible>
+					<left>0</left>
+					<top>810</top>
+					<control type="image">
+						<left>43</left>
+						<top>29</top>
+						<width>50</width>
+						<height>50</height>
+						<texture>$VAR[DialogAddonInfoTopMessageIcon]</texture>
+					</control>
+					<!-- line 1/2 -->
+					<control type="label">
+						<left>106</left>
+						<top>19</top>
+						<width>888</width>
+						<font>Light18</font>
+						<label>$VAR[DialogAddonInfoTopMessageText1]</label>
+						<textcolor>selected</textcolor>
+						<visible>!String.IsEmpty(ListItem.AddonBroken) | !String.IsEmpty(ListItem.AddonLifecycleDesc)</visible>
+					</control>
+					<!-- line 2/2 -->
+					<control type="label">
+						<left>106</left>
+						<top>50</top>
+						<width>888</width>
+						<font>Light18</font>
+						<label>$VAR[DialogAddonInfoTopMessageText2]</label>
+						<textcolor>selected</textcolor>
+						<visible>!String.IsEmpty(ListItem.AddonBroken) | !String.IsEmpty(ListItem.AddonLifecycleDesc)</visible>
+					</control>
+					<!-- 1 line only (valigned) -->
+					<control type="label">
+						<left>106</left>
+						<top>34</top>
+						<width>888</width>
+						<font>Light18</font>
+						<label>$VAR[DialogAddonInfoTopMessageText1]</label>
+						<textcolor>grey2</textcolor>
+						<visible>String.IsEqual(ListItem.Property(Addon.Status),$LOCALIZE[24995])</visible>
+					</control>
+				</control>
+				
+				
+				
+				
+				
+				
+				<control type="group">
+					<top>48</top>
+					
+					<control type="textbox" id="401">
+						<description>Description</description>
+						<left>16</left>
+						<top>249</top>
+						<width>960</width>
+						<height>528</height>
+						<font>Light19+</font>
+						<align>left</align>
+						<textcolor>white</textcolor>
+						<label>$VAR[AddonInfoDescription]</label>
+						<pagecontrol>60</pagecontrol>
+						<visible>!Control.IsVisible(242424)</visible>
+					</control>
+					
+					<control type="textbox" id="402">
+						<description>Description</description>
+						<left>16</left>
+						<top>249</top>
+						<width>960</width>
+						<height>493</height>
+						<font>Light19+</font>
+						<align>left</align>
+						<textcolor>white</textcolor>
+						<label>$VAR[AddonInfoDescription]</label>
+						<pagecontrol>61</pagecontrol>
+						<visible>Control.IsVisible(242424)</visible>
+					</control>
+					
+					<control type="scrollbar" id="60">
+						<left>1006</left>
+						<top>258</top>
+						<include>scrollBarStyleDefaultWidth</include>
+						<height>522</height>
+						<onleft>900</onleft>
+						<onright>noop</onright>
+						<showonepage>false</showonepage>
+						<include>scrollBarStyleDefault</include>
+						<visible>!Control.IsVisible(242424)</visible>
+						<animation effect="fade" start="100" end="0" time="0" condition="!Integer.IsGreater(Container(401).NumPages,1)">Conditional</animation>
+					</control>
+					
+					<control type="scrollbar" id="61">
+						<left>1006</left>
+						<top>258</top>
+						<include>scrollBarStyleDefaultWidth</include>
+						<height>484</height>
+						<onleft>900</onleft>
+						<onright>noop</onright>
+						<showonepage>false</showonepage>
+						<include>scrollBarStyleDefault</include>
+						<visible>Control.IsVisible(242424)</visible>
+						<animation effect="fade" start="100" end="0" time="0" condition="!Integer.IsGreater(Container(402).NumPages,1)">Conditional</animation>
+					</control>
+					
+				</control>
+			</control>
+			
+			
+			
+			
+			
+			
+			<control type="grouplist" id="900">
+				<left>45</left>
+				<top>480</top>
+				<width>330</width>
+				<onleft>noop</onleft>
+				<onright condition="Control.IsVisible(60)">60</onright>
+				<onright condition="Control.IsVisible(61)">61</onright>
+				<onup>noop</onup>
+				<ondown>noop</ondown>
+				<itemgap>3</itemgap>
+				
+				
+				
+				<control type="button" id="9"><include>AddonInfo_Button_Style</include>
+					<description>Configure Addon</description>
+					<label>24020</label>
+				</control>
+				
+				<control type="button" id="8"><include>AddonInfo_Button_Style</include>
+					<description>Update Addon button</description>
+					<label>$VAR[AddonUpdateButtonLabel]</label>
+				</control>
+				
+				<!-- Kodi 19+ versions button -->
+				<control type="button" id="14"><include>AddonInfo_Button_Style</include>
+					<description>Versions button</description>
+					<label>19114</label>
+				</control>
+				
+				<control type="radiobutton" id="13"><include>AddonInfo_Button_Style</include><include>AddonInfo_Button_Style_Radio</include>
+					<description>Auto-update button</description>
+					<label>21340</label>
+				</control>
+				
+				<control type="button" id="12"><include>AddonInfo_Button_Style</include>
+					<description>Launch Addon button</description>
+					<label>518</label>
+				</control>
+				
+				<control type="button" id="11"><include>AddonInfo_Button_Style</include>
+					<description>Changelog button</description>
+					<label>24036</label>
+					
+					<onclick condition="!String.IsEmpty(ListItem.AddonNews)">SetProperty(TextViewer_Header,$ESCINFO[ListItem.AddonName,, – $LOCALIZE[24036]],home)</onclick>
+					<onclick condition="!String.IsEmpty(ListItem.AddonNews)">SetProperty(TextViewer_Text_Pre,,home)</onclick>
+					<onclick condition="!String.IsEmpty(ListItem.AddonNews)">SetProperty(TextViewer_Text,$ESCINFO[ListItem.AddonNews],home)</onclick>
+					
+					<!-- Confluence ZEITGEIST Special Changelog Dialog -->
+					<onclick condition="!String.IsEmpty(ListItem.AddonNews) + 
+							[ String.Contains(ListItem.AddonCreator,axbmcuser) + [String.StartsWith(ListItem.AddonName,Confluence ZEITGEIST) | String.StartsWith(ListItem.AddonName,Cinema Helper) | String.StartsWith(ListItem.AddonName,ListItem Helper) | String.StartsWith(ListItem.AddonName,Library Data Provider Lite)] ]">ActivateWindow(1186)</onclick>
+					<!-- Standard Changelog Dialog -->
+					<onclick condition="!String.IsEmpty(ListItem.AddonNews) + 
+							![ String.Contains(ListItem.AddonCreator,axbmcuser) + [String.StartsWith(ListItem.AddonName,Confluence ZEITGEIST) | String.StartsWith(ListItem.AddonName,Cinema Helper) | String.StartsWith(ListItem.AddonName,ListItem Helper) | String.StartsWith(ListItem.AddonName,Library Data Provider Lite)] ]">ActivateWindow(1102)</onclick>
+					
+					<enable>!String.IsEmpty(ListItem.AddonNews)</enable>
+					
+				</control>
+				
+				
+				<!-- Kodi 18+ dependencies button -->
+				<control type="button" id="10"><include>AddonInfo_Button_Style</include>
+					<description>Dependencies button</description>
+					<label>39024</label>
+				</control>
+				
+				
+				<control type="button" id="6"><include>AddonInfo_Button_Style</include>
+					<description>Install/UnInstall Addon button</description>
+					<label></label>
+				</control>
+				
+				<!-- recreated "enable/disable add-on" button with static label which is not set by Kodi -->
+				<control type="radiobutton" id="77"><include>AddonInfo_Button_Style</include><include>AddonInfo_Button_Style_Radio</include>
+					<description>Enable/Disable Addon button</description>
+					
+					<label>$LOCALIZE[24022]</label>
+					
+					<selected>String.StartsWith(Control.GetLabel(7),$LOCALIZE[24021])</selected>
+					<enable>Control.IsEnabled(7)</enable>
+					
+					<onclick>SendClick(7)</onclick>
+					
+				</control>
+				
+				
+				
+			</control>
+			
+			
+			
+			<!-- hide real "enable/disable add-on" button while keeping its function -->
+			<control type="button" id="7">
+				<description>Enable/Disable Addon button</description>
+				<label></label>
+				
+				<visible>false</visible>
+				
+			</control>
+			
+			
+			
+		</control>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

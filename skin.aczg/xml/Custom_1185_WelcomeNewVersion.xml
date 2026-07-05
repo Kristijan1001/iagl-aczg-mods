@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1185">
+	
+	<visible>!String.IsEmpty(System.AddonVersion(skin.aczg)) + !String.IsEqual(Skin.String(WelcomeNewVersion),System.AddonVersion(skin.aczg)) + !Window.IsVisible(StartUp) + !Window.IsVisible(LoginScreen) + !Window.IsVisible(1180) + !Window.IsVisible(1181) + !Window.IsVisible(1182) + !Window.IsVisible(YesNodialog) + !Window.IsVisible(1112) + !Window.IsVisible(1111) + !Window.IsVisible(Notification)</visible>
+	
+	<onload>CancelAlarm(WelcomeNewVersion,silent)</onload>
+	
+	<onload>RunScript("special://skin/xml/py/new_version_info_timeout.py")</onload>
+	<onload>RunScript("special://skin/xml/py/new_version_info.py")</onload>
+	
+	
+	
+	
+	<!--
+	Hotfix 2026-02-27
+	change default background to new default (once)
+	-->
+	<onload condition="!Skin.HasSetting(ListItemHelperHotfixDone20260227) + String.IsEqual(Skin.String(BackgroundType),8)">Skin.SetString(BackgroundType,10)</onload>
+	<onload condition="!Skin.HasSetting(ListItemHelperHotfixDone20260227)">Skin.SetBool(ListItemHelperHotfixDone20260227)</onload>
+	
+	
+	
+	<!--
+	Hotfix 2026-01-01
+	clear image cache (once)
+	-->
+	<onload condition="!Skin.HasSetting(ListItemHelperHotfixDone20260101)">RunScript("special://skin/xml/py/clear_image_cache_helper.py")</onload>
+	<onload condition="!Skin.HasSetting(ListItemHelperHotfixDone20260101)">Skin.SetBool(ListItemHelperHotfixDone20260101)</onload>
+	
+	
+	
+	<!--
+	Hotfix 2026-06-09
+	Cinemascope Mode: translate old to new setting (once)
+	-->
+	<onload condition="!Skin.HasSetting(Hotfix_2026_06_07) + String.IsEqual(Skin.String(CinemascopeMask),2.40:1)">Skin.SetString(CinemascopeMask,2.40)</onload>
+	<onload condition="!Skin.HasSetting(Hotfix_2026_06_07) + String.IsEqual(Skin.String(CinemascopeMask),2.39:1)">Skin.SetString(CinemascopeMask,2.39)</onload>
+	<onload condition="!Skin.HasSetting(Hotfix_2026_06_07) + String.IsEqual(Skin.String(CinemascopeMask),2.37:1)">Skin.SetString(CinemascopeMask,2.37)</onload>
+	<onload condition="!Skin.HasSetting(Hotfix_2026_06_07) + String.IsEqual(Skin.String(CinemascopeMask),2.35:1)">Skin.SetString(CinemascopeMask,2.35)</onload>
+	<onload condition="!Skin.HasSetting(Hotfix_2026_06_07) + String.IsEqual(Skin.String(CinemascopeMask),2.33:1)">Skin.SetString(CinemascopeMask,2.33)</onload>
+	<onload condition="!Skin.HasSetting(Hotfix_2026_06_07) + String.IsEqual(Skin.String(CinemascopeMask),2.20:1)">Skin.SetString(CinemascopeMask,2.20)</onload>
+	<onload condition="!Skin.HasSetting(Hotfix_2026_06_07) + String.IsEqual(Skin.String(CinemascopeMask),2.10:1)">Skin.SetString(CinemascopeMask,2.10)</onload>
+	<onload condition="!Skin.HasSetting(Hotfix_2026_06_07) + String.IsEqual(Skin.String(CinemascopeMask),2.00:1)">Skin.SetString(CinemascopeMask,2.00)</onload>
+	<onload condition="!Skin.HasSetting(Hotfix_2026_06_07) + String.StartsWith(Skin.String(CinemascopeMask),1.78:1)">Skin.SetString(CinemascopeMask,1.78 (Pseudo 16:9))</onload>
+	<onload condition="!Skin.HasSetting(Hotfix_2026_06_07)">Skin.SetBool(Hotfix_2026_06_07)</onload>
+	
+	
+	
+	<onload>Skin.SetString(WelcomeNewVersion,$INFO[System.AddonVersion(skin.aczg)])</onload>
+	<onload condition="String.IsEmpty(Skin.String(FirstKnownVersion)) + !String.IsEmpty(System.AddonVersion(skin.aczg))">Skin.SetString(FirstKnownVersion,$INFO[System.AddonVersion(skin.aczg)])</onload>
+	
+	
+	
+	<controls></controls>
+	
+</window>

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<menucontrol>7000</menucontrol>
+	<views>50</views>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<include>CommonBackground</include>
+		<include>ContentPanelBackgrounds</include>
+		
+		<control type="group">
+			<include>Window_OpenClose_Animation</include>
+			<control type="group">
+				<include>Window_OpenClose_Animation</include>
+				<control type="group">
+					<include>VisibleFadeEffect</include>
+				</control>
+			</control>
+		</control>
+		
+		<control type="group">
+			<include>Window_OpenClose_Animation</include>
+			<description>TV Search group</description>
+			<visible>Control.IsVisible(50)</visible>
+			<include>VisibleFadeEffect</include>
+			<control type="group">
+				<left>105</left>
+				<top>90</top>
+				<control type="label">
+					<description>Channel label</description>
+					<left>0</left>
+					<top>30</top>
+					<width>330</width>
+					<height>30</height>
+					<font>Light21</font>
+					<textcolor>blue</textcolor>
+					<aligny>center</aligny>
+					<label>19148</label>
+				</control>
+				<control type="label">
+					<description>Title header label</description>
+					<left>360</left>
+					<top>30</top>
+					<width>450</width>
+					<height>30</height>
+					<font>Light21</font>
+					<textcolor>blue</textcolor>
+					<aligny>center</aligny>
+					<label>369</label>
+				</control>
+				<control type="label">
+					<description>Time label</description>
+					<left>1125</left>
+					<top>30</top>
+					<width>450</width>
+					<height>30</height>
+					<font>Light21</font>
+					<textcolor>blue</textcolor>
+					<aligny>center</aligny>
+					<label>21820</label>
+				</control>
+				<control type="label">
+					<description>Status header label</description>
+					<left>1470</left>
+					<top>30</top>
+					<width>210</width>
+					<height>30</height>
+					<font>Light21</font>
+					<textcolor>blue</textcolor>
+					<aligny>center</aligny>
+					<label>126</label>
+				</control>
+				
+				<control type="list" id="50">
+					
+					<onback>ActivateWindow(Home)</onback>
+					
+					<left>0</left>
+					<top>83</top>
+					<width>1680</width>
+					<height>540</height>
+					<onup>50</onup>
+					<ondown>50</ondown>
+					<onleft>104</onleft>
+					<onright>77</onright>
+					<pagecontrol>77</pagecontrol>
+					<include>ScrollTimeOld</include>
+					
+					<itemlayout height="60">
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>1680</width>
+							<height>62</height>
+							<texture border="6">MenuItemNF.png</texture>
+						</control>
+						<control type="group">
+							<visible>String.IsEmpty(ListItem.Date)</visible>
+							<control type="label">
+								<left>75</left>
+								<top>0</top>
+								<width>975</width>
+								<height>60</height>
+								<font>Regular17</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<info>ListItem.Label</info>
+							</control>
+						</control>
+						<control type="group">
+							<visible>!String.IsEmpty(ListItem.Date)</visible>
+							<control type="image">
+								<left>10</left>
+								<top>8</top>
+								<width>46</width>
+								<height>46</height>
+								<texture fallback="DefaultPVRChannels.png">$INFO[ListItem.Icon]</texture>
+								<aspectratio>keep</aspectratio>
+								<visible>!String.IsEmpty(ListItem.Icon)</visible>
+							</control>
+							<control type="label">
+								<left>75</left>
+								<top>0</top>
+								<width>285</width>
+								<height>60</height>
+								<font>Regular17</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<info>ListItem.ChannelName</info>
+								<visible>!String.IsEmpty(ListItem.Icon)</visible>
+							</control>
+							<control type="label">
+								<left>0</left>
+								<top>0</top>
+								<width>285</width>
+								<height>60</height>
+								<font>Regular17</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<info>ListItem.ChannelName</info>
+								<visible>String.IsEmpty(ListItem.Icon)</visible>
+							</control>
+							<control type="label">
+								<left>360</left>
+								<top>0</top>
+								<width>750</width>
+								<height>60</height>
+								<font>Regular17</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<!--<label>$INFO[ListItem.Label]$INFO[ListItem.EpisodeName, (,)]</label>-->
+								<label>$INFO[ListItem.Label]</label>
+							</control>
+							<control type="label">
+								<left>1125</left>
+								<top>0</top>
+								<width>345</width>
+								<height>60</height>
+								<font>Regular17</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<info>ListItem.Date</info>
+							</control>
+							<control type="label">
+								<left>1515</left>
+								<top>0</top>
+								<width>120</width>
+								<height>60</height>
+								<font>Regular14</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<label>$VAR[PVRTimerLabel]</label>
+							</control>
+							<control type="image">
+								<left>1470</left>
+								<top>15</top>
+								<width>30</width>
+								<height>30</height>
+								<texture>$VAR[PVRTimerIcon]</texture>
+							</control>
+						</control>
+					</itemlayout>
+					
+					<focusedlayout height="60">
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>1680</width>
+							<height>62</height>
+							<texture border="6">MenuItemNF.png</texture>
+						</control>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>1680</width>
+							<height>62</height>
+							<texture border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texture>
+							<!--<visible>Control.HasFocus(50)</visible>-->
+							<include>VisibleFadeEffect</include>
+							<include>FocusAnimationType1</include>
+						</control>
+						<control type="group">
+							<visible>String.IsEmpty(ListItem.Date)</visible>
+							<control type="label">
+								<left>75</left>
+								<top>0</top>
+								<width>975</width>
+								<height>60</height>
+								<font>Regular17</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<info>ListItem.Label</info>
+							</control>
+						</control>
+						<control type="group">
+							<visible>!String.IsEmpty(ListItem.Date)</visible>
+							<control type="image">
+								<left>0</left>
+								<top>0</top>
+								<width>76</width>
+								<height>62</height>
+								<texture border="12" colordiffuse="FF000000">colors/white_border11l_-10r.png</texture>
+								<animation effect="fade" end="25" time="0" condition="true">Conditional</animation>
+								<include>VisibleFadeEffect</include>
+								<include>FocusAnimationType1</include>
+							</control>
+							<control type="image">
+								<left>10</left>
+								<top>8</top>
+								<width>46</width>
+								<height>46</height>
+								<texture fallback="DefaultPVRChannels.png">$INFO[ListItem.Icon]</texture>
+								<aspectratio>keep</aspectratio>
+								<visible>!String.IsEmpty(ListItem.Icon)</visible>
+							</control>
+							<control type="label">
+								<left>75</left>
+								<top>0</top>
+								<width>285</width>
+								<height>60</height>
+								<font>Regular17</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<info>ListItem.ChannelName</info>
+								<visible>!String.IsEmpty(ListItem.Icon)</visible>
+								<scroll>false</scroll>
+							</control>
+							<control type="label">
+								<left>0</left>
+								<top>0</top>
+								<width>285</width>
+								<height>60</height>
+								<font>Regular17</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<info>ListItem.ChannelName</info>
+								<visible>String.IsEmpty(ListItem.Icon)</visible>
+								<scroll>false</scroll>
+							</control>
+							<control type="label">
+								<left>360</left>
+								<top>0</top>
+								<width>750</width>
+								<height>60</height>
+								<font>Regular17</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<!--<label>$INFO[ListItem.Label]$INFO[ListItem.EpisodeName, (,)]</label>-->
+								<label>$INFO[ListItem.Label]</label>
+								<scroll>false</scroll>
+							</control>
+							<control type="label">
+								<left>1125</left>
+								<top>0</top>
+								<width>345</width>
+								<height>60</height>
+								<font>Regular17</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<info>ListItem.Date</info>
+							</control>
+							<control type="label">
+								<left>1515</left>
+								<top>0</top>
+								<width>120</width>
+								<height>60</height>
+								<font>Regular14</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<label>$VAR[PVRTimerLabel]</label>
+							</control>
+							<control type="image">
+								<left>1470</left>
+								<top>15</top>
+								<width>30</width>
+								<height>30</height>
+								<texture>$VAR[PVRTimerIcon]</texture>
+							</control>
+						</control>
+					</focusedlayout>
+					
+				</control>
+				
+				<control type="scrollbar" id="77">
+					<left>1698</left>
+					<top>84</top>
+					<include>scrollBarStyleDefaultWidth</include>
+					<height>540</height>
+					<onleft>50</onleft>
+					<onright>77</onright>
+					<showonepage>false</showonepage>
+					<include>scrollBarStyleDefault</include>
+				</control>
+				
+				<control type="group">
+					<visible>ListItem.HasEPG</visible>
+					<include>VisibleFadeEffect</include>
+					<left>0</left>
+					<top>660</top>
+					<control type="image">
+						<left>93</left>
+						<top>9</top>
+						<width>195</width>
+						<height>195</height>
+						<texture background="true" fallback="DefaultPVRChannels.png">$INFO[ListItem.Icon]</texture>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+						<visible>!String.IsEqual(ListItem.Icon,DefaultFile.png) + !String.IsEqual(ListItem.Label,$LOCALIZE[19140])</visible>
+					</control>
+					<control type="label">
+						<left>420</left>
+						<top>0</top>
+						<width>1200</width>
+						<height>30</height>
+						<label>$INFO[ListItem.EpgEventTitle]</label>
+						<font>Regular20</font>
+						<textcolor>white</textcolor>
+						<scroll>true</scroll>
+					</control>
+					<control type="label">
+						<left>420</left>
+						<top>38</top>
+						<width>1200</width>
+						<height>30</height>
+						<label>$INFO[ListItem.StartTime]$INFO[ListItem.EndTime, - ]$INFO[ListItem.Season, • $LOCALIZE[20373] ]$INFO[ListItem.Episode, • $LOCALIZE[20359] ]$INFO[ListItem.Genre, • ]</label>
+						<font>Regular17</font>
+						<textcolor>grey</textcolor>
+					</control>
+					<control type="textbox">
+						<description>Plot value</description>
+						<left>420</left>
+						<top>86</top>
+						<width>1200</width>
+						<height>95</height>
+						<font>Light17</font>
+						<align>justify</align>
+						<textcolor>grey</textcolor>
+						<autoscroll delay="10000" time="3000" repeat="6000">false</autoscroll>
+						<label>$VAR[PVRPlotText]</label>
+					</control>
+				</control>
+			</control>
+		</control>
+		
+		<!--<include>ScrollOffsetLabel</include>-->
+		
+		<include>PVRHeader</include>
+		
+		
+		
+		<include>BehindDialogFadeOut_PVR</include>
+		
+		
+		
+		<include>PVRSideBlade</include>
+		
+		
+		
+		<include>CommonNowPlaying_PIP</include>
+		
+		
+		
+		<include>BehindDialogFadeOut</include>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

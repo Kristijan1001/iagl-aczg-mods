@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>1</defaultcontrol>
+	<zorder>2</zorder>
+	<animation effect="fade" start="0" end="100" time="500">WindowOpen</animation>
+	<animation effect="fade" start="100" end="0" time="500">WindowClose</animation>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			
+			<include>SkinVariant_16by10_MoveUp_60px_Or_21by9_MoveRight_330px</include>
+			
+			<depth>DepthOSD</depth>
+			<left>1202</left>
+			<top>12</top>
+			<animation effect="fade" start="0" end="100" time="500">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="500" delay="2000">Hidden</animation>
+			
+			<visible>!Player.Muted</visible>
+			
+			<control type="image">
+				<left>-24</left>
+				<top>-30</top>
+				<width>504</width>
+				<height>120</height>
+				<texture border="54">OverlayDialogBackground.png</texture>
+			</control>
+			
+			<!-- Regular / non pass-through -->
+			<control type="group">
+				
+				<visible>!Player.Passthrough</visible>
+				
+				<!-- Mute Icon -->
+				<control type="image">
+					<description>Volume Icon</description>
+					<left>18</left>
+					<top>3</top>
+					<width>54</width>
+					<height>54</height>
+					<aspectratio>keep</aspectratio>
+					<texture>VolumeIcon-mute.png</texture>
+					<visible>Player.Muted</visible>
+				</control>
+				
+				<!-- Volume Level 1 Icon -->
+				<control type="image">
+					<description>Volume Icon</description>
+					<left>18</left>
+					<top>3</top>
+					<width>54</width>
+					<height>54</height>
+					<aspectratio>keep</aspectratio>
+					<texture colordiffuse="FFe7e7e7">VolumeIcon-1.png</texture>
+					<visible>!Player.Muted + Integer.IsLess(Player.Volume,25)</visible>
+				</control>
+				<!-- Volume Level 2 Icon -->
+				
+				<control type="image">
+					<description>Volume Icon</description>
+					<left>18</left>
+					<top>3</top>
+					<width>54</width>
+					<height>54</height>
+					<aspectratio>keep</aspectratio>
+					<texture colordiffuse="FFe7e7e7">VolumeIcon-2.png</texture>
+					<visible>!Player.Muted + Integer.IsGreater(Player.Volume,24) + Integer.IsLess(Player.Volume,70)</visible>
+				</control>
+				
+				<!-- Volume Level 3 Icon -->
+				<control type="image">
+					<description>Volume Icon</description>
+					<left>18</left>
+					<top>3</top>
+					<width>54</width>
+					<height>54</height>
+					<aspectratio>keep</aspectratio>
+					<texture colordiffuse="FFe7e7e7">VolumeIcon-3.png</texture>
+					<visible>!Player.Muted + Integer.IsGreater(Player.Volume,69)</visible>
+				</control>
+				
+				
+				<!-- non-fill start part -->
+				<control type="image">
+					<left>75</left>
+					<top>26</top>
+					<width>3</width>
+					<height>9</height>
+					<texture colordiffuse="30FFFFFF">osd/progress/progress-9px-start-end.png</texture>
+				</control>
+				<!-- non-fill middle part -->
+				<control type="image">
+					<left>78</left>
+					<top>26</top>
+					<width>344</width>
+					<height>9</height>
+					<texture colordiffuse="30FFFFFF">osd/progress/progress-bg.png</texture>
+					
+					<visible>Player.Muted</visible>
+					
+				</control>
+				<!-- non-fill end part -->
+				<control type="image">
+					<left>422</left>
+					<top>26</top>
+					<width>3</width>
+					<height>9</height>
+					<texture colordiffuse="30FFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+				</control>
+				
+				<!-- fill start part -->
+				<control type="image">
+					<left>75</left>
+					<top>26</top>
+					<width>3</width>
+					<height>9</height>
+					<texture colordiffuse="EBFFFFFF">osd/progress/progress-9px-start-end.png</texture>
+					
+					<visible>!Player.Muted</visible>
+					
+				</control>
+				<!-- fill middle part -->
+				<control type="progress">
+					<description>progress control</description>
+					<left>78</left>
+					<top>26</top>
+					<width>344</width>
+					<height>9</height>
+					<info>Player.Volume</info>
+					<include>progressBarStyleDefault</include>
+					
+					<visible>!Player.Muted</visible>
+					
+				</control>
+				<!-- fill end part -->
+				<control type="image">
+					<left>422</left>
+					<top>26</top>
+					<width>3</width>
+					<height>9</height>
+					<texture colordiffuse="EBFFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+					
+					<visible>!Player.Muted + Integer.IsGreater(Player.Volume,99)</visible>
+					
+				</control>
+				
+			</control>
+			
+			<!-- Pass-through -->
+			<control type="group">
+				
+				<visible>Player.Passthrough</visible>
+				
+				<control type="image">
+					<description>Volume Icon</description>
+					<left>18</left>
+					<top>3</top>
+					<width>54</width>
+					<height>54</height>
+					<aspectratio>keep</aspectratio>
+					<texture>VolumeIcon-3.png</texture>
+				</control>
+				<control type="label">
+					<description>Passthrough Label</description>
+					<left>77</left>
+					<top>9</top>
+					<width>348</width>
+					<height>39</height>
+					<label>$LOCALIZE[29802]</label>
+					<font>Regular14.5</font>
+					<textcolor>white</textcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+				</control>
+			</control>
+			
+		</control>
+		
+		<!-- Muted Stand-alone indicator -->
+		<control type="image">
+			
+			<include>SkinVariant_16by10_MoveUp_60px_Or_21by9_MoveRight_330px</include>
+			
+			<left>87r</left>
+			<top>65</top>
+			<width>60</width>
+			<height>60</height>
+			<aspectratio>keep</aspectratio>
+			<texture>VolumeIcon-mute-standalone.png</texture>
+			<animation effect="fade" start="0" end="100" time="500" delay="1500">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="500">Hidden</animation>
+			
+			<visible>!Window.IsVisible(Notification)</visible>
+			<visible>!Window.IsVisible(extendedprogressdialog)</visible>
+			<visible>Player.Muted</visible>
+			
+		</control>
+		
+	<!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

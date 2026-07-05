@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<zorder>2</zorder>
+	<animation effect="fade" start="0" end="100" time="500">WindowOpen</animation>
+	<animation effect="fade" start="100" end="0" time="500">WindowClose</animation>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		
+		<control type="group">
+			
+			<include>SkinVariant_16by10_MoveUp_60px_Or_21by9_MoveRight_330px</include>
+			
+			<left>1210</left>
+			<top>122</top>
+			
+			<depth>DepthMax</depth>
+			
+			<!--
+			HACK
+			Hide annoying and often faulty messages #21454 #21455 until fixed
+			[Works for English and German]
+			
+			JARVIS
+			
+			msgctxt "#21454"
+			msgid "Cache full"
+			msgstr "Cache voll"
+			
+			msgctxt "#21455"
+			msgid "Cache filled before reaching required amount for continuous playback"
+			msgstr "Cache voll, bevor ruckelfreie Wiedergabe möglich ist"
+			
+			KRYPTON
+			
+			msgctxt "#21454"
+			msgid "Source too slow"
+			msgstr "Quelle ist zu langsam"
+			
+			msgctxt "#21455"
+			msgid "Read rate too low for continuous playback"
+			msgstr "Leserate ist zu gering für eine flüssige Wiedergabe"
+			
+			-->
+			<visible>!String.StartsWith(Control.GetLabel(402),Cache filled before reaching) 
+							+ !String.StartsWith(Control.GetLabel(402),Cache voll) 
+							+ !String.StartsWith(Control.GetLabel(402),Read rate too low for) 
+							+ !String.StartsWith(Control.GetLabel(402),Leserate ist zu gering)</visible>
+			
+			<control type="image">
+				<left>-20</left>
+				<top>-33</top>
+				<width>730</width>
+				<height>162</height>
+				<texture border="54">OverlayDialogBackground.png</texture>
+			</control>
+			
+			<control type="image" id="400">
+				<description>avatar</description>
+				<left>25</left>
+				<top>11</top>
+				<width>74</width>
+				<height>74</height>
+				<aspectratio scalediffuse="false">keep</aspectratio>
+				<texture background="true" diffuse="colors/diffuse/74x74-rounded.png"></texture>
+				<fadetime>150</fadetime>
+			</control>
+			
+			<control type="fadelabel" id="401">
+				<description>Line 1 Label</description>
+				<left>112</left>
+				<top>16</top>
+				<width>554</width>
+				<height>27</height>
+				<font>Light18</font>
+				<textcolor>white</textcolor>
+				<align>left</align>
+				<aligny>center</aligny>
+				<scrollout>false</scrollout>
+				<pauseatend>2000</pauseatend>
+			</control>
+			
+			<control type="fadelabel" id="402">
+				<description>Line 2 Label</description>
+				<left>112</left>
+				<top>49</top>
+				<width>554</width>
+				<height>30</height>
+				<font>Light17</font>
+				<textcolor>grey2</textcolor>
+				<align>left</align>
+				<aligny>center</aligny>
+				<scrollout>false</scrollout>
+				<pauseatend>2000</pauseatend>
+				
+				<animation effect="fade" start="100" end="0" time="0" condition="Control.IsVisible(4020)">Conditional</animation>
+				
+			</control>
+			
+			<control type="fadelabel" id="4020">
+				<description>Line 2 Label</description>
+				<left>112</left>
+				<top>49</top>
+				<width>554</width>
+				<height>30</height>
+				<font>Light17</font>
+				<textcolor>grey2</textcolor>
+				<align>left</align>
+				<aligny>center</aligny>
+				<scrollout>false</scrollout>
+				<pauseatend>2000</pauseatend>
+				
+				<label>$INFO[System.AddonUpdateCount] $INFO[Control.GetLabel(402)]</label>
+				
+				<!-- Kodi 19+ only -->
+				<visible>![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.)] + String.IsEqual(Control.GetLabel(401),$LOCALIZE[24001]) + String.IsEqual(Control.GetLabel(402),$LOCALIZE[24061]) + Integer.IsGreaterOrEqual(System.AddonUpdateCount,1)</visible>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+	<!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

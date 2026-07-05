@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">5</defaultcontrol>
+	<include>dialogeffect</include>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="image">
+			
+			<include>BackgroundDimensions_Can_Be_Max_For_Scope</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<texture>colors/black.png</texture>
+			<animation effect="fade" start="0" end="80" time="0" condition="true">Conditional</animation>
+			<visible>[Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDSubtitleSettings) | Window.IsVisible(GameAgents)] + [!Window.IsVisible(SliderDialog) | Window.IsVisible(GameAgents)]</visible>
+		</control>
+		
+		<control type="group">
+			
+			<left>360</left>
+			<top>0</top>
+			
+			<!-- regular position -->
+			<animation effect="slide" start="0,0" end="0,39" time="0" condition="![Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.Is(OSDSubtitleSettings)]">Conditional</animation>
+			
+			<!-- fullscreen osd position -->
+			<animation effect="slide" start="0,0" end="-5,0" time="0" condition="Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.Is(OSDSubtitleSettings)">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,82" time="0" condition="Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.Is(OSDSubtitleSettings)">Conditional</animation>
+			
+			
+			<animation effect="fade" start="100" end="0" time="300" condition="Window.Is(ContentSettings) + Window.IsActive(AddonSettings)">Conditional</animation>
+			<animation effect="fade" start="100" end="0" time="300" condition="[Window.Is(OSDAudioSettings) | Window.Is(OSDVideoSettings) | Window.Is(OSDSubtitleSettings)] + [Window.IsVisible(SliderDialog) | Window.IsVisible(FileBrowser)]">Conditional</animation>
+			
+			
+			<!-- OSD[..]Settings header -->
+			<control type="label">
+				<description>header label</description>
+				<left>60</left>
+				<top>-10</top>
+				<width>1070</width>
+				<height>45</height>
+				<font>Light26</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>white</textcolor>
+				<label>$INFO[Control.GetLabel(2)]</label>
+				<visible>Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDSubtitleSettings)</visible>
+			</control>
+			
+			<control type="group">
+				
+				<include content="DialogBackgroundCommons">
+					<param name="DialogBackgroundWidth" value="1240" />
+					<param name="DialogBackgroundHeight" value="1037" />
+					<param name="DialogHeaderWidth" value="1180" />
+					<param name="DialogHeaderLabelWidth" value="1136" />
+					<param name="DialogHeaderLabel" value="" />
+					<param name="DialogHeaderId" value="2" />
+				</include>
+				
+				<visible>![Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDSubtitleSettings)]</visible>
+				
+				<animation effect="fade" start="100" end="70" time="750" condition="Window.Is(MediaFilter) + System.IdleTime(1)">Conditional</animation>
+				
+			</control>
+			
+			<control type="grouplist" id="5">
+				<animation effect="slide" start="0,0" end="-15,0" time="0" condition="Control.IsVisible(60) + ![Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDSubtitleSettings)]">Conditional</animation>
+				<description>control area</description>
+				
+				<left>60</left>
+				<top>110</top>
+				
+				<width>1080</width>
+				<height>758</height>
+				
+				<itemgap>6</itemgap>
+				
+				<pagecontrol>60</pagecontrol>
+				
+				<onleft>noop</onleft>
+				<onup>noop</onup>
+				<onright>60</onright>
+				
+				<ondown condition="Control.IsVisible(28) + Control.IsEnabled(28)">28</ondown>
+				<ondown condition="![Control.IsVisible(28) + Control.IsEnabled(28)] + [Control.IsVisible(29) + Control.IsEnabled(29)]">29</ondown>
+				<ondown condition="![Control.IsVisible(28) + Control.IsEnabled(28)] + ![Control.IsVisible(29) + Control.IsEnabled(29)] + [Control.IsVisible(30) + Control.IsEnabled(30)]">30</ondown>
+				
+			</control>
+			
+			<control type="scrollbar" id="60">
+				
+				<animation effect="fade" start="100" end="0" time="500" condition="[Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDSubtitleSettings)] + [Window.IsVisible(SelectDialog) | Window.IsActive(YesNoDialog) | Window.IsVisible(OkDialog) | Window.IsVisible(ProgressDialog)]">Conditional</animation>
+				
+				<animation effect="slide" start="0,0" end="22,0" time="0" condition="Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDSubtitleSettings)">Conditional</animation>
+				
+				<left>1147</left>
+				<top>110</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>758</height>
+				<onleft>5</onleft>
+				<onright>noop</onright>
+				<ondown>60</ondown>
+				<onup>60</onup>
+				<showonepage>false</showonepage>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+			<control type="button" id="7">
+				<description>Default button</description>
+				<height>66</height>
+				<font>Regular20</font>
+				<texturenofocus></texturenofocus>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+			</control>
+			
+			<control type="radiobutton" id="8">
+				
+				<textwidth>976</textwidth>
+				
+				<description>Default radiobutton</description>
+				<height>66</height>
+				<font>Regular20</font>
+				<texturenofocus></texturenofocus>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+			</control>
+			
+			<control type="spincontrolex" id="9">
+				<description>Default spincontrolex</description>
+				<height>66</height>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<texturenofocus></texturenofocus>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<font>Regular20</font>
+				<aligny>center</aligny>
+				<reverse>yes</reverse>
+			</control>
+			
+			<control type="image" id="11">
+				<description>separator image</description>
+				<height>7</height>
+				<texture border="0,0,0,5" colordiffuse="$VAR[SeparatorColorDiffuse]">separator3.png</texture>
+			</control>
+			
+			<control type="edit" id="12">
+				<description>Default edit</description>
+				<height>66</height>
+				<font>Regular20</font>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<texturenofocus></texturenofocus>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+			</control>
+			
+			<control type="sliderex" id="13">
+				<description>Default sliderex</description>
+				<height>66</height>
+				
+				<texturenofocus></texturenofocus>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				
+				<font>Regular20</font>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				
+				<textwidth>620</textwidth>
+				
+			</control>
+			
+			<control type="label" id="14">
+				<description>Default label (header)</description>
+				<height>51</height>
+				<font>Light20</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>blue</textcolor>
+			</control>
+			
+			
+			
+			<!-- Dialog Buttons -->
+			
+			<control type="group">
+				<visible>![Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDSubtitleSettings)]</visible>
+				
+				<control type="grouplist" id="9001">
+					<left>135</left>
+					<top>890</top>
+					<width>930</width>
+					<align>center</align>
+					<itemgap>15</itemgap>
+					<orientation>horizontal</orientation>
+					
+					<onup>5</onup>
+					<onleft>noop</onleft>
+					<onright>noop</onright>
+					<ondown>noop</ondown>
+					
+					<control type="button" id="28">
+						<description>OK Button</description>
+						<top>0</top>
+						<width>300</width>
+						<height>67</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<onup>5</onup>
+						<onleft>28</onleft>
+						<onright>29</onright>
+						<ondown>28</ondown>
+						<include>ButtonInfoDialogsCommonValues</include>
+					</control>
+					
+					<control type="button" id="29">
+						<description>Cancel Button</description>
+						<top>0</top>
+						<width>300</width>
+						<height>67</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<label></label>
+						<onup>5</onup>
+						<onleft>28</onleft>
+						<onright>30</onright>
+						<ondown>29</ondown>
+						<include>ButtonInfoDialogsCommonValues</include>
+					</control>
+					
+					<control type="button" id="30">
+						<description>Settings Button</description>
+						<top>0</top>
+						<width>300</width>
+						<height>67</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<onup>5</onup>
+						<onleft>29</onleft>
+						<onright>30</onright>
+						<ondown>30</ondown>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<onclick condition="Window.Is(MediaFilter)">Close</onclick>
+					</control>
+					
+				</control>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		<control type="image">
+			
+			<include>BackgroundDimensions_Can_Be_Max_For_Scope</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<texture>colors/black.png</texture>
+			<visible>[Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDSubtitleSettings) | [Window.IsVisible(PeripheralSettings) + Window.IsVisible(SelectDialog)]] + [Window.IsVisible(SelectDialog) | Window.IsActive(YesNoDialog) | Window.IsVisible(OkDialog) | Window.IsVisible(ProgressDialog)]</visible>
+			
+			<animation effect="fade" start="0" end="75" time="300">Visible</animation>
+			<animation effect="fade" start="75" end="0" time="300">Hidden</animation>
+			
+		</control>
+		
+		
+		
+		<include condition="[Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)] + !String.IsEqual(Skin.AspectRatio,16:10)">SkinOutOfBoundsMasksTopBottom</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

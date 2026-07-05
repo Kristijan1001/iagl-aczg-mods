@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	<include name="VideoCodecFlaggingConditions">
+		<param name="alpha" default="85" />
+		<param name="colordiffuse" default="FFFFFFFF" />
+		<definition>
+		
+		<control type="group">
+			<width>72</width>
+			<height>54</height>
+			<control type="image">
+				<description>Video rez Image</description>
+				<width>72</width>
+				<height>48</height>
+				
+				<top>3</top>
+				
+				<aspectratio align="center">keep</aspectratio>
+				
+				<texture colordiffuse="$PARAM[colordiffuse]">$INFO[ListItem.VideoResolution,flagging/video/resolutions/inverted/,.png]</texture>
+				<animation effect="fade" end="$PARAM[alpha]" time="0" condition="true">Conditional</animation>
+				
+			</control>
+			<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+		</control>
+		<control type="group">
+			<width>114</width>
+			<height>54</height>
+			<control type="image">
+				<description>Codec Image</description>
+				<width>114</width>
+				<height>48</height>
+				
+				<top>3</top>
+				
+				<aspectratio align="center">keep</aspectratio>
+				
+				<texture colordiffuse="$PARAM[colordiffuse]">$VAR[videocodec,flagging/video/codecs/,.png]</texture>
+				<animation effect="fade" end="$PARAM[alpha]" time="0" condition="true">Conditional</animation>
+				
+			</control>
+			<visible>!Skin.HasSetting(HideVideoCodec) + !String.IsEmpty(ListItem.VideoCodec)</visible>
+		</control>
+		
+		</definition>
+	</include>
+	
+	<include name="VideoCodecFlaggingConditionsResOnly">
+		<param name="alpha" default="85" />
+		<param name="colordiffuse" default="FFFFFFFF" />
+		<definition>
+		
+		<control type="group">
+			<width>72</width>
+			<height>54</height>
+			<control type="image">
+				<description>Video rez Image</description>
+				<width>72</width>
+				<height>48</height>
+				
+				<top>3</top>
+				
+				<aspectratio align="center">keep</aspectratio>
+				
+				<texture colordiffuse="$PARAM[colordiffuse]">$INFO[ListItem.VideoResolution,flagging/video/resolutions/inverted/,.png]</texture>
+				<animation effect="fade" end="$PARAM[alpha]" time="0" condition="true">Conditional</animation>
+				
+				<fadetime>150</fadetime>
+			</control>
+			<visible>!String.IsEmpty(ListItem.VideoResolution)</visible>
+		</control>
+		
+		</definition>
+	</include>
+	
+	<include name="Video_Codec_Flag">
+		<param name="alpha" default="85" />
+		<param name="colordiffuse" default="FFFFFFFF" />
+		<definition>
+		
+		<control type="group">
+			<width>114</width>
+			<height>54</height>
+			<control type="image">
+				<width>114</width>
+				<height>48</height>
+				
+				<top>3</top>
+				
+				<aspectratio align="center">keep</aspectratio>
+				
+				<texture colordiffuse="$PARAM[colordiffuse]">$VAR[videocodec,flagging/video/codecs/,.png]</texture>
+				<animation effect="fade" end="$PARAM[alpha]" time="0" condition="true">Conditional</animation>
+				
+				<fadetime>50</fadetime>
+			</control>
+			<visible>!Skin.HasSetting(HideVideoCodec) + !String.IsEmpty(ListItem.VideoCodec)</visible>
+		</control>
+		
+		</definition>
+	</include>
+	
+	
+	
+	<include name="VideoHdrTypeIcons">
+		<param name="alpha" default="85" />
+		<param name="colordiffuse" default="FFFFFFFF" />
+		<definition>
+		
+		<control type="group">
+			<width>114</width>
+			<height>54</height>
+			<control type="image">
+				<width>114</width>
+				<height>48</height>
+				
+				<top>3</top>
+				
+				<aspectratio align="center">keep</aspectratio>
+				
+				<texture colordiffuse="$PARAM[colordiffuse]">$INFO[ListItem.HdrType,flagging/video/hdr/,.png]</texture>
+				<animation effect="fade" end="$PARAM[alpha]" time="0" condition="true">Conditional</animation>
+				
+				<fadetime>50</fadetime>
+			</control>
+			<visible>!String.IsEmpty(ListItem.HdrType)</visible>
+		</control>
+		
+		</definition>
+	</include>
+	
+	
+	
+	<include name="VideoStereoscopicsFlaggingConditions">
+		<param name="alpha" default="85" />
+		<param name="colordiffuse" default="FFFFFFFF" />
+		<definition>
+		
+		<control type="group">
+			<width>72</width>
+			<height>54</height>
+			<control type="image">
+				<width>72</width>
+				<height>48</height>
+				
+				<top>3</top>
+				
+				<aspectratio align="center">keep</aspectratio>
+				
+				<texture colordiffuse="$PARAM[colordiffuse]">flagging/video/3D.png</texture>
+				<animation effect="fade" end="$PARAM[alpha]" time="0" condition="true">Conditional</animation>
+				
+				<visible>[ListItem.IsStereoscopic | String.Contains(ListItem.FileName,.3D.)]</visible>
+			</control>
+			<control type="image">
+				<width>72</width>
+				<height>48</height>
+				
+				<top>3</top>
+				
+				<aspectratio align="center">keep</aspectratio>
+				
+				<texture colordiffuse="$PARAM[colordiffuse]">flagging/video/HFR.png</texture>
+				<animation effect="fade" end="$PARAM[alpha]" time="0" condition="true">Conditional</animation>
+				
+				<visible>![ListItem.IsStereoscopic | String.Contains(ListItem.FileName,.3D.)] + [String.Contains(ListItem.FileName,"(HFR)") | String.Contains(ListItem.FileName,.HFR.)]</visible>
+			</control>
+			<visible>[ListItem.IsStereoscopic | String.Contains(ListItem.FileName,.3D.)] | [String.Contains(ListItem.FileName,"(HFR)") | String.Contains(ListItem.FileName,.HFR.)]</visible>
+		</control>
+		
+		</definition>
+	</include>
+	
+	
+	<include name="VideoDiscFlaggingConditions">
+		<param name="alpha" default="85" />
+		<param name="colordiffuse" default="FFFFFFFF" />
+		<definition>
+		
+		<control type="group">
+			<width>64</width>
+			<height>54</height>
+			<control type="image">
+				<width>64</width>
+				<height>48</height>
+				
+				<top>3</top>
+				
+				<aspectratio align="center">keep</aspectratio>
+				
+				<texture colordiffuse="$PARAM[colordiffuse]">flagging/video/DISC.png</texture>
+				<animation effect="fade" end="$PARAM[alpha]" time="0" condition="true">Conditional</animation>
+				
+			</control>
+			<visible>String.IsEqual(ListItem.FileExtension,iso) | String.IsEqual(ListItem.FileName,menu) | String.StartsWith(ListItem.FileNameAndPath,bluray://) | String.IsEqual(ListItem.FileExtension,ifo)</visible>
+		</control>
+		
+		</definition>
+	</include>
+	
+	<include name="VideoMPAAFlaggingConditions">
+		<control type="group">
+			<width>100</width>
+			<height>54</height>
+			<control type="image">
+				<width>100</width>
+				<height>48</height>
+				<top>3</top>
+				<texture border="6">flagging/blank.png</texture>
+				<animation effect="fade" end="50" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="image">
+				<description>Rating image</description>
+				<width>100</width>
+				<height>46</height>
+				<top>4</top>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<texture>$VAR[rating,flagging/ratings/,.png]</texture>
+				<animation effect="fade" end="90" time="0" condition="true">Conditional</animation>
+				<fadetime>350</fadetime>
+			</control>
+			<visible>!String.IsEmpty(ListItem.Mpaa)</visible>
+		</control>
+	</include>
+	
+	<include name="AudioCodecFlaggingConditions">
+		<param name="alpha" default="85" />
+		<param name="colordiffuse" default="FFFFFFFF" />
+		<definition>
+		
+		<control type="group">
+			<width>114</width>
+			<height>54</height>
+			<control type="image">
+				<description>Audio Codec Image</description>
+				<width>114</width>
+				<height>48</height>
+				
+				<top>3</top>
+				
+				<aspectratio align="center">keep</aspectratio>
+				
+				<texture colordiffuse="$PARAM[colordiffuse]">$INFO[ListItem.AudioCodec,flagging/audio/codecs/,.png]</texture>
+				<animation effect="fade" end="$PARAM[alpha]" time="0" condition="true">Conditional</animation>
+				
+				<fadetime>50</fadetime>
+			</control>
+			<visible>!String.IsEmpty(ListItem.AudioCodec)</visible>
+		</control>
+		
+		</definition>
+	</include>
+	
+	<include name="AudioChannelsFlaggingConditions">
+		<param name="alpha" default="85" />
+		<param name="colordiffuse" default="FFFFFFFF" />
+		<definition>
+		
+		<control type="group">
+			<width>72</width>
+			<height>54</height>
+			<control type="image">
+				<description>Audio Codec Image</description>
+				<width>72</width>
+				<height>48</height>
+				
+				<top>3</top>
+				
+				<aspectratio align="center">keep</aspectratio>
+				
+				<texture colordiffuse="$PARAM[colordiffuse]">$INFO[ListItem.AudioChannels,flagging/audio/channels/,.png]</texture>
+				<animation effect="fade" end="$PARAM[alpha]" time="0" condition="true">Conditional</animation>
+				
+				<fadetime>50</fadetime>
+			</control>
+			<visible>!String.IsEmpty(ListItem.AudioChannels)</visible>
+		</control>
+		
+		</definition>
+	</include>
+	
+	
+	
+	<include name="VideoRatingStars">
+		<control type="group">
+			<width>192</width>
+			<height>54</height>
+			<control type="image">
+				<left>22</left>
+				<width>160</width>
+				<height>44</height>
+				<top>6</top>
+				<aspectratio align="center">keep</aspectratio>
+				<texture>flagging/ratingstars/starsshadow.png</texture>
+				<fadetime>400</fadetime>
+			</control>
+			<control type="image">
+				<left>22</left>
+				<description>Rating stars</description>
+				<width>160</width>
+				<height>44</height>
+				<top>6</top>
+				<aspectratio align="center">keep</aspectratio>
+				<texture>$VAR[ratingstars,flagging/ratingstars/stars,.png]</texture>
+				<fadetime>400</fadetime>
+				<visible>!Container.Content(Albums)</visible>
+				<animation effect="fade" end="90" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="image">
+				<left>22</left>
+				<description>Rating stars</description>
+				<width>160</width>
+				<height>44</height>
+				<top>6</top>
+				<aspectratio align="center">keep</aspectratio>
+				<texture>$INFO[ListItem.UserRating,flagging/ratingstars/0-10/,.png]</texture>
+				<fadetime>400</fadetime>
+				<visible>Container.Content(Albums)</visible>
+				<animation effect="fade" end="90" time="0" condition="true">Conditional</animation>
+			</control>
+			<visible>[Container.Content(Albums) + !String.IsEmpty(ListItem.UserRating)] | [[      [String.Contains(ListItem.rating,.) | [!String.IsEmpty(ListItem.DBID) + [Container.Content(Movies) | Container.Content(TvShows)]]] 
+								| 
+								[String.IsEqual(ListItem.DBID,Window(Home).Property(ListItemHelper.DBID)) 
+									+ !String.Empty(Window(Home).Property(ListItemHelper.rating.highestScaleTo10))]
+								] 
+								+ !Skin.HasSetting(HideVideoRatings) + !Skin.HasSetting(HideVideoRatingsStars)] + !ListItem.IsCollection + !Container.Content(Episodes)</visible>
+		</control>
+	</include>
+	
+	<include name="IsCollection">
+		<param name="alpha" default="85" />
+		<param name="colordiffuse" default="FFFFFFFF" />
+		<definition>
+		
+		<control type="group">
+			<width>72</width>
+			<height>54</height>
+			<control type="image">
+				<width>72</width>
+				<height>44</height>
+				
+				<top>5</top>
+				
+				<aspectratio align="center">keep</aspectratio>
+				
+				<texture colordiffuse="$PARAM[colordiffuse]">flagging/lists/Set.png</texture>
+				<animation effect="fade" end="$PARAM[alpha]" time="0" condition="true">Conditional</animation>
+				
+			</control>
+			<visible>ListItem.IsCollection</visible>
+		</control>
+		
+		</definition>
+	</include>
+	
+	<include name="StingerIcon">
+		<control type="group">
+			<width>48</width>
+			<control type="image">
+				<description>Stinger icon</description>
+				<width>48</width>
+				<height>48</height>
+				
+				<top>3</top>
+				
+				<aspectratio align="left">keep</aspectratio>
+				<texture>_added_img/stinger_scene.png</texture>
+				<visible>!String.IsEmpty(ListItem.Tag) + [String.Contains(ListItem.Tag,aftercreditsstinger) | String.Contains(ListItem.Tag,duringcreditsstinger)]</visible>
+				<animation effect="fade" end="100" time="0" condition="true">Conditional</animation>
+			</control>
+		</control>
+	</include>
+	
+	<include name="FlaggingConditionsPlaceholderDimensions">
+		<width>18</width>
+		<height>54</height>
+	</include>
+	<include name="FlaggingConditionsPlaceholderDimensions2X">
+		<width>36</width>
+		<height>54</height>
+	</include>
+	
+	
+	
+</includes>

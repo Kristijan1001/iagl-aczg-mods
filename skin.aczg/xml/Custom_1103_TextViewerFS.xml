@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1103">
+	<defaultcontrol always="true">3000</defaultcontrol>
+	
+	<include>dialogeffect</include>
+	
+	<onload>SetFocus(3000)</onload>
+	<onload>SetProperty(set_focus_now,3000,home)</onload>
+	
+	<onunload>ClearProperty(set_focus_now,home)</onunload>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			<include>BehindDialogBlackBackground</include>
+		</control>
+		
+		<control type="group">
+			<left>0</left>
+			<top>0</top>
+			
+			<include content="DialogBackgroundCommonsNoBackgroundFS">
+				<param name="DialogHeaderWidth" value="1920" />
+				<param name="DialogHeaderLabel" value="$INFO[Window(Home).Property(TextViewer_Header)]" />
+				<param name="DialogHeaderId" value="2" />
+			</include>
+			
+			<control type="textbox" id="2000">
+				<left>45</left>
+				<top>90</top>
+				<width>1800</width>
+				<height>990</height>
+				<pagecontrol>3000</pagecontrol>
+				<font>NewMono14</font>
+				<label>[CR]$INFO[Window(Home).Property(TextViewer_Text_Pre),,[CR]]$INFO[Window(Home).Property(TextViewer_Text)]$INFO[Window(Home).Property(ListItemHelper.internalnotes)] </label>
+			</control>
+			
+			<control type="scrollbar" id="3000">
+				<left>1900</left>
+				<top>106</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>959</height>
+				<onleft>3000</onleft>
+				<onup>3000</onup>
+				<ondown>3000</ondown>
+				<onright>3000</onright>
+				<showonepage>true</showonepage>
+				<animation effect="fade" start="100" end="0" time="0" condition="!Integer.IsGreater(Container(2000).NumPages,1)">Conditional</animation>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

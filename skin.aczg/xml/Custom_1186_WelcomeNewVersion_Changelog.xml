@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1186">
+	<defaultcontrol always="true">3000</defaultcontrol>
+	
+	<include>dialogeffectSlower2</include>
+	
+	
+	
+	<onload>SetProperty(Full_Changelog_Active,,home)</onload>
+	<onunload>SetProperty(Full_Changelog_Active,,home)</onunload>
+	
+	
+	
+	<onload>SetFocus(3000)</onload>
+	<onload>SetProperty(set_focus_now,3000,home)</onload>
+	
+	
+	
+	<onload condition="Control.HasFocus(3000)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000)">Action(Up)</onload>
+	
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	<onload condition="Control.HasFocus(3000) + Integer.IsGreater(Container(2000).CurrentPage,1)">Action(Up)</onload>
+	
+	
+	
+	<onunload>ClearProperty(set_focus_now,home)</onunload>
+	
+	
+	
+	<controls><!-- WRAPPER START --><control type="group"><centerleft>50%</centerleft><centertop>50%</centertop><width>1920</width><height>1080</height><!-- WRAPPER START -->
+		
+		
+		
+		<control type="image">
+			
+			<include>BackgroundDimensions</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<texture>colors/black.png</texture>
+		</control>
+		
+		<control type="image">
+			
+			<include>BackgroundDimensions</include>
+			
+			<top>0</top>
+			<left>0</left>
+			
+			<texture>special://home/addons/resource.images.aczg/resources/backgrounds/$VAR[isUhdScreenStringFolder]background_9.jpg</texture>
+			<include>backgroundfade</include>
+			<fadetime>FanartCrossfadeTime</fadetime>
+			<animation effect="fade" end="30" time="0" condition="true">Conditional</animation>
+		</control>
+		
+		
+		
+		<control type="group">
+		
+		<top>-100</top>
+		
+		
+		
+		<control type="group">
+			
+			<left>298</left>
+			<top>198</top>
+			
+			<width>204</width>
+			<height>204</height>
+			
+			<!-- shadow -->
+			<control type="image">
+				
+				<left>-98</left>
+				<top>-98</top>
+				
+				<width>400</width>
+				<height>400</height>
+				<texture background="true">dialogs/settings/204x204-shadow.png</texture>
+			</control>
+			
+			<control type="image">
+				<width>204</width>
+				<height>204</height>
+				<texture background="true" diffuse="dialogs/settings/204x204-rounded.png">dialogs/settings/cz-logo-settings.png</texture>
+				<visible>![ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]</visible>
+			</control>
+			<!-- uhd -->
+			<control type="image">
+				<width>204</width>
+				<height>204</height>
+				<texture background="true" diffuse="dialogs/settings/204x204-rounded_uhd.png">dialogs/settings/cz-logo-settings_uhd.png</texture>
+				<visible>[ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]</visible>
+			</control>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		
+		<!-- below + and logo -->
+		<control type="group">
+			
+			<left>-860</left>
+			<top>-100</top>
+			
+			<!-- banner -->
+			<control type="group">
+				<left>1075</left>
+				<control type="image">
+					<left>0</left>
+					<top>574</top>
+					<width>348</width>
+					<height>54</height>
+					<texture>_added_img/skininfo/skininfo-banner$VAR[isUhdScreenStringSuffix].png</texture>
+				</control>
+				<control type="image">
+					<left>4</left>
+					<top>547</top>
+					<width>73</width>
+					<height>73</height>
+					<texture>_added_img/skininfo/skininfo-banner-sparks.gif</texture>
+				</control>
+				<control type="label">
+					<left>-20</left>
+					<top>645</top>
+					<width>388</width>
+					<height>40</height>
+					<align>center</align>
+					<font>RegularNonCondensed18.5</font>
+					<label>$VAR[skinInfoText]</label>
+				</control>
+			</control>
+			
+			
+			
+			
+			<!-- footnote -->
+			<control type="group">
+				
+				<left>1074</left>
+				<top>770</top>
+				<width>348</width>
+				<height>74</height>
+				
+				<!-- bounce bounce -->
+				<control type="image">
+					<left>158</left>
+					<top>30</top>
+					<width>34</width>
+					<height>33</height>
+					<texture>_added_img/skininfo/skininfo-em$VAR[isUhdScreenStringSuffix].png</texture>
+					
+					<animation effect="slide" end="0,-5" time="800" condition="true" pulse="true">Conditional</animation>
+				</control>
+				
+				<control type="image">
+					<left>80</left>
+					<top>-52</top>
+					<width>190</width>
+					<height>190</height>
+					<texture>_added_img/skininfo/cd$VAR[isUhdScreenStringSuffix].png</texture>
+				</control>
+				
+				<control type="image">
+					<left>276</left>
+					<top>-29</top>
+					<width>73</width>
+					<height>44</height>
+					<texture>_added_img/skininfo/cd-scn-me$VAR[isUhdScreenStringSuffix].png</texture>
+				</control>
+				
+			</control>
+		</control>
+		
+		</control>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<control type="group">
+			<left>800</left>
+			
+			<control type="textbox" id="2000">
+				<left>0</left>
+				<top>0</top>
+				<width>1020</width>
+				<height>1080</height>
+				<pagecontrol>3000</pagecontrol>
+				<font>Light18.5</font>
+				<label>[CR][CR]$VAR[Changelog_Var][CR] </label>
+				<scrolltime tween="sine" easing="inout">350</scrolltime>
+			</control>
+			
+			<control type="scrollbar" id="3000">
+				<left>1100</left>
+				<top>10</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>1060</height>
+				<onleft>3000</onleft>
+				<onup>3000</onup>
+				<ondown>3000</ondown>
+				
+				<onright condition="!String.IsEmpty(Window(Home).Property(CH.Changelog)) + String.IsEmpty(Window(Home).Property(Full_Changelog_Active))
+									+ !Window.IsVisible(AddonInformation)">SetProperty(Full_Changelog_Active,True,home)</onright>
+				
+				<onright condition="!String.IsEmpty(Window(Home).Property(CH.Changelog)) + !String.IsEmpty(Window(Home).Property(Full_Changelog_Active))
+									+ !Window.IsVisible(AddonInformation)">ClearProperty(Full_Changelog_Active,home)</onright>
+				
+				<onright condition="String.IsEmpty(Window(Home).Property(CH.Changelog)) + !String.IsEmpty(Window(Home).Property(Full_Changelog_Active))
+									+ !Window.IsVisible(AddonInformation)">ClearProperty(Full_Changelog_Active,home)</onright>
+				
+				<showonepage>true</showonepage>
+				<animation effect="fade" start="100" end="0" time="0" condition="!Integer.IsGreater(Container(2000).NumPages,1)">Conditional</animation>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

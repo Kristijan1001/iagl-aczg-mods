@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			<depth>DepthSideBlade</depth>
+			
+			<include>dialogeffect</include>
+			
+			<!-- background -->
+			<control type="image">
+				<include>BackgroundDimensions</include>
+				
+				<left>0</left>
+				<top>0</top>
+				
+				<texture>colors/black.png</texture>
+			</control>
+			
+			
+			
+			<control type="image">
+				
+				<include>BackgroundDimensions</include>
+				
+				<top>0</top>
+				<left>0</left>
+				
+				<depth>DepthBackground</depth>
+				<aspectratio align="left" aligny="top">scale</aspectratio>
+				<texture>special://home/addons/resource.images.aczg/resources/_added_img/noise00.jpg</texture>
+				<include>backgroundfade</include>
+				<animation effect="fade" end="30" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="image">
+				
+				<include>BackgroundDimensions</include>
+				
+				<top>0</top>
+				<left>0</left>
+				
+				<depth>DepthBackground</depth>
+				<texture>special://home/addons/resource.images.aczg/resources/backgrounds/mood_background_default.png</texture>
+				<include>backgroundfade</include>
+				<fadetime>FanartCrossfadeTime</fadetime>
+				<animation effect="fade" end="30" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="image">
+				
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_InfoDialog_TopDither_Height</include>
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_Background_Width_Plus_660px_And_MoveLeft_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_MoveUp_60px</include>
+				
+				<top>0</top>
+				<left>0</left>
+				<width>1920</width>
+				<height>150</height>
+				<texture>special://home/addons/resource.images.aczg/resources/_added_img/edge_fadeout_new_dither_2.png</texture>
+				<aspectratio>stretch</aspectratio>
+			</control>
+			
+			
+			
+			<control type="group">
+				<left>-126</left>
+				<animation effect="fade" delay="500" start="0" end="100" time="500">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="500">WindowClose</animation>
+				<control type="label">
+					<description>Header label</description>
+					<left>315</left>
+					<top>75</top>
+					<width>1545</width>
+					<height>45</height>
+					<font>Light24</font>
+					<label>$VAR[MusicInfoHeader]</label>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>white</textcolor>
+				</control>
+				<control type="group">
+					<top>135</top>
+					<left>315</left>
+					<include>VisibleFadeEffect</include>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>405</width>
+						<height>405</height>
+						<aspectratio>keep</aspectratio>
+						<bordersize>6</bordersize>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+					</control>
+					<control type="list" id="49">
+						<left>420</left>
+						<top>0</top>
+						<width>1140</width>
+						<height>405</height>
+						
+						<onleft>noop</onleft>
+						<onright>noop</onright>
+						<onup>9000</onup>
+						<ondown>50</ondown>
+						
+						<scrolltime>200</scrolltime>
+						
+						<itemlayout height="45">
+							<control type="label">
+								<left>0</left>
+								<top>0</top>
+								<width>210</width>
+								<height>45</height>
+								<font>Regular20</font>
+								<align>right</align>
+								<aligny>center</aligny>
+								<textcolor>blue</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<info>ListItem.Label</info>
+							</control>
+							<control type="label">
+								<left>225</left>
+								<top>0</top>
+								<width>909</width>
+								<height>45</height>
+								<font>Regular20</font>
+								<align>left</align>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>white</selectedcolor>
+								<info>ListItem.Label2</info>
+							</control>
+						</itemlayout>
+						<focusedlayout height="45">
+							<control type="image">
+								<left>0</left>
+								<top>0</top>
+								<width>1140</width>
+								<height>45</height>
+								<visible>Control.HasFocus(49)</visible>
+								<texture border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texture>
+								<include>VisibleFadeEffect</include>
+							</control>
+							<control type="label">
+								<left>0</left>
+								<top>0</top>
+								<width>210</width>
+								<height>45</height>
+								<font>Regular20</font>
+								<align>right</align>
+								<aligny>center</aligny>
+								<textcolor>blue</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<info>ListItem.Label</info>
+							</control>
+							<control type="label">
+								<left>225</left>
+								<top>0</top>
+								<width>909</width>
+								<height>45</height>
+								<font>Regular20</font>
+								<align>left</align>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>white</selectedcolor>
+								<info>ListItem.Label2</info>
+							</control>
+						</focusedlayout>
+						<content>
+							<include condition="String.IsEqual(ListItem.DBTYPE,artist)">MusicInfoArtistInfo</include>
+							<include condition="String.IsEqual(ListItem.DBTYPE,album)">MusicInfoAlbumInfo</include>
+							<include condition="String.IsEqual(ListItem.DBTYPE,song)">MusicInfoSongInfo</include>
+						</content>
+					</control>
+				</control>
+				<control type="textbox">
+					<description>Description</description>
+					<left>315</left>
+					<top>563</top>
+					<width>1545</width>
+					<height>183</height>
+					<label>$VAR[MusicInfoLabel]</label>
+					<font>Light20</font>
+					<align>justify</align>
+					<textcolor>white</textcolor>
+					<autoscroll>false</autoscroll>
+				</control>
+				<control type="image">
+					<description>Thumb</description>
+					<left>315</left>
+					<top>780</top>
+					<width>180</width>
+					<height>180</height>
+					<texture>$VAR[MusicInfoListThumb]</texture>
+					<aspectratio>keep</aspectratio>
+				</control>
+				<include content="MusicInfoPanel" condition="String.IsEqual(ListItem.DBTYPE,artist) | String.IsEqual(ListItem.DBTYPE,album) | String.IsEqual(ListItem.DBTYPE,song)">
+					<param name="panel-left" value="510" />
+					<param name="panel-width" value="1350" />
+					<param name="item-width" value="675" />
+					<param name="label-width" value="645" />
+				</include>
+				<control type="grouplist" id="9000">
+					<left>315</left>
+					<top>985</top>
+					<width>1545</width>
+					<height>67</height>
+					<itemgap>15</itemgap>
+					<align>center</align>
+					<orientation>horizontal</orientation>
+					<onleft>noop</onleft>
+					<onright>noop</onright>
+					<onup>50</onup>
+					<ondown>noop</ondown>
+					<control type="button" id="6">
+						<height>67</height>
+						<description>Refresh</description>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label></label>
+					</control>
+					<control type="button" id="10">
+						<height>67</height>
+						<description>Get Thumb</description>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label></label>
+					</control>
+					<control type="button" id="12">
+						<height>67</height>
+						<description>Get Fanart / Album info</description>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label></label>
+					</control>
+					<control type="button" id="7">
+						<height>67</height>
+						<description>Set my rating</description>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label></label>
+					</control>
+				</control>
+			</control>
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

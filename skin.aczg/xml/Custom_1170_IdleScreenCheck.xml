@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1170">
+	
+	<visible>
+		[
+		Skin.HasSetting(StartScreenDisabled) | [!Skin.HasSetting(StartScreenDisabled) + !String.IsEmpty(Window(Home).Property(CZ.StartupScreenDoneDelayed))]
+		]
+		+
+		[
+		Window.IsActive(Home) + [!Player.HasMedia | [!Player.HasVideo + Player.HasAudio]] + 
+		!Window.IsVisible(MovieInformation) + !Window.IsVisible(musicinformation) + !Window.IsVisible(contextmenu) + !Window.IsVisible(shutdownmenu) + 
+		
+		
+		
+		
+		
+		
+		![ [String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)] + Window.IsVisible(Favourites) ] + 
+		
+		![ ![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.)] + Window.IsVisible(FavouritesBrowser) ] + 
+		
+		
+		
+		
+		
+		
+		!Window.IsVisible(1107) + !Window.IsVisible(1102)
+		]
+		+
+		[
+		[String.IsEqual(Skin.String(HomeScreenIdleUIFadeOut),1) + System.IdleTime(15)] | 
+		[String.IsEqual(Skin.String(HomeScreenIdleUIFadeOut),2) + System.IdleTime(30)] | 
+		[String.IsEqual(Skin.String(HomeScreenIdleUIFadeOut),3) + System.IdleTime(60)] | 
+		[String.IsEqual(Skin.String(HomeScreenIdleUIFadeOut),4) + System.IdleTime(120)]
+		]
+	</visible>
+	
+	<onload>ActivateWindow(1171)</onload>
+	<onunload>Dialog.Close(1171,true)</onunload>
+	
+	<controls><include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include></controls>
+</window>

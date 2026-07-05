@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">51</defaultcontrol>
+	<menucontrol>7000</menucontrol>
+	<onload condition="!Skin.HasSetting(FirstTimeRun)">ActivateWindow(1112)</onload>
+	<views>51,50,506,588</views>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<include>CommonBackground</include>
+		<include>ContentPanelBackgrounds</include>
+		<control type="group">
+			<include>Window_OpenClose_Animation</include>
+			<!-- view id = 50 -->
+			<include>CommonRootView</include>
+			<!-- view id = 51 -->
+			<include>FullWidthList</include>
+			<!-- view id = 506 -->
+			<include>MusicInfoListView</include>
+			
+			<!-- view id = 588 -->
+			<include>SongsView</include>
+			
+		</control>
+		
+		
+		<!--<include>ScrollOffsetLabel</include>-->
+		
+		<include content="CommonWindowHeader" condition="Window.IsActive(VideoPlaylist)">
+			<param name="Icon" value="icon_videos" />
+			<param name="Label" value="$LOCALIZE[13350] · $LOCALIZE[3]" />
+		</include>
+		<include content="CommonWindowHeader" condition="Window.IsActive(MusicPlaylist)">
+			<param name="Icon" value="icon_music" />
+			<param name="Label" value="$LOCALIZE[13350] · $LOCALIZE[2]" />
+		</include>
+		
+		
+		
+		<control type="group">
+			
+			<left>-429</left>
+			<include>SideBladeLeft</include>
+			
+			<control type="grouplist" id="7000">
+				<include>SideBladeLeftFadeInAni</include>
+				<left>24</left>
+				<top>165</top>
+				<width>375</width>
+				<height>900</height>
+				<onleft>7000</onleft>
+				<onright>50</onright>
+				<onup>7000</onup>
+				<ondown>7000</ondown>
+				<onback>50</onback>
+				<itemgap>0</itemgap>
+				
+				<control type="button" id="2">
+					<description>View As button</description>
+					<include>SideBar_Button_Common</include>
+					<label></label>
+				</control>
+				
+				
+				
+				<control type="image" id="7101">
+					<width>375</width>
+					<height>15</height>
+				</control>
+				<control type="image" id="7102">
+					<width>375</width>
+					<height>1</height>
+					<texture colordiffuse="$VAR[SeparatorColorDiffuse]">separator-uni.png</texture>
+				</control>
+				<control type="image" id="7103">
+					<width>375</width>
+					<height>15</height>
+				</control>
+				
+				
+				
+				<control type="radiobutton" id="20">
+					<description>Shuffle button</description>
+					<include>SideBar_Button_Common_Radio</include>
+					<include>SideBar_Button_Common</include>
+					<label>191</label>
+				</control>
+				<control type="button" id="26">
+					<description>Repeat button</description>
+					<include>SideBar_Button_Common</include>
+					<label></label>
+				</control>
+				<control type="button" id="21">
+					<description>Save button</description>
+					<label>190</label>
+					<include>SideBar_Button_Common</include>
+				</control>
+				<control type="button" id="22">
+					<description>Clear button</description>
+					<label>192</label>
+					<onclick condition="Window.IsActive(MusicPlaylist)">ReplaceWindow(music)</onclick>
+					<onclick condition="Window.IsActive(VideoPlaylist)">ReplaceWindow(Videos)</onclick>
+					<include>SideBar_Button_Common</include>
+				</control>
+				<include>CommonNowPlaying_Controls</include>
+			</control>
+			
+		</control>
+		
+		
+		
+		<include>CommonNowPlaying_PIP</include>
+		
+		
+		
+		<include>BehindDialogFadeOut</include>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

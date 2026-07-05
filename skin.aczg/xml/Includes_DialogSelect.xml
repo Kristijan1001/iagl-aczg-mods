@@ -1,0 +1,2400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	
+	
+	<!--
+	========================================================================================================
+	Select Dialog Includes
+	========================================================================================================
+	-->
+	
+	
+	
+	<include name="FixedList_Config_Regular_Bulk">
+		<focusposition>4</focusposition>
+		
+		<!--
+		<startmovement>4</startmovement>
+		<endmovement>5</endmovement>
+		-->
+		<movement>5</movement>
+		
+		<aligny>center</aligny>
+	</include>
+	
+	<include name="FixedList_Config_Medium_Special">
+		<focusposition>4</focusposition>
+		
+		<!--
+		<startmovement>4</startmovement>
+		<endmovement>4</endmovement>
+		-->
+		<movement>4</movement>
+		
+		<aligny>center</aligny>
+	</include>
+	
+	<include name="FixedList_Config_New_Selectors">
+		<focusposition>4</focusposition>
+		
+		<!--
+		<startmovement>4</startmovement>
+		<endmovement>4</endmovement>
+		-->
+		<movement>4</movement>
+		
+		<aligny>center</aligny>
+	</include>
+	
+	<include name="FixedList_Config_Large_Items">
+		<focusposition>2</focusposition>
+		
+		<!--
+		<startmovement>2</startmovement>
+		<endmovement>2</endmovement>
+		-->
+		<movement>2</movement>
+		
+		<aligny>center</aligny>
+	</include>
+	
+	
+	
+	<include name="StreamSelector_Video_Label1_Width">
+		<width>910</width>
+	</include>
+	
+	<include name="StreamSelector_Video_Label1_ScrollOnFocus">
+		<scroll>true</scroll>
+	</include>
+	
+	<include name="StreamSelector_Audio_Label2_Width">
+		<width>570</width>
+	</include>
+	
+	<include name="StreamSelector_Non_Subtitle_Dialog_Move_Left">
+		<left>-30</left>
+	</include>
+	
+	<include name="StreamSelector_Video_Dialog_Move_Right">
+		<left>580</left>
+	</include>
+	
+	<include name="StreamSelector_List_Scrollbar_Height">
+		<height>680</height>
+	</include>
+	
+	<include name="Medium_Special_List_Width_Wider">
+		<width>1171</width>
+	</include>
+	
+	
+	
+	<!-- Panel -->
+	<include name="DialogBackground_Include">
+		<control type="image">
+			<description>background image</description>
+			<left>-20</left>
+			<top>-20</top>
+			<width>$PARAM[width]</width>
+			<height>$PARAM[height]</height>
+			<texture border="54">DialogBack-rounded.png</texture>
+		</control>
+	</include>
+	
+	
+	
+	<!-- Header -->
+	<include name="Header_Include">
+		<control type="group">
+			<left>10</left>
+			<top>10</top>
+			
+			<control type="group">
+				<width>$PARAM[Width]</width>
+				<control type="image">
+					<description>Dialog Header image</description>
+					<height>65</height>
+					<texture border="28">dialogheader-rounded-24px.png</texture>
+				</control>
+				
+			</control>
+			
+			<control type="group">
+				<width>$PARAM[Width]</width>
+				<control type="label">
+					<description>header label</description>
+					<left>22</left>
+					<right>22</right>
+					<top>8</top>
+					<height>45</height>
+					<font>Light26</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>white</textcolor>
+					<label>$VAR[DialogSelectHeaderLabel]</label>
+				</control>
+			</control>
+			
+		</control>
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--
+	========================================================================================================
+	Non-Game Select Dialogs
+	========================================================================================================
+	-->
+	
+	
+	
+	
+	
+	<include name="DefaultDialogSelectLayout">
+		
+		
+		
+		
+		
+		
+		<!-- Behind Dialog darken-->
+		
+		<control type="group">
+			
+			<include>BehindDialogDarkBackgroundLighter</include>
+			
+			<visible>Window.IsActive(AddonInformation) | 
+						Window.IsActive(MovieInformation) | 
+						Window.IsActive(MusicInformation) | 
+						Window.IsActive(AddonSettings) | 
+						Window.IsActive(ContentSettings) | 
+						Window.IsActive(infoprovidersettings) | 
+						Window.IsActive(locksettings) | 
+						Window.IsActive(libexportsettings) | 
+						[Window.IsActive(ManageVideoVersions) | Window.IsActive(ManageVideoExtras)] | 
+						[Window.IsVisible(Home) + !String.IsEmpty(Control.GetLabel(1)) + String.IsEqual(Control.GetLabel(1),$LOCALIZE[396])]
+			</visible>
+			
+			<include>VisibleFadeEffect</include>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		<control type="group">
+			
+			<left>436</left>
+			
+			<top>111</top>
+			
+			
+			
+			
+			
+			<!--
+			==============================================================================================================
+			==============================================================================================================
+			Correct dialog positions
+			==============================================================================================================
+			-->
+			
+			
+			
+			<animation effect="slide" start="0,0" end="-65,0" time="0" condition="Control.IsVisible(90)">Conditional</animation>
+			
+			
+			
+			
+			
+			<!--
+			========================================================================================================
+			Regular bulk select dialogs
+			like a color list with many items (cancel button area on the right)
+			========================================================================================================
+			-->
+			
+			<!-- y -->
+			<!-- 70/2=35 -->
+			<animation effect="slide" start="0,0" end="0,35" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,10)] + ![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,35" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,9)] + ![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,35" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,8)] + ![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,35" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,7)] + ![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,35" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,6)] + ![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,35" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,5)] + ![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,35" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,4)] + ![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			
+			
+			
+			<!--
+			========================================================================================================
+			Medium Special variant
+			for within OSDXXXSettings (similar to stream selectors variant)
+			========================================================================================================
+			-->
+			
+			<!-- x -->
+			<animation effect="slide" start="0,0" end="12,0" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + !Integer.IsGreater(Container(3).NumItems,9)] + [[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation><!-- no scrollbar removes 24px of panel width -->
+			
+			<!-- y -->
+			<animation effect="slide" start="0,0" end="0,3" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3)] + [[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<!-- 76/2=38 -->
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,9)] + [[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,8)] + [[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,7)] + [[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,6)] + [[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,5)] + [[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,4)] + [[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,3)] + [[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(3) + Integer.IsLess(Container(3).NumItems,2)] + [[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">Conditional</animation>
+			
+			
+			
+			
+			
+			<!--
+			========================================================================================================
+			Regular LARGE bulk select dialogs
+			like a skin list (thumb, cancel button area on the right)
+			also used for video versions/extras on Kodi 21+
+			========================================================================================================
+			-->
+			
+			<!-- y -->
+			<!-- 138/2=69 -->
+			<animation effect="slide" start="0,0" end="0,69" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + Integer.IsLess(Container(6).NumItems,5)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,69" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + Integer.IsLess(Container(6).NumItems,4)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,69" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + Integer.IsLess(Container(6).NumItems,3)]">Conditional</animation>
+			
+			
+			
+			
+			
+			
+			<!--
+			========================================================================================================
+			Kodi 22+ stream selectors
+			DialogSelectVideo | DialogSelectAudio | DialogSelectSubtitle
+			========================================================================================================
+			-->
+			
+			<!-- x -->
+			<!--<animation effect="slide" start="0,0" end="85,0" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]">Conditional</animation>-->
+			<animation effect="slide" start="0,0" end="12,0" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + !Integer.IsGreater(Container(6).NumItems,9)]">Conditional</animation><!-- no scrollbar removes 24px of panel width -->
+			
+			<!-- y -->
+			<animation effect="slide" start="0,0" end="0,3" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]">Conditional</animation>
+			<!-- 76/2=38 -->
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + Integer.IsLess(Container(6).NumItems,9)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + Integer.IsLess(Container(6).NumItems,8)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + Integer.IsLess(Container(6).NumItems,7)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + Integer.IsLess(Container(6).NumItems,6)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + Integer.IsLess(Container(6).NumItems,5)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + Integer.IsLess(Container(6).NumItems,4)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + Integer.IsLess(Container(6).NumItems,3)]">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Control.IsVisible(6) + Integer.IsLess(Container(6).NumItems,2)]">Conditional</animation>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<control type="group">
+				
+				
+				
+				<!-- My Skin [Kodi] Default select action -->
+				
+				<animation effect="slide" start="0,0" end="0,-86" time="0" condition='!String.IsEmpty(Control.GetLabel(1)) + String.EndsWith(Control.GetLabel(1), $LOCALIZE[3] "$LOCALIZE[22079]")'>Conditional</animation>
+				
+				
+				
+				<!--
+				row heights (including bottom space!)
+				
+				70 small
+				76 medium
+				138 large
+				-->
+				
+				
+				
+				<!--
+				=================================================================================================
+				=================================================================================================
+				Dialog panels
+				=================================================================================================
+				-->
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!--
+				========================================================================================================
+				Regular bulk select dialogs
+				like a color list with many items (cancel button area on the right)
+				========================================================================================================
+				-->
+				<control type="group">
+					
+					<visible>Control.IsVisible(90)</visible>
+					
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="392" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsLessOrEqual(Container(3).NumItems,3)</visible><!-- 0-3 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="462" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,4)</visible><!-- 4 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="532" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,5)</visible><!-- 5 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="602" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,6)</visible><!-- 6 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="672" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,7)</visible><!-- 7 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="742" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,8)</visible><!-- 8 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="812" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,9)</visible><!-- 9 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="881" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,10)</visible><!-- 10 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1273" />
+							<param name="height" value="881" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsGreaterOrEqual(Container(3).NumItems,11)</visible><!-- 11+ items w/ scrollbar --><!-- 10 rows -->
+					</control>
+				</control>
+				
+				<control type="group">
+					
+					<visible>!Control.IsVisible(90)</visible>
+					
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="392" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsLessOrEqual(Container(3).NumItems,3)</visible><!-- 0-3 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="462" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,4)</visible><!-- 4 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="532" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,5)</visible><!-- 5 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="602" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,6)</visible><!-- 6 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="672" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,7)</visible><!-- 7 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="742" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,8)</visible><!-- 8 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="812" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,9)</visible><!-- 9 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="881" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,10)</visible><!-- 10 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1144" />
+							<param name="height" value="881" />
+						</include>
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsGreaterOrEqual(Container(3).NumItems,11)</visible><!-- 11+ items w/ scrollbar --><!-- 10 rows -->
+					</control>
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!--
+				========================================================================================================
+				Medium Special variant
+				for within OSDXXXSettings (similar to stream selectors variant)
+				========================================================================================================
+				-->
+				<control type="group">
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="257" />
+						</include>
+						<visible>[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsLessOrEqual(Container(3).NumItems,1)</visible><!-- 0-1 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="333" />
+						</include>
+						<visible>[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,2)</visible><!-- 2 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="409" />
+						</include>
+						<visible>[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,3)</visible><!-- 3 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="485" />
+						</include>
+						<visible>[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,4)</visible><!-- 4 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="561" />
+						</include>
+						<visible>[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,5)</visible><!-- 5 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="637" />
+						</include>
+						<visible>[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,6)</visible><!-- 6 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="713" />
+						</include>
+						<visible>[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,7)</visible><!-- 7 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="789" />
+						</include>
+						<visible>[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,8)</visible><!-- 8 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="865" />
+						</include>
+						<visible>[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsEqual(Container(3).NumItems,9)</visible><!-- 9 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1144" />
+							<param name="height" value="865" />
+						</include>
+						<visible>[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						<visible>Control.IsVisible(3) + Integer.IsGreaterOrEqual(Container(3).NumItems,10)</visible><!-- 10+ items w/ scrollbar --><!-- 9 rows -->
+					</control>
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!--
+				========================================================================================================
+				Regular LARGE bulk select dialogs
+				like a skin list (thumb, cancel button area on the right)
+				also used for video versions/extras on Kodi 21+
+				========================================================================================================
+				-->
+				<control type="group">
+					
+					<visible>Control.IsVisible(90)</visible>
+					
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="457" />
+						</include>
+						<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + !Integer.IsGreater(Container(6).NumItems,2)</visible><!-- 0-2 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="595" />
+						</include>
+						<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,3)</visible><!-- 3 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="733" />
+						</include>
+						<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,4)</visible><!-- 4 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1249" />
+							<param name="height" value="871" />
+						</include>
+						<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,5)</visible><!-- 5 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1273" />
+							<param name="height" value="871" />
+						</include>
+						<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsGreaterOrEqual(Container(6).NumItems,6)</visible><!-- 6+ items w/ scrollbar --><!-- 5 rows -->
+					</control>
+				</control>
+				
+				<control type="group">
+					
+					<visible>!Control.IsVisible(90)</visible>
+					
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="457" />
+						</include>
+						<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + !Integer.IsGreater(Container(6).NumItems,2)</visible><!-- 0-2 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="595" />
+						</include>
+						<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,3)</visible><!-- 3 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="733" />
+						</include>
+						<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,4)</visible><!-- 4 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="871" />
+						</include>
+						<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,5)</visible><!-- 5 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1144" />
+							<param name="height" value="871" />
+						</include>
+						<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsGreaterOrEqual(Container(6).NumItems,6)</visible><!-- 6+ items w/ scrollbar --><!-- 5 rows -->
+					</control>
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!--
+				========================================================================================================
+				Kodi 22+ stream selectors
+				DialogSelectVideo | DialogSelectAudio | DialogSelectSubtitle
+				========================================================================================================
+				-->
+				<control type="group">
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="257" />
+						</include>
+						<visible>[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsLessOrEqual(Container(6).NumItems,1)</visible><!-- 0-1 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="333" />
+						</include>
+						<visible>[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,2)</visible><!-- 2 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="409" />
+						</include>
+						<visible>[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,3)</visible><!-- 3 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="485" />
+						</include>
+						<visible>[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,4)</visible><!-- 4 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="561" />
+						</include>
+						<visible>[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,5)</visible><!-- 5 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="637" />
+						</include>
+						<visible>[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,6)</visible><!-- 6 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="713" />
+						</include>
+						<visible>[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,7)</visible><!-- 7 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="789" />
+						</include>
+						<visible>[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,8)</visible><!-- 8 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1120" />
+							<param name="height" value="865" />
+						</include>
+						<visible>[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsEqual(Container(6).NumItems,9)</visible><!-- 9 items -->
+					</control>
+					<control type="group">
+						<include content="DialogBackground_Include">
+							<param name="width" value="1144" />
+							<param name="height" value="865" />
+						</include>
+						<visible>[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						<visible>Control.IsVisible(6) + Integer.IsGreaterOrEqual(Container(6).NumItems,10)</visible><!-- 10+ items w/ scrollbar --><!-- 9 rows -->
+					</control>
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!-- My Skin [Kodi] Default select action -->
+				
+				<control type="group">
+					
+					<animation effect="slide" start="0,0" end="0,70" time="0" condition="String.StartsWith(System.BuildVersion,21.)">Conditional</animation>
+					
+					<visible>!String.IsEmpty(Control.GetLabel(1)) + String.EndsWith(Control.GetLabel(1), $LOCALIZE[3] "$LOCALIZE[22079]")</visible>
+					
+					<top>430</top>
+					<left>0</left>
+					
+					<include condition="String.IsEmpty(Skin.String(UIFontSize))" content="DialogBackground_Include">
+						<param name="width" value="1120" />
+						<param name="height" value="232" />
+					</include>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),accessibility)" content="DialogBackground_Include">
+						<param name="width" value="1120" />
+						<param name="height" value="316" />
+					</include>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)" content="DialogBackground_Include">
+						<param name="width" value="1120" />
+						<param name="height" value="360" />
+					</include>
+					
+					<control type="textbox">
+						
+						<textcolor>selected+</textcolor>
+						
+						<top>30</top>
+						<left>40</left>
+						<width>1000</width>
+						<font>Light17</font>
+						<label>It's highly recommended to select  [B]$LOCALIZE[22081][/B]  because it's an essential part of the intuitive step-based information flow concept of Confluence ZEITGEIST.
+[B]Example:[/B]
+1) Browse your Movies Wall   2) Press Enter/OK to open the detailed "Movie Info Dialog"</label>
+					</control>
+					
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!--
+				=================================================================================================
+				=================================================================================================
+				Headers
+				=================================================================================================
+				-->
+				<control type="label" id="1">
+					<description>Fake Label</description>
+					<visible>false</visible>
+				</control>
+				
+				<control type="group">
+					<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+					
+					<!-- Regular -->
+					<control type="group">
+						
+						<visible>![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						
+						<control type="group">
+							<visible>!Control.IsVisible(90)</visible>
+							<visible>Control.IsVisible(3) + Integer.IsLessOrEqual(Container(3).NumItems,10)</visible><!-- 10 items -->
+							<include content="Header_Include"><param name="Width" value="1060" /></include>
+						</control>
+						<control type="group">
+							<visible>!Control.IsVisible(90)</visible>
+							<visible>Control.IsVisible(3) + Integer.IsGreaterOrEqual(Container(3).NumItems,11)</visible><!-- 11+ items w/ scrollbar --><!-- 10 rows -->
+							<include content="Header_Include"><param name="Width" value="1084" /></include>
+						</control>
+						
+						<control type="group">
+							<visible>Control.IsVisible(90)</visible>
+							<visible>Control.IsVisible(3) + Integer.IsLessOrEqual(Container(3).NumItems,10)</visible><!-- 10 items -->
+							<include content="Header_Include"><param name="Width" value="1189" /></include>
+						</control>
+						<control type="group">
+							<visible>Control.IsVisible(90)</visible>
+							<visible>Control.IsVisible(3) + Integer.IsGreaterOrEqual(Container(3).NumItems,11)</visible><!-- 11+ items w/ scrollbar --><!-- 10 rows -->
+							<include content="Header_Include"><param name="Width" value="1213" /></include>
+						</control>
+						
+						
+						
+						
+						
+						<control type="group">
+							<visible>!Control.IsVisible(90)</visible>
+							<visible>Control.IsVisible(6) + Integer.IsLessOrEqual(Container(6).NumItems,5)</visible><!-- 5 items -->
+							<include content="Header_Include"><param name="Width" value="1060" /></include>
+						</control>
+						<control type="group">
+							<visible>!Control.IsVisible(90)</visible>
+							<visible>Control.IsVisible(6) + Integer.IsGreaterOrEqual(Container(6).NumItems,6)</visible><!-- 6+ items w/ scrollbar --><!-- 5 rows -->
+							<include content="Header_Include"><param name="Width" value="1084" /></include>
+						</control>
+						
+						<control type="group">
+							<visible>Control.IsVisible(90)</visible>
+							<visible>Control.IsVisible(6) + Integer.IsLessOrEqual(Container(6).NumItems,5)</visible><!-- 5 items -->
+							<include content="Header_Include"><param name="Width" value="1189" /></include>
+						</control>
+						<control type="group">
+							<visible>Control.IsVisible(90)</visible>
+							<visible>Control.IsVisible(6) + Integer.IsGreaterOrEqual(Container(6).NumItems,6)</visible><!-- 6+ items w/ scrollbar --><!-- 5 rows -->
+							<include content="Header_Include"><param name="Width" value="1213" /></include>
+						</control>
+						
+						
+						
+						
+					</control>
+					
+					<!-- Special -->
+					<control type="group">
+						
+						<visible>[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]</visible>
+						
+						<control type="group">
+							<visible>Control.IsVisible(3) + Integer.IsLessOrEqual(Container(3).NumItems,9)</visible><!-- 9 items -->
+							<include content="Header_Include"><param name="Width" value="1060" /></include>
+						</control>
+						<control type="group">
+							<visible>Control.IsVisible(3) + Integer.IsGreaterOrEqual(Container(3).NumItems,10)</visible><!-- 10+ items w/ scrollbar --><!-- 9 rows -->
+							<include content="Header_Include"><param name="Width" value="1084" /></include>
+						</control>
+					</control>
+					
+				</control>
+				
+				
+				
+				
+				<!--
+				Header | Kodi 22+ Dialogs
+				-->
+				<control type="group">
+					
+					<visible>[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+					
+					<control type="group">
+						<visible>Control.IsVisible(6) + Integer.IsLessOrEqual(Container(6).NumItems,9)</visible>
+						<include content="Header_Include"><param name="Width" value="1060" /></include>
+					</control>
+					<control type="group">
+						<visible>Control.IsVisible(6) + Integer.IsGreaterOrEqual(Container(6).NumItems,10)</visible>
+						<include content="Header_Include"><param name="Width" value="1084" /></include>
+					</control>
+					
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!--
+				=======================================================================================
+				LIST ID 3
+				=======================================================================================
+				-->
+				
+				<control type="fixedlist" id="3">
+					<left>40</left>
+					<top>105</top>
+					
+					
+					
+					
+					
+					
+					<animation effect="slide" start="0,0" end="0,-70" time="0" condition="![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,8) | Integer.IsEqual(Container(3).NumItems,7)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-70" time="0" condition="![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,7)]">Conditional</animation>
+					-->
+					
+					<animation effect="slide" start="0,0" end="0,-140" time="0" condition="![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,6) | Integer.IsEqual(Container(3).NumItems,5)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-140" time="0" condition="![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,5)]">Conditional</animation>
+					-->
+					
+					<animation effect="slide" start="0,0" end="0,-210" time="0" condition="![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,4) | Integer.IsEqual(Container(3).NumItems,3)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-210" time="0" condition="![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,3)]">Conditional</animation>
+					-->
+					
+					<animation effect="slide" start="0,0" end="0,-280" time="0" condition="![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,2) | Integer.IsEqual(Container(3).NumItems,1)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-280" time="0" condition="![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,1)]">Conditional</animation>
+					-->
+					
+					
+					
+					
+					
+					
+					<animation effect="slide" start="0,0" end="0,-76" time="0" condition="[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,8) | Integer.IsEqual(Container(3).NumItems,7)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-76" time="0" condition="[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,7)]">Conditional</animation>
+					-->
+					
+					<animation effect="slide" start="0,0" end="0,-152" time="0" condition="[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,6) | [Integer.IsEqual(Container(3).NumItems,5)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-152" time="0" condition="[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,5)]">Conditional</animation>
+					-->
+					
+					<animation effect="slide" start="0,0" end="0,-228" time="0" condition="[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,4) | Integer.IsEqual(Container(3).NumItems,3)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-228" time="0" condition="[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,3)]">Conditional</animation>
+					-->
+					
+					<animation effect="slide" start="0,0" end="0,-304" time="0" condition="[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,2) | Integer.IsEqual(Container(3).NumItems,1)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-304" time="0" condition="[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)] + [Integer.IsEqual(Container(3).NumItems,1)]">Conditional</animation>
+					-->
+					
+					
+					
+					
+					
+					
+					<include condition="![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">FixedList_Config_Regular_Bulk</include>
+					<include condition="[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">FixedList_Config_Medium_Special</include>
+					
+					
+					
+					<width>1000</width>
+					
+					
+					
+					<!-- 10*70=700 -->
+					<height>700</height>
+					
+					
+					<onup>3</onup>
+					<ondown>3</ondown>
+					<onleft>3</onleft>
+					
+					<onright condition="Control.IsVisible(9090)">9090</onright>
+					
+					<pagecontrol>61</pagecontrol>
+					
+					<include>SimpleListViewsScrollTime</include>
+					
+					
+					<!--
+					========================================================================================================
+					Regular bulk select dialogs
+					like a color list with many items (cancel button area on the right)
+					========================================================================================================
+					-->
+					<itemlayout height="70" condition="![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">
+						<control type="label">
+							<left>26</left>
+							<top>-6</top>
+							<right>26</right>
+							<font>Regular22</font>
+							<textcolor>grey2</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$VAR[Dialog_Select_ItemLayout_Label]</label>
+						</control>
+					</itemlayout>
+					
+					<focusedlayout height="70" condition="![[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">
+						<control type="group">
+							<control type="image">
+								<bottom>3</bottom>
+								<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+								<visible>Control.HasFocus(3)</visible>
+							</control>
+							<include>FocusAnimationType1Short</include>
+						</control>
+						<control type="label">
+							<left>26</left>
+							<top>-6</top>
+							<right>26</right>
+							<font>Regular22</font>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$VAR[Dialog_Select_FocusLayout_Label_Active]</label>
+							<visible>Control.HasFocus(3)</visible>
+						</control>
+						<control type="label">
+							<left>26</left>
+							<top>-6</top>
+							<right>26</right>
+							<font>Regular22</font>
+							<textcolor>grey2</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$VAR[Dialog_Select_ItemLayout_Label]</label>
+							<visible>!Control.HasFocus(3)</visible>
+						</control>
+					</focusedlayout>
+					
+					
+					<!--
+					========================================================================================================
+					Medium Special variant
+					for within OSDXXXSettings (similar to stream selectors variant)
+					========================================================================================================
+					-->
+					<itemlayout height="76" condition="[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">
+						<control type="label">
+							<left>26</left>
+							<top>-7</top>
+							<right>26</right>
+							<font>Regular22</font>
+							<textcolor>grey2</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</itemlayout>
+					
+					<focusedlayout height="76" condition="[[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">
+						<control type="group">
+							<control type="image">
+								<bottom>4</bottom>
+								<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+								<visible>Control.HasFocus(3)</visible>
+							</control>
+							<include>FocusAnimationType1Short</include>
+						</control>
+						<control type="label">
+							<left>26</left>
+							<top>-7</top>
+							<right>26</right>
+							<font>Regular22</font>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]</label>
+							<visible>Control.HasFocus(3)</visible>
+						</control>
+						<control type="label">
+							<left>26</left>
+							<top>-7</top>
+							<right>26</right>
+							<font>Regular22</font>
+							<textcolor>grey2</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]</label>
+							<visible>!Control.HasFocus(3)</visible>
+						</control>
+					</focusedlayout>
+					
+					
+				</control>
+				
+				
+				
+				
+				
+				<!--
+				=======================================================================================
+				LIST ID 6
+				=======================================================================================
+				-->
+				
+				<control type="label" id="66601">
+					<label>HDR10+</label>
+					<visible>false</visible>
+				</control>
+				
+				<control type="fixedlist" id="6">
+					
+					
+					
+					
+					
+					
+					<animation effect="slide" start="0,0" end="0,-76" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,8) | Integer.IsEqual(Container(6).NumItems,7)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-76" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,7)]">Conditional</animation>
+					-->
+					
+					<animation effect="slide" start="0,0" end="0,-152" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,6) | Integer.IsEqual(Container(6).NumItems,5)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-152" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,5)]">Conditional</animation>
+					-->
+					
+					<animation effect="slide" start="0,0" end="0,-228" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,4) | Integer.IsEqual(Container(6).NumItems,3)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-228" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,3)]">Conditional</animation>
+					-->
+					
+					<animation effect="slide" start="0,0" end="0,-304" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,2) | Integer.IsEqual(Container(6).NumItems,1)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-304" time="0" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,1)]">Conditional</animation>
+					-->
+					
+					
+					
+					
+					
+					
+					<animation effect="slide" start="0,0" end="0,-138" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,4) | Integer.IsEqual(Container(6).NumItems,3)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-138" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,3)]">Conditional</animation>
+					-->
+					
+					<animation effect="slide" start="0,0" end="0,-276" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,2) | Integer.IsEqual(Container(6).NumItems,1)]">Conditional</animation>
+					
+					<!--
+					<animation effect="slide" start="0,0" end="0,-276" time="0" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Integer.IsEqual(Container(6).NumItems,1)]">Conditional</animation>
+					-->
+					
+					
+					
+					
+					
+					
+					<include condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]">FixedList_Config_New_Selectors</include>
+					<include condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]">FixedList_Config_Large_Items</include>
+					
+					
+					
+					<left>40</left>
+					<top>105</top>
+					
+					
+					<width>1000</width>
+					
+					
+					
+					<!-- 5*380=690 -->
+					<height>690</height>
+					
+					
+					<onup>6</onup>
+					<ondown>6</ondown>
+					<onleft>6</onleft>
+					
+					<onright condition="Control.IsVisible(9090)">9090</onright>
+					
+					<pagecontrol>62</pagecontrol>
+					
+					<include>StandardScrollTime</include>
+					
+					
+					
+					<!--
+					========================================================================================================
+					Kodi 22+ stream selectors
+					DialogSelectVideo | DialogSelectAudio | DialogSelectSubtitle
+					========================================================================================================
+					-->
+					<itemlayout    height="76" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + ![Window.IsActive(MovieInformation) + String.IsEqual(Control.GetLabel(1),$LOCALIZE[283])]">
+						
+						<control type="group">
+							
+							<!-- move everything a bit to left for all non-subtitles dialogs (skipping "disabled icon" column from subtitles dialog) -->
+							<include condition="!Window.Is(DialogSelectSubtitle) | String.IsEqual(ListItem.Property(stream.id),-1)">StreamSelector_Non_Subtitle_Dialog_Move_Left</include>
+							
+							<!-- Disabled -->
+							<control type="image">
+								<left>16</left>
+								<top>-4</top>
+								<width>28</width>
+								<texture>_added_img/icons/stream-selector/disabled.png</texture>
+								<aspectratio aligny="center">keep</aspectratio>
+								<visible>!ListItem.IsSelected</visible>
+								<visible>String.IsEqual(ListItem.Property(stream.id),-2)</visible>
+								<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>-4</top>
+								<width>28</width>
+								<texture colordiffuse="FFebb217">_added_img/icons/stream-selector/disabled.png</texture>
+								<aspectratio aligny="center">keep</aspectratio>
+								<visible>ListItem.IsSelected</visible>
+								<visible>String.IsEqual(ListItem.Property(stream.id),-2) + !String.IsEqual(ListItem.Property(stream.id),-1)</visible>
+							</control>
+							
+							<!-- Selected -->
+							<control type="image">
+								<left>24</left>
+								<top>-4</top>
+								<width>14</width>
+								<aspectratio aligny="center">keep</aspectratio>
+								<texture colordiffuse="FFebb217">_added_img/icons/stream-selector/selected-dot.png</texture>
+								
+								<visible>Window.Is(DialogSelectSubtitle) + !String.IsEqual(ListItem.Property(stream.id),-1)</visible>
+								
+								<visible>!String.IsEqual(ListItem.Property(stream.id),-2) + !String.IsEqual(ListItem.Property(stream.id),-1)</visible>
+								<visible>ListItem.IsSelected</visible>
+								
+								<animation effect="fade" end="50" time="0" condition="!ListItem.IsSelected +   [   [Window.Is(DialogSelectSubtitle) + String.IsEqual(ListItem.Property(stream.id),Window(10000).Property(CH.Player.Subtitle.ID))]   ]">Conditional</animation>
+							</control>
+							<control type="image">
+								<left>24</left>
+								<top>-4</top>
+								<width>14</width>
+								<aspectratio aligny="center">keep</aspectratio>
+								<texture>_added_img/icons/stream-selector/selected-dot-empty.png</texture>
+								
+								<visible>Window.Is(DialogSelectSubtitle) + !String.IsEqual(ListItem.Property(stream.id),-1)</visible>
+								
+								<visible>!String.IsEqual(ListItem.Property(stream.id),-2)</visible>
+								<visible>!ListItem.IsSelected +   [   [Window.Is(DialogSelectSubtitle) + String.IsEqual(ListItem.Property(stream.id),Window(10000).Property(CH.Player.Subtitle.ID))]   ]</visible>
+								
+								<animation effect="fade" end="50" time="0" condition="!ListItem.IsSelected +   [   [Window.Is(DialogSelectSubtitle) + String.IsEqual(ListItem.Property(stream.id),Window(10000).Property(CH.Player.Subtitle.ID))]   ]">Conditional</animation>
+							</control>
+							
+							<control type="group">
+								
+								<!-- move flags to most right for video streams -->
+								<include condition="Window.Is(DialogSelectVideo)">StreamSelector_Video_Dialog_Move_Right</include>
+								
+								<!-- SDH HI -->
+								<control type="image">
+									<left>398</left>
+									<top>-4</top>
+									<width>30</width>
+									<aspectratio aligny="center">keep</aspectratio>
+									<texture colordiffuse="FFebb217">_added_img/icons/stream-selector/sdh-hi.png</texture>
+									<visible>ListItem.Property(stream.ishearingimpaired)</visible>
+									<visible>ListItem.IsSelected</visible>
+								</control>
+								<control type="image">
+									<left>398</left>
+									<top>-4</top>
+									<width>30</width>
+									<aspectratio aligny="center">keep</aspectratio>
+									<texture>_added_img/icons/stream-selector/sdh-hi.png</texture>
+									<visible>ListItem.Property(stream.ishearingimpaired)</visible>
+									<visible>!ListItem.IsSelected</visible>
+									<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+								</control>
+								
+								<!-- Default flag -->
+								<control type="image">
+									<left>400</left>
+									<top>-4</top>
+									<width>26</width>
+									<aspectratio aligny="center">keep</aspectratio>
+									<texture colordiffuse="FFebb217">_added_img/icons/stream-selector/default.png</texture>
+									<visible>ListItem.Property(stream.isdefault) + !ListItem.Property(stream.ishearingimpaired)</visible>
+									<visible>ListItem.IsSelected</visible>
+								</control>
+								<control type="image">
+									<left>400</left>
+									<top>-4</top>
+									<width>26</width>
+									<aspectratio aligny="center">keep</aspectratio>
+									<texture>_added_img/icons/stream-selector/default.png</texture>
+									<visible>ListItem.Property(stream.isdefault) + !ListItem.Property(stream.ishearingimpaired)</visible>
+									<visible>!ListItem.IsSelected</visible>
+									<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+								</control>
+								
+							</control>
+							
+							<!-- text 1 -->
+							<control type="label">
+								<left>54</left>
+								<top>-7</top>
+								
+								<include condition="Window.Is(DialogSelectVideo)">StreamSelector_Video_Label1_Width</include>
+								
+								<width>336</width>
+								<font>Regular21</font>
+								<textcolor>grey</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<aligny>center</aligny>
+								<label>$VAR[DialogSelectLabel1]</label>
+								<scroll>false</scroll>
+							</control>
+							
+							<!-- text 2 -->
+							<control type="label">
+								<left>440</left>
+								<top>-7</top>
+								
+								<include condition="Window.Is(DialogSelectAudio)">StreamSelector_Audio_Label2_Width</include>
+								
+								<width>540</width>
+								<font>Regular21</font>
+								<textcolor>grey</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<aligny>center</aligny>
+								<label>$VAR[DialogSelectLabel2]</label>
+							</control>
+							
+						</control>
+						
+					</itemlayout>
+					
+					<focusedlayout height="76" condition="[Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + ![Window.IsActive(MovieInformation) + String.IsEqual(Control.GetLabel(1),$LOCALIZE[283])]">
+						
+						<!-- focus bg -->
+						<control type="group">
+							<control type="image">
+								<height>72</height>
+								<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+								<visible>Control.HasFocus(6)</visible>
+							</control>
+							<include>FocusAnimationType1</include>
+						</control>
+						
+						<control type="group">
+							
+							<!-- move everything a bit to left for all non-subtitles dialogs (skipping "disabled icon" column from subtitles dialog) -->
+							<include condition="!Window.Is(DialogSelectSubtitle) | String.IsEqual(ListItem.Property(stream.id),-1)">StreamSelector_Non_Subtitle_Dialog_Move_Left</include>
+							
+							<!-- Disabled -->
+							<control type="image">
+								<left>16</left>
+								<top>-4</top>
+								<width>28</width>
+								<texture>_added_img/icons/stream-selector/disabled.png</texture>
+								<aspectratio aligny="center">keep</aspectratio>
+								<visible>!ListItem.IsSelected</visible>
+								<visible>String.IsEqual(ListItem.Property(stream.id),-2) + !String.IsEqual(ListItem.Property(stream.id),-1)</visible>
+							</control>
+							<control type="image">
+								<left>16</left>
+								<top>-4</top>
+								<width>28</width>
+								<texture colordiffuse="FFebb217">_added_img/icons/stream-selector/disabled.png</texture>
+								<aspectratio aligny="center">keep</aspectratio>
+								<visible>ListItem.IsSelected</visible>
+								<visible>String.IsEqual(ListItem.Property(stream.id),-2) + !String.IsEqual(ListItem.Property(stream.id),-1)</visible>
+							</control>
+							
+							<!-- Selected -->
+							<control type="image">
+								<left>24</left>
+								<top>-4</top>
+								<width>14</width>
+								<aspectratio aligny="center">keep</aspectratio>
+								<texture colordiffuse="FFebb217">_added_img/icons/stream-selector/selected-dot.png</texture>
+								
+								<visible>Window.Is(DialogSelectSubtitle) + !String.IsEqual(ListItem.Property(stream.id),-1)</visible>
+								
+								<visible>!String.IsEqual(ListItem.Property(stream.id),-2)</visible>
+								<visible>ListItem.IsSelected</visible>
+								
+								<animation effect="fade" end="50" time="0" condition="!ListItem.IsSelected +   [   [Window.Is(DialogSelectSubtitle) + String.IsEqual(ListItem.Property(stream.id),Window(10000).Property(CH.Player.Subtitle.ID))]   ]">Conditional</animation>
+							</control>
+							<control type="image">
+								<left>24</left>
+								<top>-4</top>
+								<width>14</width>
+								<aspectratio aligny="center">keep</aspectratio>
+								<texture>_added_img/icons/stream-selector/selected-dot-empty.png</texture>
+								
+								<visible>Window.Is(DialogSelectSubtitle) + !String.IsEqual(ListItem.Property(stream.id),-1)</visible>
+								
+								<visible>!String.IsEqual(ListItem.Property(stream.id),-2)</visible>
+								<visible>!ListItem.IsSelected +   [   [Window.Is(DialogSelectSubtitle) + String.IsEqual(ListItem.Property(stream.id),Window(10000).Property(CH.Player.Subtitle.ID))]   ]</visible>
+								
+								<animation effect="fade" end="50" time="0" condition="!ListItem.IsSelected +   [   [Window.Is(DialogSelectSubtitle) + String.IsEqual(ListItem.Property(stream.id),Window(10000).Property(CH.Player.Subtitle.ID))]   ]">Conditional</animation>
+							</control>
+							
+							<control type="group">
+								
+								<!-- move flags to most right for video streams -->
+								<include condition="Window.Is(DialogSelectVideo)">StreamSelector_Video_Dialog_Move_Right</include>
+								
+								<!-- SDH HI -->
+								<control type="image">
+									<left>398</left>
+									<top>-4</top>
+									<width>30</width>
+									<aspectratio aligny="center">keep</aspectratio>
+									<texture colordiffuse="FFebb217">_added_img/icons/stream-selector/sdh-hi.png</texture>
+									<visible>ListItem.Property(stream.ishearingimpaired)</visible>
+									<visible>ListItem.IsSelected</visible>
+								</control>
+								<control type="image">
+									<left>398</left>
+									<top>-4</top>
+									<width>30</width>
+									<aspectratio aligny="center">keep</aspectratio>
+									<texture>_added_img/icons/stream-selector/sdh-hi.png</texture>
+									<visible>ListItem.Property(stream.ishearingimpaired)</visible>
+									<visible>!ListItem.IsSelected</visible>
+								</control>
+								
+								<!-- Default flag -->
+								<control type="image">
+									<left>400</left>
+									<top>-4</top>
+									<width>26</width>
+									<aspectratio aligny="center">keep</aspectratio>
+									<texture colordiffuse="FFebb217">_added_img/icons/stream-selector/default.png</texture>
+									<visible>ListItem.Property(stream.isdefault) + !ListItem.Property(stream.ishearingimpaired)</visible>
+									<visible>ListItem.IsSelected</visible>
+								</control>
+								<control type="image">
+									<left>400</left>
+									<top>-4</top>
+									<width>26</width>
+									<aspectratio aligny="center">keep</aspectratio>
+									<texture>_added_img/icons/stream-selector/default.png</texture>
+									<visible>ListItem.Property(stream.isdefault) + !ListItem.Property(stream.ishearingimpaired)</visible>
+									<visible>!ListItem.IsSelected</visible>
+								</control>
+								
+							</control>
+							
+							<!-- text 1 -->
+							<control type="label">
+								<left>54</left>
+								<top>-7</top>
+								
+								<include condition="Window.Is(DialogSelectVideo)">StreamSelector_Video_Label1_Width</include>
+								<include condition="Window.Is(DialogSelectVideo)">StreamSelector_Video_Label1_ScrollOnFocus</include>
+								
+								<width>336</width>
+								<font>Regular21</font>
+								<selectedcolor>selected</selectedcolor>
+								<aligny>center</aligny>
+								<label>$VAR[DialogSelectLabel1]</label>
+								<visible>Control.HasFocus(6)</visible>
+								<scroll>false</scroll>
+							</control>
+							<control type="label">
+								<left>54</left>
+								<top>-7</top>
+								
+								<include condition="Window.Is(DialogSelectVideo)">StreamSelector_Video_Label1_Width</include>
+								
+								<width>336</width>
+								<font>Regular21</font>
+								<textcolor>grey</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<aligny>center</aligny>
+								<label>$VAR[DialogSelectLabel1]</label>
+								<visible>!Control.HasFocus(6)</visible>
+								<scroll>false</scroll>
+							</control>
+							
+							<!-- text 2 -->
+							<control type="label">
+								<left>440</left>
+								<top>-7</top>
+								
+								<include condition="Window.Is(DialogSelectAudio)">StreamSelector_Audio_Label2_Width</include>
+								
+								<width>540</width>
+								<font>Regular21</font>
+								<textcolor>grey</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<aligny>center</aligny>
+								<label>$VAR[DialogSelectLabel2]</label>
+							</control>
+							
+						</control>
+						
+					</focusedlayout>
+					
+					
+					
+					
+					
+					
+					
+					
+					<!--
+					========================================================================================================
+					Regular LARGE bulk select dialogs
+					like a skin list (thumb, cancel button area on the right)
+					also used for video versions/extras on Kodi 21+
+					#283 = Search results
+					========================================================================================================
+					-->
+					<itemlayout    height="138" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + ![Window.IsActive(MovieInformation) + String.IsEqual(Control.GetLabel(1),$LOCALIZE[283])]">
+						
+						<!-- left image -->
+						<control type="image">
+							<left>7</left>
+							<top>7</top>
+							<width>120</width>
+							<height>120</height>
+							<texture background="true" colordiffuse="ffcecece" diffuse="colors/diffuse/rounded-generic-1.png">$VAR[DialogSelectImage]</texture>
+							<aspectratio scalediffuse="true">keep</aspectratio>
+						</control>
+						
+						<!-- top text -->
+						<control type="label">
+							<left>135</left>
+							<top>3</top>
+							<right>30</right>
+							<height>45</height>
+							<font>Regular21</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$VAR[DialogSelectLabel1]</label>
+						</control>
+						
+						<!-- bottom text -->
+						<control type="textbox">
+							
+							<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">SkinVariant_16by10_CRT_SelectDialog_Label2_Dimensions</include>
+							
+							<left>135</left>
+							<top>51</top>
+							
+							<right>30</right>
+							
+							<height>72</height>
+							
+							<font>Light17</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<label>$VAR[DialogSelectLabel2]</label>
+						</control>
+						
+					</itemlayout>
+					
+					<focusedlayout height="138" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + ![Window.IsActive(MovieInformation) + String.IsEqual(Control.GetLabel(1),$LOCALIZE[283])]">
+						
+						<!-- focus bg -->
+						<control type="group">
+							<control type="image">
+								<left>0</left>
+								<top>0</top>
+								<height>134</height>
+								<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+								<visible>Control.HasFocus(6)</visible>
+							</control>
+							<include>FocusAnimationType1</include>
+						</control>
+						
+						<!-- left image -->
+						<control type="image">
+							<left>7</left>
+							<top>7</top>
+							<width>120</width>
+							<height>120</height>
+							<texture background="true" diffuse="colors/diffuse/rounded-generic-1.png">$VAR[DialogSelectImage]</texture>
+							<aspectratio scalediffuse="true">keep</aspectratio>
+							<visible>Control.HasFocus(6)</visible>
+						</control>
+						<control type="image">
+							<left>7</left>
+							<top>7</top>
+							<width>120</width>
+							<height>120</height>
+							<texture background="true" colordiffuse="ffcecece" diffuse="colors/diffuse/rounded-generic-1.png">$VAR[DialogSelectImage]</texture>
+							<aspectratio scalediffuse="true">keep</aspectratio>
+							<visible>!Control.HasFocus(6)</visible>
+						</control>
+						
+						<!-- top text -->
+						<control type="label">
+							<left>135</left>
+							<top>3</top>
+							<right>30</right>
+							<height>45</height>
+							<font>Regular21</font>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$VAR[DialogSelectLabel1]</label>
+							<visible>Control.HasFocus(6)</visible>
+						</control>
+						<control type="label">
+							<left>135</left>
+							<top>3</top>
+							<right>30</right>
+							<height>45</height>
+							<font>Regular21</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$VAR[DialogSelectLabel1]</label>
+							<visible>!Control.HasFocus(6)</visible>
+						</control>
+						
+						<!-- bottom text -->
+						<control type="textbox">
+							
+							<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">SkinVariant_16by10_CRT_SelectDialog_Label2_Dimensions</include>
+							
+							<left>135</left>
+							<top>51</top>
+							
+							<right>30</right>
+							
+							<height>72</height>
+							
+							<font>Light17</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<label>$VAR[DialogSelectLabel2]</label>
+						</control>
+						
+					</focusedlayout>
+					
+					
+					
+					
+					<!--
+					========================================================================================================
+					Regular LARGE | Special variant
+					for Video Info Dialog "Search results"
+					========================================================================================================
+					-->
+					<itemlayout    height="138" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Window.IsActive(MovieInformation) + String.IsEqual(Control.GetLabel(1),$LOCALIZE[283])]">
+						
+						<!-- left image -->
+						<control type="image">
+							<left>7</left>
+							<top>7</top>
+							<width>120</width>
+							<height>120</height>
+							<texture background="true" colordiffuse="ffcecece" diffuse="colors/diffuse/rounded-generic-1.png">$VAR[DialogSelectSearchImage]</texture>
+							<aspectratio scalediffuse="true">keep</aspectratio>
+						</control>
+						
+						<!-- text -->
+						<control type="label">
+							<left>135</left>
+							<top>3</top>
+							<right>30</right>
+							<height>99</height>
+							<font>Regular21</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						
+						<!-- watched icon -->
+						<control type="image">
+							<left>132</left>
+							<top>69</top>
+							<width>33</width>
+							<height>33</height>
+							<aspectratio>keep</aspectratio>
+							<texture background="true" colordiffuse="ffa2a2a2">OverlayWatched.png</texture>
+							<visible>String.IsEqual(ListItem.Label2,$LOCALIZE[16102])</visible>
+						</control>
+						
+					</itemlayout>
+					
+					<focusedlayout height="138" condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [Window.IsActive(MovieInformation) + String.IsEqual(Control.GetLabel(1),$LOCALIZE[283])]">
+						
+						<!-- focus bg -->
+						<control type="group">
+							<control type="image">
+								<left>0</left>
+								<top>0</top>
+								<height>134</height>
+								<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+								<visible>Control.HasFocus(6)</visible>
+							</control>
+							<include>FocusAnimationType1</include>
+						</control>
+						
+						<!-- left image -->
+						<control type="image">
+							<left>7</left>
+							<top>7</top>
+							<width>120</width>
+							<height>120</height>
+							<texture background="true" diffuse="colors/diffuse/rounded-generic-1.png">$VAR[DialogSelectSearchImage]</texture>
+							<aspectratio scalediffuse="true">keep</aspectratio>
+							<visible>Control.HasFocus(6)</visible>
+						</control>
+						<control type="image">
+							<left>7</left>
+							<top>7</top>
+							<width>120</width>
+							<height>120</height>
+							<texture background="true" colordiffuse="ffcecece" diffuse="colors/diffuse/rounded-generic-1.png">$VAR[DialogSelectSearchImage]</texture>
+							<aspectratio scalediffuse="true">keep</aspectratio>
+							<visible>!Control.HasFocus(6)</visible>
+						</control>
+						
+						<!-- text -->
+						<control type="label">
+							<left>135</left>
+							<top>3</top>
+							<right>30</right>
+							<height>99</height>
+							<font>Regular21</font>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]</label>
+							<visible>Control.HasFocus(6)</visible>
+						</control>
+						<control type="label">
+							<left>135</left>
+							<top>3</top>
+							<right>30</right>
+							<height>99</height>
+							<font>Regular21</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]</label>
+							<visible>!Control.HasFocus(6)</visible>
+						</control>
+						
+						<!-- watched icon -->
+						<control type="image">
+							<left>132</left>
+							<top>69</top>
+							<width>33</width>
+							<height>33</height>
+							<aspectratio>keep</aspectratio>
+							<texture background="true">OverlayWatched.png</texture>
+							<visible>String.IsEqual(ListItem.Label2,$LOCALIZE[16102])</visible>
+							<visible>Control.HasFocus(6)</visible>
+						</control>
+						<control type="image">
+							<left>132</left>
+							<top>69</top>
+							<width>33</width>
+							<height>33</height>
+							<aspectratio>keep</aspectratio>
+							<texture background="true" colordiffuse="ffa2a2a2">OverlayWatched.png</texture>
+							<visible>String.IsEqual(ListItem.Label2,$LOCALIZE[16102])</visible>
+							<visible>!Control.HasFocus(6)</visible>
+						</control>
+						
+					</focusedlayout>
+					
+					
+					
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!--
+				========================================================================================================
+				Scrollbars
+				========================================================================================================
+				-->
+				
+				<control type="scrollbar" id="61">
+					
+					<visible>Control.IsVisible(3)</visible>
+					
+					
+					
+					<left>1057</left>
+					
+					
+					
+					<top>105</top>
+					<include>scrollBarStyleDefaultWidth</include>
+					
+					
+					
+					<!-- 6*76=684-4px=680 -->
+					<include condition="![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)] + [[Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings)] + Window.Is(SelectDialog)]">StreamSelector_List_Scrollbar_Height</include>
+					
+					<!-- 10*70=700-3px=697 -->
+					<height>697</height>
+					
+					
+					
+					<onleft condition="Control.IsVisible(3)">3</onleft>
+					<onleft condition="Control.IsVisible(6)">6</onleft>
+					
+					<onright condition="Control.IsVisible(9090)">9090</onright>
+					
+					<ondown>61</ondown>
+					<onup>61</onup>
+					<showonepage>false</showonepage>
+					<include>scrollBarStyleDefault</include>
+					
+				</control>
+				
+				
+				
+				<control type="scrollbar" id="62">
+					
+					<visible>Control.IsVisible(6)</visible>
+					
+					
+					
+					<left>1057</left>
+					
+					
+					
+					<top>105</top>
+					<include>scrollBarStyleDefaultWidth</include>
+					
+					
+					
+					<include condition="Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)">StreamSelector_List_Scrollbar_Height</include>
+					
+					<height>686</height>
+					
+					
+					
+					<onleft condition="Control.IsVisible(3)">3</onleft>
+					<onleft condition="Control.IsVisible(6)">6</onleft>
+					
+					<onright condition="Control.IsVisible(9090)">9090</onright>
+					
+					<ondown>62</ondown>
+					<onup>62</onup>
+					<showonepage>false</showonepage>
+					<include>scrollBarStyleDefault</include>
+					
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!--
+				========================================================================================================
+				Button Area | right side
+				========================================================================================================
+				-->
+				
+				<!--
+				Notes:
+				right button area adds 83+38+8px = 129 px
+				-->
+				
+				<control type="group">
+					
+					
+					
+					<!-- Dummy "Cancel" button id=7 | visually non-existant (in this skin) -->
+					<!--
+					Fix list id="6" focus for Add-on info dependencies dialog
+					(Kodi sets focus - very untypically for DialogSelect - to the (in this skin) visually non-existant "Cancel" button with id=7)
+					This workaround smoothly moves focus back to list id=6
+					-->
+					<control type="button" id="7">
+						<include>HiddenObject</include>
+						<include>ElementHasNoHitBox</include>
+						<onfocus condition="!Control.IsVisible(3) + Control.IsVisible(6)">Control.SetFocus(6)</onfocus>
+						<onfocus condition="Control.IsVisible(3) + !Control.IsVisible(6) + !Control.HasFocus(3)">Control.SetFocus(6)</onfocus>
+					</control>
+					
+					
+					
+					<control type="button" id="9090">
+						<include>HiddenObject</include>
+						<include>ElementHasNoHitBox</include><!-- disable access by user -->
+						
+						<onfocus condition="Control.IsVisible(90) + Control.IsVisible(5)">SetFocus(5)</onfocus>
+						<onfocus condition="Control.IsVisible(90) + !Control.IsVisible(5) + Control.IsVisible(8)">SetFocus(8)</onfocus>
+						
+						<visible>Control.IsVisible(90)</visible>
+					</control>
+					
+					
+					
+					
+					
+					
+					<!--
+					==============================================================================================================
+					==============================================================================================================
+					Button Tooltips
+					==============================================================================================================
+					
+					$LOCALIZE
+					
+					186   = "OK"
+					
+					21452 = "Get more..."
+					15019 = "Add"
+					"
+					13516 = "Add art type"
+					40216 = "New type..."
+					40219 = "New name..."
+					
+					21335 = "Browse files"
+					40029 = "Browse library"
+					-->
+					<control type="group">
+						
+						<left>1150</left>
+						<top>75</top>
+						
+						<animation effect="slide" start="0,0" end="24,0" time="0" condition="Control.IsVisible(61) | Control.IsVisible(62)">Conditional</animation><!-- move 24px right if scrollbar active -->
+						
+						<control type="group">
+							
+							<visible>!String.IsEqual(Control.GetLabel(5),$LOCALIZE[186]) + 
+										!String.IsEqual(Control.GetLabel(5),$LOCALIZE[15019]) + 
+										!String.IsEqual(Control.GetLabel(5),$LOCALIZE[21452])
+							</visible>
+							<visible>Control.HasFocus(5)</visible>
+							<include>VisibleFadeEffect</include>
+							
+							<width>350</width>
+							<height>137</height>
+							
+							<control type="image"><texture border="54">DialogBack-rounded.png</texture></control>
+							<control type="label">
+								<left>58</left>
+								<right>50</right>
+								<bottom>2</bottom>
+								<label>$INFO[Control.GetLabel(5)]</label>
+								<font>Regular19</font>
+								<textcolor>grey2</textcolor>
+								<aligny>center</aligny>
+							</control>
+						</control>
+						
+						<control type="group">
+							
+							<animation effect="slide" start="0,0" end="0,92" time="0" condition="Control.IsVisible(5)">Conditional</animation>
+							
+							<visible>!String.IsEqual(Control.GetLabel(8),$LOCALIZE[186]) + 
+										!String.IsEqual(Control.GetLabel(8),$LOCALIZE[15019]) + 
+										!String.IsEqual(Control.GetLabel(5),$LOCALIZE[21452])
+							</visible>
+							
+							<visible>Control.HasFocus(8)</visible>
+							<include>VisibleFadeEffect</include>
+							
+							<width>350</width>
+							<height>137</height>
+							
+							<control type="image"><texture border="54">DialogBack-rounded.png</texture></control>
+							<control type="label">
+								<left>58</left>
+								<right>50</right>
+								<bottom>2</bottom>
+								<label>$INFO[Control.GetLabel(8)]</label>
+								<font>Regular19</font>
+								<textcolor>grey2</textcolor>
+								<aligny>center</aligny>
+							</control>
+						</control>
+						
+					</control>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<control type="grouplist" id="90">
+						
+						<animation effect="slide" start="0,0" end="24,0" time="0" condition="Control.IsVisible(61) | Control.IsVisible(62)">Conditional</animation><!-- move 24px right if scrollbar active -->
+						<left>1078</left>
+						<top>105</top>
+						
+						<onup>noop</onup>
+						<onleft condition="Control.IsVisible(3)">3</onleft>
+						<onleft condition="Control.IsVisible(6)">6</onleft>
+						<onright>noop</onright>
+						<ondown>noop</ondown>
+						
+						<itemgap>15</itemgap>
+						
+						
+						<!-- only show button area if more than the "Cancel" button is visible -->
+						<visible>Control.IsVisible(5) | Control.IsVisible(8)</visible>
+						
+						
+						<visible>![Window.IsVisible(OSDVideoSettings)    + Window.Is(SelectDialog)]</visible>
+						<visible>![Window.IsVisible(OSDAudioSettings)    + Window.Is(SelectDialog)]</visible>
+						<visible>![Window.IsVisible(OSDSubtitleSettings) + Window.Is(SelectDialog)]</visible>
+						
+						
+						<visible>![Window.Is(DialogSelectVideo) | Window.Is(DialogSelectAudio) | Window.Is(DialogSelectSubtitle)]</visible>
+						
+						
+						
+						
+						
+						<!-- Visual button for button id="5" -->
+						<control type="button" id="5">
+							
+							
+							
+							<width>83</width>
+							<height>77</height>
+							<label></label><textcolor>invisible</textcolor><focusedcolor>invisible</focusedcolor>
+							<include>ButtonInfoDialogsCommonValues</include>
+						</control>
+						
+						
+						
+						<!-- Visual button for button id="8" -->
+						<control type="button" id="8">
+							
+							<width>83</width>
+							<height>77</height>
+							<label></label><textcolor>invisible</textcolor><focusedcolor>invisible</focusedcolor>
+							<include>ButtonInfoDialogsCommonValues</include>
+						</control>
+						
+						
+						
+						
+						
+					</control>
+					
+					
+					
+					
+					
+					
+					<!--
+					==============================================================================================================
+					==============================================================================================================
+					Button Icons
+					==============================================================================================================
+					
+					$LOCALIZE
+					
+					186   = "OK"
+					
+					21452 = "Get more..."
+					15019 = "Add"
+					"
+					13516 = "Add art type"
+					40216 = "New type..."
+					40219 = "New name..."
+					
+					21335 = "Browse files"
+					40029 = "Browse library"
+					-->
+					<control type="group">
+						
+						<left>1078</left>
+						<top>105</top>
+						
+						<width>83</width>
+						<height>77</height>
+						
+						<animation effect="slide" start="0,0" end="24,0" time="0" condition="Control.IsVisible(61) | Control.IsVisible(62)">Conditional</animation><!-- move 24px right if scrollbar active -->
+						
+						<!-- Button 5/50 -->
+						<control type="group">
+							
+							<visible>Control.IsVisible(5)</visible>
+							<include>VisibleFadeEffect</include>
+							
+							<!-- OK Icon -->
+							<control type="group" id="9081">
+								<visible>String.IsEqual(Control.GetLabel(5),$LOCALIZE[186])</visible>
+								<control type="image"><visible>!Control.HasFocus(5)</visible><texture colordiffuse="c6ffffff">_added_img/icons/dialogselect-ok.png</texture></control>
+								<control type="image"><visible>Control.HasFocus(5)</visible><texture>_added_img/icons/dialogselect-ok.png</texture></control>
+							</control>
+							<!-- Add Icon -->
+							<control type="group" id="9082">
+								<visible>String.IsEqual(Control.GetLabel(5),$LOCALIZE[21452]) | 
+											String.IsEqual(Control.GetLabel(5),$LOCALIZE[13516]) | 
+											String.IsEqual(Control.GetLabel(5),$LOCALIZE[40216]) | 
+											String.IsEqual(Control.GetLabel(5),$LOCALIZE[15019]) | 
+											String.IsEqual(Control.GetLabel(5),$LOCALIZE[40219])
+								</visible>
+								<control type="image"><visible>!Control.HasFocus(5)</visible><texture colordiffuse="c6ffffff">_added_img/icons/dialogselect-add.png</texture></control>
+								<control type="image"><visible>Control.HasFocus(5)</visible><texture>_added_img/icons/dialogselect-add.png</texture></control>
+							</control>
+							<!-- Browse Icon -->
+							<control type="group" id="9083">
+								<visible>String.IsEqual(Control.GetLabel(5),$LOCALIZE[21335]) | 
+											String.IsEqual(Control.GetLabel(5),$LOCALIZE[40029])
+								</visible>
+								<control type="image"><visible>!Control.HasFocus(5)</visible><texture colordiffuse="c6ffffff">_added_img/icons/dialogselect-browse.png</texture></control>
+								<control type="image"><visible>Control.HasFocus(5)</visible><texture>_added_img/icons/dialogselect-browse.png</texture></control>
+							</control>
+							<!-- More Icon -->
+							<control type="group">
+								<visible>!Control.IsVisible(9081) + !Control.IsVisible(9082) + !Control.IsVisible(9083)</visible>
+								<control type="image"><visible>!Control.HasFocus(5)</visible><texture colordiffuse="c6ffffff">_added_img/icons/dialogselect-more.png</texture></control>
+								<control type="image"><visible>Control.HasFocus(5)</visible><texture>_added_img/icons/dialogselect-more.png</texture></control>
+							</control>
+							
+						</control>
+						
+						<!-- Button 8/80 -->
+						<control type="group">
+							
+							<animation effect="slide" start="0,0" end="0,92" time="0" condition="Control.IsVisible(5)">Conditional</animation>
+							
+							<visible>Control.IsVisible(8)</visible>
+							<include>VisibleFadeEffect</include>
+							
+							<!-- OK Icon -->
+							<control type="group" id="9084">
+								<visible>String.IsEqual(Control.GetLabel(8),$LOCALIZE[186])</visible>
+								<control type="image"><visible>!Control.HasFocus(8)</visible><texture colordiffuse="c6ffffff">_added_img/icons/dialogselect-ok.png</texture></control>
+								<control type="image"><visible>Control.HasFocus(8)</visible><texture>_added_img/icons/dialogselect-ok.png</texture></control>
+							</control>
+							<!-- Add Icon -->
+							<control type="group" id="9085">
+								<visible>String.IsEqual(Control.GetLabel(8),$LOCALIZE[21452]) | 
+											String.IsEqual(Control.GetLabel(8),$LOCALIZE[13516]) | 
+											String.IsEqual(Control.GetLabel(8),$LOCALIZE[40216]) | 
+											String.IsEqual(Control.GetLabel(8),$LOCALIZE[15019]) | 
+											String.IsEqual(Control.GetLabel(5),$LOCALIZE[40219])
+								</visible>
+								<control type="image"><visible>!Control.HasFocus(8)</visible><texture colordiffuse="c6ffffff">_added_img/icons/dialogselect-add.png</texture></control>
+								<control type="image"><visible>Control.HasFocus(8)</visible><texture>_added_img/icons/dialogselect-add.png</texture></control>
+							</control>
+							<!-- Browse Icon -->
+							<control type="group" id="9086">
+								<visible>String.IsEqual(Control.GetLabel(8),$LOCALIZE[21335]) | 
+											String.IsEqual(Control.GetLabel(8),$LOCALIZE[40029])
+								</visible>
+								<control type="image"><visible>!Control.HasFocus(8)</visible><texture colordiffuse="c6ffffff">_added_img/icons/dialogselect-browse.png</texture></control>
+								<control type="image"><visible>Control.HasFocus(8)</visible><texture>_added_img/icons/dialogselect-browse.png</texture></control>
+							</control>
+							<!-- More Icon -->
+							<control type="group">
+								<visible>!Control.IsVisible(9084) + !Control.IsVisible(9085) + !Control.IsVisible(9086)</visible>
+								<control type="image"><visible>!Control.HasFocus(5)</visible><texture colordiffuse="c6ffffff">_added_img/icons/dialogselect-more.png</texture></control>
+								<control type="image"><visible>Control.HasFocus(5)</visible><texture>_added_img/icons/dialogselect-more.png</texture></control>
+							</control>
+							
+						</control>
+						
+					</control>
+					
+					
+					
+					
+					
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</control>
+		</control>
+	</include>
+	
+	
+	
+</includes>

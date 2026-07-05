@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	
+	
+	<!-- Font Sizes -->
+	
+	<include file="Includes_Font_Size_Standard.xml"      condition="String.IsEmpty(Skin.String(UIFontSize))" />
+	<include file="Includes_Font_Size_Accessibility.xml" condition="String.IsEqual(Skin.String(UIFontSize),accessibility)" />
+	<include file="Includes_Font_Size_CRT.xml"           condition="String.IsEqual(Skin.String(UIFontSize),crt)" />
+	
+	
+	
+	
+	
+	
+	<!-- Font Styles -->
+	
+	<include name="Font_Include">
+		
+		<param name="Font_Icons_FA">special://home/addons/resource.font.aczg/resources/fa-solid-900-free.ttf</param>
+		
+		<param name="Font_Light_Debug">special://home/addons/resource.font.aczg/resources/Roboto_Condensed-DejaVu-DroidSans-Regular.ttf</param>
+		
+		<param name="Font_Light">special://home/addons/resource.font.aczg/resources/Roboto-DejaVu-DroidSans-Light.ttf</param>
+		
+		<param name="Font_Regular">special://home/addons/resource.font.aczg/resources/Roboto_Condensed-DejaVu-DroidSans-Regular.ttf</param>
+		
+		<param name="Font_Regular_NC">special://home/addons/resource.font.aczg/resources/Roboto-DejaVu-DroidSans-Regular.ttf</param>
+		
+		<param name="Font_Mono_Regular">special://home/addons/resource.font.aczg/resources/NotoMono-Regular.ttf</param>
+		
+		
+		
+		<param name="Font_Light_Aspect">1</param>
+		
+		<param name="Font_Regular_Aspect">1.04</param>
+		<param name="Font_Regular_Aspect_Wider">1.05</param>
+		<param name="Font_Regular_Aspect_Wider+">1.07</param>
+		
+		<param name="Line_Height_0">1</param>
+		<param name="Line_Height+1">1.10</param>
+		<param name="Line_Height+2">1.15</param>
+		
+		
+		
+		<definition>
+			
+			
+			
+			<font>
+				<name>fontContextMenu</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-1</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>NewWeatherTemp</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size_XL_1</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+			</font>
+			
+			
+			
+			<font>
+				<name>DebugOverlayFont</name>
+				<filename>$PARAM[Font_Light_Debug]</filename>
+				<include>Size-9</include>
+				<linespacing>0.9</linespacing>
+				<aspect>0.9</aspect>
+			</font>
+			<font>
+				<name>DebugOverlayFontMono</name>
+				<filename>$PARAM[Font_Mono_Regular]</filename>
+				<include>Size-9</include>
+				<linespacing>0.9</linespacing>
+				<aspect>0.9</aspect>
+				<style>lighten</style>
+			</font>
+			
+			 
+			
+			<!-- Light-->
+			<font>
+				<name>Light14</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size-9</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light14.5</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size-8</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light15</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size-7</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light16</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size-6</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light17</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size-4</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light17+</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size-4</include>
+				<linespacing>$PARAM[Line_Height+2]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light18</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size-3</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light18+</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size-3</include>
+				<linespacing>$PARAM[Line_Height+2]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light18.5</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size-2</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light19</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size-1</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light19+</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size-1</include>
+				<linespacing>$PARAM[Line_Height+1]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light20</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size_0</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light20+</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size_0</include>
+				<linespacing>$PARAM[Line_Height+2]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light20.5</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+1</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light21</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+2</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light22</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+3</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light23</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+5</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light24</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+6</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light25</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+8</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light26</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+9</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light28</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+12</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light29</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+13</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light30</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+15</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Light35</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+15</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>LightUltraLarge</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+30</include>
+				<linespacing>$PARAM[Line_Height+2]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect_Wider]</aspect>
+			</font>
+			<font>
+				<name>LightUltraLarge2</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size_XL_1</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			<font>
+				<name>LightUltraLarge3</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+31</include>
+				<linespacing>$PARAM[Line_Height+2]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect_Wider+]</aspect>
+			</font>
+			
+			
+			<!-- Regular -->
+			<font>
+				<name>Regular6</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-20</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular7</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-19</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular9</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-16</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular10</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-15</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular11</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-13</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular12</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-12</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular13</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-10</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular14</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-9</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular14.5</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-8</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>RegularNonCondensed14.5</name>
+				<filename>$PARAM[Font_Regular_NC]</filename>
+				<include>Size-8</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+			</font>
+			<font>
+				<name>Regular15</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-7</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>RegularNonCondensed15</name>
+				<filename>$PARAM[Font_Regular_NC]</filename>
+				<include>Size-7</include>
+				<linespacing>$PARAM[Line_Height]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>RegularNonCondensed15+</name>
+				<filename>$PARAM[Font_Regular_NC]</filename>
+				<include>Size-7</include>
+				<linespacing>$PARAM[Line_Height+2]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular16</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-6</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>RegularNonCondensed16</name>
+				<filename>$PARAM[Font_Regular_NC]</filename>
+				<include>Size-6</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular16.5</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-5</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular17</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-4</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular17+</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-4</include>
+				<linespacing>$PARAM[Line_Height+2]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>RegularNonCondensed17</name>
+				<filename>$PARAM[Font_Regular_NC]</filename>
+				<include>Size-4</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular18</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-3</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>RegularNonCondensed18</name>
+				<filename>$PARAM[Font_Regular_NC]</filename>
+				<include>Size-3</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+			</font>
+			<font>
+				<name>Regular18.5</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-2</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>RegularNonCondensed18.5</name>
+				<filename>$PARAM[Font_Regular_NC]</filename>
+				<include>Size-2</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+			</font>
+			<font>
+				<name>Regular19</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-1</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular_Wider+_19</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-1</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect_Wider+]</aspect>
+			</font>
+			<font>
+				<name>Regular19+</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size-1</include>
+				<linespacing>$PARAM[Line_Height+1]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular20</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size_0</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular20+</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size_0</include>
+				<linespacing>$PARAM[Line_Height+2]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular20.5</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+1</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular21</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+2</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular22</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+3</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular22.5</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+4</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular23</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+5</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular_Wider+_23</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+5</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect_Wider+]</aspect>
+			</font>
+			<font>
+				<name>Regular24</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+6</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular24.5</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+7</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular25</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+8</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular_Wider_25</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+8</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect_Wider]</aspect>
+			</font>
+			<font>
+				<name>Regular26</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+9</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular27</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+11</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular28</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+12</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular28.5</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+13</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular29</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+14</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular_Wider+_29</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+14</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect_Wider+]</aspect>
+			</font>
+			<font>
+				<name>Regular30</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+15</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular31</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+16</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular_Wider_31</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+16</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect_Wider]</aspect>
+			</font>
+			<font>
+				<name>Regular_Wider+_31</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+16</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect_Wider+]</aspect>
+			</font>
+			<font>
+				<name>Regular32</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+17</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular33</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+18</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular34</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+19</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			<font>
+				<name>Regular35</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<include>Size+20</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+			</font>
+			
+			<font>
+				<name>LyricsFonts</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<size>34</size>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+			</font>
+			
+			
+			
+			<!-- NewMono -->
+			<font>
+				<name>NewMono14</name>
+				<filename>$PARAM[Font_Mono_Regular]</filename>
+				<include>Size-9</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+			</font>
+			<font>
+				<name>NewMono18</name>
+				<filename>$PARAM[Font_Mono_Regular]</filename>
+				<include>Size-3</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+			</font>
+			<font>
+				<name>NewMono18+</name>
+				<filename>$PARAM[Font_Mono_Regular]</filename>
+				<include>Size-3</include>
+				<linespacing>$PARAM[Line_Height+2]</linespacing>
+			</font>
+			<font>
+				<name>NewMono20</name>
+				<filename>$PARAM[Font_Mono_Regular]</filename>
+				<include>Size_0</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+			</font>
+			<font>
+				<name>NewMono20+</name>
+				<filename>$PARAM[Font_Mono_Regular]</filename>
+				<include>Size_0</include>
+				<linespacing>$PARAM[Line_Height+2]</linespacing>
+			</font>
+			<font>
+				<name>ClockFont</name>
+				<filename>$PARAM[Font_Light]</filename>
+				<include>Size+6</include>
+				<linespacing>$PARAM[Line_Height_0]</linespacing>
+				<aspect>$PARAM[Font_Light_Aspect]</aspect>
+			</font>
+			
+			
+			
+			
+			
+			
+			<!-- VS10 Mod Additions -->
+			<font>
+				<name>font_tiny</name>
+				<filename>$PARAM[Font_Regular]</filename>
+				<aspect>$PARAM[Font_Regular_Aspect]</aspect>
+				<size>24</size>
+			</font>
+			<font>
+				<name>font_tiny_header</name>
+				<filename>$PARAM[Font_Regular_NC]</filename>
+				<size>28</size>
+			</font>
+			<font>
+				<name>font_tiny_iconic</name>
+				<filename>$PARAM[Font_Icons_FA]</filename>
+				<size>26</size>
+			</font>
+			<font>
+				<name>font_tiny_iconic_xl</name>
+				<filename>$PARAM[Font_Icons_FA]</filename>
+				<size>30</size>
+			</font>
+			
+			
+			
+			
+			
+			<include>Font_Legacy_Include</include>
+			
+			
+			
+		</definition>
+		
+		
+		
+	</include>
+	
+	
+	
+</includes>

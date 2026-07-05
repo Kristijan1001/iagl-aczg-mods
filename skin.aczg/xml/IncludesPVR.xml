@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	<include name="PVRHeader">
+		
+		<control type="group">
+			
+			<include>SkinVariant_16by10_MoveUp_60px_Or_21by9_MoveLeft_330px</include>
+			
+			<depth>DepthHeader</depth>
+			
+			<control type="grouplist">
+				<left>30</left>
+				<top>8</top>
+				<width>1500</width>
+				<height>60</height>
+				<orientation>horizontal</orientation>
+				<align>left</align>
+				<itemgap>8</itemgap>
+				
+				<control type="label">
+					<include>WindowTitleCommons</include>
+					<label>$LOCALIZE[19019]</label>
+					<visible>Window.IsActive(TVChannels) | Window.IsActive(RadioChannels)</visible>
+				</control>
+				<control type="label">
+					<include>WindowTitleCommons</include>
+					<label>$LOCALIZE[22020]</label>
+					<visible>Window.IsActive(TVGuide) | Window.IsActive(RadioGuide)</visible>
+				</control>
+				<control type="label">
+					<include>WindowTitleCommons</include>
+					<label>$LOCALIZE[19017]</label>
+					<visible>Window.IsActive(TVRecordings) | Window.IsActive(RadioRecordings)</visible>
+				</control>
+				<control type="label">
+					<include>WindowTitleCommons</include>
+					<label>$LOCALIZE[19138]</label>
+					<visible>Window.IsActive(TVTimerRules) | Window.IsActive(RadioTimerRules)</visible>
+				</control>
+				<control type="label">
+					<include>WindowTitleCommons</include>
+					<label>$LOCALIZE[19040]</label>
+					<visible>Window.IsActive(TVTimers) | Window.IsActive(RadioTimers)</visible>
+				</control>
+				<control type="label">
+					<include>WindowTitleCommons</include>
+					<label>$LOCALIZE[137]</label>
+					<visible>Window.IsActive(TVSearch) | Window.IsActive(RadioSearch)</visible>
+				</control>
+				<control type="label">
+					<include>WindowTitleCommons</include>
+					<label>$INFO[Control.GetLabel(29),[COLOR=blue] – [/COLOR]]</label>
+					<visible>![Window.IsActive(TVGuide) | Window.IsActive(RadioGuide)]</visible>
+				</control>
+				<control type="label">
+					<include>WindowTitleCommons</include>
+					<label>$INFO[Control.GetLabel(30),[COLOR=blue] – [/COLOR]]</label>
+				</control>
+			</control>
+			
+			<control type="label" id="29">
+				<description>Empty so we can pass the values up one level</description>
+				<visible>false</visible>
+			</control>
+			
+			<control type="label" id="30">
+				<description>Empty so we can pass the values up one level</description>
+				<visible>false</visible>
+			</control>
+			
+		</control>
+	</include>
+	
+	
+	
+	<variable name="PVR_SideBar_Button_Channels">
+		<value condition="Window.IsActive(TVChannels) | Window.IsActive(RadioChannels)">[COLOR=selected]$LOCALIZE[19019][/COLOR]</value>
+		<value>$LOCALIZE[19019]</value>
+	</variable>
+	<variable name="PVR_SideBar_Button_Guide">
+		<value condition="Window.IsActive(TVGuide) | Window.IsActive(RadioGuide)">[COLOR=selected]$LOCALIZE[22020][/COLOR]</value>
+		<value>$LOCALIZE[22020]</value>
+	</variable>
+	<variable name="PVR_SideBar_Button_Recordings">
+		<value condition="Window.IsActive(TVRecordings) | Window.IsActive(RadioRecordings)">[COLOR=selected]$LOCALIZE[19163][/COLOR]</value>
+		<value>$LOCALIZE[19163]</value>
+	</variable>
+	<variable name="PVR_SideBar_Button_Timer_Rules">
+		<value condition="Window.IsActive(TVTimerRules) | Window.IsActive(RadioTimerRules)">[COLOR=selected]$LOCALIZE[19138][/COLOR]</value>
+		<value>$LOCALIZE[19138]</value>
+	</variable>
+	<variable name="PVR_SideBar_Button_Timers">
+		<value condition="Window.IsActive(TVTimers) | Window.IsActive(RadioTimers)">[COLOR=selected]$LOCALIZE[19040][/COLOR]</value>
+		<value>$LOCALIZE[19040]</value>
+	</variable>
+	<variable name="PVR_SideBar_Button_Search">
+		<value condition="Window.IsActive(TVSearch) | Window.IsActive(RadioSearch)">[COLOR=selected]$LOCALIZE[137][/COLOR]</value>
+		<value>$LOCALIZE[137]</value>
+	</variable>
+	
+	
+	
+	<include name="PVRSideBlade">
+		
+		<control type="group">
+			
+			<left>-429</left>
+			
+			<include>SideBladeLeft</include>
+			
+			<control type="radiobutton" id="8"><include>HiddenObject</include>
+				<description>Hide disabled timers DUMMY</description>
+			</control>
+			
+			<control type="grouplist" id="7000">
+				<include>SideBladeLeftFadeInAni</include>
+				<left>24</left>
+				<top>83</top>
+				<width>375</width>
+				<onleft>7000</onleft>
+				<onright>50</onright>
+				<onup>7000</onup>
+				<ondown>7000</ondown>
+				<onback>50</onback>
+				<itemgap>0</itemgap>
+				
+				
+				
+				
+				<control type="button" id="28">
+					<description>Channel Groups</description>
+					<include>SideBar_Button_Common</include>
+					<label></label>
+					
+					<enable>Window.IsActive(TVChannels) | Window.IsActive(RadioChannels) | Window.IsActive(TVGuide) | Window.IsActive(RadioGuide)</enable>
+					
+					<animation effect="fade" end="0" time="0" condition="!Control.IsEnabled(28)">Conditional</animation>
+				</control>
+				
+				
+				
+				
+				<control type="image" id="7107">
+					<width>375</width>
+					<height>15</height>
+					<animation effect="fade" end="0" time="0" condition="!Control.IsEnabled(28)">Conditional</animation>
+				</control>
+				<control type="image" id="7108">
+					<width>375</width>
+					<height>1</height>
+					<texture colordiffuse="$VAR[SeparatorColorDiffuse]">separator-uni.png</texture>
+					<animation effect="fade" end="0" time="0" condition="!Control.IsEnabled(28)">Conditional</animation>
+				</control>
+				<control type="image" id="7109"><visible>Control.IsEnabled(28)</visible>
+					<width>375</width>
+					<height>15</height>
+					<animation effect="fade" end="0" time="0" condition="!Control.IsEnabled(28)">Conditional</animation>
+				</control>
+				
+				
+				
+				
+				
+				
+				<control type="button" id="100">
+					<description>Channels</description>
+					<include>SideBar_Button_Common</include>
+					<label>$VAR[PVR_SideBar_Button_Channels]</label>
+					
+					<onclick condition="Window.IsActive(TVChannels) | Window.IsActive(RadioChannels)">right</onclick>
+					
+					<onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TVChannels)</onclick>
+					<onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioChannels)</onclick>
+					
+				</control>
+				
+				<control type="radiobutton" id="31">
+					<description>Filter</description>
+					<include>SideBar_Button_Common_Radio</include>
+					<include>SideBar_Button_Common</include>
+					<label>– [LIGHT]$LOCALIZE[587][/LIGHT]</label>
+					<selected>Container.Filtered</selected>
+					<onclick>right</onclick>
+					<visible>Window.IsActive(TVChannels) | Window.IsActive(RadioChannels)</visible>
+				</control>
+				
+				<control type="radiobutton" id="6">
+					<description>Show hidden channels</description>
+					<include>SideBar_Button_Common_Radio</include>
+					<include>SideBar_Button_Common</include>
+					<label>– [LIGHT]$LOCALIZE[19051][/LIGHT]</label>
+					<visible>Window.IsActive(TVChannels) | Window.IsActive(RadioChannels)</visible>
+				</control>
+				
+				
+				
+				
+				
+				
+				<control type="button" id="101">
+					<description>TV Guide</description>
+					<include>SideBar_Button_Common</include>
+					<label>$VAR[PVR_SideBar_Button_Guide]</label>
+					
+					<onclick condition="Window.IsActive(TVGuide) | Window.IsActive(RadioGuide)">right</onclick>
+					
+					<onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TVGuide)</onclick>
+					<onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioGuide)</onclick>
+					
+				</control>
+				
+				
+				
+				
+				
+				
+				<control type="button" id="102">
+					<description>Recordings</description>
+					<include>SideBar_Button_Common</include>
+					<label>$VAR[PVR_SideBar_Button_Recordings]</label>
+					
+					<onclick condition="Window.IsActive(TVRecordings) | Window.IsActive(RadioRecordings)">right</onclick>
+					
+					<onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TVRecordings)</onclick>
+					<onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioRecordings)</onclick>
+					
+				</control>
+				
+				<control type="radiobutton" id="5">
+					<description>Group recording items by folder structure</description>
+					<include>SideBar_Button_Common_Radio</include>
+					<include>SideBar_Button_Common</include>
+					<label>– [LIGHT]$LOCALIZE[19270][/LIGHT]</label>
+					<visible>Window.IsActive(TVRecordings) | Window.IsActive(RadioRecordings)</visible>
+				</control>
+				
+				<control type="radiobutton" id="7">
+					<description>Show deleted recordings</description>
+					<include>SideBar_Button_Common_Radio</include>
+					<include>SideBar_Button_Common</include>
+					<label>– [LIGHT]$LOCALIZE[19184][/LIGHT]</label>
+					<visible>Window.IsActive(TVRecordings) | Window.IsActive(RadioRecordings)</visible>
+				</control>
+				
+				
+				
+				
+				
+				
+				<control type="button" id="105">
+					<description>Timer Rules</description>
+					<include>SideBar_Button_Common</include>
+					<label>$VAR[PVR_SideBar_Button_Timer_Rules]</label>
+					
+					<onclick condition="Window.IsActive(TVTimerRules) | Window.IsActive(RadioTimerRules)">right</onclick>
+					
+					<onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TVTimerRules)</onclick>
+					<onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioTimerRules)</onclick>
+					
+				</control>
+				
+				<control type="radiobutton" id="801">
+					<description>Hide disabled timers</description>
+					<include>SideBar_Button_Common_Radio</include>
+					<include>SideBar_Button_Common</include>
+					<label>– [LIGHT]$LOCALIZE[19077][/LIGHT]</label>
+					
+					<visible>Control.IsVisible(8) + [Window.IsActive(TVTimerRules) | Window.IsActive(RadioTimerRules)]</visible>
+					<onclick>SendClick(8)</onclick>
+					
+					<selected>System.GetBool(pvrtimers.hidedisabledtimers)</selected>
+				</control>
+				
+				
+				
+				<control type="button" id="103">
+					<description>Timers</description>
+					<include>SideBar_Button_Common</include>
+					<label>$VAR[PVR_SideBar_Button_Timers]</label>
+					
+					<onclick condition="Window.IsActive(TVTimers) | Window.IsActive(RadioTimers)">right</onclick>
+					
+					<onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TVTimers)</onclick>
+					<onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioTimers)</onclick>
+					
+				</control>
+				
+				<control type="radiobutton" id="802">
+					<description>Hide disabled timers</description>
+					<include>SideBar_Button_Common_Radio</include>
+					<include>SideBar_Button_Common</include>
+					<label>– [LIGHT]$LOCALIZE[19077][/LIGHT]</label>
+					
+					<visible>Control.IsVisible(8) + [Window.IsActive(TVTimers) | Window.IsActive(RadioTimers)]</visible>
+					<onclick>SendClick(8)</onclick>
+					
+					<selected>System.GetBool(pvrtimers.hidedisabledtimers)</selected>
+				</control>
+				
+				
+				
+				<control type="button" id="104">
+					<description>Search</description>
+					<include>SideBar_Button_Common</include>
+					<label>$VAR[PVR_SideBar_Button_Search]</label>
+					
+					<onclick condition="Window.IsActive(TVSearch) | Window.IsActive(RadioSearch)">right</onclick>
+					
+					<onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TVSearch)</onclick>
+					<onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioSearch)</onclick>
+					
+				</control>
+				
+				<control type="image" id="7101">
+					<width>375</width>
+					<height>15</height>
+				</control>
+				<control type="image" id="7102">
+					<width>375</width>
+					<height>1</height>
+					<texture colordiffuse="$VAR[SeparatorColorDiffuse]">separator-uni.png</texture>
+				</control>
+				<control type="image" id="7103">
+					<width>375</width>
+					<height>15</height>
+				</control>
+				
+				<control type="button" id="3">
+					<description>Sort by button</description>
+					<include>SideBar_Button_Common</include>
+					<label>103</label>
+					<visible>!Window.IsActive(TVGuide) + !Window.IsActive(RadioGuide)</visible>
+				</control>
+				
+				<control type="togglebutton" id="4">
+					<description>Sort asc</description>
+					<include>SideBar_Button_Common</include>
+					<alttexturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</alttexturefocus>
+					<alttexturenofocus></alttexturenofocus>
+					<label>31051</label>
+					<altlabel>31050</altlabel>
+					<usealttexture>Container.SortDirection(Ascending)</usealttexture>
+					<visible>!Window.IsActive(TVGuide) + !Window.IsActive(RadioGuide)</visible>
+				</control>
+				
+				
+				
+				
+				
+				
+				<!-- Playback controls -->
+				<include>CommonNowPlaying_Controls</include>
+				
+				
+				
+			</control>
+		</control>
+		
+	</include>
+	
+	
+	
+	<include name="PVR_SeekSlider_Kodi_18">
+		
+		<!-- Seek Slider Kodi 18+ LiveTV seek-->
+		<control type="slider" id="403">
+			<description>Seek Slider</description>
+			<left>149</left>
+			<top>10</top>
+			<width>1424</width>
+			<height>48</height>
+			
+			<texturesliderbar>osd/progress/seek_bg.png</texturesliderbar>
+			<textureslidernib colordiffuse="$VAR[uiColorVariantSliderNibFocus]">osd/progress/seek_marker-neutral.png</textureslidernib>
+			<textureslidernibfocus colordiffuse="$VAR[uiColorVariantSliderNibFocus]">osd/progress/seek_marker-neutral.png</textureslidernibfocus>
+			
+			<!-- Workaround: Reduce visual occurence of very short post seek slider jump (Kodi issue) -->
+			<visible>!String.IsEmpty(Player.SeekTime) + !String.IsEqual(Player.SeekTime,Player.Time)</visible>
+			
+			<visible>[VideoPlayer.Content(LiveTV) + VideoPlayer.HasEpg]</visible>
+			
+			<visible>Player.Seeking + !String.IsEmpty(Player.SeekStepSize)</visible>
+			
+			<animation effect="slide" start="0,0" end="-3,0" time="0" condition="!String.IsEmpty(Player.SeekStepSize) + String.StartsWith(Player.SeekStepSize,-)" reversible="false">Conditional</animation>
+			<animation effect="slide" start="0,0" end="3,0" time="0" condition="!String.IsEmpty(Player.SeekStepSize) + !String.StartsWith(Player.SeekStepSize,-)" reversible="false">Conditional</animation>
+			
+		</control>
+		
+	</include>
+	
+	<include name="PVR_SeekSlider_Kodi_19+">
+		
+		<!-- Seek Slider Kodi 18+ LiveTV seek-->
+		<control type="slider"><info>PVR.TimeShiftSeekbar</info><!-- formely id="403" | PVR.TimeShiftSeekbar = Kodi 19+ -->
+			<description>Seek Slider</description>
+			<left>149</left>
+			<top>10</top>
+			<width>1424</width>
+			<height>48</height>
+			
+			<texturesliderbar>osd/progress/seek_bg.png</texturesliderbar>
+			<textureslidernib colordiffuse="$VAR[uiColorVariantSliderNibFocus]">osd/progress/seek_marker-neutral.png</textureslidernib>
+			<textureslidernibfocus colordiffuse="$VAR[uiColorVariantSliderNibFocus]">osd/progress/seek_marker-neutral.png</textureslidernibfocus>
+			
+			<!-- Workaround: Reduce visual occurence of very short post seek slider jump (Kodi issue) -->
+			<visible>!String.IsEmpty(Player.SeekTime) + !String.IsEqual(Player.SeekTime,Player.Time)</visible>
+			
+			<visible>[VideoPlayer.Content(LiveTV) + VideoPlayer.HasEpg]</visible>
+			
+			<visible>Player.Seeking + !String.IsEmpty(Player.SeekStepSize)</visible>
+			
+			<animation effect="slide" start="0,0" end="-3,0" time="0" condition="!String.IsEmpty(Player.SeekStepSize) + String.StartsWith(Player.SeekStepSize,-)" reversible="false">Conditional</animation>
+			<animation effect="slide" start="0,0" end="3,0" time="0" condition="!String.IsEmpty(Player.SeekStepSize) + !String.StartsWith(Player.SeekStepSize,-)" reversible="false">Conditional</animation>
+			
+		</control>
+		
+	</include>
+	
+	
+	
+</includes>

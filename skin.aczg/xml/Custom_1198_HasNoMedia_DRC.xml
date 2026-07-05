@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1198">
+	
+	<visible>Skin.HasSetting(DevVolumeAmpFeaturesEnabled) + Skin.HasSetting(DevVolumeAmpUseAutoDRC) +      !Player.HasMedia + !String.IsEmpty(Window(Home).Property(DRCid))</visible>
+	
+	<onload>SetProperty(DRCid,"",home)</onload>
+	<onload>SetProperty(DRCidFileName,"",home)</onload>
+	<onload>ClearProperty(DRCid,home)</onload>
+	<onload>ClearProperty(DRCidFileName,home)</onload>
+	
+	<controls></controls>
+</window>

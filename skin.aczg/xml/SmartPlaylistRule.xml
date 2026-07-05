@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">9001</defaultcontrol>
+	<include>dialogeffect</include>
+
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<include>BehindDialogFadeOut</include>
+		<control type="group">
+			
+			<centerleft>50%</centerleft>
+			<centertop>537</centertop>
+			<width>1200</width>
+			<height>424</height>
+			
+			<include content="DialogBackgroundCommons">
+				<param name="DialogBackgroundWidth" value="1240" />
+				<param name="DialogBackgroundHeight" value="464" />
+				<param name="DialogHeaderWidth" value="1180" />
+				<param name="DialogHeaderLabelWidth" value="1136" />
+				<param name="DialogHeaderLabel" value="$LOCALIZE[21421]" />
+				<param name="DialogHeaderId" value="2" />
+			</include>
+			<control type="label">
+				<description>Rule match label</description>
+				<left>60</left>
+				<top>94</top>
+				<width>1080</width>
+				<height>53</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>Light20</font>
+				<textcolor>blue</textcolor>
+				<label>$LOCALIZE[21422]</label>
+			</control>
+			<control type="group" id="9001">
+				<control type="button" id="15">
+					<description>Rule Field</description>
+					<left>45</left>
+					<top>154</top>
+					<width>548</width>
+					<height>60</height>
+					<font>Regular20</font>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus border="14">button.png</texturenofocus>
+					<onright>16</onright>
+					<onleft></onleft>
+					<onup></onup>
+					<ondown>17</ondown>
+				</control>
+				<control type="button" id="16">
+					<description>Rule operator</description>
+					<left>608</left>
+					<top>154</top>
+					<width>547</width>
+					<height>60</height>
+					<font>Regular20</font>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<texturenofocus border="14">button.png</texturenofocus>
+					<onright></onright>
+					<onleft>15</onleft>
+					<onup></onup>
+					<ondown>17</ondown>
+				</control>
+			</control>
+			<control type="edit" id="17">
+				<description>Value Button</description>
+				<left>45</left>
+				<top>222</top>
+				<width>847</width>
+				<height>60</height>
+				<font>Regular20</font>
+				<aligny>center</aligny>
+				<invalidcolor>invalid</invalidcolor>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<texturenofocus border="14">button.png</texturenofocus>
+				<label></label>
+				<onup>15</onup>
+				<onleft></onleft>
+				<onright>20</onright>
+				<ondown>9000</ondown>
+			</control>
+			<control type="button" id="20">
+				<description>Browse Button</description>
+				<left>900</left>
+				<top>222</top>
+				<width>255</width>
+				<height>60</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<include>ButtonInfoDialogsCommonValues</include>
+				<label>1024</label>
+				<font>Regular19</font>
+				<onup>9001</onup>
+				<onleft>17</onleft>
+				<onright></onright>
+				<ondown>9000</ondown>
+			</control>
+			<control type="group" id="9000">
+				<left>292</left>
+				<top>317</top>
+				<control type="button" id="18">
+					<description>Ok Button</description>
+					<left>0</left>
+					<top>0</top>
+					<width>300</width>
+					<height>67</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>$LOCALIZE[186]</label>
+					<include>ButtonInfoDialogsCommonValues</include>
+					<onup>17</onup>
+					<onleft></onleft>
+					<onright>19</onright>
+					<ondown>noop</ondown>
+				</control>
+				<control type="button" id="19">
+					<description>Cancel Button</description>
+					<left>315</left>
+					<top>0</top>
+					<width>300</width>
+					<height>67</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>$LOCALIZE[222]</label>
+					<include>ButtonInfoDialogsCommonValues</include>
+					<onup>17</onup>
+					<onleft>18</onleft>
+					<onright></onright>
+					<ondown>noop</ondown>
+				</control>
+			</control>
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

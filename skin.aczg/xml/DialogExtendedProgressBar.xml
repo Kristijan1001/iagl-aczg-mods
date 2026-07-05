@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<zorder>2</zorder>
+	
+	<defaultcontrol />
+	
+	<animation effect="fade" end="100" time="500">WindowOpen</animation>
+	<animation effect="fade" end="0" time="500" delay="1500">WindowClose</animation>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			
+			<include>SkinVariant_16by10_MoveUp_60px_Or_21by9_MoveRight_330px</include>
+			
+			<depth>DepthHeader</depth>
+			<left>700r</left>
+			<top>12</top>
+			<animation effect="slide" end="0,-120" time="0" condition="Window.IsVisible(FullscreenVideo) | Window.IsVisible(Visualisation) | Window.IsVisible(FullscreenGame)">Conditional</animation>
+			<control type="image">
+				<left>-30</left>
+				<top>-30</top>
+				<width>730</width>
+				<height>162</height>
+				<texture border="54">OverlayDialogBackground.png</texture>
+			</control>
+			<control type="group">
+				
+				<top>1</top>
+				
+				<control type="label" id="30">
+					<description>Header Label</description>
+					<left>23</left>
+					<top>10</top>
+					<width>625</width>
+					<height>27</height>
+					<font>Regular16.5</font>
+					<textcolor>selected</textcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+				</control>
+				<control type="label" id="31">
+					<description>Title Label</description>
+					<left>23</left>
+					<top>38</top>
+					<width>625</width>
+					<height>30</height>
+					<font>Light15</font>
+					<align>left</align>
+					<aligny>center</aligny>
+				</control>
+				
+				<control type="image">
+					<left>22</left>
+					<top>75</top>
+					<width>3</width>
+					<height>9</height>
+					<texture colordiffuse="30FFFFFF">osd/progress/progress-9px-start-end.png</texture>
+				</control>
+				<control type="image">
+					<left>644</left>
+					<top>75</top>
+					<width>3</width>
+					<height>9</height>
+					<texture colordiffuse="30FFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+				</control>
+				<control type="image">
+					<left>22</left>
+					<top>75</top>
+					<width>3</width>
+					<height>9</height>
+					<texture colordiffuse="EBFFFFFF">osd/progress/progress-9px-start-end.png</texture>
+				</control>
+				<control type="image">
+					<left>644</left>
+					<top>75</top>
+					<width>3</width>
+					<height>9</height>
+					<texture colordiffuse="EBFFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+					<visible>false</visible>
+					<!-- hide since there is no way to check if progress is 100% in this dialog due to Kodi limitations -->
+				</control>
+				<control type="progress" id="32">
+					<description>progress control</description>
+					<left>25</left>
+					<top>75</top>
+					<width>619</width>
+					<height>9</height>
+					<include>progressBarStyleDefault</include>
+				</control>
+			</control>
+			
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

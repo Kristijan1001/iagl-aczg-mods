@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fonts>
+	
+	
+	<fontset id="Default" unicode="true" idloc="31999">
+		
+		<!-- Kodi 17.7+ (With support for Font Includes) -->
+		
+		<!-- Standard Fonts -->
+		<include condition="String.IsEmpty(Skin.String(UIFontSize)) | !String.IsEqual(Skin.String(UIFontSize),crt)">Font_Include</include>
+		
+		<!-- CRT Mode · Huge Fonts -->
+		<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)" content="Font_Include">
+			<param name="Font_Light" value="special://home/addons/resource.font.aczg/resources/Roboto_Condensed-DejaVu-DroidSans-Regular.ttf" />
+			<param name="Font_Light_Aspect" value="1.04" />
+		</include>
+		
+	</fontset>
+	
+	
+</fonts>

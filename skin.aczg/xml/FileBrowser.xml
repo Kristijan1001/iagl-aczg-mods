@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">450</defaultcontrol>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			<depth>DepthDialog+</depth>
+			<left>540</left>
+			
+			<animation effect="slide" start="1380,0" end="0,0" time="600" tween="quadratic" easing="out">WindowOpen</animation>
+			<animation effect="slide" start="0,0" end="1380,0" time="500" tween="quadratic" easing="out">WindowClose</animation>
+			
+			<control type="group">
+				
+				<animation effect="fade" start="0" end="100" time="900">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="150">WindowClose</animation>
+				
+				<!-- background -->
+				<control type="image">
+					<left>-20</left>
+					<top>-30</top>
+					<width>2000</width>
+					<height>1140</height>
+					<texture border="54">DialogBack-rounded.png</texture>
+				</control>
+				
+				<control type="image">
+					<description>background image</description>
+					<left>1001</left>
+					<top>65</top>
+					<width>1013</width>
+					<height>1015</height>
+					<texture colordiffuse="$VAR[keyboardEditAreaColorDiffuse]">colors/white.png</texture>
+					<!--KeyboardEditArea-->
+					<animation effect="fade" end="30" time="0" condition="true">Conditional</animation>
+				</control>
+				
+				<control type="image">
+					<description>Dialog Header image</description>
+					<left>10</left>
+					<top>0</top>
+					<width>1920</width>
+					<height>65</height>
+					<texture border="28">dialogheader-rounded-left.png</texture>
+				</control>
+				
+				<control type="label" id="411">
+					<description>header label</description>
+					<left>60</left>
+					<top>8</top>
+					<width>893</width>
+					<height>45</height>
+					<font>Light26</font>
+					<label>1023</label>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>white</textcolor>
+				</control>
+				
+				<control type="label" id="412">
+					<description>Path label</description>
+					<left>60</left>
+					<top>1018</top>
+					<width>896</width>
+					<height>45</height>
+					<font>Light20</font>
+					<haspath>true</haspath>
+					<align>left</align>
+					<aligny>center</aligny>
+					<textcolor>white</textcolor>
+				</control>
+				
+				<control type="grouplist" id="9000">
+					<left>1028</left>
+					<top>135</top>
+					<width>332</width>
+					<itemgap>15</itemgap>
+					<orientation>vertical</orientation>
+					<onleft>450</onleft>
+					<onright>noop</onright>
+					<onup>noop</onup>
+					<ondown>noop</ondown>
+					
+					<control type="button" id="413">
+						<description>OK button</description>
+						<height>67</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>186</label>
+					</control>
+					
+					<control type="button" id="414">
+						<description>Cancel button</description>
+						<height>67</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>222</label>
+					</control>
+					
+					<control type="button" id="415">
+						<description>Create folder button</description>
+						<height>67</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>119</label>
+						
+						<visible>Control.IsEnabled(415)</visible>
+					</control>
+					
+					<control type="radiobutton" id="416">
+						
+						<include condition="[ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]">Radio_Button_Inverted_textureradioonfocus_4K</include>
+						
+						<textureradioonfocus>controls/radiobutton-on-inverted.png</textureradioonfocus>
+						
+						<description>Flip Image button</description>
+						<height>72</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>749</label>
+						
+						<radioposx>262</radioposx>
+						
+						<visible>Control.IsEnabled(416)</visible>
+					</control>
+					
+				</control>
+				
+				<control type="image">
+					<left>1031</left>
+					<top>450</top>
+					<width>326</width>
+					<height>326</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$INFO[ListItem.Icon]</texture>
+					<visible>!String.Contains(Control.GetLabel(416),*)</visible>
+				</control>
+				
+				<control type="image">
+					<left>1031</left>
+					<top>450</top>
+					<width>326</width>
+					<height>326</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true" flipx="true">$INFO[ListItem.Icon]</texture>
+					<visible>String.Contains(Control.GetLabel(416),*)</visible>
+				</control>
+				
+				<control type="panel" id="450">
+					<left>30</left>
+					<top>135</top>
+					<width>930</width>
+					<height>843</height>
+					<onleft>450</onleft>
+					
+					<onright condition="Control.IsVisible(413) + Control.IsEnabled(413)">413</onright>
+					<onright condition="![Control.IsVisible(413) + Control.IsEnabled(413)] + [Control.IsVisible(414) + Control.IsEnabled(414)]">414</onright>
+					<onright condition="![Control.IsVisible(413) + Control.IsEnabled(413)] + ![Control.IsVisible(414) + Control.IsEnabled(414)] + [Control.IsVisible(415) + Control.IsEnabled(415)]">415</onright>
+					<onright condition="![Control.IsVisible(413) + Control.IsEnabled(413)] + ![Control.IsVisible(414) + Control.IsEnabled(414)] + ![Control.IsVisible(415) + Control.IsEnabled(415)] + [Control.IsVisible(416) + Control.IsEnabled(416)]">416</onright>
+					
+					<onup>450</onup>
+					<ondown>450</ondown>
+					<pagecontrol>60</pagecontrol>
+					<include>ScrollTimeOld</include>
+					
+					<itemlayout height="60" width="930">
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>930</width>
+							<height>62</height>
+							<texture border="6">MenuItemNF.png</texture>
+						</control>
+						<control type="image">
+							<left>15</left>
+							<top>3</top>
+							<width>56</width>
+							<height>56</height>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<aspectratio>keep</aspectratio>
+						</control>
+						<control type="label">
+							<left>83</left>
+							<top>0</top>
+							<width>840</width>
+							<height>60</height>
+							<font>Regular20</font>
+							<align>left</align>
+							<aligny>center</aligny>
+							<selectedcolor>green</selectedcolor>
+							<info>ListItem.Label</info>
+						</control>
+					</itemlayout>
+					
+					<focusedlayout height="60" width="930">
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>930</width>
+							<height>62</height>
+							<visible>!Control.HasFocus(450)</visible>
+							<texture border="6">MenuItemNF.png</texture>
+						</control>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>930</width>
+							<height>62</height>
+							<visible>Control.HasFocus(450)</visible>
+							<texture border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texture>
+						</control>
+						<control type="image">
+							<left>15</left>
+							<top>3</top>
+							<width>56</width>
+							<height>56</height>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<aspectratio>keep</aspectratio>
+						</control>
+						<control type="label">
+							<left>83</left>
+							<top>0</top>
+							<width>840</width>
+							<height>60</height>
+							<font>Regular20</font>
+							<align>left</align>
+							<aligny>center</aligny>
+							<selectedcolor>green</selectedcolor>
+							<info>ListItem.Label</info>
+						</control>
+					</focusedlayout>
+					
+				</control>
+				
+				<control type="panel" id="451">
+					<left>30</left>
+					<top>135</top>
+					<width>930</width>
+					<height>843</height>
+					<onleft>451</onleft>
+					
+					<onright condition="Control.IsVisible(413) + Control.IsEnabled(413)">413</onright>
+					<onright condition="![Control.IsVisible(413) + Control.IsEnabled(413)] + [Control.IsVisible(414) + Control.IsEnabled(414)]">414</onright>
+					<onright condition="![Control.IsVisible(413) + Control.IsEnabled(413)] + ![Control.IsVisible(414) + Control.IsEnabled(414)] + [Control.IsVisible(415) + Control.IsEnabled(415)]">415</onright>
+					<onright condition="![Control.IsVisible(413) + Control.IsEnabled(413)] + ![Control.IsVisible(414) + Control.IsEnabled(414)] + ![Control.IsVisible(415) + Control.IsEnabled(415)] + [Control.IsVisible(416) + Control.IsEnabled(416)]">416</onright>
+					
+					<onup>451</onup>
+					<ondown>451</ondown>
+					<pagecontrol>60</pagecontrol>
+					<include>ScrollTimeOld</include>
+					
+					<itemlayout height="60" width="930">
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>930</width>
+							<height>62</height>
+							<texture border="6">MenuItemNF.png</texture>
+						</control>
+						<control type="image">
+							<left>15</left>
+							<top>3</top>
+							<width>56</width>
+							<height>56</height>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<aspectratio>keep</aspectratio>
+						</control>
+						<control type="label">
+							<left>83</left>
+							<top>0</top>
+							<width>840</width>
+							<height>60</height>
+							<font>Regular20</font>
+							<align>left</align>
+							<aligny>center</aligny>
+							<selectedcolor>green</selectedcolor>
+							<info>ListItem.Label</info>
+						</control>
+					</itemlayout>
+					
+					<focusedlayout height="60" width="930">
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>930</width>
+							<height>62</height>
+							<visible>!Control.HasFocus(451)</visible>
+							<texture border="6">MenuItemNF.png</texture>
+						</control>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>930</width>
+							<height>62</height>
+							<visible>Control.HasFocus(451)</visible>
+							<texture border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texture>
+						</control>
+						<control type="image">
+							<left>15</left>
+							<top>3</top>
+							<width>56</width>
+							<height>56</height>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<aspectratio>keep</aspectratio>
+						</control>
+						<control type="label">
+							<left>83</left>
+							<top>0</top>
+							<width>840</width>
+							<height>60</height>
+							<font>Regular20</font>
+							<align>left</align>
+							<aligny>center</aligny>
+							<selectedcolor>green</selectedcolor>
+							<info>ListItem.Label</info>
+						</control>
+					</focusedlayout>
+					
+				</control>
+				
+				<control type="scrollbar" id="60">
+					<left>975</left>
+					<top>135</top>
+					<include>scrollBarStyleDefaultWidth</include>
+					<height>842</height>
+					
+					<onleft condition="Control.IsVisible(450)">450</onleft>
+					<onleft condition="!Control.IsVisible(450) + Control.IsVisible(451)">451</onleft>
+					
+					<onright condition="Control.IsVisible(413) + Control.IsEnabled(413)">413</onright>
+					<onright condition="![Control.IsVisible(413) + Control.IsEnabled(413)] + [Control.IsVisible(414) + Control.IsEnabled(414)]">414</onright>
+					<onright condition="![Control.IsVisible(413) + Control.IsEnabled(413)] + ![Control.IsVisible(414) + Control.IsEnabled(414)] + [Control.IsVisible(415) + Control.IsEnabled(415)]">415</onright>
+					<onright condition="![Control.IsVisible(413) + Control.IsEnabled(413)] + ![Control.IsVisible(414) + Control.IsEnabled(414)] + ![Control.IsVisible(415) + Control.IsEnabled(415)] + [Control.IsVisible(416) + Control.IsEnabled(416)]">416</onright>
+					
+					<showonepage>false</showonepage>
+					<include>scrollBarStyleDefault</include>
+				</control>
+				
+				<control type="label">
+					<description>Page label</description>
+					<left>1031</left>
+					<top>1019</top>
+					<width>326</width>
+					<height>45</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>grey</textcolor>
+					<font>Light17</font>
+					<label>$INFO[Container(450).NumItems] $LOCALIZE[31025]</label>
+					<wrapmultiline>true</wrapmultiline>
+					<visible>!Control.IsVisible(451)</visible>
+				</control>
+				
+				<control type="label">
+					<description>Page label</description>
+					<left>1031</left>
+					<top>1019</top>
+					<width>326</width>
+					<height>45</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>grey</textcolor>
+					<font>Light17</font>
+					<label>$INFO[Container(451).NumItems] $LOCALIZE[31025]</label>
+					<wrapmultiline>true</wrapmultiline>
+					<visible>Control.IsVisible(451)</visible>
+				</control>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

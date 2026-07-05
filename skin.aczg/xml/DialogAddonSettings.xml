@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">3</defaultcontrol>
+	<include>dialogeffect</include>
+	
+	
+	
+	
+	
+	
+	<!-- Icon blurring is done via Cinema Helper except YouTube -->
+	<!--
+	YouTube icon blur fix
+	Edge case: on some Linux or Amlogic builds (tbc), the original YouTube add-on PNG-8 icon causes a glitched blur image. Fixed by converting to PNG-24
+	-->
+	<onload condition="[String.IsEqual(ListItem.AddonName,YouTube) | String.IsEqual(Window(AddonSettings).Property(Addon.ID),plugin.video.youtube)] + System.HasAddon(service.listitem.helper)">RunScript(service.listitem.helper,action=blurimg,file='"special://skin/media/blur/yt_icon.png"',prop=addonsettings_art,radius=30)</onload>
+	
+	
+	
+	
+	
+	
+	
+	<onunload condition="!String.IsEmpty(Window(Home).Property(Weather_Addon_Settings_Edit_Locations_Refresh)) + Window.IsVisible(AddonInformation)">Dialog.Close(AddonInformation)</onunload>
+	
+	<onunload condition="!String.IsEmpty(Window(Home).Property(Weather_Addon_Settings_Edit_Locations_Refresh))">ActivateWindow(Weather)</onunload>
+	
+	<onunload condition="!String.IsEmpty(Window(Home).Property(Weather_Addon_Settings_Edit_Locations_Refresh))">SetProperty(Locations,,weather)</onunload>
+	<onunload condition="!String.IsEmpty(Window(Home).Property(Weather_Addon_Settings_Edit_Locations_Refresh))">SetProperty(Location1,,weather)</onunload>
+	
+	<onunload condition="!String.IsEmpty(Window(Home).Property(Weather_Addon_Settings_Edit_Locations_Refresh))">Weather.Refresh</onunload>
+	
+	<onunload>ClearProperty(Weather_Addon_Settings_Edit_Locations,home)</onunload>
+	<onunload>ClearProperty(Weather_Addon_Settings_Edit_Locations_Refresh,home)</onunload>
+	
+	
+	
+	
+	
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="label" id="234237">
+			<label>$VAR[Addon_Settings_Blur_Bg]</label>
+			<visible>false</visible>
+		</control>
+		
+		
+		
+		<control type="group">
+			<animation effect="fade" start="0" end="100" time="500">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="500">WindowClose</animation>
+
+			<control type="image">
+				<include>BackgroundDimensions</include>
+				<texture>colors/black.png</texture>
+			</control>
+			
+			<control type="image">
+				
+				<include>BackgroundDimensions</include>
+				
+				<aspectratio align="center" aligny="center">stretch</aspectratio>
+				<texture>$INFO[Control.GetLabel(234237)]</texture>
+				<include>backgroundfade</include>
+				<fadetime>FanartCrossfadeTime</fadetime>
+				<visible>System.HasAddon(service.listitem.helper) + !String.IsEmpty(Control.GetLabel(234237))</visible>
+			</control>
+			
+			<control type="image">
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_AddonInfo_LeftHalf_Plus_330px_MoveLeft_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<width>960</width>
+				<height>1080</height>
+				<aspectratio align="center" aligny="center">stretch</aspectratio>
+				<texture>special://home/addons/resource.images.aczg/resources/backgrounds/mood_background_default2.png</texture>
+				<animation effect="fade" end="65" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="image">
+				<left>960</left>
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_AddonInfo_RightHalf_Plus_330px</include>
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<width>960</width>
+				<height>1080</height>
+				<aspectratio align="center" aligny="center">stretch</aspectratio>
+				<texture>special://home/addons/resource.images.aczg/resources/backgrounds/mood_background_default2.png</texture>
+				<animation effect="fade" end="65" time="0" condition="true">Conditional</animation>
+			</control>
+			
+			
+			
+			<!-- Add white brightener gradient to ensure image contour contrast -->
+			<control type="image">
+				
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<left>1380</left>
+				<top>0</top>
+				
+				<width>540</width>
+				<height>1080</height>
+				<texture flipx="true">_added_img/infodialog-brightener-left.png</texture>
+			</control>
+			<control type="image">
+				
+				<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+				
+				<left>1920</left>
+				<top>0</top>
+				
+				<width>540</width>
+				<height>1080</height>
+				<texture>_added_img/infodialog-brightener-left.png</texture>
+				
+				<visible>[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]</visible>
+			</control>
+			
+			
+			
+			<control type="image">
+				
+				<include>BackgroundDimensions</include>
+				
+				<top>0</top>
+				<left>0</left>
+				
+				<depth>DepthBackground</depth>
+				<aspectratio align="left" aligny="top">scale</aspectratio>
+				<texture>special://home/addons/resource.images.aczg/resources/_added_img/noise00.jpg</texture>
+				<include>backgroundfade</include>
+				<animation effect="fade" end="30" time="0" condition="true">Conditional</animation>
+			</control>
+			
+			<control type="image">
+				<include>BackgroundDimensions</include>
+				<texture>colors/black.png</texture>
+				<animation effect="fade" end="50" time="0" condition="true">Conditional</animation>
+			</control>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		<!-- Settings Level -->
+		<include>SettingsLevel</include>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<control type="group">
+			
+			<top>125</top>
+			
+			<width>1864</width>
+			<height>997</height>
+			
+			<control type="group">
+				
+				<left>1659</left>
+				<top>300</top>
+				
+				<width>300</width>
+				<height>260</height>
+				
+				<visible>[Player.HasGame + String.IsEqual(Window(AddonSettings).Property(Addon.Type),kodi.gameclient)] | [!String.IsEmpty(Window(AddonSettings).Property(Addon.ID)) + String.IsEqual(Window(Home).Property(CH.AddonSettings.AddonID),Window(AddonSettings).Property(Addon.ID))]</visible>
+				<include>VisibleFadeEffectSlower2</include>
+				
+				<control type="textbox">
+					<left>-94</left>
+					<top>200</top>
+					<width>300</width>
+					<font>Light16</font>
+					<textcolor>white</textcolor>
+					<align>center</align>
+					<label>$VAR[Addon_Settings_Label]</label>
+				</control>
+				
+				<control type="image">
+					<top>70</top>
+					<width>112</width>
+					<height>112</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true" diffuse="colors/diffuse/112x112-rounded-addon.png" fallback="DefaultAddon_solid.png">$INFO[Window(Home).Property(CH.AddonSettings.AddonThumbnail)]</texture>
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<control type="group">
+				
+				<include>VisibleFadeEffect</include>
+				
+				<visible>String.IsEqual(Window(AddonSettings).Property(Addon.ID),service.listitem.helper)</visible>
+				
+				<left>425</left>
+				<top>238</top>
+				
+				
+				<control type="group">
+					
+					<include>VisibleFadeEffect</include>
+					
+					<visible>Integer.IsEqual(Container(3).Currentitem,1)</visible>
+					
+					<control type="group">
+						<top>0</top>
+						<control type="image">
+							<left>15</left>
+							<width>1040</width>
+							
+							<include condition="String.IsEqual(Skin.String(UIFontSize),accessibility)">UIFontSize_Corrections_DialogAddonSettings_HelpBox1_Accessibility</include>
+							<include condition="String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_DialogAddonSettings_HelpBox1_CRT</include>
+							
+							<height>140</height>
+							<texture colordiffuse="cc111111" border="24">colors/white_border24.png</texture>
+						</control>
+						<control type="textbox">
+							<left>45</left>
+							<top>18</top>
+							<width>980</width>
+							<font>Light18</font>
+							<label>Personal API keys are needed for retrieval of[CR]- Ratings (Rotten Tomatoes, Letterboxd, Trakt, Metacritic, IMDb)[CR]  - Some additional values like budgets, revenues and awards</label>
+							<textcolor>selected</textcolor>
+						</control>
+					</control>
+					
+					<control type="group">
+						
+						<animation effect="slide" start="0,0" end="0,14" time="0" condition="String.IsEqual(Skin.String(UIFontSize),accessibility)">Conditional</animation>
+						<animation effect="slide" start="0,0" end="0,44" time="0" condition="String.IsEqual(Skin.String(UIFontSize),crt)">Conditional</animation>
+						
+						<top>170</top>
+						<control type="image">
+							<left>15</left>
+							<width>1040</width>
+							
+							<include condition="String.IsEqual(Skin.String(UIFontSize),accessibility)">UIFontSize_Corrections_DialogAddonSettings_HelpBox2_Accessibility</include>
+							<include condition="String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_DialogAddonSettings_HelpBox2_CRT</include>
+							
+							<height>378</height>
+							<texture colordiffuse="cc111111" border="24">colors/white_border24.png</texture>
+						</control>
+						<control type="image">
+							<left>45</left>
+							<top>22</top>
+							<width>46</width>
+							<height>46</height>
+							<texture>DefaultIconInfo-flag.png</texture>
+						</control>
+						
+						<control type="textbox">
+							<left>-10</left>
+							
+							<animation effect="slide" start="0,0" end="0,38" time="0" condition="String.IsEqual(Skin.String(UIFontSize),accessibility)">Conditional</animation>
+							<animation effect="slide" start="0,0" end="0,59" time="0" condition="String.IsEqual(Skin.String(UIFontSize),crt)">Conditional</animation>
+							
+							<top>88</top>
+							<width>100</width>
+							<height>800</height>
+							<font>Regular18</font>
+							<label>1)[CR][CR][CR]2)</label>
+							<align>right</align>
+							<textcolor>selected</textcolor>
+						</control>
+						
+						<control type="textbox">
+							
+							<animation effect="slide" start="0,0" end="0,-3" time="0" condition="String.IsEqual(Skin.String(UIFontSize),accessibility)">Conditional</animation>
+							<animation effect="slide" start="0,0" end="0,-6" time="0" condition="String.IsEqual(Skin.String(UIFontSize),crt)">Conditional</animation>
+							
+							<left>106</left>
+							<top>24</top>
+							<width>920</width>
+							<height>800</height>
+							<font>Light18</font>
+							<label>You can also choose other methods to enter your API keys more easily[CR][CR]Editing the following file in your Kodi Userdata folder:[CR]userdata/addon_data/service.listitem.helper/settings.xml[CR][CR]Installing the Official Kodi Remote app on your smartphone and using the keyboard-feature of the app (pasting text is supported):[CR][CR]- Official Kodi Remote   (iPhone/iPad · Apple App Store)[CR]- Kore Official Remote for Kodi   (Android · Google Play Store)[CR]</label>
+							<textcolor>selected</textcolor>
+						</control>
+						
+					</control>
+				</control>
+				
+				
+				
+				<control type="group">
+					
+					<include>VisibleFadeEffect</include>
+					
+					<visible>Integer.IsEqual(Container(3).Currentitem,2)</visible>
+					
+					<visible>ControlGroup(3).HasFocus | ControlGroup(5).HasFocus</visible>
+					
+					<visible>!Control.HasFocus(28) + !Control.HasFocus(30)</visible>
+					<visible>!String.IsEmpty(Control.GetLabel(6))</visible>
+					
+					<top>0</top>
+					<control type="image">
+						<left>15</left>
+						<width>1040</width>
+						
+						<include condition="String.IsEqual(Skin.String(UIFontSize),accessibility)">UIFontSize_Corrections_DialogAddonSettings_HelpBox0_Accessibility</include>
+						<include condition="String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_DialogAddonSettings_HelpBox0_CRT</include>
+						
+						<height>76</height>
+						<texture colordiffuse="cc111111" border="24">colors/white_border24.png</texture>
+					</control>
+					<control type="textbox">
+						<left>45</left>
+						<top>18</top>
+						<width>980</width>
+						<font>Light18</font>
+						<label>$INFO[Control.GetLabel(6)]</label>
+						<textcolor>selected</textcolor>
+					</control>
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<control type="grouplist" id="3">
+				<description>Categories Area</description>
+				
+				<left>0</left>
+				<top>-1</top>
+				
+				<height>752</height>
+				
+				<itemgap>0</itemgap>
+				
+				<orientation>vertical</orientation>
+				
+				<onleft>noop</onleft>
+				<onright>5</onright>
+				
+				<onup>noop</onup>
+				<ondown>202</ondown>
+				
+				<pagecontrol>399</pagecontrol>
+			</control>
+			
+			<control type="scrollbar" id="399">
+				<include>ElementHasNoHitBox</include><!-- disable scrollbar access by user -->
+				
+				<left>360</left>
+				<top>18</top>
+				
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>720</height>
+				<onleft>3</onleft>
+				<onright>5</onright>
+				<showonepage>false</showonepage>
+				<include>scrollBarStyleDefault</include>
+				<animation effect="fade" end="15" time="0" condition="true">Conditional</animation>
+			</control>
+			
+			<control type="button" id="10">
+				<description>Default Category Button</description>
+				<height>94</height>
+				<width>360</width>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>Regular22</font>
+				
+				<textcolor>grey2+</textcolor>
+				<focusedcolor>white</focusedcolor>
+				
+				<textoffsetx>72</textoffsetx>
+				<textwidth>278</textwidth>
+				
+				<include>Addon_Settings_Category_Button_Texture</include>
+			</control>
+			
+			<control type="grouplist" id="5">
+				<description>control area</description>
+				
+				<left>420</left>
+				<top>0</top>
+				
+				<width>1080</width>
+				<height>797</height>
+				
+				<itemgap>6</itemgap>
+				
+				<pagecontrol>60</pagecontrol>
+				
+				<onleft>3</onleft>
+				
+				<onright condition="Control.IsVisible(28) + Control.IsEnabled(28)">28</onright>
+				<onright condition="![Control.IsVisible(28) + Control.IsEnabled(28)] + [Control.IsVisible(30) + Control.IsEnabled(30)]">30</onright>
+				
+				<onup>noop</onup>
+				<ondown>noop</ondown>
+				
+			</control>
+			
+			<control type="scrollbar" id="60">
+				<left>1520</left>
+				<top>0</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>797</height>
+				
+				<onleft>5</onleft>
+				<onright>28</onright>
+				
+				<showonepage>false</showonepage>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+			<control type="button" id="7">
+				<description>Default button</description>
+				<height>67</height>
+				<font>Regular20</font>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+			</control>
+			
+			<control type="radiobutton" id="8">
+				<description>Default radiobutton</description>
+				<height>67</height>
+				<textwidth>971</textwidth>
+				<font>Regular20</font>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+			</control>
+			
+			<control type="spincontrolex" id="9">
+				<description>Default spincontrolex</description>
+				<height>67</height>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<texturenofocus></texturenofocus>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				<font>Regular20</font>
+				<aligny>center</aligny>
+				<reverse>yes</reverse>
+			</control>
+			
+			<control type="image" id="11">
+				<description>separator image</description>
+				<height>7</height>
+				<texture border="0,0,0,5" colordiffuse="$VAR[SeparatorColorDiffuse]">separator3.png</texture>
+			</control>
+			
+			<!-- Kodi 18+ adds type="edit" id="12" here -->
+			<control type="edit" id="12">
+				<description>Default edit</description>
+				<height>67</height>
+				<font>Regular20</font>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<texturenofocus></texturenofocus>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+			</control>
+			
+			<control type="sliderex" id="13">
+				<description>Default sliderex</description>
+				<height>67</height>
+				
+				<texturenofocus></texturenofocus>
+				<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+				
+				<font>Regular20</font>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				
+				<textwidth>620</textwidth>
+				
+			</control>
+			
+			<control type="label" id="14">
+				<description>Default label (header)</description>
+				<font>Light21</font>
+				
+				<height>53</height>
+				
+				<textoffsetx>26</textoffsetx>
+				
+				<align>left</align>
+				<aligny>center</aligny>
+				<textcolor>blue</textcolor>
+			</control>
+			
+			
+			
+			<!-- Dialog Buttons -->
+			
+			<control type="group" id="9001">
+				
+				<left>1590</left>
+				<top>0</top>
+				
+				<control type="button" id="28">
+					<description>OK Button / Save Button</description>
+					
+					<left>0</left>
+					<top>0</top>
+					
+					<width>250</width>
+					<height>71</height>
+					
+					<onleft>5</onleft>
+					<onright>noop</onright>
+					<onup>noop</onup>
+					<ondown>30</ondown>
+					
+					<textcolor>invisible</textcolor>
+					<focusedcolor>invisible</focusedcolor>
+					
+					<include>ButtonInfoDialogsCommonValues</include>
+					
+					<animation effect="fade" start="100" end="70" time="0" condition="!Control.HasFocus(28)">Conditional</animation>
+					
+					<onclick condition="!String.IsEmpty(Window(Home).Property(Weather_Addon_Settings_Edit_Locations)) | [String.StartsWith(Window(AddonSettings).Property(Addon.ID),weather.) + String.IsEqual(Window(AddonSettings).Property(Addon.ID),Weather.Plugin)]">SetProperty(Weather_Addon_Settings_Edit_Locations_Refresh,True,home)</onclick>
+				</control>
+				
+				<control type="image">
+					<left>36</left>
+					<top>0</top>
+					<width>40</width>
+					<height>71</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">icons/save_icon.png</texture>
+					
+					<animation effect="fade" start="100" end="70" time="0" condition="!Control.HasFocus(28)">Conditional</animation>
+				</control>
+				
+				<control type="button"><include>ElementHasNoHitBox</include>
+					<left>0</left>
+					<top>0</top>
+					
+					<width>250</width>
+					<height>71</height>
+					
+					<align>left</align>
+					<aligny>center</aligny>
+					
+					<font>Regular22</font>
+					
+					<label>$VAR[Save_Button_Label]</label>
+					
+					<texturenofocus></texturenofocus>
+					<texturefocus></texturefocus>
+					
+					<textwidth>146</textwidth>
+					<textoffsetx>90</textoffsetx>
+					
+					<include>ButtonInfoDialogsCommonValues</include>
+					
+					<animation effect="fade" start="100" end="70" time="0" condition="!Control.HasFocus(28)">Conditional</animation>
+				</control>
+				
+				<control type="button" id="30">
+					<description>Defaults Button</description>
+					
+					<left>0</left>
+					<top>86</top>
+					
+					<width>250</width>
+					<height>71</height>
+					
+					<align>left</align>
+					<aligny>center</aligny>
+					<font>Regular22</font>
+					
+					<label></label>
+					
+					<onleft>5</onleft>
+					<onright>noop</onright>
+					<onup>28</onup>
+					<ondown>noop</ondown>
+					
+					<textwidth>154</textwidth>
+					<textoffsetx>86</textoffsetx>
+					
+					<include>ButtonInfoDialogsCommonValues</include>
+					
+					<animation effect="fade" start="100" end="70" time="0" condition="!Control.HasFocus(30)">Conditional</animation>
+					
+					<onclick condition="!String.IsEmpty(Window(Home).Property(Weather_Addon_Settings_Edit_Locations)) | [String.StartsWith(Window(AddonSettings).Property(Addon.ID),weather.) + String.IsEqual(Window(AddonSettings).Property(Addon.ID),Weather.Plugin)]">SetProperty(Weather_Addon_Settings_Edit_Locations_Refresh,True,home)</onclick>
+				</control>
+				
+				<control type="image">
+					<left>34</left>
+					<top>86</top>
+					<width>40</width>
+					<height>71</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">icons/reset_icon.png</texture>
+					
+					<animation effect="fade" start="100" end="70" time="0" condition="!Control.HasFocus(30)">Conditional</animation>
+				</control>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		<control type="textbox" id="6">
+			<include>VisibleFadeEffect</include>
+			
+			<visible>ControlGroup(3).HasFocus | ControlGroup(5).HasFocus</visible>
+			
+			<visible>!Control.HasFocus(28) + !Control.HasFocus(30) + !Control.HasFocus(20) + !Control.HasFocus(202) + !Control.HasFocus(60)</visible>
+			<visible>!String.IsEmpty(Control.GetLabel(6))</visible>
+			
+			<visible>!String.IsEqual(Window(AddonSettings).Property(Addon.ID),service.listitem.helper)</visible>
+			
+			<description>description area</description>
+			
+			<left>447</left>
+			<top>964</top>
+			
+			<width>1046</width>
+			<height>71</height>
+			
+			<font>Light18</font>
+			<align>left</align>
+			<textcolor>selected+</textcolor>
+			<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+		</control>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

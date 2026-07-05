@@ -1,0 +1,1171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">1002</defaultcontrol>
+	<include>dialogeffect</include>
+	
+	<onload>ClearProperty(GameOSDControlsSubMenuOpen,home)</onload>
+	<onload>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onload>
+	
+	<onunload>ClearProperty(GameOSDControlsSubMenuOpen,home)</onunload>
+	<onunload>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onunload>
+	
+	
+	
+	<onload condition="System.GetBool(gamesgeneral.showosdhelp) | !Skin.HasSetting(FirstTimeRunGame)">SetFocus(1103)</onload>
+	
+	
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		
+		
+		
+		
+		<control type="group">
+			
+			<left>690</left>
+			<top>175</top>
+			
+			<visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(GameControllers) + !Window.IsActive(InGameSaves) + !Window.IsActive(GameVolume)</visible>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- First time run info -->
+			<control type="group" id="10">
+				
+				<animation effect="slide" start="0,0" end="-20,70" time="0" condition="true">Conditional</animation>
+				
+				<include>VisibleFadeEffect</include>
+				
+				<visible>System.GetBool(gamesgeneral.showosdhelp) | !Skin.HasSetting(FirstTimeRunGame)</visible>
+				
+				<control type="image">
+					<left>-26</left>
+					<top>-13</top>
+					<width>632</width>
+					<height>600</height>
+					<texture border="54">DialogBack-rounded.png</texture>
+				</control>
+				
+				<control type="image">
+					<left>500</left>
+					<top>60</top>
+					<width>31</width>
+					<height>29</height>
+					<texture colordiffuse="e2ebb217">osd/buttons/game/button1$VAR[isUhdScreenStringSuffix].png</texture>
+					<animation effect="slide" start="0,0" end="0,126" time="0" condition="true">Conditional</animation>
+				</control>
+				
+				<control type="grouplist">
+					
+					<left>25</left>
+					<top>40</top>
+					
+					<width>530</width>
+					<height>762</height>
+					
+					<itemgap>0</itemgap>
+					
+					<control type="button">
+						<height>63</height>
+					</control>
+					
+					<control type="button">
+						<height>63</height>
+					</control>
+					
+					<control type="radiobutton">
+						
+						<width>530</width>
+						
+						<textureradioofffocus>DefaultAddonContextItem.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">DefaultAddonContextItem.png</textureradiooffnofocus>
+						
+						<radiowidth>65</radiowidth>
+						<radioheight>65</radioheight>
+						<radioposx>7</radioposx>
+						<radioposy>1</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>       Game Menu</label>
+						<label2>[COLOR=e2ebb217][LIGHT]Select +      [/LIGHT][/COLOR]</label2>
+						
+					</control>
+					<control type="radiobutton">
+						
+						<width>530</width>
+						
+						<textureradioofffocus>DefaultAddonContextItem.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">DefaultAddonContextItem.png</textureradiooffnofocus>
+						
+						<radiowidth>65</radiowidth>
+						<radioheight>65</radioheight>
+						<radioposx>7</radioposx>
+						<radioposy>1</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>       Game Menu</label>
+						<label2>[COLOR=e2ebb217][LIGHT]Xbox/PS Button[/LIGHT][/COLOR]</label2>
+						
+					</control>
+					
+				</control>
+				
+				
+				
+				
+				
+				<control type="label">
+					<left>50</left>
+					<top>60</top>
+					<width>490</width>
+					
+					<font>Light28</font>
+					<textcolor>blue</textcolor>
+					<label>$LOCALIZE[31411]</label>
+				</control>
+				<control type="textbox">
+					<left>50</left>
+					<top>330</top>
+					<width>490</width>
+					
+					<font>Light18</font>
+					<label>$LOCALIZE[35236]</label>
+				</control>
+				
+				
+				<control type="button">
+					<left>-26</left>
+					<top>-13</top>
+					<width>632</width>
+					<height>600</height>
+					<texturefocus />
+					<texturenofocus />
+					<onclick>Dialog.Close(GameOSD)</onclick>
+				</control>
+				<control type="button" id="1103">
+					
+					<description>OK button</description>
+					
+					<left>140</left>
+					<top>440</top>
+					<width>300</width>
+					<height>72</height>
+					<label>12321</label>
+					<onclick>Skin.SetBool(FirstTimeRunGame)</onclick>
+					<onclick>Dialog.Close(GameOSD)</onclick>
+					<onleft>1103</onleft>
+					<onright>1103</onright>
+					<onup>1103</onup>
+					<ondown>1103</ondown>
+					
+					<include>ButtonInfoDialogsCommonValues</include>
+					
+				</control>
+				
+				
+				
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<control type="group">
+				<animation effect="slide" start="0,0" end="0,-33" time="0" condition="RetroPlayer.SupportsEject">Conditional</animation>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Info/Help Menu -->
+			<control type="group">
+				
+				<animation effect="slide" start="0,0" end="570,0" time="0" condition="true">Conditional</animation>
+				
+				<include>VisibleFadeEffect</include>
+				
+				<visible>!Control.IsVisible(10)</visible>
+				<visible>Control.HasFocus(1001)</visible>
+				
+				<control type="image">
+					<left>-26</left>
+					<top>-13</top>
+					<width>632</width>
+					<height>484</height>
+					<texture border="54">DialogBack-rounded.png</texture>
+				</control>
+				
+				<control type="image">
+					<left>500</left>
+					<top>60</top>
+					<width>31</width>
+					<height>29</height>
+					<texture colordiffuse="e2ebb217">osd/buttons/game/button1$VAR[isUhdScreenStringSuffix].png</texture>
+					<animation effect="slide" start="0,0" end="0,126" time="0" condition="true">Conditional</animation>
+				</control>
+				
+				<control type="grouplist">
+					
+					<left>25</left>
+					<top>40</top>
+					
+					<width>530</width>
+					<height>762</height>
+					
+					<itemgap>0</itemgap>
+					
+					<control type="radiobutton"><include>ElementHasNoHitBox</include>
+						
+						<width>530</width>
+						
+						<textureradioofffocus>osd/buttons/fill/OSDRewindNF.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">osd/buttons/fill/OSDRewindNF.png</textureradiooffnofocus>
+						
+						<radiowidth>65</radiowidth>
+						<radioheight>65</radioheight>
+						<radioposx>7</radioposx>
+						<radioposy>0</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>       $LOCALIZE[31354]</label>
+						<label2>[COLOR=e2ebb217][LIGHT]Select + L Trigger[/LIGHT][/COLOR]</label2>
+						
+					</control>
+					
+					<control type="radiobutton"><include>ElementHasNoHitBox</include>
+						
+						<width>530</width>
+						
+						<textureradioofffocus>osd/buttons/fill/OSDForwardNF.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">osd/buttons/fill/OSDForwardNF.png</textureradiooffnofocus>
+						
+						<radiowidth>65</radiowidth>
+						<radioheight>65</radioheight>
+						<radioposx>7</radioposx>
+						<radioposy>0</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>       $LOCALIZE[31353]</label>
+						<label2>[COLOR=e2ebb217][LIGHT]Select + R Trigger[/LIGHT][/COLOR]</label2>
+						
+					</control>
+					
+					<control type="radiobutton"><include>ElementHasNoHitBox</include>
+						
+						<width>530</width>
+						
+						<textureradioofffocus>DefaultAddonContextItem.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">DefaultAddonContextItem.png</textureradiooffnofocus>
+						
+						<radiowidth>65</radiowidth>
+						<radioheight>65</radioheight>
+						<radioposx>7</radioposx>
+						<radioposy>1</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>       Game Menu</label>
+						<label2>[COLOR=e2ebb217][LIGHT]Select +      [/LIGHT][/COLOR]</label2>
+						
+					</control>
+					<control type="radiobutton"><include>ElementHasNoHitBox</include>
+						
+						<width>530</width>
+						
+						<textureradioofffocus>DefaultAddonContextItem.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">DefaultAddonContextItem.png</textureradiooffnofocus>
+						
+						<radiowidth>65</radiowidth>
+						<radioheight>65</radioheight>
+						<radioposx>7</radioposx>
+						<radioposy>1</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>       Game Menu</label>
+						<label2>[COLOR=e2ebb217][LIGHT]Xbox/PS Button[/LIGHT][/COLOR]</label2>
+						
+					</control>
+					
+					<control type="radiobutton"><include>ElementHasNoHitBox</include>
+						
+						<width>530</width>
+						
+						<textureradioofffocus>osd/buttons/fill/OSDStopNF.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">osd/buttons/fill/OSDStopNF.png</textureradiooffnofocus>
+						
+						<radiowidth>73</radiowidth>
+						<radioheight>73</radioheight>
+						<radioposx>3</radioposx>
+						<radioposy>0</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>        $LOCALIZE[31352]</label>
+						<label2>[COLOR=e2ebb217][LIGHT]Select + Start[/LIGHT][/COLOR]</label2>
+						
+					</control>
+					
+					<control type="radiobutton"><include>ElementHasNoHitBox</include>
+						
+						<width>530</width>
+						
+						<textureradioofffocus>volumeicon-2.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">volumeicon-2.png</textureradiooffnofocus>
+						
+						<radiowidth>49</radiowidth>
+						<radioheight>49</radioheight>
+						<radioposx>17</radioposx>
+						<radioposy>8</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>        $LOCALIZE[13376]</label>
+						<label2>[COLOR=e2ebb217][LIGHT]Select + R Stick[/LIGHT][/COLOR]</label2>
+						
+					</control>
+					
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			<!-- Video settings Sub-menu -->
+			<control type="group">
+				
+				<animation effect="slide" start="0,0" end="0,66" time="0" condition="RetroPlayer.SupportsEject">Conditional</animation>
+				
+				<animation effect="slide" start="0,0" end="546,522" time="0" condition="true">Conditional</animation>
+				
+				<include>VisibleFadeEffect</include>
+				
+				<visible>!Control.IsVisible(10)</visible>
+				<visible>!String.IsEmpty(Window(Home).Property(GameOSDVideoSettingsSubMenuOpen)) | Control.HasFocus(10080) | Control.HasFocus(10081) | Control.HasFocus(10082) | Control.HasFocus(10083)</visible>
+				
+				<control type="button" id="10080">
+					<description>Fake button for mouse control</description>
+					<left>-31</left>
+					<top>-13</top>
+					<width>590</width>
+					<height>301</height>
+					<texturenofocus></texturenofocus>
+					<texturefocus></texturefocus>
+				</control>
+				
+				<control type="image">
+					<left>-26</left>
+					<top>-13</top>
+					<width>592</width>
+					<height>301</height>
+					<texture border="54">DialogBack-rounded.png</texture>
+				</control>
+				
+				<control type="grouplist">
+					
+					<left>25</left>
+					<top>40</top>
+					
+					<width>490</width>
+					<height>762</height>
+					
+					<itemgap>3</itemgap>
+					
+					<onleft>ClearProperty(GameOSDControlsSubMenuOpen,home)</onleft>
+					<onleft>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onleft>
+					<onleft>1008</onleft>
+					
+					<onback>ClearProperty(GameOSDControlsSubMenuOpen,home)</onback>
+					<onback>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onback>
+					<onback>1008</onback>
+					
+					<control type="radiobutton" id="10081">
+						
+						<textureradioofffocus>header_icons/icon_pvr.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">header_icons/icon_pvr.png</textureradiooffnofocus>
+						
+						<radiowidth>41</radiowidth>
+						<radioheight>41</radioheight>
+						<radioposx>19</radioposx>
+						<radioposy>12</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>        $LOCALIZE[230]</label>
+						
+						<onclick>ActivateWindow(GameVideoFilter)</onclick>
+						
+					</control>
+					
+					<control type="radiobutton" id="10082">
+						
+						<textureradioofffocus>header_icons/icon_pvr.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">header_icons/icon_pvr.png</textureradiooffnofocus>
+						
+						<radiowidth>41</radiowidth>
+						<radioheight>41</radioheight>
+						<radioposx>19</radioposx>
+						<radioposy>12</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>        $LOCALIZE[35233]</label>
+						
+						<onclick>ActivateWindow(GameStretchMode)</onclick>
+						
+					</control>
+					
+					<control type="radiobutton" id="10083">
+						
+						<textureradioofffocus>header_icons/icon_pvr.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">header_icons/icon_pvr.png</textureradiooffnofocus>
+						
+						<radiowidth>41</radiowidth>
+						<radioheight>41</radioheight>
+						<radioposx>19</radioposx>
+						<radioposy>12</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>        $LOCALIZE[35227]</label>
+						
+						<onclick>ActivateWindow(GameVideoRotation)</onclick>
+						
+					</control>
+					
+					
+					
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			<!-- Controls Sub-menu -->
+			<control type="group">
+				
+				<animation effect="slide" start="0,0" end="0,66" time="0" condition="RetroPlayer.SupportsEject">Conditional</animation>
+				
+				<animation effect="slide" start="0,0" end="546,456" time="0" condition="true">Conditional</animation>
+				
+				<include>VisibleFadeEffect</include>
+				
+				<visible>!Control.IsVisible(10)</visible>
+				<visible>!String.IsEmpty(Window(Home).Property(GameOSDControlsSubMenuOpen)) | Control.HasFocus(10070) | Control.HasFocus(10071) | Control.HasFocus(10072) | Control.HasFocus(10073)</visible>
+				
+				<control type="button" id="10070">
+					<description>Fake button for mouse control</description>
+					<left>-31</left>
+					<top>-13</top>
+					<width>590</width>
+					<height>238</height>
+					<texturenofocus></texturenofocus>
+					<texturefocus></texturefocus>
+				</control>
+				
+				<control type="image">
+					<left>-26</left>
+					<top>-13</top>
+					<width>592</width>
+					<height>235</height>
+					<texture border="54">DialogBack-rounded.png</texture>
+				</control>
+				
+				<control type="grouplist">
+					
+					<left>25</left>
+					<top>40</top>
+					
+					<width>490</width>
+					<height>762</height>
+					
+					<itemgap>3</itemgap>
+					
+					<onleft>ClearProperty(GameOSDControlsSubMenuOpen,home)</onleft>
+					<onleft>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onleft>
+					<onleft>1007</onleft>
+					
+					<onback>ClearProperty(GameOSDControlsSubMenuOpen,home)</onback>
+					<onback>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onback>
+					<onback>1007</onback>
+					
+					<control type="radiobutton" id="10071">
+						
+						<textureradioofffocus>header_icons/icon_games.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">header_icons/icon_games.png</textureradiooffnofocus>
+						
+						<textureradiooffdisabled colordiffuse="3BFFFFFF">header_icons/icon_games.png</textureradiooffdisabled>
+						
+						<radiowidth>40</radiowidth>
+						<radioheight>40</radioheight>
+						<radioposx>20</radioposx>
+						<radioposy>12</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>        $LOCALIZE[35110]$VAR[GameOSDButtonNA]</label>
+						
+						<onclick>ActivateWindow(GamePorts)</onclick>
+						
+						
+						<!-- Kodi 17-20 -->
+						<visible>[String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]</visible>
+						
+						
+						<!-- Kodi 20+ -->
+						<enable>![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.)]</enable>
+						
+						
+					</control>
+					
+					<control type="radiobutton" id="10072">
+						
+						<textureradioofffocus>header_icons/icon_games.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">header_icons/icon_games.png</textureradiooffnofocus>
+						
+						<radiowidth>40</radiowidth>
+						<radioheight>40</radioheight>
+						<radioposx>20</radioposx>
+						<radioposy>12</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>        $LOCALIZE[35110] &amp; $LOCALIZE[35172]</label>
+						
+						<onclick>ActivateWindow(GameAgents)</onclick>
+						
+						
+						<!-- Kodi 21+ -->
+						<visible>![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]</visible>
+						
+						
+					</control>
+					
+					<control type="radiobutton" id="10073">
+						
+						<textureradioofffocus>header_icons/icon_games.png</textureradioofffocus>
+						<textureradiooffnofocus colordiffuse="B7FFFFFF">header_icons/icon_games.png</textureradiooffnofocus>
+						
+						<radiowidth>40</radiowidth>
+						<radioheight>40</radioheight>
+						<radioposx>20</radioposx>
+						<radioposy>12</radioposy>
+						
+						<include>GameOSDButtonStyleRadio</include>
+						
+						<label>        $LOCALIZE[35059]</label>
+						
+						<onclick>ActivateWindow(GameControllers)</onclick>
+					</control>
+					
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			<!-- Background panel -->
+			<control type="group">
+				
+				<include>VisibleFadeEffect</include>
+				
+				<visible>!Control.IsVisible(10)</visible>
+				
+				
+				<!-- bg for 9 items + 2 separators -->
+				<control type="group">
+					<visible>!RetroPlayer.SupportsEject</visible>
+					
+					<control type="image">
+						<left>-26</left>
+						<top>-13</top>
+						<width>592</width>
+						<height>757</height>
+						<texture border="54">DialogBack-rounded.png</texture>
+					</control>
+					<control type="image">
+						<left>4</left>
+						<top>119</top>
+						<width>532</width>
+						<height>1</height>
+						<texture colordiffuse="11FFFFFF">separator-uni.png</texture>
+					</control>
+					<control type="image">
+						<left>4</left>
+						<top>480</top>
+						<width>532</width>
+						<height>1</height>
+						<texture colordiffuse="11FFFFFF">separator-uni.png</texture>
+					</control>
+				</control>
+				
+				<!-- bg for 10 items + 2 separators -->
+				<control type="group">
+					<visible>RetroPlayer.SupportsEject</visible>
+					
+					<control type="image">
+						<left>-26</left>
+						<top>-13</top>
+						<width>592</width>
+						<height>820</height>
+						<texture border="54">DialogBack-rounded.png</texture>
+					</control>
+					<control type="image">
+						<left>4</left>
+						<top>119</top>
+						<width>532</width>
+						<height>1</height>
+						<texture colordiffuse="11FFFFFF">separator-uni.png</texture>
+					</control>
+					<control type="image">
+						<left>4</left>
+						<top>546</top>
+						<width>532</width>
+						<height>1</height>
+						<texture colordiffuse="11FFFFFF">separator-uni.png</texture>
+					</control>
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Volume button Left/Right indicator -->
+			<control type="group">
+				
+				<animation effect="slide" start="0,0" end="0,66" time="0" condition="RetroPlayer.SupportsEject">Conditional</animation>
+				
+				<animation effect="fade" time="300">Visible</animation>
+				<animation effect="fade" time="300">Hidden</animation>
+				
+				<visible>!Control.IsVisible(10)</visible>
+				<visible>Control.HasFocus(1006)</visible>
+				
+				<left>25</left>
+				<top>400</top>
+				
+				<control type="image">
+					<left>2</left>
+					<top>0</top>
+					<width>488</width>
+					<height>63</height>
+					<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			<!-- Game Menu buttons list -->
+			<control type="grouplist" id="1000">
+				<left>25</left>
+				<top>40</top>
+				<width>490</width>
+				<height>762</height>
+				<itemgap>3</itemgap>
+				
+				<include>VisibleFadeEffect</include>
+				
+				<visible>!Control.IsVisible(10)</visible>
+				
+				<control type="radiobutton" id="1001">
+					
+					<textureradioofffocus>osd/buttons/fill/OSDinfodialogNF.png</textureradioofffocus>
+					<textureradiooffnofocus colordiffuse="B7FFFFFF">osd/buttons/fill/OSDinfodialogNF.png</textureradiooffnofocus>
+					
+					<radiowidth>65</radiowidth>
+					<radioheight>65</radioheight>
+					<radioposx>7</radioposx>
+					<radioposy>1</radioposy>
+					
+					<include>GameOSDButtonStyleRadio</include>
+					
+					<label>        Info</label>
+					
+					
+					<onfocus>ClearProperty(GameOSDControlsSubMenuOpen,home)</onfocus>
+					<onfocus>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onfocus>
+					
+					
+				</control>
+				
+				<control type="group" id="101">
+					<height>27</height>
+					
+					
+					<onfocus>ClearProperty(GameOSDControlsSubMenuOpen,home)</onfocus>
+					<onfocus>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onfocus>
+					
+					
+				</control>
+				
+				<control type="radiobutton" id="1010">
+					
+					<textureradioofffocus>flagging/video/DISC.png</textureradioofffocus>
+					<textureradiooffnofocus colordiffuse="B7FFFFFF">flagging/video/DISC.png</textureradiooffnofocus>
+					
+					<radiowidth>58</radiowidth>
+					<radioheight>58</radioheight>
+					<radioposx>10</radioposx>
+					<radioposy>4</radioposy>
+					
+					<include>GameOSDButtonStyleRadio</include>
+					
+					<label>        $LOCALIZE[35272]</label>
+					
+					<onclick>ActivateWindow(GameDiscManager)</onclick>
+					
+					
+					<onfocus>ClearProperty(GameOSDControlsSubMenuOpen,home)</onfocus>
+					<onfocus>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onfocus>
+					
+					<visible>RetroPlayer.SupportsEject</visible>
+					
+				</control>
+				
+				<control type="radiobutton" id="1002">
+					
+					<textureradioofffocus>osd/buttons/fill/OSDPlayNF.png</textureradioofffocus>
+					<textureradiooffnofocus colordiffuse="B7FFFFFF">osd/buttons/fill/OSDPlayNF.png</textureradiooffnofocus>
+					
+					<radiowidth>73</radiowidth>
+					<radioheight>73</radioheight>
+					<radioposx>3</radioposx>
+					<radioposy>0</radioposy>
+					
+					<include>GameOSDButtonStyleRadio</include>
+					
+					<label>        $LOCALIZE[13404]</label>
+					
+					<onclick>Play</onclick>
+					
+					
+					<onfocus>ClearProperty(GameOSDControlsSubMenuOpen,home)</onfocus>
+					<onfocus>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onfocus>
+					
+					
+				</control>
+				
+				<control type="radiobutton" id="1003">
+					
+					<textureradioofffocus>overlayzip.png</textureradioofffocus>
+					<textureradiooffnofocus colordiffuse="B7FFFFFF">overlayzip.png</textureradiooffnofocus>
+					
+					<textureradiooffdisabled colordiffuse="3BFFFFFF">overlayzip.png</textureradiooffdisabled>
+					
+					<radiowidth>44</radiowidth>
+					<radioheight>44</radioheight>
+					<radioposx>20</radioposx>
+					<radioposy>10</radioposy>
+					
+					<include>GameOSDButtonStyleRadio</include>
+					
+					<label>        $LOCALIZE[35249]$VAR[GameOSDButtonNA]</label>
+					
+					<onclick>ActivateWindow(InGameSaves)</onclick>
+					
+					
+					<!-- Kodi 20+ -->
+					<enable>![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.)]</enable>
+					
+					
+					<onfocus>ClearProperty(GameOSDControlsSubMenuOpen,home)</onfocus>
+					<onfocus>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onfocus>
+					
+					
+				</control>
+				
+				<control type="radiobutton" id="1004">
+					
+					<include>Game_OSD_Radio_Textures_Power</include>
+					
+					<radiowidth>37</radiowidth>
+					<radioheight>37</radioheight>
+					<radioposx>21</radioposx>
+					<radioposy>15</radioposy>
+					
+					<include>GameOSDButtonStyleRadio</include>
+					
+					<label>        $LOCALIZE[13007]</label>
+					
+					<onclick>PlayerControl(Reset)</onclick>
+					
+					
+					<onfocus>ClearProperty(GameOSDControlsSubMenuOpen,home)</onfocus>
+					<onfocus>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onfocus>
+					
+					
+				</control>
+				
+				<control type="radiobutton" id="1005">
+					
+					<textureradioofffocus>osd/buttons/fill/OSDStopNF.png</textureradioofffocus>
+					<textureradiooffnofocus colordiffuse="B7FFFFFF">osd/buttons/fill/OSDStopNF.png</textureradiooffnofocus>
+					
+					<radiowidth>73</radiowidth>
+					<radioheight>73</radioheight>
+					<radioposx>3</radioposx>
+					<radioposy>0</radioposy>
+					
+					<include>GameOSDButtonStyleRadio</include>
+					
+					<label>        $LOCALIZE[31352]</label>
+					
+					<onclick>Stop</onclick>
+					
+					
+					<onfocus>ClearProperty(GameOSDControlsSubMenuOpen,home)</onfocus>
+					<onfocus>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onfocus>
+					
+					
+				</control>
+				
+				<control type="radiobutton" id="1006">
+					
+					<hitrect x="-63" y="0" w="553" h="63" />
+					
+					<width>427</width>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]"></texturefocus>
+					
+					<textureradioofffocus />
+					<textureradiooffnofocus />
+					
+					<radiowidth>49</radiowidth>
+					<radioheight>49</radioheight>
+					<radioposx>17</radioposx>
+					<radioposy>8</radioposy>
+					
+					<include>GameOSDButtonStyleRadio</include>
+					
+					<label>        $LOCALIZE[13376]</label>
+					
+					<onleft>VolumeDown</onleft>
+					<onright>VolumeUp</onright>
+					
+					<animation effect="slide" start="0,0" end="63,0" time="300" condition="Control.HasFocus(1006)" reversible="true" tween="quadratic" easing="out">Conditional</animation>
+					
+					
+					<onfocus>ClearProperty(GameOSDControlsSubMenuOpen,home)</onfocus>
+					<onfocus>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onfocus>
+					
+					
+				</control>
+				
+				<control type="group" id="102">
+					<height>27</height>
+					
+					
+					<onfocus>ClearProperty(GameOSDControlsSubMenuOpen,home)</onfocus>
+					<onfocus>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onfocus>
+					
+					
+				</control>
+				
+				<control type="radiobutton" id="1007">
+					
+					<textureradioofffocus>header_icons/icon_games.png</textureradioofffocus>
+					<textureradiooffnofocus colordiffuse="B7FFFFFF">header_icons/icon_games.png</textureradiooffnofocus>
+					
+					<radiowidth>40</radiowidth>
+					<radioheight>40</radioheight>
+					<radioposx>20</radioposx>
+					<radioposy>12</radioposy>
+					
+					<include>GameOSDButtonStyleRadio</include>
+					
+					<label>        $LOCALIZE[35234]</label>
+					
+					<onright condition="Control.IsVisible(10071) + Control.IsEnabled(10071)">SetFocus(10071)</onright>
+					<onright condition="![Control.IsVisible(10071) + Control.IsEnabled(10071)] + Control.IsVisible(10072)">SetFocus(10072)</onright>
+					<onright condition="![Control.IsVisible(10071) + Control.IsEnabled(10071)] + !Control.IsVisible(10072)">SetFocus(10073)</onright>
+					
+					<onclick condition="Control.IsVisible(10071) + Control.IsEnabled(10071)">SetFocus(10071)</onclick>
+					<onclick condition="![Control.IsVisible(10071) + Control.IsEnabled(10071)] + Control.IsVisible(10072)">SetFocus(10072)</onclick>
+					<onclick condition="![Control.IsVisible(10071) + Control.IsEnabled(10071)] + !Control.IsVisible(10072)">SetFocus(10073)</onclick>
+					
+					<onclick>SetProperty(GameOSDControlsSubMenuOpen,true,home)</onclick>
+					
+					
+					<onfocus>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onfocus>
+					
+					
+				</control>
+				
+				<control type="radiobutton" id="1008">
+					
+					<textureradioofffocus>header_icons/icon_pvr.png</textureradioofffocus>
+					<textureradiooffnofocus colordiffuse="B7FFFFFF">header_icons/icon_pvr.png</textureradiooffnofocus>
+					
+					<radiowidth>41</radiowidth>
+					<radioheight>41</radioheight>
+					<radioposx>19</radioposx>
+					<radioposy>12</radioposy>
+					
+					<include>GameOSDButtonStyleRadio</include>
+					
+					<label>        $LOCALIZE[13395]</label>
+					
+					<onright>SetFocus(10081)</onright>
+					
+					<onclick>SetProperty(GameOSDVideoSettingsSubMenuOpen,true,home)</onclick>
+					<onclick>SetFocus(10081)</onclick>
+					
+					
+					<onfocus>ClearProperty(GameOSDControlsSubMenuOpen,home)</onfocus>
+					
+					
+				</control>
+				
+				<control type="radiobutton" id="1009">
+					
+					<textureradioofffocus>header_icons/icon_system.png</textureradioofffocus>
+					<textureradiooffnofocus colordiffuse="B7FFFFFF">header_icons/icon_system.png</textureradiooffnofocus>
+					
+					<radiowidth>40</radiowidth>
+					<radioheight>40</radioheight>
+					<radioposx>18</radioposx>
+					<radioposy>12</radioposy>
+					
+					<include>GameOSDButtonStyleRadio</include>
+					
+					<label>        $LOCALIZE[35226]</label>
+					
+					<onclick>ActivateWindow(GameAdvancedSettings)</onclick>
+					
+					
+					<onfocus>ClearProperty(GameOSDControlsSubMenuOpen,home)</onfocus>
+					<onfocus>ClearProperty(GameOSDVideoSettingsSubMenuOpen,home)</onfocus>
+					
+					
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			<!-- Volume progress -->
+			<control type="group">
+				
+				<animation effect="slide" start="0,0" end="0,66" time="0" condition="RetroPlayer.SupportsEject">Conditional</animation>
+				
+				<left>25</left>
+				<top>400</top>
+				
+				<control type="group">
+					
+					<animation effect="fade" time="300">Visible</animation>
+					<animation effect="fade" time="300">Hidden</animation>
+					
+					<visible>!Control.IsVisible(10)</visible>
+					<visible>Control.HasFocus(1006)</visible>
+					<visible>!Player.Muted</visible>
+					
+					<control type="group">
+						<control type="progress">
+							<left>57</left>
+							<top>0</top>
+							<width>423</width>
+							<height>63</height>
+							<info>Player.Volume</info>
+							<texturebg colordiffuse="00ffffff">osd/progress/progress-bg.png</texturebg>
+							<midtexture>osd/progress/progress-mid-2px.png</midtexture>
+						</control>
+						<control type="image">
+							<left>427</left> 
+							<top>0</top>
+							<width>63</width>
+							<height>63</height>
+							<texture border="24">colors/white_border15_r_gameosd.png</texture>
+							<visible>Integer.IsGreaterOrEqual(Player.Volume,100)</visible>
+							<animation effect="fade" time="300">Visible</animation>
+							<animation effect="fade" time="300">Hidden</animation>
+						</control>
+						<animation effect="fade" start="100" end="5" time="0" condition="true">Conditional</animation>
+					</control>
+				</control>
+				
+				<control type="group">
+					<left>16</left>
+					<top>8</top>
+					<width>49</width>
+					<height>49</height>
+					
+					<control type="image">
+						<texture background="true">VolumeIcon-mute.png</texture>
+						<visible>Player.Muted</visible>
+					</control>
+					<control type="image">
+						<texture background="true">volumeicon-1.png</texture>
+						<visible>!Player.Muted + Integer.IsLess(Player.Volume,25)</visible>
+					</control>
+					<control type="image">
+						<texture background="true">volumeicon-2.png</texture>
+						<visible>!Player.Muted + Integer.IsGreater(Player.Volume,24) + Integer.IsLess(Player.Volume,70)</visible>
+					</control>
+					<control type="image">
+						<texture background="true">volumeicon-3.png</texture>
+						<visible>!Player.Muted + Integer.IsGreater(Player.Volume,69)</visible>
+					</control>
+					
+					<animation effect="slide" start="0,0" end="63,0" time="300" condition="Control.HasFocus(1006)" reversible="true" tween="quadratic" easing="out">Conditional</animation>
+					<animation effect="fade" start="100" end="74" time="0" condition="!Control.HasFocus(1006)">Conditional</animation>
+					
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			<!-- Volume button Left/Right indicator -->
+			<control type="group">
+				
+				<animation effect="slide" start="0,0" end="0,66" time="0" condition="RetroPlayer.SupportsEject">Conditional</animation>
+				
+				<animation effect="fade" time="300">Visible</animation>
+				<animation effect="fade" time="300">Hidden</animation>
+				
+				<visible>!Control.IsVisible(10)</visible>
+				<visible>Control.HasFocus(1006)</visible>
+				
+				<left>25</left>
+				<top>400</top>
+				
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>68</width>
+					<height>63</height>
+					<texture border="24" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texture>
+				</control>
+				<control type="image">
+					<left>9</left>
+					<top>19</top>
+					<width>26</width>
+					<height>26</height>
+					<aspectratio>stretch</aspectratio>
+					<texture colordiffuse="$VAR[Transparency61ColorDiffuse]">scroll-up.png</texture>
+					<animation effect="rotate" end="90" center="auto" time="0" condition="true">Conditional</animation>
+				</control>
+				<control type="image">
+					<left>33</left>
+					<top>19</top>
+					<width>26</width>
+					<height>26</height>
+					<aspectratio>stretch</aspectratio>
+					<texture flipy="true" colordiffuse="$VAR[Transparency61ColorDiffuse]">scroll-up.png</texture>
+					<animation effect="rotate" end="90" center="auto" time="0" condition="true">Conditional</animation>
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			</control>
+			
+			
+			
+			
+			
+			
+			
+			
+		</control>
+		
+		
+		
+		<control type="image">
+			
+			<include>BackgroundDimensions_Can_Be_Max_For_Scope</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<texture>colors/black_70.png</texture>
+			<visible>Window.IsVisible(GameDiscManager)</visible>
+			
+			<animation effect="fade" time="300">VisibleChange</animation>
+			
+		</control>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

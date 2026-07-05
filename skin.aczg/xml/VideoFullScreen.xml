@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol></defaultcontrol>
+	
+	<onload condition="!String.IsEmpty(Window(Home).Property(OSDinfodialogButtonActive))">ClearProperty(OSDinfodialogButtonActive,home)</onload>
+	<onload condition="!String.IsEmpty(Player.Art(poster))">SetProperty(PlayerArtPosterTemp,"$INFO[Player.Art(poster)]",home)</onload>
+	
+	
+	
+	<!-- Internal note: EVERY element has to have an id="1" attribute to be visible and working -->
+	
+	
+	
+	<controls><!-- WRAPPER START --><control type="group" id="1"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		
+		<include condition="Player.HasGame">FullscreenGameIndicators</include>
+		
+		
+		
+		<control type="group" id="1">
+		
+		<visible>![Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDSubtitleSettings)]</visible>
+		<visible>!Player.HasGame</visible>
+		
+		<include>VisibleFadeEffect4</include>
+		
+		
+		
+		<control type="group" id="1">
+			
+			<!-- FADEOUT TOP -->
+			<!-- Has to be separate from FADEOUT BOTTOM because seek numberic can be activated without everything else -->
+			<control type="group" id="1">
+				
+				
+				<control type="image" id="1">
+					
+					<!-- SkinOutOfBounds -->
+					<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsBgDimensionsVideoFullScreen</include>
+					
+					<left>0</left>
+					<top>-420</top>
+					<width>1920</width>
+					<height>270</height>
+					
+					<texture border="0">osd/shadow_gradient_osd-bg.png</texture>
+					<animation effect="fade" end="60" time="0" condition="true">Conditional</animation>
+					
+					<visible>Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0)</visible>
+					
+				</control>
+				
+				<control type="image" id="1">
+					
+					<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_MoveUp_60px</include>
+					
+					<!-- SkinOutOfBounds -->
+					<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsBgDimensionsVideoFullScreen</include>
+					
+					<left>0</left>
+					<top>-150</top>
+					<width>1920</width>
+					<height>270</height>
+					
+					<texture flipy="true" border="0">osd/shadow_gradient_osd-bg.png</texture>
+					<animation effect="fade" end="60" time="0" condition="true">Conditional</animation>
+				</control>
+				
+				<visible>[!String.IsEmpty(Player.SeekNumeric) | Window.IsActive(VideoOSD)] + !Window.IsVisible(SliderDialog) + !Window.IsVisible(FullscreenGame)</visible>
+				
+				<include>VisibleFadeEffect4</include>
+				
+			</control>
+			
+			
+			
+			<control type="group" id="1">
+				<visible>!VideoPlayer.Content(LiveTV) + !Window.IsActive(VideoOSD) + Window.IsVisible(SeekBar)</visible>
+				
+				<animation effect="fade" end="100" time="500">Visible</animation>
+				<animation effect="fade" end="0" time="500">Hidden</animation>
+				
+				<!-- SEEKBAR SHADOW -->
+				<control type="image" id="1">
+					<left>0</left>
+					<top>231r</top>
+					<width>1920</width>
+					<height>150</height>
+					<texture>osd/shadow_seekbar-bg.png</texture>
+					<animation effect="fade" end="31" time="0" condition="true">Conditional</animation>
+				</control>
+				
+			</control>
+			
+			<control type="group" id="1">
+				<visible>[Window.IsActive(VideoOSD) | [VideoPlayer.Content(LiveTV) + [Window.IsVisible(SeekBar) | Player.ShowInfo]] ] 
+									+ !Window.IsVisible(SliderDialog)
+									
+									+ [[String.IsEmpty(Window(Home).Property(PlayBackJustStarted)) + String.IsEmpty(Window(Home).Property(PlayBackJustEnded))] | VideoPlayer.Content(LiveTV) | Window.IsActive(VideoOSD)]
+									
+									</visible>
+				
+				<include>VisibleFadeEffect4</include>
+				
+				<!-- FADEOUT BOTTOM -->
+				<control type="image" id="1">
+					
+					<!-- SkinOutOfBounds -->
+					<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsBgDimensionsVideoFullScreen</include>
+					
+					<left>0</left>
+					<top>387r</top>
+					<width>1920</width>
+					<height>390</height>
+					
+					<texture border="0">osd/shadow_gradient_osd-bg.png</texture>
+					<animation effect="fade" end="90" time="0" condition="true">Conditional</animation>
+				</control>
+				
+				<!-- SkinOutOfBounds -->
+				<!-- Extend y-mirrored bottom fade out only for 16:10 Skin AR -->
+				<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsBgDimensionsVideoFullScreenBottomGradientExtendFor16by10</include>
+				
+				
+				
+			</control>
+			
+			
+			
+			<control type="group" id="1">
+				<depth>DepthOSD</depth>
+				
+				<visible>!Window.IsVisible(FullscreenGame) + [Window.IsVisible(SeekBar) | Player.ShowInfo | Window.IsActive(VideoOSD)] 
+									+ !Window.IsVisible(SliderDialog)
+									
+									+ [[String.IsEmpty(Window(Home).Property(PlayBackJustStarted)) + String.IsEmpty(Window(Home).Property(PlayBackJustEnded))] | VideoPlayer.Content(LiveTV) | Window.IsActive(VideoOSD)]
+									
+									</visible>
+				
+				<include>VisibleFadeEffect4</include>
+				
+				<!-- PLAYLIST STATUS -->
+				<control type="group" id="1">
+					
+					<include>SkinVariant_16by10_MoveUp_60px_Or_21by9_MoveLeft_330px</include>
+					
+					<left>19</left>
+					<control type="group" id="1">
+						<control type="group" id="1">
+							<control type="image" id="1">
+								<left>0</left>
+								<top>15</top>
+								<width>30</width>
+								<height>30</height>
+								<texture>_added_img/playlist_icon_large.png</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+							<control type="label" id="1">
+								<left>42</left>
+								<top>10</top>
+								<width>1500</width>
+								<height>39</height>
+								<align>left</align>
+								<aligny>center</aligny>
+								<font>Light20</font>
+								<textcolor>white</textcolor>
+								<label>$INFO[Playlist.Position(video)]$INFO[Playlist.Length(video),/]</label>
+							</control>
+							<visible>Integer.IsGreater(Playlist.Length(video),1) + Integer.IsGreater(Playlist.Position(video),0) + !VideoPlayer.Content(LiveTV)</visible>
+						</control>
+						<visible>Window.IsActive(VideoOSD)</visible>
+						<include>FullScreenInfoVisibleAnimations</include>
+					</control>
+				</control>
+				
+				<include>FullScreenClock</include>
+				
+				<!-- POSTER / IMAGE / ICON -->
+				
+				<!-- Episodes -->
+				<!-- Episode + poster -->
+				<control type="image" id="1">
+					<depth>DepthOSDPopout</depth>
+					<description>cover image</description>
+					<left>245</left>
+					<top>470r</top>
+					<width>114</width>
+					<height>171</height>
+					<texture background="true" diffuse="colors/diffuse/114x171-rounded.png">$VAR[TvShowEpisodeOrMoviePlayerPoster]</texture>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<visible>VideoPlayer.Content(Episodes) 
+									+ [!String.IsEmpty(Player.Art(season.poster)) | !String.IsEmpty(Player.Art(tvshow.poster))] 
+									+ ![VideoPlayer.Content(Movies) | VideoPlayer.Content(LiveTV)] + Window.IsVisible(VideoOSD)</visible>
+					<include>FullScreenInfoVisibleAnimations</include>
+				</control>
+				
+				<!-- Videos -->
+				<!-- Video (! Only show for PVR Recordings (informational purpose), otherwise show no video thumbnail to avoid bad visuals -->
+				<control type="image" id="1">
+					<depth>DepthOSDPopout</depth>
+					<left>245</left>
+					<top>480r</top>
+					<width>180</width>
+					<height>180</height>
+					<texture border="10" colordiffuse="FF1a1a1a">colors/white_border10.png</texture>
+					<visible>PVR.IsPlayingRecording + [
+										!VideoPlayer.Content(Episodes) 
+										| [VideoPlayer.Content(Episodes) + String.IsEmpty(Player.Art(season.poster)) 
+											+ String.IsEmpty(Player.Art(tvshow.poster))] 
+										]
+										+ ![VideoPlayer.Content(Movies) | VideoPlayer.Content(LiveTV)] + Window.IsVisible(VideoOSD)</visible>
+					<include>FullScreenInfoVisibleAnimations50</include>
+				</control>
+				<control type="image" id="1">
+					<depth>DepthOSDPopout</depth>
+					<description>cover image</description>
+					<left>254</left>
+					<top>471r</top>
+					<width>162</width>
+					<height>162</height>
+					<texture background="true" fallback="DefaultPVRChannels.png">$INFO[Player.Art(icon)]</texture>
+					<aspectratio align="center" aligny="center">keep</aspectratio>
+					<visible>PVR.IsPlayingRecording + [
+										!VideoPlayer.Content(Episodes) 
+										| [VideoPlayer.Content(Episodes) + String.IsEmpty(Player.Art(season.poster)) 
+											+ String.IsEmpty(Player.Art(tvshow.poster))] 
+										]
+										+ ![VideoPlayer.Content(Movies) | VideoPlayer.Content(LiveTV)] + Window.IsVisible(VideoOSD)</visible>
+					<include>FullScreenInfoVisibleAnimations</include>
+				</control>
+				
+				<!-- movie + poster -->
+				<control type="image" id="1">
+					<depth>DepthOSDPopout</depth>
+					<description>Movie cover image</description>
+					<left>245</left>
+					<top>430r</top>
+					<width>114</width>
+					<height>171</height>
+					<texture background="true" diffuse="colors/diffuse/114x171-rounded.png">$INFO[Player.Art(poster)]</texture>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<visible>VideoPlayer.Content(Movies) + !String.IsEmpty(Player.Art(poster)) + Window.IsVisible(VideoOSD)</visible>
+					<include>FullScreenInfoVisibleAnimations</include>
+				</control>
+				
+				<!-- Music Videos -->
+				<control type="image" id="1">
+					<depth>DepthOSDPopout</depth>
+					<left>245</left>
+					<top>480r</top>
+					<width>180</width>
+					<height>180</height>
+					<texture background="true" fallback="DefaultAlbumCover.png" diffuse="colors/diffuse/180x180-rounded.png">$VAR[PlayerArtThumbMusicVideo]</texture>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<fadetime>100</fadetime>
+					<visible>VideoPlayer.Content(MusicVideos) + !String.IsEmpty(Player.Art(thumb)) + Window.IsVisible(VideoOSD)</visible>
+					<include>FullScreenInfoVisibleAnimations</include>
+				</control>
+				
+				<!-- LiveTV icon -->
+				<control type="image" id="1">
+					<depth>DepthOSDPopout</depth>
+					<left>245</left>
+					<top>480r</top>
+					<width>180</width>
+					<height>180</height>
+					<texture border="10" colordiffuse="FF1a1a1a">colors/white_border10.png</texture>
+					<visible>VideoPlayer.Content(LiveTV)</visible>
+					<animation effect="fade" end="50" time="0" condition="true">Conditional</animation>
+				</control>
+				<control type="image" id="1">
+					<depth>DepthOSDPopout</depth>
+					<description>Picon image</description>
+					<left>254</left>
+					<top>471r</top>
+					<width>162</width>
+					<height>162</height>
+					<texture background="true" fallback="DefaultPVRChannels.png">$INFO[Player.Art(thumb)]</texture>
+					<aspectratio align="center" aligny="center">keep</aspectratio>
+					<visible>VideoPlayer.Content(LiveTV)</visible>
+					<fadetime>100</fadetime>
+				</control>
+				
+				
+				
+				<!-- AUDIO CODEC -->
+				<control type="group" id="1">
+					<left>100</left>
+					<top>104r</top>
+					<width>114</width>
+					<height>54</height>
+					<control type="image" id="1">
+						<description>Audio Codec Image</description>
+						<width>114</width>
+						<height>54</height>
+						<aspectratio align="center">keep</aspectratio>
+						<texture>$INFO[VideoPlayer.AudioCodec,flagging/audio/codecs/,.png]</texture>
+						<include>FullScreenInfoFlaggingTransparencyText</include>
+						<fadetime>150</fadetime>
+					</control>
+					<visible>!String.IsEmpty(VideoPlayer.AudioCodec) + Skin.HasSetting(ReducedFullScreenInfoOSDAudioCodec) + Window.IsActive(VideoOSD) + !Player.ChannelPreviewActive</visible>
+					<animation effect="fade" end="100" time="0" condition="true">Conditional</animation>
+					<include>VisibleFadeEffect</include>
+				</control>
+				
+				
+				
+				<!-- VIDEO RESOLUTION -->
+				<control type="group" id="1">
+					<left>100</left>
+					<top>243r</top>
+					<width>114</width>
+					<height>54</height>
+					<control type="image" id="1">
+						<width>114</width>
+						<height>54</height>
+						<texture border="6">flagging/blank.png</texture>
+						<include>FullScreenInfoFlaggingTransparencyBackground</include>
+					</control>
+					<control type="image" id="1">
+						<left>21</left>
+						<description>Video Resolution Image</description>
+						<width>72</width>
+						<height>54</height>
+						<texture fallback="flagging/video/resolutions/_fallback.png">flagging/video/resolutions/$VAR[isUhdScreenStringFolder]$INFO[VideoPlayer.VideoResolution].png</texture>
+						<include>FullScreenInfoFlaggingTransparencyText</include>
+					</control>
+					<visible>Skin.HasSetting(ReducedFullScreenInfoOSDVideoResolution) + Window.IsVisible(VideoOSD) + !Player.ChannelPreviewActive + !String.IsEmpty(VideoPlayer.VideoResolution)</visible>
+					<include>FullScreenInfoFlaggingTransparencyGlobal</include>
+					<include>FullScreenInfoVisibleAnimationsNoFadeOut</include>
+				</control>
+				
+				
+				
+				<control type="group" id="1">
+					<left>245</left>
+					<top>393r</top>
+					
+					<!-- NOW RECORDING ICON for LiveTV -->
+					<control type="image" id="1">
+						<top>62</top>
+						<left>4</left>
+						<width>28</width>
+						<height>28</height>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+						<texture>PVR-IsRecording.png</texture>
+						<visible>VideoPlayer.Content(LiveTV) + PVR.IsRecordingPlayingChannel + !Player.ChannelPreviewActive</visible>
+						<animation effect="fade" start="0" end="100" time="3000" pulse="true" reversible="true" condition="true" tween="sine" easing="out">Conditional</animation>
+					</control>
+					
+					<!-- TV show Title + S01E01  -->
+					<control type="label" id="1">
+						<description>TV Show label</description>
+						
+						<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_Secondary_Title_CRT</include>
+						
+						<left>3</left>
+						<top>114</top>
+						<width>1200</width>
+						<height>38</height>
+						<align>left</align>
+						<font>Light17</font>
+						<label>$INFO[VideoPlayer.TVShowTitle][COLOR=grey2]$INFO[VideoPlayer.Season,   S,]$INFO[VideoPlayer.Episode, E,][/COLOR]</label>
+						<textcolor>grey</textcolor>
+						<visible>Window.IsVisible(VideoOSD) + [VideoPlayer.Content(Episodes) + !String.IsEmpty(VideoPlayer.TVShowTitle)]</visible>
+						<include>FullScreenInfoVisibleAnimations</include>
+					</control>
+					
+					<!-- Music Album Title + Year -->
+					<control type="label" id="1">
+						<description>Music Info label</description>
+						
+						<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_Secondary_Title_CRT</include>
+						
+						<left>3</left>
+						<top>114</top>
+						<width>1200</width>
+						<height>38</height>
+						<align>left</align>
+						<font>Light17</font>
+						<label>$INFO[VideoPlayer.Artist]$INFO[VideoPlayer.Album, – ]$INFO[VideoPlayer.Year, (,)]</label>
+						<textcolor>grey</textcolor>
+						<visible>Window.IsVisible(VideoOSD) + VideoPlayer.Content(MusicVideos)</visible>
+						<include>FullScreenInfoVisibleAnimations</include>
+					</control>
+					
+					<!-- LiveTV Channel Number + Name -->
+					<control type="label" id="1">
+						<description>LiveTV Info label</description>
+						
+						<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_Secondary_Title_CRT</include>
+						
+						<left>3</left>
+						<top>114</top>
+						<width>1200</width>
+						<height>38</height>
+						<align>left</align>
+						<font>Light17</font>
+						<label>$VAR[VideoFullScreenSubLabel]</label>
+						<textcolor>grey</textcolor>
+						<visible>VideoPlayer.Content(LiveTV) | [PVR.IsPlayingRecording + Window.IsVisible(VideoOSD)]</visible>
+					</control>
+					
+					<!-- Large title for Fullscreen-->
+					<control type="label" id="1">
+						
+						<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_Title_CRT</include>
+						
+						<left>3</left>
+						<top>153</top>
+						<include>FullScreenInfoTitleWidthReduced</include>
+						<!-- also includes visible animation -->
+						<height>45</height>
+						<font>Light30</font>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$VAR[VideoFullScreenTitle]</label>
+						<textcolor>white</textcolor>
+						<scroll>false</scroll>
+						<visible>VideoPlayer.Content(LiveTV) | [PVR.IsPlayingRecording + Window.IsVisible(VideoOSD)] | Window.IsVisible(VideoOSD)</visible>
+					</control>
+					
+					<!-- OPTIONAL Fullscreen OSD FLAGS: audio/sub language, audio channels -->
+					<control type="grouplist" id="1">
+						<left>485r</left>
+						<top>243r</top>
+						<width>1080</width>
+						<height>54</height>
+						<itemgap>0</itemgap>
+						<orientation>horizontal</orientation>
+						
+						<!--   DEV INFO: "String.IsEqual(Control.GetLabel(12345),)"   is a substitute for   "String.IsEmpty(VideoPlayer.AudioLanguage)"   -->
+						
+						<animation effect="slide" start="0,0" end="126,0" time="0" condition="!Skin.HasSetting(ReducedFullScreenInfoOSDAudioSubLanguage) | String.IsEmpty(VideoPlayer.SubtitlesLanguage) | String.IsEqual(Control.GetLabel(12345),) | !VideoPlayer.SubtitlesEnabled">Conditional</animation>
+						<!-- if no audio track + no subs -->
+						<animation effect="slide" start="0,0" end="126,0" time="0" condition="!Skin.HasSetting(ReducedFullScreenInfoOSDAudioSubLanguage) | [String.IsEmpty(VideoPlayer.SubtitlesLanguage) | !VideoPlayer.SubtitlesEnabled] + String.IsEqual(Control.GetLabel(12345),)">Conditional</animation>
+						<animation effect="slide" start="0,0" end="-84,0" time="0" condition="Skin.HasSetting(ReducedFullScreenInfoOSDAudioChannels) + !String.IsEmpty(VideoPlayer.AudioChannels)">Conditional</animation>
+						
+						<!-- SUBTITLE LANGUAGE -->
+						<control type="group" id="1">
+							<width>126</width>
+							<height>54</height>
+							<control type="image" id="1">
+								<width>114</width>
+								<height>54</height>
+								<texture border="6" colordiffuse="f9FFFFFF">flagging/blank.png</texture>
+								<include>FullScreenInfoFlaggingTransparencyBackground</include>
+							</control>
+							<control type="image" id="1">
+								<width>114</width>
+								<height>54</height>
+								<texture>flagging/SubLang.png</texture>
+								<include>FullScreenInfoFlaggingTransparencyText</include>
+							</control>
+							<control type="label" id="1">
+								<left>48</left>
+								<top>3</top>
+								<width>72</width>
+								<height>54</height>
+								<font>Light20</font>
+								<align>left</align>
+								<label>[LOWERCASE]$VAR[VideoPlayerSubtitlesLanguage][/LOWERCASE]</label>
+								<textcolor>white</textcolor>
+								<include>FullScreenInfoFlaggingTransparencyText</include>
+							</control>
+							<include>FullScreenInfoFlaggingTransparencyGlobal</include>
+							
+							<visible>![String.IsEmpty(VideoPlayer.SubtitlesLanguage) | Player.ChannelPreviewActive] + VideoPlayer.SubtitlesEnabled + Window.IsVisible(VideoOSD) + Skin.HasSetting(ReducedFullScreenInfoOSDAudioSubLanguage)</visible>
+							
+							<include>FullScreenInfoVisibleAnimationsNoFadeOut</include>
+						</control>
+						
+						<!-- AUDIO LANGUAGE -->
+						<control type="group" id="1">
+							<width>126</width>
+							<height>54</height>
+							<control type="image" id="1">
+								<width>114</width>
+								<height>54</height>
+								<texture border="6" colordiffuse="f9FFFFFF">flagging/blank.png</texture>
+								<include>FullScreenInfoFlaggingTransparencyBackground</include>
+							</control>
+							<control type="image" id="1">
+								<description>Audio Language Image</description>
+								<width>114</width>
+								<height>54</height>
+								<texture>flagging/AudioLang.png</texture>
+								<include>FullScreenInfoFlaggingTransparencyText</include>
+							</control>
+							<!-- dummy audio language var -->
+							<control type="label" id="12345">
+								<label>$VAR[VideoPlayerAudioLanguage]</label>
+								<visible>false</visible>
+							</control>
+							<control type="label" id="1">
+								<left>45</left>
+								<top>3</top>
+								<width>72</width>
+								<height>54</height>
+								<font>Light20</font>
+								<align>left</align>
+								<label>[LOWERCASE]$VAR[VideoPlayerAudioLanguage][/LOWERCASE]</label>
+								<textcolor>white</textcolor>
+								<include>FullScreenInfoFlaggingTransparencyText</include>
+							</control>
+							<include>FullScreenInfoFlaggingTransparencyGlobal</include>
+							
+							<visible>![   String.IsEqual(Control.GetLabel(12345),)   | Player.ChannelPreviewActive] + Window.IsVisible(VideoOSD) + Skin.HasSetting(ReducedFullScreenInfoOSDAudioSubLanguage)</visible>
+							
+							<include>FullScreenInfoVisibleAnimationsNoFadeOut</include>
+						</control>
+						
+						<!-- AUDIO CHANNELS -->
+						<control type="group" id="1">
+							<width>72</width>
+							<height>54</height>
+							<control type="image" id="1">
+								<width>72</width>
+								<height>54</height>
+								<texture border="6" colordiffuse="f9FFFFFF">flagging/blank.png</texture>
+								<include>FullScreenInfoFlaggingTransparencyBackground</include>
+							</control>
+							<control type="image" id="1">
+								<description>Audio Channels Image</description>
+								<width>72</width>
+								<height>54</height>
+								<texture>$INFO[VideoPlayer.AudioChannels,flagging/audio/channels/,.png]</texture>
+								<include>FullScreenInfoFlaggingTransparencyText</include>
+							</control>
+							<visible>!String.IsEmpty(VideoPlayer.AudioChannels) + Skin.HasSetting(ReducedFullScreenInfoOSDAudioChannels) + Window.IsVisible(VideoOSD) + !Player.ChannelPreviewActive</visible>
+							<include>FullScreenInfoFlaggingTransparencyGlobal</include>
+							<include>FullScreenInfoVisibleAnimationsNoFadeOut</include>
+						</control>
+						
+					</control>
+					
+					<!-- STINGER ICON @ show with VideoOSD for last 30 minutes of video -->
+					<control type="group" id="1">
+						<left>1597</left>
+						<top>208</top>
+						<width>54</width>
+						<height>54</height>
+						<animation effect="fade" end="85" time="0" condition="true">Conditional</animation>
+						<control type="image" id="1">
+							<description>Stinger icon</description>
+							<left>0</left>
+							<width>54</width>
+							<height>54</height>
+							<texture>_added_img/stinger_scene.png</texture>
+							<visible>!String.IsEmpty(Window(Home).Property(CinemaHelper.player.movieHasPostCreditsScene)) 
+												+ [Integer.IsEqual(Player.TimeRemaining(hh),00) + Integer.IsLessOrEqual(Player.TimeRemaining(mm),30)]</visible>
+							<animation effect="fade" end="100" time="750">Visible</animation>
+							<animation effect="fade" end="0" time="750">Hidden</animation>
+						</control>
+					</control>
+					
+					<!-- END TIME ICON -->
+					<control type="group" id="1">
+						<top>15</top>
+						<control type="label" id="1">
+							<top>291</top>
+							<right>102</right>
+							<width>1000</width>
+							<height>54</height>
+							<label>$INFO[Player.FinishTime]</label>
+							<align>right</align>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+							<scroll>false</scroll>
+							<animation effect="fade" end="60" time="0" condition="true">Conditional</animation>
+						</control>
+						<control type="image" id="1">
+							<top>260</top>
+							<left>149r</left>
+							<width>48</width>
+							<height>48</height>
+							<aspectratio align="right">keep</aspectratio>
+							<texture>dialogs/fullscreen/end_time_icon$VAR[isUhdScreenStringSuffix].png</texture>
+							<animation effect="fade" end="60" time="0" condition="true">Conditional</animation>
+						</control>
+						
+						<visible>!VideoPlayer.Content(LiveTV) + [Integer.IsGreater(Player.Duration(hh),00) | [Integer.IsEqual(Player.Duration(hh),00) + Integer.IsGreaterOrEqual(Player.Duration(mm),10)] ]</visible>
+						<visible>Window.IsActive(VideoOSD) + Skin.HasSetting(ReducedFullScreenInfoEndTime)</visible>
+						<include>FullScreenInfoVisibleAnimations</include>
+						
+					</control>
+					
+					<!-- NEXT TITLE (LiveTV only) -->
+					<control type="label" id="1">
+						<left>262</left>
+						<top>253</top>
+						<width>900</width>
+						<height>39</height>
+						<label>$INFO[VideoPlayer.NextTitle,$LOCALIZE[19031]:  ]</label>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey</textcolor>
+						<scroll>false</scroll>
+						<visible>VideoPlayer.Content(LiveTV) + !Window.IsVisible(VideoOSD)</visible>
+						<animation effect="fade" time="150">VisibleChange</animation>
+					</control>
+					
+				</control>
+				
+				
+			</control>
+		</control>
+		
+		
+		
+		<!-- SeekNumeric keyboard seek label -->
+		<control type="label" id="1">
+			<description>Seek Number label</description>
+			<left>0</left>
+			<top>9</top>
+			<width>1920</width>
+			<height>39</height>
+			<align>center</align>
+			<aligny>center</aligny>
+			<font>Regular20</font>
+			<textcolor>white</textcolor>
+			<label>$INFO[Player.SeekNumeric(hh:mm:ss)]</label>
+			<visible>!Window.IsVisible(FullscreenGame)</visible>
+		</control>
+		
+		
+		
+		<!-- BUFFER INDICATOR -->
+		<control type="group" id="1">
+			<depth>DepthOSD+</depth>
+			<visible>Player.Caching + Integer.IsLess(Player.CacheLevel,100) + Player.IsInternetStream</visible>
+			<animation effect="fade" time="500" delay="500">Visible</animation>
+			<animation effect="fade" time="250" delay="0">Hidden</animation>
+			<centerleft>50%</centerleft>
+			<centertop>46%</centertop>
+			<width>91</width>
+			<height>91</height>
+			<control type="image" id="1">
+				<centerleft>50%</centerleft>
+				<centertop>50%</centertop>
+				<width>91</width>
+				<height>91</height>
+				<texture colordiffuse="BFFFFFFF">osd/buffer-bg$VAR[isUhdScreenStringSuffix].png</texture>
+			</control>
+			<control type="image" id="1">
+				<description>Busy animation logo</description>
+				<left>22</left>
+				<top>21</top>
+				<width>48</width>
+				<height>48</height>
+				<aligny>center</aligny>
+				<align>center</align>
+				<texture colordiffuse="$VAR[uiColorVariantKodiLogoColor]">dialogs/busy_kodi$VAR[isUhdScreenStringSuffix].png</texture>
+				<aspectratio>keep</aspectratio>
+				<animation effect="fade" start="100" end="0" time="3000" loop="true" condition="true" tween="sine" easing="in">Conditional</animation>
+			</control>
+		</control>
+		
+		
+		
+		<!-- STINGER ICON @ movie end (nearEndReached) shows on top of playing movie + fades out after a few seconds -->
+		<control type="group" id="1">
+			<depth>DepthOSD+</depth>
+			<visible>Skin.HasSetting(EnableVideoOSDStingerIconMovieEnd) 
+								+ !String.IsEmpty(Window(Home).Property(CinemaHelper.player.movieHasPostCreditsScene)) 
+								+ String.IsEqual(Window(Home).Property(CinemaHelper.player.nearEndReached),True) 
+								+ !Window.IsActive(VideoOSD) + !Window.IsActive(SeekBar) + !Player.ShowInfo
+								</visible>
+			<animation effect="fade" time="750">Visible</animation>
+			<animation effect="fade" time="750">Hidden</animation>
+			<width>54</width>
+			<height>54</height>
+			<left>78r</left>
+			<top>185r</top>
+			<control type="group" id="1">
+				<control type="image" id="1">
+					<width>54</width>
+					<height>54</height>
+					<texture>_added_img/stinger_scene.png</texture>
+					<animation effect="fade" start="100" end="75" time="0" condition="true">Conditional</animation>
+				</control>
+			</control>
+		</control>
+		
+		
+		
+		<!-- PAUSE ICON -->
+		<!-- Use this ONLY if NoInfoOsdOnPause is enabled (which is NOT by default) -->
+		<control type="group" id="122221">
+			<visible>[Window.IsVisible(FullscreenVideo) | Window.IsVisible(Visualisation)] + [Player.Paused + Skin.HasSetting(NoInfoOsdOnPause)]</visible>
+			<animation effect="fade" end="100" time="500">Visible</animation>
+			<animation effect="fade" end="0" time="500" delay="1500">Hidden</animation>
+			<left>507</left>
+			<top>189r</top>
+			<control type="group" id="122222">
+				<visible>!Window.IsVisible(SliderDialog)</visible>
+				<include>VisibleFadeEffect</include>
+				<control type="group" id="122224">
+					
+					<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+					
+					<left>378</left>
+					<top>-452</top>
+					<control type="image" id="122223">
+						<left>42</left>
+						<top>6</top>
+						<width>66</width>
+						<height>66</height>
+						<texture>osd/playerstatus/$VAR[isUhdScreenStringFolder]OSDPause.png</texture>
+						<visible>Player.Paused + !Skin.HasSetting(NoPauseIndicatorOnPause)</visible>
+						<include>VisibleFadeEffect</include>
+					</control>
+				</control>
+			</control>
+		</control>
+		
+		
+		
+		</control>
+		
+		
+		
+		<include condition="[Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)] + !String.IsEqual(Skin.AspectRatio,16:10)">SkinOutOfBoundsMasksTopBottomWithIDs</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

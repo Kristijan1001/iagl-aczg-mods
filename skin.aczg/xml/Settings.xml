@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>9000</defaultcontrol>
+	
+	<onload condition="Window.Previous(Home) | [!Window.Previous(SettingsSystemInfo.xml) + !Window.Previous(FileManager.xml) + !Window.Previous(EventLog.xml) + !Window.Previous(SettingsProfile.xml) + !Window.Previous(VideoFullScreen.xml) + !Window.Previous(MusicVisualisation.xml) + !Window.Previous(SettingsCategory.xml) + !Window.Previous(AddonBrowser.xml) + !Window.Previous(SkinSettings.xml)]">Control.SetFocus(9000,0,absolute)</onload>
+	
+	<onunload condition="Window.Next(Home)">Control.SetFocus(9000,0,absolute)</onunload>
+	
+	
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<include>CommonBackground</include>
+		<include>ContentPanelBackgrounds</include>
+		
+		<control type="group">
+			<left>0</left>
+			<top>0</top>
+			
+			<include>Window_OpenClose_Animation_Full</include>
+			
+			<include>SystemBackgroundAdditions</include>
+			
+			
+			
+			<!-- Left Tabs Menu -->
+			<control type="list" id="9000">
+				<left>0</left>
+				<top>125</top>
+				<width>510</width>
+				<height>945</height>
+				
+				<onup>9000</onup>
+				
+				<onleft>9000</onleft>
+				<onright condition="Container(9000).Hasfocus(8)">8001</onright>
+				
+				<ondown>9000</ondown>
+				
+				<scrolltime>300</scrolltime>
+				
+				<itemlayout height="96" width="510">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>501</width>
+						<height>96</height>
+						<aspectratio aligny="center" align="right">keep</aspectratio>
+						<texture>$INFO[ListItem.Icon]</texture>
+						<animation effect="fade" start="100" end="85" time="0" condition="true">Conditional</animation>
+					</control>
+					<control type="label">
+						<left>75</left>
+						<top>0</top>
+						<width>435</width>
+						<height>96</height>
+						<font>Regular_Wider_25</font>
+						<textcolor>grey2+</textcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				
+				<focusedlayout height="96" width="510">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>510</width>
+						<height>96</height>
+						<include>Settings_Category_Texture</include>
+						<aspectratio>keep</aspectratio>
+						<animation effect="fade" start="100" end="50" time="0" condition="!Control.HasFocus(9000)">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>501</width>
+						<height>96</height>
+						<aspectratio aligny="center" align="right">keep</aspectratio>
+						<texture>$INFO[ListItem.Icon]</texture>
+					</control>
+					<control type="label">
+						<left>75</left>
+						<top>0</top>
+						<width>435</width>
+						<height>96</height>
+						<font>Regular_Wider_25</font>
+						<textcolor>white</textcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</focusedlayout>
+				
+				<content>
+					<!-- Player -->
+					<item id="1">
+						<label>14200</label>
+						<label2>31430</label2>
+						<onclick>ActivateWindow(PlayerSettings)</onclick>
+						<icon></icon>
+						<property name="text">$INFO[Window(Home).Property(CinemaHelper.Language.Modified.31430)]</property>
+					</item>
+					<!-- Media -->
+					<item id="2">
+						<label>14211</label>
+						<label2>31431</label2>
+						<onclick>ActivateWindow(MediaSettings)</onclick>
+						<icon></icon>
+						<property name="text">$INFO[Window(Home).Property(CinemaHelper.Language.Modified.31431)]</property>
+					</item>
+					<!-- Kodi 18+ Games -->
+					<item id="9">
+						<label>15016</label>
+						<label2>31002</label2>
+						<onclick>ActivateWindow(GameSettings)</onclick>
+						<visible>System.GetBool(gamesgeneral.enable)</visible>
+						<icon></icon>
+						<property name="text">$INFO[Window(Home).Property(CinemaHelper.Language.Modified.31002)]</property>
+					</item>
+					<!-- PVR / Live TV -->
+					<item id="3">
+						<label>14204</label>
+						<label2>31432</label2>
+						<onclick>ActivateWindow(PVRSettings)</onclick>
+						<icon></icon>
+						<property name="text">$INFO[Window(Home).Property(CinemaHelper.Language.Modified.31432)]</property>
+					</item>
+					<!-- Add-ons -->
+					<item id="4">
+						<label>24001</label>
+						<label2>31433</label2>
+						<onclick>ActivateWindow(AddonBrowser)</onclick>
+						<icon></icon>
+						<property name="text">$INFO[Window(Home).Property(CinemaHelper.Language.Modified.31433)]</property>
+					</item>
+					<!-- Services -->
+					<item id="5">
+						<label>14036</label>
+						<label2>31434</label2>
+						<onclick>ActivateWindow(ServiceSettings)</onclick>
+						<icon></icon>
+						<property name="text">$INFO[Window(Home).Property(CinemaHelper.Language.Modified.31434)]</property>
+					</item>
+					<!-- Interface -->
+					<item id="6">
+						<label>14206</label>
+						<label2>31436</label2>
+						<onclick>ActivateWindow(InterfaceSettings)</onclick>
+						<icon></icon>
+						<property name="text">$INFO[Window(Home).Property(CinemaHelper.Language.Modified.31436)]</property>
+					</item>
+					<!-- My Skin | Skin settings -->
+					<item id="7">
+						<label>$VAR[SkinSettingsLabel]</label>
+						<label2></label2>
+						<onclick>ActivateWindow(SkinSettings)</onclick>
+						<icon>_added_img/aczg_logo_settings$VAR[isUhdScreenStringSuffix].png</icon>
+						<property name="text">$VAR[String_Customize_Your_Skin]</property>
+					</item>
+					<!-- System -->
+					<item id="8">
+						<label>13000</label>
+						<label2>31435</label2>
+						<onclick>ActivateWindow(SystemSettings)</onclick>
+						<icon></icon>
+						<property name="text">$INFO[Window(Home).Property(CinemaHelper.Language.Modified.31435)]</property>
+					</item>
+				</content>
+				
+			</control>
+			
+			<control type="group">
+				<left>670</left>
+				<top>270</top>
+				
+				
+				<control type="group">
+					<left>18</left>
+					<top>42</top>
+					
+					<!-- shadow -->
+					<control type="image">
+						
+						<left>-98</left>
+						<top>-98</top>
+						
+						<width>400</width>
+						<height>400</height>
+						<texture background="true">dialogs/settings/204x204-shadow.png</texture>
+					</control>
+					
+					<control type="image">
+						<width>204</width>
+						<height>204</height>
+						<texture background="true" colordiffuse="ffdddddd" diffuse="dialogs/settings/204x204-rounded.png">_added_img/main_menu.png</texture>
+						<visible>![ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]</visible>
+					</control>
+					<!-- uhd -->
+					<control type="image">
+						<width>204</width>
+						<height>204</height>
+						<texture background="true" colordiffuse="ffdddddd" diffuse="dialogs/settings/204x204-rounded_uhd.png">_added_img/main_menu.png</texture>
+						<visible>[ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]</visible>
+					</control>
+					
+					<control type="image">
+						<width>204</width>
+						<height>204</height>
+						<texture background="true">dialogs/settings/kodi-logo-settings$VAR[isUhdScreenStringSuffix].png</texture>
+					</control>
+					
+				</control>
+				
+				
+				<control type="label">
+					<left>23</left>
+					<top>310</top>
+					<width>960</width>
+					<font>Regular24</font>
+					<label>$INFO[Container(9000).ListItem.Label]</label>
+					<align>left</align>
+					<textcolor>white</textcolor>
+				</control>
+				
+				<control type="textbox">
+					<description>Appearance Description</description>
+					<left>23</left>
+					<top>372</top>
+					<width>960</width>
+					<font>Light18</font>
+					<label>$VAR[SystemSectionText]</label>
+					<textcolor>white</textcolor>
+				</control>
+				
+				<control type="label">
+					<left>23</left>
+					<top>561</top>
+					<width>960</width>
+					<font>Light18</font>
+					<label>$VAR[Media_Total_Counter]</label>
+					<textcolor>white</textcolor>
+					<visible>Container(9000).Hasfocus(2)</visible>
+					<include>VisibleFadeEffect</include>
+					<animation effect="fade" end="15" time="0" condition="true">Conditional</animation>
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<control type="group">
+					<left>23</left>
+					<top>545</top>
+					
+					<visible>Container(9000).Hasfocus(8)</visible>
+					<include>VisibleFadeEffect</include>
+					
+					<include>dialogeffect</include>
+					
+					<!-- System info -->
+					<control type="button" id="8001">
+						<texturefocus border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texturefocus>
+						<texturenofocus border="12" colordiffuse="$VAR[accentTransparentColorDiffuse]">MenuItemFO-rounded-10px-neutral.png</texturenofocus>
+						
+						<onup>Control.SetFocus(9000,7,absolute)</onup>
+						<onleft>9000</onleft>
+						
+						<onright>8002</onright>
+						<ondown>8003</ondown>
+						
+						<left>0</left>
+						<top>0</top>
+						
+						<width>350</width>
+						<height>72</height>
+						<font>Regular21</font>
+						
+						<label>[LIGHT]$LOCALIZE[130][/LIGHT]</label>
+						<textoffsetx>30</textoffsetx>
+						
+						<textcolor>grey2</textcolor>
+						<focusedcolor>white</focusedcolor>
+						
+						<onclick>Control.SetFocus(9000,8,absolute)</onclick>
+						<onclick>ActivateWindow(SystemInfo)</onclick>
+						
+					</control>
+					
+					<!-- Profiles -->
+					<control type="button" id="8002">
+						<texturefocus border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texturefocus>
+						<texturenofocus border="12" colordiffuse="$VAR[accentTransparentColorDiffuse]">MenuItemFO-rounded-10px-neutral.png</texturenofocus>
+						
+						<onup>Control.SetFocus(9000,7,absolute)</onup>
+						
+						<onleft>8001</onleft>
+						<ondown>8004</ondown>
+						
+						<left>368</left>
+						<top>0</top>
+						
+						<width>350</width>
+						<height>72</height>
+						<font>Regular21</font>
+						
+						<label>[LIGHT]$LOCALIZE[13200][/LIGHT]</label>
+						<textoffsetx>30</textoffsetx>
+						
+						<textcolor>grey2</textcolor>
+						<focusedcolor>white</focusedcolor>
+						
+						<onclick>Control.SetFocus(9000,8,absolute)</onclick>
+						<onclick>ActivateWindow(Profiles)</onclick>
+						
+					</control>
+					
+					<!-- File Manager -->
+					<control type="button" id="8003">
+						<texturefocus border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texturefocus>
+						<texturenofocus border="12" colordiffuse="$VAR[accentTransparentColorDiffuse]">MenuItemFO-rounded-10px-neutral.png</texturenofocus>
+						
+						<ondown>Control.SetFocus(9000,0,absolute)</ondown>
+						
+						<onleft>9000</onleft>
+						
+						<onright>8004</onright>
+						<onup>8001</onup>
+						
+						<left>0</left>
+						<top>90</top>
+						
+						<width>350</width>
+						<height>72</height>
+						<font>Regular21</font>
+						
+						<label>[LIGHT]$LOCALIZE[7][/LIGHT]</label>
+						<textoffsetx>30</textoffsetx>
+						
+						<textcolor>grey2</textcolor>
+						<focusedcolor>white</focusedcolor>
+						
+						<onclick>Control.SetFocus(9000,8,absolute)</onclick>
+						<onclick>ActivateWindow(FileManager)</onclick>
+						
+					</control>
+					
+					<!-- Event log -->
+					<control type="button" id="8004">
+						<texturefocus border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texturefocus>
+						<texturenofocus border="12" colordiffuse="$VAR[accentTransparentColorDiffuse]">MenuItemFO-rounded-10px-neutral.png</texturenofocus>
+						
+						<ondown>Control.SetFocus(9000,0,absolute)</ondown>
+						
+						<onleft>8003</onleft>
+						<onup>8002</onup>
+						
+						<left>368</left>
+						<top>90</top>
+						
+						<width>350</width>
+						<height>72</height>
+						<font>Regular21</font>
+						
+						<label>[LIGHT]$LOCALIZE[10050][/LIGHT]</label>
+						<textoffsetx>30</textoffsetx>
+						
+						<textcolor>grey2</textcolor>
+						<focusedcolor>white</focusedcolor>
+						
+						<onclick>Control.SetFocus(9000,8,absolute)</onclick>
+						<onclick>ActivateWindow(EventLog)</onclick>
+						
+						<enable>System.GetBool(eventlog.enabled)</enable>
+						
+					</control>
+					
+					
+					
+					
+					
+					
+					
+				</control>
+				
+				
+				
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		<!-- skinInfo -->
+		<control type="group">
+			
+			<include>Window_OpenClose_Animation_Full</include>
+			
+			<!-- + logo -->
+			<control type="group">
+				
+				<include>VisibleFadeEffectSlower2</include>
+				
+				<visible>Container(9000).Hasfocus(7)</visible>
+				
+				<!-- + -->
+				
+				<control type="group">
+					<left>997</left>
+					<top>392</top>
+					<width>45</width>
+					<height>45</height>
+					
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>45</width>
+						<height>45</height>
+						<texture>_added_img/skininfo/skininfo-plus$VAR[isUhdScreenStringSuffix].png</texture>
+					</control>
+					
+					<visible>Container(9000).Hasfocus(7)</visible>
+					
+					<animation type="Visible">
+						<effect type="slide" start="-100,0" end="0,0" time="800" tween="quadratic" easing="out" />
+						<effect type="zoom" start="80" end="100" time="800" center="auto" tween="sine" easing="inout" />
+					</animation>
+					
+					<animation reversible="false" effect="zoom" end="80" start="100" time="800" center="auto" tween="sine" easing="inout">Hidden</animation>
+					
+				</control>
+				
+				
+				
+				<!-- logo -->
+				
+				<control type="group">
+					
+					<left>1147</left>
+					<top>312</top>
+					
+					<width>204</width>
+					<height>204</height>
+					
+					<!-- shadow -->
+					<control type="image">
+						
+						<left>-98</left>
+						<top>-98</top>
+						
+						<width>400</width>
+						<height>400</height>
+						<texture background="true">dialogs/settings/204x204-shadow.png</texture>
+					</control>
+					
+					<control type="image">
+						<width>204</width>
+						<height>204</height>
+						<texture background="true" diffuse="dialogs/settings/204x204-rounded.png">dialogs/settings/cz-logo-settings.png</texture>
+						<visible>![ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]</visible>
+					</control>
+					<!-- uhd -->
+					<control type="image">
+						<width>204</width>
+						<height>204</height>
+						<texture background="true" diffuse="dialogs/settings/204x204-rounded_uhd.png">dialogs/settings/cz-logo-settings_uhd.png</texture>
+						<visible>[ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]</visible>
+					</control>
+					
+					<visible>Container(9000).Hasfocus(7)</visible>
+					
+					<animation type="Visible">
+						<effect type="slide" start="-100,0" end="0,0" time="800" tween="quadratic" easing="out" />
+						<effect type="zoom" start="80" end="100" time="800" center="auto" tween="sine" easing="inout" />
+					</animation>
+					<animation reversible="false" effect="zoom" end="80" start="100" time="800" center="auto" tween="sine" easing="inout">Hidden</animation>
+				</control>
+				
+			</control>
+			
+			
+			
+			<!-- below + and logo -->
+			<control type="group">
+				
+				<include>VisibleFadeEffectSlower2</include>
+				<visible>Container(9000).Hasfocus(7)</visible>
+				
+				
+				<!-- banner -->
+				<control type="group">
+					<left>1075</left>
+					<control type="image">
+						<left>0</left>
+						<top>574</top>
+						<width>348</width>
+						<height>54</height>
+						<texture>_added_img/skininfo/skininfo-banner$VAR[isUhdScreenStringSuffix].png</texture>
+						
+						<visible>Container(9000).Hasfocus(7)</visible>
+						
+						<animation type="Visible">
+							<effect type="slide" start="0,-54" end="0,0" time="800" tween="quadratic" easing="out" />
+							<effect type="zoom" start="80" end="100" time="800" center="auto" tween="sine" easing="inout" />
+						</animation>
+						<animation reversible="false" effect="zoom" end="80" start="100" time="800" center="auto" tween="sine" easing="inout">Hidden</animation>
+					</control>
+					<control type="image">
+						<left>4</left>
+						<top>547</top>
+						<width>73</width>
+						<height>73</height>
+						<texture>_added_img/skininfo/skininfo-banner-sparks.gif</texture>
+						<visible>Container(9000).Hasfocus(7)</visible>
+						
+						<animation type="Visible">
+							<effect type="slide" start="90,-140" end="0,0" time="800" tween="quadratic" easing="out" />
+							<effect type="zoom" start="80" end="100" time="800" center="auto" tween="sine" easing="inout" />
+						</animation>
+						<animation reversible="false" effect="zoom" end="80" start="100" time="800" center="auto" tween="sine" easing="inout">Hidden</animation>
+					</control>
+					<control type="label">
+						<left>-120</left>
+						<top>645</top>
+						<width>588</width>
+						<height>40</height>
+						<align>center</align>
+						<font>RegularNonCondensed18.5</font>
+						<label>$VAR[skinInfoText]</label>
+						
+						<visible>Container(9000).Hasfocus(7)</visible>
+						
+						<animation type="Visible">
+							<effect type="fade" start="0" end="100" time="400" delay="600" tween="quadratic" easing="out" />
+							<effect type="slide" start="0,-20" end="0,0" time="400" delay="600" tween="quadratic" easing="out" />
+						</animation>
+						<animation reversible="false" effect="zoom" end="80" start="100" time="800" center="auto" tween="sine" easing="inout">Hidden</animation>
+					</control>
+				</control>
+				
+				
+				
+				
+				<!-- footnote -->
+				<control type="group">
+					
+					<left>1074</left>
+					<top>770</top>
+					<width>348</width>
+					<height>74</height>
+					
+					<!-- bounce bounce -->
+					<control type="image">
+						<left>158</left>
+						<top>30</top>
+						<width>34</width>
+						<height>33</height>
+						<texture>_added_img/skininfo/skininfo-em$VAR[isUhdScreenStringSuffix].png</texture>
+						
+						<visible>Container(9000).Hasfocus(7)</visible>
+						
+						<animation type="Visible">
+							<effect type="fade" start="0" end="100" time="400" delay="600" tween="quadratic" easing="out" />
+							<effect type="slide" start="0,36" end="0,0" time="1300" delay="5" easing="out" />
+						</animation>
+						<animation reversible="false" effect="zoom" end="80" start="100" time="800" center="auto" tween="sine" easing="inout">Hidden</animation>
+						
+						<animation effect="slide" end="0,-5" time="800" condition="true" pulse="true">Conditional</animation>
+					</control>
+					
+					<control type="image">
+						<left>80</left>
+						<top>-52</top>
+						<width>190</width>
+						<height>190</height>
+						<texture>_added_img/skininfo/cd$VAR[isUhdScreenStringSuffix].png</texture>
+					</control>
+					
+					<control type="image">
+						<left>276</left>
+						<top>-29</top>
+						<width>73</width>
+						<height>44</height>
+						<texture>_added_img/skininfo/cd-scn-me$VAR[isUhdScreenStringSuffix].png</texture>
+						
+						<visible>Container(9000).Hasfocus(7)</visible>
+						
+						<animation type="Visible">
+							<effect type="fade" start="0" end="100" time="400" delay="800" tween="quadratic" easing="out" />
+							<effect type="slide" start="-10,10" end="0,0" time="400" delay="800" tween="quadratic" easing="out" />
+							<effect type="zoom" start="80" end="100" time="400" delay="800" center="auto" tween="sine" easing="inout" />
+						</animation>
+						<animation reversible="false" effect="zoom" end="80" start="100" time="800" center="auto" tween="sine" easing="inout">Hidden</animation>
+						
+					</control>
+					
+					<visible>Container(9000).Hasfocus(7)</visible>
+						
+					<animation type="Visible">
+						<effect type="slide" start="0,-74" end="0,0" time="800" tween="quadratic" easing="out" />
+						<effect type="zoom" start="80" end="100" time="800" center="auto" tween="sine" easing="inout" />
+					</animation>
+					<animation reversible="false" effect="zoom" end="80" start="100" time="800" center="auto" tween="sine" easing="inout">Hidden</animation>
+				</control>
+			</control>
+			
+		</control>
+		
+		
+		
+		<include>CommonNowPlaying_PIP</include>
+		
+		
+		
+		<include>BehindDialogFadeOut</include>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

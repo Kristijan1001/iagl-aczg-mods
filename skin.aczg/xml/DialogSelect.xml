@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog">
+	
+	<defaultcontrol always="true">3</defaultcontrol>
+	
+	<include>dialogeffectSlower</include>
+	<depth>DepthDialog+</depth>
+	
+	
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		
+		<!-- Game dialog for Video settings -->
+		<include condition="[Window.Is(GameStretchMode) | Window.Is(GameVideoFilter) | Window.Is(GameVideoRotation)] + ![Window.Is(GameSaves) | Window.Is(InGameSaves)]">GameDialogSelectLayout</include>
+		<!-- Game dialog for In-Game Save/Load -->
+		<include condition="![Window.Is(GameStretchMode) | Window.Is(GameVideoFilter) | Window.Is(GameVideoRotation) | Window.Is(InGameSaves)] + Window.Is(GameSaves)">GameDialogGameSavesLayout</include>
+		<!-- Game dialog for Pre-Game Load -->
+		<include condition="![Window.Is(GameStretchMode) | Window.Is(GameVideoFilter) | Window.Is(GameVideoRotation) | Window.Is(GameSaves)] + Window.Is(InGameSaves)">GameDialogInGameSavesLayout</include>
+		
+		
+		
+		<!-- Default Select dialog variants -->
+		<include condition="![Window.Is(GameStretchMode) | Window.Is(GameVideoFilter) | Window.Is(GameVideoRotation) | Window.Is(GameSaves) | Window.Is(InGameSaves) | Window.Is(GameDiscManager)]">DefaultDialogSelectLayout</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

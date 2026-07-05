@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<onload>Control.SetFocus(9000,0,absolute)</onload>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<include>CommonBackground</include>
+		<include>ContentPanelBackgrounds</include>
+		
+		<control type="group">
+			<left>0</left>
+			<top>0</top>
+			<include>Window_OpenClose_Animation_Full</include>
+			
+			<include>SystemBackgroundAdditions</include>
+
+			<control type="grouplist">
+				
+				<include>SkinVariant_16by10_MoveUp_60px_Or_21by9_MoveRight_330px</include>
+				
+				<orientation>horizontal</orientation>
+				<align>right</align>
+				<top>3</top>
+				<right>34</right>
+				
+				<itemgap>0</itemgap>
+				
+				<include>ActiveProfileName</include>
+				<include>ActiveProfile</include>
+			</control>
+			
+			
+			
+			<!-- Left Tabs Menu -->
+			<control type="list" id="9000">
+				<left>0</left>
+				<top>125</top>
+				<width>510</width>
+				<height>810</height>
+				
+				<onleft>9000</onleft>
+				<onright>9010</onright>
+				<onup>noop</onup>
+				<ondown>noop</ondown>
+				
+				<scrolltime>300</scrolltime>
+				
+				<itemlayout height="96" width="510">
+					<control type="label">
+						<left>75</left>
+						<top>0</top>
+						<width>360</width>
+						<height>96</height>
+						<font>Regular_Wider_25</font>
+						<textcolor>grey2+</textcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				
+				<focusedlayout height="96" width="510">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>510</width>
+						<height>96</height>
+						<include>Settings_Category_Texture</include>
+						<aspectratio>keep</aspectratio>
+						<animation effect="fade" start="100" end="50" time="0" condition="!Control.HasFocus(9000)">Conditional</animation>
+					</control>
+					<control type="label">
+						<left>75</left>
+						<top>0</top>
+						<width>360</width>
+						<height>96</height>
+						<font>Regular_Wider_25</font>
+						<textcolor>white</textcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</focusedlayout>
+				
+				<content>
+					<item id="1">
+						<label>31420</label>
+						<onclick>noop</onclick>
+						<icon></icon>
+					</item>
+					<item id="2">
+						<label>13200</label>
+						<onclick>noop</onclick>
+						<icon></icon>
+					</item>
+				</content>
+				
+			</control>
+			
+			<control type="group" id="9010">
+				
+				<top>-10</top>
+				
+				<control type="grouplist" id="9001">
+					<visible>Container(9000).Hasfocus(1)</visible>
+					<left>600</left>
+					<top>150</top>
+					<width>1125</width>
+					<height>660</height>
+					<itemgap>0</itemgap>
+					<onleft>9000</onleft>
+					<onright>9001</onright>
+					<onup>noop</onup>
+					<ondown>noop</ondown>
+					
+					<control type="radiobutton" id="4"><include>Settings_Radio_Button</include>
+						<description>enable login screen</description>
+						<label>20096</label>
+					</control>
+					
+					<control type="button" id="5"><include>Settings_Button</include>
+						<description>auto login</description>
+						<label>33084</label>
+						<label2>$INFO[System.ProfileAutoLogin]</label2>
+						<enable>!System.HasLoginScreen</enable>
+					</control>
+					
+				</control>
+				
+				<control type="group">
+					<visible>Container(9000).Hasfocus(1) + [Control.Hasfocus(4) | Control.Hasfocus(5)]</visible>
+					
+					<include>VisibleFadeEffect</include>
+					
+					<left>626</left>
+					<top>814</top>
+					
+					<width>1125</width>
+					<height>60</height>
+					
+					<control type="textbox">
+						<description>description area</description>
+						<width>1073</width>
+						<height>106</height>
+						<font>Light18.5</font>
+						<label>$LOCALIZE[31422]</label>
+						<align>left</align>
+						<textcolor>selected+</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<visible>Control.Hasfocus(4)</visible>
+					</control>
+					
+					<control type="textbox">
+						<description>description area</description>
+						<width>1073</width>
+						<height>106</height>
+						<font>Light18.5</font>
+						<label>$LOCALIZE[31423]</label>
+						<align>left</align>
+						<textcolor>selected+</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<visible>Control.Hasfocus(5)</visible>
+					</control>
+					
+				</control>
+				
+				<control type="group">
+					<visible>Container(9000).Hasfocus(2) + Control.Hasfocus(2) + !String.IsEqual(Container(2).ListItem.Label,$LOCALIZE[20058])</visible>
+					
+					<include>VisibleFadeEffect</include>
+					
+					<left>626</left>
+					<top>814</top>
+					
+					<width>1125</width>
+					<height>60</height>
+					
+					<control type="textbox">
+						<description>description area</description>
+						<width>1073</width>
+						<height>106</height>
+						<font>Light18.5</font>
+						<label>$LOCALIZE[31320]:  $VAR[ProfilesLoggedInLabel]</label>
+						<align>left</align>
+						<textcolor>selected+</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					</control>
+					
+				</control>
+				
+				<control type="panel" id="2">
+					<visible>Container(9000).Hasfocus(2)</visible>
+					
+					<left>567</left>
+					<top>150</top>
+					<width>1140</width>
+					<height>600</height>
+					<onleft>9000</onleft>
+					<onright>noop</onright>
+					<onup>0</onup>
+					<ondown>0</ondown>
+					<viewtype label="21371">list</viewtype>
+					<pagecontrol>60</pagecontrol>
+					<include>StandardScrollTime</include>
+					
+					<itemlayout height="300" width="285">
+						<control type="image">
+							<left>57</left>
+							<top>24</top>
+							<width>170</width>
+							<height>170</height>
+							<texture background="true" fallback="DefaultUser.png" diffuse="colors/diffuse/170x170.png">$VAR[ProfilesPanelIcon]</texture>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<animation effect="fade" end="95" time="0" condition="true">Conditional</animation>
+						</control>
+						<control type="label">
+							<left>33</left>
+							<top>210</top>
+							<width>218</width>
+							<height>38</height>
+							<font>Regular19</font>
+							<textcolor>grey2</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<align>center</align>
+							<aligny>center</aligny>
+							<info>ListItem.Label</info>
+						</control>
+					</itemlayout>
+					
+					<focusedlayout height="300" width="285">
+						<control type="image">
+							<left>33</left>
+							<top>0</top>
+							<width>218</width>
+							<height>269</height>
+							<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">_added_img/focus_border_2px-rounded-neutral.png</texture>
+							<include>FocusAnimationTypeSimple1</include>
+						</control>
+						<control type="image">
+							<left>57</left>
+							<top>24</top>
+							<width>170</width>
+							<height>170</height>
+							<texture background="true" fallback="DefaultUser.png" diffuse="colors/diffuse/170x170.png">$VAR[ProfilesPanelIcon]</texture>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+						</control>
+						<control type="label">
+							<left>33</left>
+							<top>210</top>
+							<width>218</width>
+							<height>38</height>
+							<font>Regular19</font>
+							<textcolor>white</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<align>center</align>
+							<aligny>center</aligny>
+							<info>ListItem.Label</info>
+						</control>
+					</focusedlayout>
+					
+				</control>
+				
+				<control type="scrollbar" id="60">
+					<left>1752</left>
+					<top>150</top>
+					<include>scrollBarStyleDefaultWidth</include>
+					<height>569</height>
+					<onleft>2</onleft>
+					<showonepage>false</showonepage>
+					<visible>Container(9000).Hasfocus(2)</visible>
+					<include>scrollBarStyleDefault</include>
+				</control>
+				
+			</control>
+			
+		</control>
+		
+		
+		
+		<include content="CommonWindowHeader">
+			<param name="Icon" value="icon_system" />
+			<param name="Label" value="$LOCALIZE[13200]" />
+		</include>
+		
+		
+		
+		<include>CommonNowPlaying_PIP</include>
+		
+		
+		
+		<include>BehindDialogFadeOut</include>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

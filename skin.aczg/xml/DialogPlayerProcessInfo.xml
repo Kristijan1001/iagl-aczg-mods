@@ -1,0 +1,1249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">100</defaultcontrol>
+	<include>dialogeffect</include>
+	
+	<onload>SetProperty(PPI_Type,1,home)</onload>
+	<onunload>SetProperty(PPI_Type,1,home)</onunload>
+	 
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<control type="image">
+			
+			<include>BackgroundDimensions_Can_Be_Max_For_Scope</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<texture>colors/black.png</texture>
+			<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+		</control>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- VS10 Mod Additions -->
+		
+		<control type="group">
+			
+			<visible>[!String.IsEmpty(Player.Process(amlogic.vs10.mode)) | !String.IsEmpty(Player.Process(amlogic.vs10.mode.raw))]</visible>
+			<visible>String.IsEqual(Window(Home).Property(PPI_Type),1)</visible>
+			
+			<include>VisibleFadeEffect</include>
+			
+			
+			
+			<include>DialogPlayerProcessInfo_VS10</include>
+			
+			
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- Regular Player Process Info -->
+		<control type="group">
+			
+			<visible>String.IsEqual(Window(Home).Property(PPI_Type),2) | [String.IsEmpty(Player.Process(amlogic.vs10.mode)) + String.IsEmpty(Player.Process(amlogic.vs10.mode.raw))]</visible>
+			
+			<include>VisibleFadeEffect</include>
+			
+			<top>0</top>
+			
+			
+			
+			<control type="label" id="66601">
+				<label>HDR10+</label>
+				<visible>false</visible>
+			</control>
+			
+			<control type="label" id="66602">
+				<label>$VAR[Video_Conv_Var]</label>
+				<visible>false</visible>
+			</control>
+			
+			
+			
+			<control type="group">
+				
+				<animation effect="slide" end="0,300" time="0" condition="![VideoPlayer.Content(LiveTV) + System.GetBool(pvrplayback.signalquality)]">Conditional</animation>
+				
+				<top>116</top>
+				
+				<control type="label">
+					<description>Header</description>
+					<left>75</left>
+					<top>15</top>
+					<width>848</width>
+					<height>38</height>
+					<label>$LOCALIZE[291]</label>
+					<aligny>center</aligny>
+					<font>Regular22</font>
+					<textcolor>blue</textcolor>
+				</control>
+				
+				
+				
+				<control type="group">
+					<top>7</top>
+					
+					<control type="label">
+						<description>Hardware decoding</description>
+						<left>75</left>
+						<top>60</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[31010]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<description>Hardware decoding value</description>
+						<left>330</left>
+						<top>60</top>
+						<width>600</width>
+						<height>38</height>
+						<label>$LOCALIZE[19074]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+						<visible>Player.Process(videohwdecoder)</visible>
+					</control>
+					<control type="label">
+						<description>Hardware decoding value</description>
+						<left>330</left>
+						<top>60</top>
+						<width>600</width>
+						<height>38</height>
+						<label>$LOCALIZE[31011]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+						<visible>!Player.Process(videohwdecoder)</visible>
+					</control>
+					<control type="label">
+						<description>Decoder</description>
+						<left>75</left>
+						<top>98</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[31012]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<description>Decoder value</description>
+						<left>330</left>
+						<top>98</top>
+						<width>600</width>
+						<height>38</height>
+						<label fallback="1446">$INFO[Player.Process(videodecoder)]$INFO[Player.Process(pixformat),$COMMA ]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+					<control type="label">
+						<description>Deinterlace</description>
+						<left>75</left>
+						<top>135</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[16038]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<description>Deinterlace value</description>
+						<left>330</left>
+						<top>135</top>
+						<width>600</width>
+						<height>38</height>
+						<label fallback="1446">$INFO[Player.Process(deintmethod)]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+					<control type="label">
+						<description>Resolution</description>
+						<left>75</left>
+						<top>173</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[169]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<description>Resolution value</description>
+						<left>330</left>
+						<top>173</top>
+						<width>600</width>
+						<height>38</height>
+						<label fallback="1446">$INFO[Player.Process(videowidth),,x]$INFO[Player.Process(videoheight)]$INFO[Player.Process(videodar),  ·  , AR]$INFO[Player.Process(videofps),  ·  , FPS]$INFO[System.FPS,  (, FPS)]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+				</control>
+				
+				
+				
+				
+				
+				<control type="group">
+					<top>21</top>
+					
+					<control type="label">
+						<description>Header</description>
+						<left>75</left>
+						<top>218</top>
+						<width>848</width>
+						<height>38</height>
+						<label>$LOCALIZE[292]</label>
+						<aligny>center</aligny>
+						<font>Regular22</font>
+						<textcolor>blue</textcolor>
+					</control>
+					
+					
+					
+					<control type="group">
+						<top>7</top>
+						
+						<control type="label">
+							<description>Decoder</description>
+							<left>75</left>
+							<top>263</top>
+							<width>248</width>
+							<height>38</height>
+							<label>$LOCALIZE[31012]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>grey2</textcolor>
+						</control>
+						<control type="label">
+							<description>Decoder value</description>
+							<left>330</left>
+							<top>263</top>
+							<width>600</width>
+							<height>38</height>
+							<label fallback="1446">$INFO[Player.Process(audiodecoder)]$INFO[Player.Process(audiobitspersample),$COMMA , bit]$INFO[Player.Process(audiosamplerate),$COMMA , Hz]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+						</control>
+						<control type="label">
+							<description>Channels</description>
+							<left>75</left>
+							<top>300</top>
+							<width>248</width>
+							<height>38</height>
+							<label>$LOCALIZE[19019]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>grey2</textcolor>
+						</control>
+						<control type="label">
+							<description>Channels value</description>
+							<left>330</left>
+							<top>300</top>
+							<width>600</width>
+							<height>38</height>
+							<label fallback="1446">$INFO[Player.Process(audiochannels)]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+						</control>
+						
+						
+						<control type="group">
+							<top>14</top>
+							
+							<control type="group">
+								<height>38</height>
+								<control type="label">
+									<description>Header</description>
+									<left>75</left>
+									<top>345</top>
+									<width>848</width>
+									<height>38</height>
+									<label>$LOCALIZE[13000]</label>
+									<aligny>center</aligny>
+									<font>Regular22</font>
+									<textcolor>blue</textcolor>
+								</control>
+								<control type="label">
+									<left>330</left>
+									<top>348</top>
+									<width>600</width>
+									<height>38</height>
+									<label>$INFO[System.ScreenResolution]</label>
+									<aligny>center</aligny>
+									<font>Light17</font>
+									<textcolor>white</textcolor>
+								</control>
+							</control>
+							
+							<control type="group">
+								<top>7</top>
+								
+								<control type="label">
+									<description>CPU</description>
+									<left>75</left>
+									<top>390</top>
+									<width>248</width>
+									<height>38</height>
+									<label>CPU</label>
+									<aligny>center</aligny>
+									<font>Light17</font>
+									<textcolor>grey2</textcolor>
+								</control>
+								<control type="label">
+									<description>CPU usage</description>
+									<left>330</left>
+									<top>390</top>
+									<width>600</width>
+									<height>38</height>
+									<label>$INFO[System.CpuUsage]</label>
+									<aligny>center</aligny>
+									<font>Light17</font>
+									<textcolor>white</textcolor>
+								</control>
+								
+								<control type="group">
+									<left>333</left>
+									<top>432</top>
+									
+									<control type="image">
+										<left>-4</left>
+										<top>0</top>
+										<width>3</width>
+										<height>9</height>
+										<texture colordiffuse="30FFFFFF">osd/progress/progress-9px-start-end.png</texture>
+									</control>
+									<control type="image">
+										<left>412</left>
+										<top>0</top>
+										<width>3</width>
+										<height>9</height>
+										<texture colordiffuse="30FFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+									</control>
+									<control type="image">
+										<left>-4</left>
+										<top>0</top>
+										<width>3</width>
+										<height>9</height>
+										<texture colordiffuse="EBFFFFFF">osd/progress/progress-9px-start-end.png</texture>
+									</control>
+									<control type="image">
+										<left>412</left>
+										<top>0</top>
+										<width>3</width>
+										<height>9</height>
+										<texture colordiffuse="EBFFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+										<visible>Integer.IsGreater(System.CpuUsage,99)</visible>
+									</control>
+									
+									<control type="progress">
+										<description>Progressbar</description>
+										<left>-1</left>
+										<top>0</top>
+										<width>413</width>
+										<height>9</height>
+										<info>System.CpuUsage</info>
+										
+										<include>progressBarStyleDefault</include>
+										
+									</control>
+								</control>
+								
+								<control type="label">
+									<description>CPU temperature</description>
+									<left>770</left>
+									<top>417</top>
+									<width>170</width>
+									<height>38</height>
+									<label>$INFO[System.CPUTemperature]</label>
+									<aligny>center</aligny>
+									<font>Light17</font>
+									<textcolor>white</textcolor>
+									
+									<visible>!String.IsEmpty(System.CPUTemperature) + !String.Contains(System.CPUTemperature,?)</visible>
+									
+									<!--
+									Language string "Not available"
+									Kodi 17      416
+									Kodi 18+   10005
+									-->
+									<visible>[!String.StartsWith(System.BuildVersion,17.) + !String.IsEqual(System.CPUTemperature,$LOCALIZE[10005])] | [String.StartsWith(System.BuildVersion,17.) + !String.IsEqual(System.CPUTemperature,$LOCALIZE[416])]</visible>
+									
+								</control>
+								<control type="label">
+									<description>Memory</description>
+									<left>75</left>
+									<top>455</top>
+									<width>248</width>
+									<height>38</height>
+									<label>RAM</label>
+									<aligny>center</aligny>
+									<font>Light17</font>
+									<textcolor>grey2</textcolor>
+								</control>
+								<control type="label">
+									<description>Memory value</description>
+									<left>330</left>
+									<top>455</top>
+									<width>600</width>
+									<height>38</height>
+									<label>$INFO[system.memory(used.percent)]     $INFO[system.memory(used)] / $INFO[system.memory(total)]</label>
+									<aligny>center</aligny>
+									<font>Light17</font>
+									<textcolor>white</textcolor>
+								</control>
+								
+								<control type="group">
+									<left>333</left>
+									<top>497</top>
+									
+									<control type="image">
+										<left>-4</left>
+										<top>0</top>
+										<width>3</width>
+										<height>9</height>
+										<texture colordiffuse="30FFFFFF">osd/progress/progress-9px-start-end.png</texture>
+									</control>
+									<control type="image">
+										<left>412</left>
+										<top>0</top>
+										<width>3</width>
+										<height>9</height>
+										<texture colordiffuse="30FFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+									</control>
+									<control type="image">
+										<left>-4</left>
+										<top>0</top>
+										<width>3</width>
+										<height>9</height>
+										<texture colordiffuse="EBFFFFFF">osd/progress/progress-9px-start-end.png</texture>
+									</control>
+									<control type="image">
+										<left>412</left>
+										<top>0</top>
+										<width>3</width>
+										<height>9</height>
+										<texture colordiffuse="EBFFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+										<visible>Integer.IsGreater(System.Memory(used),99)</visible>
+									</control>
+									
+									<control type="progress">
+										<description>Progressbar</description>
+										<left>-1</left>
+										<top>0</top>
+										<width>413</width>
+										<height>9</height>
+										<info>System.Memory(used)</info>
+										
+										<include>progressBarStyleDefault</include>
+										
+									</control>
+								</control>
+								
+								<control type="label">
+									<description>Player Cache</description>
+									<left>75</left>
+									<top>519</top>
+									<width>248</width>
+									<height>38</height>
+									<label>$LOCALIZE[31342]</label>
+									<aligny>center</aligny>
+									<font>Light17</font>
+									<textcolor>grey2</textcolor>
+								</control>
+								<control type="label">
+									<description>CacheLevel</description>
+									<left>330</left>
+									<top>519</top>
+									<width>600</width>
+									<height>38</height>
+									<label>$INFO[Player.CacheLevel]%</label>
+									<aligny>center</aligny>
+									<font>Light17</font>
+									<textcolor>white</textcolor>
+									<visible>!String.IsEmpty(Player.CacheLevel)</visible>
+								</control>
+								<control type="label">
+									<description>CacheLevel</description>
+									<left>330</left>
+									<top>519</top>
+									<width>600</width>
+									<height>38</height>
+									<label>0%</label>
+									<aligny>center</aligny>
+									<font>Light17</font>
+									<textcolor>white</textcolor>
+									<visible>String.IsEmpty(Player.CacheLevel)</visible>
+								</control>
+							</control>
+						</control>
+					</control>
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				<!-- Media Info -->
+				<control type="grouplist" id="668">
+					
+					<itemgap>0</itemgap>
+					
+					<left>1035</left>
+					<top>15</top>
+					
+					<control type="label">
+						<description>Header</description>
+						<width>848</width>
+						<height>38</height>
+						<label>$LOCALIZE[14211] · $LOCALIZE[291]</label>
+						<aligny>center</aligny>
+						<font>Regular22</font>
+						<textcolor>blue</textcolor>
+						
+						<visible>!String.IsEmpty(VideoPlayer.VideoCodec) | !String.IsEmpty(VideoPlayer.VideoResolution) | !String.IsEmpty(VideoPlayer.HdrType) | !String.IsEmpty(VideoPlayer.VideoAspect) | !String.IsEmpty(VideoPlayer.VideoBitrate)</visible>
+						
+					</control>
+					
+					<control type="group">
+						<height>14</height>
+						
+						<visible>!String.IsEmpty(VideoPlayer.VideoCodec) | !String.IsEmpty(VideoPlayer.VideoResolution) | !String.IsEmpty(VideoPlayer.HdrType) | !String.IsEmpty(VideoPlayer.VideoAspect) | !String.IsEmpty(VideoPlayer.VideoBitrate)</visible>
+						
+					</control>
+					
+					<control type="group">
+						<height>38</height>
+						<control type="label">
+							<width>248</width>
+							<height>38</height>
+							<label>$LOCALIZE[21445]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>grey2</textcolor>
+						</control>
+						<control type="label">
+							<left>255</left>
+							<width>556</width>
+							<height>38</height>
+							<label>$INFO[VideoPlayer.VideoCodec]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+						</control>
+						<visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible>
+					</control>
+					<control type="group">
+						<height>38</height>
+						<control type="label">
+							<width>248</width>
+							<height>38</height>
+							<label>$LOCALIZE[21443]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>grey2</textcolor>
+						</control>
+						<control type="label">
+							<left>255</left>
+							<width>556</width>
+							<height>38</height>
+							<label>$INFO[VideoPlayer.VideoResolution]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+						</control>
+						<visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible>
+					</control>
+					<control type="group">
+						<height>38</height>
+						<control type="label">
+							<width>248</width>
+							<height>38</height>
+							<label>$LOCALIZE[20474]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>grey2</textcolor>
+						</control>
+						<control type="label">
+							<left>255</left>
+							<width>556</width>
+							<height>38</height>
+							<label>$INFO[VideoPlayer.HdrType]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+						</control>
+						<visible>!String.IsEmpty(VideoPlayer.HdrType)</visible>
+					</control>
+					<control type="group">
+						<height>38</height>
+						<control type="label">
+							<width>248</width>
+							<height>38</height>
+							<label>$LOCALIZE[21374]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>grey2</textcolor>
+						</control>
+						<control type="label">
+							<left>255</left>
+							<width>556</width>
+							<height>38</height>
+							<label>$INFO[VideoPlayer.VideoAspect]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+						</control>
+						<visible>!String.IsEmpty(VideoPlayer.VideoAspect)</visible>
+					</control>
+					<control type="group">
+						<height>38</height>
+						<control type="label">
+							<width>248</width>
+							<height>38</height>
+							<label>$LOCALIZE[31336]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>grey2</textcolor>
+						</control>
+						<control type="label">
+							<left>255</left>
+							<width>556</width>
+							<height>38</height>
+							<label>$INFO[VideoPlayer.VideoBitrate,, kb/s]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+						</control>
+						<visible>!String.IsEmpty(VideoPlayer.VideoBitrate)</visible>
+					</control>
+					
+					<control type="group">
+						<height>21</height>
+					</control>
+					
+					<control type="label">
+						<description>Header</description>
+						<width>848</width>
+						<height>38</height>
+						<label>$LOCALIZE[14211] · $LOCALIZE[292]</label>
+						<aligny>center</aligny>
+						<font>Regular22</font>
+						<textcolor>blue</textcolor>
+						
+						<visible>!String.IsEmpty(VideoPlayer.AudioCodec) | !String.IsEmpty(VideoPlayer.AudioChannels) | !String.IsEmpty(VideoPlayer.AudioLanguage) | !String.IsEmpty(VideoPlayer.AudioBitrate)</visible>
+						
+					</control>
+					<control type="group">
+						<height>14</height>
+						
+						<visible>!String.IsEmpty(VideoPlayer.AudioCodec) | !String.IsEmpty(VideoPlayer.AudioChannels) | !String.IsEmpty(VideoPlayer.AudioLanguage) | !String.IsEmpty(VideoPlayer.AudioBitrate)</visible>
+						
+					</control>
+					
+					<control type="group">
+						<height>38</height>
+						<control type="label">
+							<width>248</width>
+							<height>38</height>
+							<label>$LOCALIZE[21446]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>grey2</textcolor>
+						</control>
+						<control type="label">
+							<left>255</left>
+							<width>556</width>
+							<height>38</height>
+							<label>$INFO[VideoPlayer.AudioCodec]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+						</control>
+						<visible>!String.IsEmpty(VideoPlayer.AudioCodec)</visible>
+					</control>
+					<control type="group">
+						<height>38</height>
+						<control type="label">
+							<width>248</width>
+							<height>38</height>
+							<label>$LOCALIZE[21444]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>grey2</textcolor>
+						</control>
+						<control type="label">
+							<left>255</left>
+							<width>556</width>
+							<height>38</height>
+							<label>$INFO[VideoPlayer.AudioChannels]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+						</control>
+						<visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible>
+					</control>
+					<control type="group">
+						<height>38</height>
+						<control type="label">
+							<width>248</width>
+							<height>38</height>
+							<label>$LOCALIZE[21447]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>grey2</textcolor>
+						</control>
+						<control type="label">
+							<left>255</left>
+							<width>556</width>
+							<height>38</height>
+							<label>$INFO[VideoPlayer.AudioLanguage]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+						</control>
+						<visible>!String.IsEmpty(VideoPlayer.AudioLanguage)</visible>
+					</control>
+					<control type="group">
+						<height>38</height>
+						<control type="label">
+							<width>248</width>
+							<height>38</height>
+							<label>$LOCALIZE[31337]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>grey2</textcolor>
+						</control>
+						<control type="label">
+							<left>255</left>
+							<width>556</width>
+							<height>38</height>
+							<label>$INFO[VideoPlayer.AudioBitrate,, kb/s]</label>
+							<aligny>center</aligny>
+							<font>Light17</font>
+							<textcolor>white</textcolor>
+						</control>
+						<visible>!String.IsEmpty(VideoPlayer.AudioBitrate)</visible>
+					</control>
+					
+				</control>
+				
+				
+				
+				
+				
+			</control>
+			
+			
+			
+			<!-- PVR -->
+			<control type="group">
+				
+				<left>0</left>
+				<top>750</top>
+				
+				<visible>VideoPlayer.Content(LiveTV) + System.GetBool(pvrplayback.signalquality)</visible>
+				
+				<control type="label">
+					<description>Header</description>
+					<left>75</left>
+					<top>8</top>
+					<width>848</width>
+					<height>38</height>
+					<label>$LOCALIZE[14204]</label>
+					<aligny>center</aligny>
+					<font>Regular22</font>
+					<textcolor>blue</textcolor>
+				</control>
+				
+				
+				<control type="label">
+					<description>Backend</description>
+					<left>75</left>
+					<top>60</top>
+					<width>248</width>
+					<height>38</height>
+					<label>$LOCALIZE[19012]</label>
+					<aligny>center</aligny>
+					<font>Light17</font>
+					<textcolor>grey2</textcolor>
+				</control>
+				<control type="label">
+					<description>Backend value</description>
+					<left>330</left>
+					<top>60</top>
+					<width>600</width>
+					<height>38</height>
+					<label>$INFO[PVR.ActStreamClient]</label>
+					<aligny>center</aligny>
+					<font>Light17</font>
+					<textcolor>white</textcolor>
+				</control>
+				<control type="label">
+					<description>Device</description>
+					<left>75</left>
+					<top>98</top>
+					<width>248</width>
+					<height>38</height>
+					<label>$LOCALIZE[19006]</label>
+					<aligny>center</aligny>
+					<font>Light17</font>
+					<textcolor>grey2</textcolor>
+				</control>
+				<control type="label">
+					<description>Device value</description>
+					<left>330</left>
+					<top>98</top>
+					<width>600</width>
+					<height>38</height>
+					<label>$INFO[PVR.ActStreamDevice]</label>
+					<aligny>center</aligny>
+					<font>Light17</font>
+					<textcolor>white</textcolor>
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<control type="group">
+					<left>960</left>
+					<top>-75</top>
+					
+					<control type="label">
+						<description>Status</description>
+						<left>75</left>
+						<top>135</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[19007]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<description>Status value</description>
+						<left>330</left>
+						<top>135</top>
+						<width>556</width>
+						<height>38</height>
+						<label>$INFO[PVR.ActStreamStatus]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+					
+					<control type="label">
+						<description>Signal</description>
+						<left>75</left>
+						<top>173</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[19008]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					
+					<control type="group">
+						<left>333</left>
+						<top>189</top>
+						
+						<control type="image">
+							<left>-4</left>
+							<top>0</top>
+							<width>3</width>
+							<height>9</height>
+							<texture colordiffuse="30FFFFFF">osd/progress/progress-9px-start-end.png</texture>
+						</control>
+						<control type="image">
+							<left>412</left>
+							<top>0</top>
+							<width>3</width>
+							<height>9</height>
+							<texture colordiffuse="30FFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+						</control>
+						<control type="image">
+							<left>-4</left>
+							<top>0</top>
+							<width>3</width>
+							<height>9</height>
+							<texture colordiffuse="EBFFFFFF">osd/progress/progress-9px-start-end.png</texture>
+						</control>
+						<control type="image">
+							<left>412</left>
+							<top>0</top>
+							<width>3</width>
+							<height>9</height>
+							<texture colordiffuse="EBFFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+							<visible>Integer.IsGreater(PVR.ActStreamProgrSignal,99)</visible>
+						</control>
+						
+						<control type="progress">
+							<description>Progressbar</description>
+							<left>-1</left>
+							<top>0</top>
+							<width>413</width>
+							<height>9</height>
+							<info>PVR.ActStreamProgrSignal</info>
+							
+							<include>progressBarStyleDefault</include>
+							
+						</control>
+					</control>
+					
+					<control type="label">
+						<description>Signal value</description>
+						<left>770</left>
+						<top>173</top>
+						<width>170</width>
+						<height>38</height>
+						<label>$INFO[PVR.ActStreamSignal]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+					<control type="label">
+						<description>SNR</description>
+						<left>75</left>
+						<top>210</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[19009]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					
+					<control type="group">
+						<left>333</left>
+						<top>226</top>
+						
+						<control type="image">
+							<left>-4</left>
+							<top>0</top>
+							<width>3</width>
+							<height>9</height>
+							<texture colordiffuse="30FFFFFF">osd/progress/progress-9px-start-end.png</texture>
+						</control>
+						<control type="image">
+							<left>412</left>
+							<top>0</top>
+							<width>3</width>
+							<height>9</height>
+							<texture colordiffuse="30FFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+						</control>
+						<control type="image">
+							<left>-4</left>
+							<top>0</top>
+							<width>3</width>
+							<height>9</height>
+							<texture colordiffuse="EBFFFFFF">osd/progress/progress-9px-start-end.png</texture>
+						</control>
+						<control type="image">
+							<left>412</left>
+							<top>0</top>
+							<width>3</width>
+							<height>9</height>
+							<texture colordiffuse="EBFFFFFF" flipx="true">osd/progress/progress-9px-start-end.png</texture>
+							<visible>Integer.IsGreater(PVR.ActStreamProgrSNR,99)</visible>
+						</control>
+						
+						<control type="progress">
+							<description>Progressbar</description>
+							<left>-1</left>
+							<top>0</top>
+							<width>413</width>
+							<height>9</height>
+							<info>PVR.ActStreamProgrSNR</info>
+							
+							<include>progressBarStyleDefault</include>
+							
+						</control>
+					</control>
+					
+					<control type="label">
+						<description>SNR value</description>
+						<left>770</left>
+						<top>210</top>
+						<width>170</width>
+						<height>38</height>
+						<label>$INFO[PVR.ActStreamSNR]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+					<control type="label">
+						<description>BER</description>
+						<left>75</left>
+						<top>248</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[19010]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<description>BER value</description>
+						<left>330</left>
+						<top>248</top>
+						<width>556</width>
+						<height>38</height>
+						<label>$INFO[PVR.ActStreamBER]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+					<control type="label">
+						<description>UNC</description>
+						<left>75</left>
+						<top>285</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[19011]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<description>UNC value</description>
+						<left>330</left>
+						<top>285</top>
+						<width>556</width>
+						<height>38</height>
+						<label>$INFO[PVR.ActStreamUNC]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+					
+					
+					
+					
+					
+					
+				</control>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<control type="group">
+					<top>-176</top>
+					
+					<control type="label">
+						<description>Service</description>
+						<left>75</left>
+						<top>323</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[19099]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<description>Service value</description>
+						<left>330</left>
+						<top>323</top>
+						<width>600</width>
+						<height>38</height>
+						<label>$INFO[PVR.ActStreamServiceName]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+					<control type="label">
+						<description>Encryption</description>
+						<left>75</left>
+						<top>360</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[19015]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<description>Encryption value</description>
+						<left>330</left>
+						<top>360</top>
+						<width>600</width>
+						<height>38</height>
+						<label>$INFO[PVR.ActStreamEncryptionName]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+					<control type="label">
+						<description>Provider</description>
+						<left>75</left>
+						<top>398</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[19101]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<description>Provider value</description>
+						<left>330</left>
+						<top>398</top>
+						<width>600</width>
+						<height>38</height>
+						<label>$INFO[PVR.ActStreamProviderName]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+					<control type="label">
+						<description>Mux</description>
+						<left>75</left>
+						<top>435</top>
+						<width>248</width>
+						<height>38</height>
+						<label>$LOCALIZE[19100]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>grey2</textcolor>
+					</control>
+					<control type="label">
+						<description>Mux value</description>
+						<left>330</left>
+						<top>435</top>
+						<width>600</width>
+						<height>38</height>
+						<label>$INFO[PVR.ActStreamMux]</label>
+						<aligny>center</aligny>
+						<font>Light17</font>
+						<textcolor>white</textcolor>
+					</control>
+				</control>
+				
+				
+				
+				
+				
+				
+			</control>
+			
+			
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- Choose Buttons -->
+		<control type="button" id="100">
+			
+			<include>BackgroundDimensions</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<texturenofocus></texturenofocus>
+			<texturefocus></texturefocus>
+			
+			<!--
+			<onleft condition="String.IsEqual(Window(Home).Property(PPI_Type),1)">SetProperty(PPI_Type,2,home)</onleft>
+			<onleft condition="String.IsEqual(Window(Home).Property(PPI_Type),2)">SetProperty(PPI_Type,1,home)</onleft>
+			
+			<onright condition="String.IsEqual(Window(Home).Property(PPI_Type),1)">SetProperty(PPI_Type,2,home)</onright>
+			<onright condition="String.IsEqual(Window(Home).Property(PPI_Type),2)">SetProperty(PPI_Type,1,home)</onright>
+			-->
+			
+			<onclick condition="String.IsEqual(Window(Home).Property(PPI_Type),1)">SetProperty(PPI_Type,2,home)</onclick>
+			<onclick condition="String.IsEqual(Window(Home).Property(PPI_Type),2)">SetProperty(PPI_Type,1,home)</onclick>
+			
+		</control>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

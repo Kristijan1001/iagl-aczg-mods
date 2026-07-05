@@ -1,0 +1,13 @@
+Attribution
+
+Estuary | skin.estuary (by phil65, Ichabod Fletchman, Team Kodi and others) art work is licensed under Creative Commons Attribution-ShareAlike 4.0 International
+To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
+
+Estuary | skin.estuary (by phil65, Ichabod Fletchman, Team Kodi and others) code work is licensed under GNU General Public License 2.0
+To view a copy of this license, visit https://www.gnu.org/licenses/gpl-2.0
+
+Confluence | skin.confluence (by Jezz_X, Team Kodi and others) code and art work is licensed under GNU General Public License 2.0
+To view a copy of this license, visit https://www.gnu.org/licenses/gpl-2.0
+
+Confluence (Hybrid) | skin.confluence (by Jezz_X, Team Kodi, jamal2362 and others) code and art work is licensed under GNU General Public License 2.0
+To view a copy of this license, visit https://www.gnu.org/licenses/gpl-2.0

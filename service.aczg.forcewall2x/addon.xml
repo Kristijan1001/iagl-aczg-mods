@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="service.aczg.forcewall2x" name="ACZG Force Wall 2X" version="1.1.0" provider-name="local">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+    </requires>
+    <extension point="xbmc.service" library="service.py"/>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">Forces Wall 2X view in the Videos window</summary>
+        <description lang="en_GB">Locks the Videos/IAGL browsing window to Wall 2X (view id 500) on every folder change, so the view never resets.</description>
+        <platform>all</platform>
+        <license>GPL-2.0-or-later</license>
+    </extension>
+</addon>

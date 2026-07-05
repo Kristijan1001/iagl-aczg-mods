@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	
+	
+	
+	
+	
+	<!-- SideBar Menu -->
+	
+	<variable name="Weather_Current_View_Daily_string">
+		<value>$LOCALIZE[31904]</value>
+	</variable>
+	<variable name="Weather_Current_View_Daily">
+		<value condition="String.IsEmpty(Window(Weather).Property(Weather.CurrentView)) + Control.HasFocus(302)">[COLOR=accent_brighter]$VAR[Weather_Current_View_Daily_string][/COLOR]</value>
+		<value condition="String.IsEmpty(Window(Weather).Property(Weather.CurrentView))">[COLOR=blue]$VAR[Weather_Current_View_Daily_string][/COLOR]</value>
+		<value>$VAR[Weather_Current_View_Daily_string]</value>
+	</variable>
+	
+	<variable name="Weather_Current_View_hourly_string">
+		<value>$LOCALIZE[31902]</value>
+	</variable>
+	<variable name="Weather_Current_View_hourly">
+		<value condition="String.IsEqual(Window(Weather).Property(Weather.CurrentView),hourly) + Control.HasFocus(305)">[COLOR=accent_brighter]$VAR[Weather_Current_View_hourly_string][/COLOR]</value>
+		<value condition="String.IsEqual(Window(Weather).Property(Weather.CurrentView),hourly)">[COLOR=blue]$VAR[Weather_Current_View_hourly_string][/COLOR]</value>
+		<value>$VAR[Weather_Current_View_hourly_string]</value>
+	</variable>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<include name="Weather_Daily_Layout">
+		
+		<control type="group">
+			
+			<visible>Weather.IsFetched + !String.IsEmpty(Window(Weather).Property(Daily.IsFetched)) + Integer.IsGreater(Window(Weather).Property(Locations),0)</visible>
+			
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>900</width>
+				<texture border="0,8,0,8">MenuItemNF.png</texture>
+			</control>
+			
+			<control type="label">
+				<left>0</left>
+				<top>0</top>
+				<width>150</width>
+				<height>100%</height>
+				<font>Regular18</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<scroll>false</scroll>
+				<label>$INFO[ListItem.Property(ShortDay)]</label>
+			</control>
+			
+			<control type="image">
+				<left>155</left>
+				<top>0</top>
+				<width>70</width>
+				<height>100%</height>
+				<aspectratio>keep</aspectratio>
+				<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+			</control>
+			
+			<control type="group">
+				<control type="image">
+					<left>630</left>
+					<top>0</top>
+					<width>32</width>
+					<height>100%</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">icons/weather/rain.png</texture>
+					<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+					<visible>!String.IsEmpty(ListItem.Property(Rain))</visible>
+				</control>
+				<control type="label">
+					<left>672</left>
+					<top>0</top>
+					<width>575</width>
+					<height>100%</height>
+					<font>Regular16</font>
+					<textcolor>white</textcolor>
+					<selectedcolor>selected</selectedcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+					<scroll>false</scroll>
+					<label>[LIGHT]$INFO[ListItem.Property(Rain)][/LIGHT]</label>
+					<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+				</control>
+				
+				<control type="image">
+					<left>760</left>
+					<top>0</top>
+					<width>32</width>
+					<height>100%</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">icons/weather/wind.png</texture>
+					<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+					<visible>!String.IsEmpty(ListItem.Property(WindSpeed))</visible>
+				</control>
+				<control type="label">
+					<left>800</left>
+					<top>0</top>
+					<width>575</width>
+					<height>100%</height>
+					<font>Regular16</font>
+					<textcolor>white</textcolor>
+					<selectedcolor>selected</selectedcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+					<scroll>false</scroll>
+					<label>[LIGHT]$INFO[ListItem.Property(WindSpeed)][/LIGHT]</label>
+					<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+				</control>
+				
+				<visible>![!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)]</visible>
+				
+			</control>
+			
+			<control type="label">
+				<left>270</left>
+				<top>0</top>
+				<width>900</width>
+				<height>100%</height>
+				<font>Regular18</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>left</align>
+				<aligny>center</aligny>
+				<scroll>false</scroll>
+				<label>$INFO[ListItem.Property(HighTemp)]   [COLOR=grey2]$INFO[ListItem.Property(LowTemp)][/COLOR]</label>
+			</control>
+			
+			<control type="textbox">
+				<left>416</left>
+				<top>0</top>
+				<width>190</width>
+				<height>103%</height>
+				<font>Regular17</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>[LIGHT]$INFO[ListItem.Property(Outlook)][/LIGHT]</label>
+				<animation effect="fade" end="25" time="0" condition="true">Conditional</animation>
+				
+				<animation effect="slide" start="0,0" end="100,0" time="0" condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">Conditional</animation>
+				
+			</control>
+			
+		</control>
+		
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="Weather_Daily">
+		
+		<control type="group">
+			
+			<control type="list" id="51">
+				<left>40</left>
+				<top>90</top>
+				<width>900</width>
+				<height>812</height>
+				
+				<onleft>7000</onleft>
+				<onright>61</onright>
+				<onup>51</onup>
+				<ondown>51</ondown>
+				
+				<viewtype label="535">list</viewtype>
+				<pagecontrol>61</pagecontrol>
+				<include>ScrollTimeOld</include>
+				
+				<include>VisibleFadeEffect</include>
+				<visible>String.IsEmpty(Window(Weather).Property(Weather.CurrentView))</visible>
+				
+				<itemlayout height="116" width="900">
+					<include>Weather_Daily_Layout</include>
+				</itemlayout>
+				
+				<focusedlayout height="116" width="900">
+					<include>Weather_Daily_Layout</include>
+				</focusedlayout>
+				
+				<content>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="1" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="2" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="3" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="4" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="5" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="6" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="7" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="8" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="9" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="10" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="11" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="12" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="13" />
+					</include>
+					<include content="Weather_Daily_Item">
+						<param name="item_id" value="14" />
+					</include>
+				</content>
+				
+			</control>
+			
+			<control type="scrollbar" id="61">
+				<left>964</left>
+				<top>103</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>799</height>
+				<onleft>7000</onleft>
+				<onright>61</onright>
+				<showonepage>false</showonepage>
+				
+				<include>VisibleFadeEffect</include>
+				
+				<visible>!String.IsEmpty(Window(Weather).Property(Location)) + !Weather.IsUpdating + Integer.IsGreater(Window(Weather).Property(Locations),0)</visible>
+				
+				<visible>Weather.IsFetched + !String.IsEmpty(Window(Weather).Property(Daily.IsFetched))</visible>
+				<visible>Control.IsVisible(51)</visible>
+				
+				<animation effect="fade" start="100" end="0" time="0" condition="Integer.IsEqual(Container(51).NumItems,0)">Conditional</animation>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+		
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<include name="Weather_Daily_Item">
+		<item>
+			
+			<property name="ShortDate">$INFO[Window(Weather).Property(Daily.$PARAM[item_id].ShortDate)]</property>
+			
+			<property name="ShortDay">$INFO[Window(Weather).Property(Daily.$PARAM[item_id].ShortDay)]</property>
+			
+			<property name="HighTemp">$INFO[Window(Weather).Property(Daily.$PARAM[item_id].HighTemperature)]</property>
+			<property name="LowTemp">$INFO[Window(Weather).Property(Daily.$PARAM[item_id].LowTemperature)]</property>
+			
+			<property name="Outlook">$INFO[Window(Weather).Property(Daily.$PARAM[item_id].Outlook)]</property>
+			
+			<property name="Rain">$INFO[Window(Weather).Property(Dayily.$PARAM[item_id].Precipitation)]</property>
+			<property name="WindSpeed">$INFO[Window(Weather).Property(Daily.$PARAM[item_id].WindSpeed)]</property>
+			<property name="WindDirection">$INFO[Window(Weather).Property(Daily.$PARAM[item_id].WindDirection)]</property>
+			
+			<thumb>resource://resource.images.weathericons.default/$INFO[Window(Weather).Property(Daily.$PARAM[item_id].OutlookIcon)]</thumb>
+			
+			<visible>Weather.IsFetched + !String.IsEmpty(Window(Weather).Property(Daily.$PARAM[item_id].Outlook)) + !String.IsEmpty(Window(Weather).Property(Daily.IsFetched))</visible>
+			
+		</item>
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="Weather_Hourly_Item">
+		<item>
+			
+			<property name="Time">$INFO[Window(Weather).Property(Hourly.$PARAM[item_id].Time)]</property>
+			
+			<property name="ShortDate">$INFO[Window(Weather).Property(Hourly.$PARAM[item_id].ShortDate)]</property>
+			
+			<property name="ShortDay">$INFO[Window(Weather).Property(Hourly.$PARAM[item_id].ShortDay)]</property>
+			
+			<property name="Temp">$INFO[Window(Weather).Property(Hourly.$PARAM[item_id].Temperature)]</property>
+			
+			<property name="HighTemp">$INFO[Window(Weather).Property(Hourly.$PARAM[item_id].HighTemperature)]</property>
+			<property name="LowTemp">$INFO[Window(Weather).Property(Hourly.$PARAM[item_id].LowTemperature)]</property>
+			
+			<property name="Outlook">$INFO[Window(Weather).Property(Hourly.$PARAM[item_id].Outlook)]</property>
+			
+			<property name="Rain">$INFO[Window(Weather).Property(Hourly.$PARAM[item_id].Precipitation)]</property>
+			<property name="WindSpeed">$INFO[Window(Weather).Property(Hourly.$PARAM[item_id].WindSpeed)]</property>
+			<property name="WindDirection">$INFO[Window(Weather).Property(Hourly.$PARAM[item_id].WindDirection)]</property>
+			
+			<thumb>resource://resource.images.weathericons.default/$INFO[Window(Weather).Property(Hourly.$PARAM[item_id].OutlookIcon)]</thumb>
+			
+			<visible>Weather.IsFetched + !String.IsEmpty(Window(Weather).Property(Hourly.$PARAM[item_id].Outlook)) + !String.IsEmpty(Window(Weather).Property(Hourly.IsFetched))</visible>
+			
+		</item>
+	</include>
+	
+	
+	
+	
+	
+	
+	<variable name="Hourly_Label_1_A">
+		<value condition="!String.IsEqual(ListItem.Property(ShortDate),$LOCALIZE[33006]) + !String.IsEqual(ListItem.Property(ShortDate),System.Date(dd mmm)) + !String.IsEqual(ListItem.Property(ShortDate),System.Date(dd.mm.yyyy)) + !String.IsEqual(ListItem.Property(ShortDate),System.Date)">$INFO[ListItem.Property(Time)][CR] </value>
+		<value>$INFO[ListItem.Property(Time)]</value>
+	</variable>
+	
+	<variable name="Hourly_Label_1_B">
+		<value condition="!String.IsEqual(ListItem.Property(ShortDate),$LOCALIZE[33006]) + !String.IsEqual(ListItem.Property(ShortDate),System.Date(dd mmm)) + !String.IsEqual(ListItem.Property(ShortDate),System.Date(dd.mm.yyyy)) + !String.IsEqual(ListItem.Property(ShortDate),System.Date)"> [CR][LIGHT][COLOR=grey2]$INFO[ListItem.Property(ShortDate)][/COLOR][/LIGHT]</value>
+		<value></value>
+	</variable>
+	
+	
+	
+	
+	
+	
+	<include name="Weather_Hourly_Layout">
+			
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>900</width>
+				<texture border="0,8,0,8">MenuItemNF.png</texture>
+			</control>
+			
+			<control type="label">
+				<left>0</left>
+				<top>0</top>
+				<width>150</width>
+				<height>100%</height>
+				<font>Regular18</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<scroll>false</scroll>
+				
+				<label>$VAR[Hourly_Label_1_A]</label>
+				
+			</control>
+			
+			<control type="label">
+				<left>0</left>
+				<top>0</top>
+				<width>150</width>
+				<height>100%</height>
+				<font>Regular14</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<scroll>false</scroll>
+				
+				<label>$VAR[Hourly_Label_1_B]</label>
+				
+			</control>
+			
+			<control type="image">
+				<left>155</left>
+				<top>0</top>
+				<width>70</width>
+				<height>100%</height>
+				<aspectratio>keep</aspectratio>
+				<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+			</control>
+			
+			<control type="image">
+				<left>630</left>
+				<top>0</top>
+				<width>32</width>
+				<height>100%</height>
+				<aspectratio>keep</aspectratio>
+				<texture background="true">icons/weather/rain.png</texture>
+				<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+				<visible>!String.IsEmpty(ListItem.Property(Rain))</visible>
+			</control>
+			<control type="label">
+				<left>672</left>
+				<top>0</top>
+				<width>575</width>
+				<height>100%</height>
+				<font>Regular16</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>left</align>
+				<aligny>center</aligny>
+				<scroll>false</scroll>
+				<label>[LIGHT]$INFO[ListItem.Property(Rain)][/LIGHT]</label>
+				<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+			</control>
+			
+			<control type="image">
+				<left>760</left>
+				<top>0</top>
+				<width>32</width>
+				<height>100%</height>
+				<aspectratio>keep</aspectratio>
+				<texture background="true">icons/weather/wind.png</texture>
+				<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+				<visible>!String.IsEmpty(ListItem.Property(WindSpeed))</visible>
+			</control>
+			<control type="label">
+				<left>800</left>
+				<top>0</top>
+				<width>575</width>
+				<height>100%</height>
+				<font>Regular16</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>left</align>
+				<aligny>center</aligny>
+				<scroll>false</scroll>
+				<label>[LIGHT]$INFO[ListItem.Property(WindSpeed)][/LIGHT]</label>
+				<animation effect="fade" end="80" time="0" condition="true">Conditional</animation>
+			</control>
+			
+			<control type="label">
+				<left>270</left>
+				<top>0</top>
+				<width>900</width>
+				<height>100%</height>
+				<font>Regular18</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>left</align>
+				<aligny>center</aligny>
+				<scroll>false</scroll>
+				<label>$INFO[ListItem.Property(Temp)]</label>
+			</control>
+			
+			<control type="textbox">
+				<left>370</left>
+				<top>0</top>
+				<width>190</width>
+				<height>103%</height>
+				<font>Regular17</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>[LIGHT]$INFO[ListItem.Property(Outlook)][/LIGHT]</label>
+				<animation effect="fade" end="25" time="0" condition="true">Conditional</animation>
+			</control>
+			
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="Weather_Hourly">
+		
+		<control type="group">
+			
+			<control type="list" id="52">
+				<left>40</left>
+				<top>90</top>
+				<width>900</width>
+				<height>812</height>
+				
+				<onleft>7000</onleft>
+				<onright>62</onright>
+				<onup>52</onup>
+				<ondown>52</ondown>
+				
+				<viewtype label="535">list</viewtype>
+				<pagecontrol>62</pagecontrol>
+				<include>ScrollTimeOld</include>
+				
+				<include>VisibleFadeEffect</include>
+				<visible>Weather.IsFetched</visible>
+				<visible>String.IsEqual(Window(Weather).Property(Weather.CurrentView),hourly) + !String.IsEmpty(Window(Weather).Property(Hourly.IsFetched))</visible>
+				
+				<itemlayout height="116" width="900">
+					<include>Weather_Hourly_Layout</include>
+				</itemlayout>
+				
+				<focusedlayout height="116" width="900">
+					<include>Weather_Hourly_Layout</include>
+				</focusedlayout>
+				
+				<content>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="1" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="2" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="3" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="4" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="5" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="6" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="7" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="8" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="9" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="10" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="11" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="12" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="13" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="14" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="15" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="16" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="17" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="18" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="19" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="20" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="21" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="22" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="23" />
+					</include>
+					<include content="Weather_Hourly_Item">
+						<param name="item_id" value="24" />
+					</include>
+				</content>
+				
+			</control>
+			
+			<control type="scrollbar" id="62">
+				<left>964</left>
+				<top>103</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>799</height>
+				<onleft>7000</onleft>
+				<onright>61</onright>
+				<showonepage>false</showonepage>
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(52)</visible>
+				<animation effect="fade" start="100" end="0" time="0" condition="Integer.IsEqual(Container(52).NumItems,0)">Conditional</animation>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+		
+	</include>
+	
+	
+	
+	
+	
+	
+</includes>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<colors>
+	
+	<color name="white">FFffffff</color><!-- 100% -->
+	<color name="white2">FFe2e2e2</color><!-- 90% -->
+	
+	<color name="grey">FFb4b4b4</color>
+	<color name="grey2">FF999999</color>
+	
+	<color name="grey2a75">B9999999</color>
+	<color name="grey2a85">D4999999</color>
+	<color name="grey2a90">E2999999</color>
+	<color name="grey2a95">F1999999</color>
+	
+	<color name="grey2+">FF5e5e5e</color>
+	<color name="grey2.5">FF585858</color>
+	<color name="grey3">FF505050</color>
+	<color name="grey3.5">FF3b3b3b</color>
+	<color name="grey4">FF282828</color>
+	<color name="black">FF000000</color>
+	
+	<color name="blue">FF0084ff</color>
+	<color name="accent_brighter">FF4ca7fd</color>
+	
+	<color name="selected">FFebb217</color>
+	<color name="invalid">FFFF0000</color>
+	<color name="selected+">d0ebb217</color>
+	<color name="red">FFff4a4a</color>
+	<color name="green">FF50ff50</color>
+	<color name="invisible">00000000</color>
+	<color name="selecteddark">FFb48400</color>
+	<color name="orange">ffffa500</color><!-- Kodi 17 original orange color -->
+	<color name="redwarning">ffd20000</color>
+	<color name="redwarning_brighter">fff56c6c</color>
+	
+	<!-- VS10 Mod Additions -->
+	<color name="dialog_fg_100">ffededed</color>
+	<color name="dialog_fg_90">e7ededed</color>
+	<color name="dialog_fg_70">b3ededed</color>
+	
+	<color name="status_active">FF4fd54f</color>
+	<color name="status_active_dim">804fd54f</color>
+	<color name="status_inactive">FFb4b4b4</color>
+	<color name="status_inactive_dim">80b4b4b4</color>
+	
+	<!-- Estuary colors for add-on compatibility -->
+	<color name="primary_background">FF0E597E</color>
+	<color name="secondary_background">330BAA8E</color>
+	<color name="dialog_tint">FF1A2123</color>
+	<color name="dialog_header_tint">FF147995</color>
+	<color name="background">FF000000</color>
+	<color name="bg_image">FF909090</color>
+	<color name="bg_overlay">30FFFFFF</color>
+	<color name="button_focus">FF12A0C7</color>
+	<color name="button_alt_focus">8012A0C7</color>
+	<color name="text_shadow">22000000</color>
+	<color name="border_alpha">60FFFFFF</color>
+	<color name="disabled">40FFFFFF</color>
+	
+</colors>

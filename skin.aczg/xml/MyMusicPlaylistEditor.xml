@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">6</defaultcontrol>
+	<include>dialogeffect</include>
+	<menucontrol>7000</menucontrol>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<include>CommonBackground</include>
+		
+		<control type="image">
+			
+			<include>BackgroundDimensions</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<texture>colors/black.png</texture>
+			<animation effect="fade" end="96" time="0" condition="true">Conditional</animation>
+		</control>
+		
+		<control type="group">
+			<top>15</top>
+			
+			<control type="label">
+				<left>713</left>
+				<top>68</top>
+				<width>495</width>
+				<height>45</height>
+				<font>Light21</font>
+				<textcolor>blue</textcolor>
+				<scroll>true</scroll>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$LOCALIZE[31061]</label>
+			</control>
+			
+			<control type="group" id="7000">
+				<left>713</left>
+				<top>790</top>
+				
+				<control type="button" id="6">
+					<description>Open Button</description>
+					<left>15</left>
+					<top>0</top>
+					<width>465</width>
+					<label>31055</label>
+					<height>67</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>grey2</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<onleft>30</onleft>
+					<onright>100</onright>
+					<onup>noop</onup>
+					<ondown>7</ondown>
+					<include>ButtonInfoDialogsCommonValues</include>
+				</control>
+				
+				<control type="button" id="7">
+					<description>Save Button</description>
+					<left>15</left>
+					<top>82</top>
+					<width>465</width>
+					<label>31056</label>
+					<height>67</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>grey2</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<onleft>30</onleft>
+					<onright>100</onright>
+					<onup>6</onup>
+					<ondown>8</ondown>
+					<include>ButtonInfoDialogsCommonValues</include>
+				</control>
+				
+				<control type="button" id="8">
+					<description>Close Playlist button</description>
+					<left>15</left>
+					<top>164</top>
+					<width>465</width>
+					<label>31057</label>
+					<height>67</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>grey2</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<onleft>30</onleft>
+					<onright>100</onright>
+					<onup>7</onup>
+					<ondown>noop</ondown>
+					<include>ButtonInfoDialogsCommonValues</include>
+				</control>
+				
+			</control>
+			
+			<control type="group">
+				<visible>Control.HasFocus(50)</visible>
+				<include>VisibleFadeEffect</include>
+				<control type="image">
+					<left>810</left>
+					<top>135</top>
+					<width>300</width>
+					<height>300</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture diffuse="colors/diffuse/300x300-rounded.png">$INFO[Container(50).ListItem.Icon]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+				</control>
+				<control type="textbox">
+					<left>723</left>
+					<top>453</top>
+					<width>474</width>
+					<height>327</height>
+					<font>Light17+</font>
+					<align>center</align>
+					<textcolor>white</textcolor>
+					<label>$INFO[Container(50).ListItem.Title,[COLOR=blue]$LOCALIZE[556]:[/COLOR]  ,[CR]]$INFO[Container(50).ListItem.Artist,[COLOR=blue]$LOCALIZE[557]:[/COLOR]  ,[CR]]$INFO[Container(50).ListItem.Album,[COLOR=blue]$LOCALIZE[558]:[/COLOR]  ,[CR]]$INFO[Container(50).ListItem.Duration,[COLOR=blue]$LOCALIZE[555]:[/COLOR]  ,[CR]]$INFO[Container(50).ListItem.Genre,[COLOR=blue]$LOCALIZE[515]:[/COLOR]  ,[CR]]</label>
+				</control>
+			</control>
+			
+			<control type="group">
+				<visible>Control.HasFocus(100)</visible>
+				<include>VisibleFadeEffect</include>
+				<control type="image">
+					<left>810</left>
+					<top>135</top>
+					<width>300</width>
+					<height>300</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture diffuse="colors/diffuse/300x300-rounded.png">$INFO[Container(100).ListItem.Icon]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+				</control>
+				<control type="textbox">
+					<left>723</left>
+					<top>453</top>
+					<width>474</width>
+					<height>300</height>
+					<font>Regular17+</font>
+					<align>center</align>
+					<textcolor>white</textcolor>
+					<label>$INFO[Container(100).ListItem.Title,[COLOR=blue]$LOCALIZE[556]:[/COLOR]  ,[CR]]$INFO[Container(100).ListItem.Artist,[COLOR=blue]$LOCALIZE[557]:[/COLOR]  ,[CR]]$INFO[Container(100).ListItem.Album,[COLOR= ]$LOCALIZE[558]:[/COLOR]  ,[CR]]$INFO[Container(100).ListItem.Duration,[COLOR=blue]$LOCALIZE[555]:[/COLOR]  ,[CR]]$INFO[Container(100).ListItem.Genre,[COLOR=blue]$LOCALIZE[515]:[/COLOR]  ,[CR]]</label>
+				</control>
+			</control>
+			
+		</control>
+		
+		<control type="group">
+			
+			<control type="label">
+				<left>45</left>
+				<top>75</top>
+				<width>675</width>
+				<height>45</height>
+				<font>Light21</font>
+				<textcolor>blue</textcolor>
+				<scroll>true</scroll>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>31058</label>
+			</control>
+			
+			<control type="label">
+				<description>number of files/pages in left list text label</description>
+				<left>45</left>
+				<top>67r</top>
+				<width>615</width>
+				<font>Light17</font>
+				<align>left</align>
+				<scroll>true</scroll>
+				<textcolor>grey</textcolor>
+				<label>$INFO[Container(50).NumItems] $LOCALIZE[31025]</label>
+			</control>
+			
+			<control type="list" id="50">
+				<left>36</left>
+				<top>150</top>
+				<width>600</width>
+				<height>812</height>
+				<onleft>50</onleft>
+				<onright>30</onright>
+				<onup>50</onup>
+				<ondown>50</ondown>
+				<viewtype label="">list</viewtype>
+				<pagecontrol>30</pagecontrol>
+				<include>ScrollTimeOld</include>
+				
+				<itemlayout height="45" width="600">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>600</width>
+						<height>47</height>
+						<texture border="6">MenuItemNF.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<top>0</top>
+						<width>570</width>
+						<height>45</height>
+						<font>Regular17</font>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<left>53</left>
+						<top>0</top>
+						<width>540</width>
+						<height>45</height>
+						<font>Regular17</font>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>right</align>
+						<aligny>center</aligny>
+						<info>ListItem.Label2</info>
+					</control>
+				</itemlayout>
+				
+				<focusedlayout height="45" width="600">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>600</width>
+						<height>47</height>
+						<texture border="6">MenuItemNF.png</texture>
+						<visible>!Control.HasFocus(50)</visible>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>600</width>
+						<height>47</height>
+						<texture border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texture>
+						<visible>Control.HasFocus(50)</visible>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<top>0</top>
+						<width>570</width>
+						<height>45</height>
+						<font>Regular17</font>
+						<textcolor>white</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<left>53</left>
+						<top>0</top>
+						<width>540</width>
+						<height>45</height>
+						<font>Regular17</font>
+						<textcolor>white</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>right</align>
+						<aligny>center</aligny>
+						<info>ListItem.Label2</info>
+					</control>
+				</focusedlayout>
+				
+			</control>
+			
+			<control type="scrollbar" id="30">
+				<left>660</left>
+				<top>150</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>812</height>
+				<onleft>50</onleft>
+				<onright>6</onright>
+				<showonepage>false</showonepage>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+		
+		<control type="group">
+			<left>1200</left>
+			
+			<control type="label">
+				<left>60</left>
+				<top>75</top>
+				<width>675</width>
+				<height>45</height>
+				<font>Light21</font>
+				<textcolor>blue</textcolor>
+				<scroll>true</scroll>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>13350</label>
+			</control>
+			
+			<control type="label">
+				<description>Page Count Label</description>
+				<left>210</left>
+				<top>67r</top>
+				<width>450</width>
+				<height>30</height>
+				<font>Light17</font>
+				<textcolor>grey</textcolor>
+				<scroll>false</scroll>
+				<align>right</align>
+				<aligny>center</aligny>
+				<label>$INFO[Container(100).NumItems] $LOCALIZE[31025]</label>
+			</control>
+			
+			<control type="list" id="100">
+				<left>51</left>
+				<top>150</top>
+				<width>600</width>
+				<height>812</height>
+				<onleft>6</onleft>
+				<onright>31</onright>
+				<onup>100</onup>
+				<ondown>100</ondown>
+				<viewtype label="">list</viewtype>
+				<pagecontrol>31</pagecontrol>
+				<include>ScrollTimeOld</include>
+				
+				<itemlayout height="45" width="600">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>600</width>
+						<height>47</height>
+						<texture border="6">MenuItemNF.png</texture>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<top>0</top>
+						<width>570</width>
+						<height>45</height>
+						<font>Regular17</font>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<left>53</left>
+						<top>0</top>
+						<width>540</width>
+						<height>45</height>
+						<font>Regular17</font>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>right</align>
+						<aligny>center</aligny>
+						<info>ListItem.Label2</info>
+					</control>
+				</itemlayout>
+				
+				<focusedlayout height="45" width="600">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>600</width>
+						<height>47</height>
+						<texture border="6">MenuItemNF.png</texture>
+						<visible>!Control.HasFocus(100)</visible>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>600</width>
+						<height>47</height>
+						<texture border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texture>
+						<visible>Control.HasFocus(100)</visible>
+					</control>
+					<control type="label">
+						<left>8</left>
+						<top>0</top>
+						<width>570</width>
+						<height>45</height>
+						<font>Regular17</font>
+						<textcolor>white</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<left>53</left>
+						<top>0</top>
+						<width>540</width>
+						<height>45</height>
+						<font>Regular17</font>
+						<textcolor>white</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>right</align>
+						<aligny>center</aligny>
+						<info>ListItem.Label2</info>
+					</control>
+				</focusedlayout>
+				
+			</control>
+			
+			<control type="scrollbar" id="31">
+				<left>675</left>
+				<top>150</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>812</height>
+				<onleft>100</onleft>
+				<onright>31</onright>
+				<showonepage>false</showonepage>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+		</control>
+		
+		
+		
+		<include content="CommonWindowHeader">
+			<param name="Icon" value="icon_music" />
+			<param name="Label" value="$LOCALIZE[10503]" />
+		</include>
+		
+		
+		
+		<!--<include>CommonNowPlaying_PIP</include>-->
+		
+		
+		
+		<include>BehindDialogFadeOut</include>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

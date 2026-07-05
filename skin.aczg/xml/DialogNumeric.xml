@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">21</defaultcontrol>
+	<include>dialogeffect</include>
+	<depth>DepthDialog+</depth>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="image">
+			
+			<include>BackgroundDimensions</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<texture>colors/black.png</texture>
+			<animation effect="fade" end="80" time="0" condition="VideoPlayer.Content(LiveTV) + [Window.IsVisible(FullscreenVideo) | Window.IsVisible(VideoOSD)]">Conditional</animation>
+		</control>
+		<control type="group">
+			<left>630</left>
+			<top>263</top>
+			<control type="label" id="1">
+				<description>dialog Heading</description>
+				<left>30</left>
+				<top>18</top>
+				<width>510</width>
+				<height>45</height>
+				<font>Light25</font>
+				<textcolor>white</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<wrapmultiline>true</wrapmultiline>
+			</control>
+			<control type="image">
+				<left>45</left>
+				<top>105</top>
+				<width>480</width>
+				<height>75</height>
+				<aspectratio>stretch</aspectratio>
+				<texture colordiffuse="$VAR[keyboardEditAreaColorDiffuse]" border="15">colors/white_border15.png</texture>
+				<!--KeyboardEditArea-->
+			</control>
+			<control type="label" id="4">
+				<description>Edit Text</description>
+				<left>60</left>
+				<top>105</top>
+				<width>450</width>
+				<height>75</height>
+				<font>Light25</font>
+				<textcolor>white</textcolor>
+				<disabledcolor>grey3</disabledcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+			</control>
+			<control type="group">
+				<left>82</left>
+				<top>233</top>
+				<control type="button" id="11"><include>Button_TextOffset_Small</include>
+					<description>1 button</description>
+					<left>0</left>
+					<top>0</top>
+					<width>90</width>
+					<height>90</height>
+					<font>Light25</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<label>12311</label>
+					<focusedcolor>white</focusedcolor>
+					<onright>12</onright>
+					<ondown>14</ondown>
+				</control>
+				<control type="button" id="12"><include>Button_TextOffset_Small</include>
+					<description>2 button</description>
+					<left>90</left>
+					<top>0</top>
+					<width>90</width>
+					<height>90</height>
+					<font>Light25</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<label>12312</label>
+					<focusedcolor>white</focusedcolor>
+					<onleft>11</onleft>
+					<onright>13</onright>
+					<ondown>15</ondown>
+				</control>
+				<control type="button" id="13"><include>Button_TextOffset_Small</include>
+					<description>3 button</description>
+					<left>180</left>
+					<top>0</top>
+					<width>90</width>
+					<height>90</height>
+					<font>Light25</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<label>12313</label>
+					<focusedcolor>white</focusedcolor>
+					<onleft>12</onleft>
+					<onright>23</onright>
+					<ondown>16</ondown>
+				</control>
+				<control type="button" id="23"><include>Button_TextOffset_Small</include>
+					<description>Backspace button</description>
+					<left>270</left>
+					<top>0</top>
+					<width>136</width>
+					<height>180</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<onleft>13</onleft>
+					<ondown>21</ondown>
+				</control>
+				<control type="image">
+					<description>Backspace icon</description>
+					<left>315</left>
+					<top>68</top>
+					<width>45</width>
+					<height>45</height>
+					<texture>KeyboardBackKey.png</texture>
+					<animation effect="fade" start="100" end="71" time="0" condition="!Control.HasFocus(23)">Conditional</animation>
+				</control>
+				<control type="button" id="14"><include>Button_TextOffset_Small</include>
+					<description>4 button</description>
+					<left>0</left>
+					<top>90</top>
+					<width>90</width>
+					<height>90</height>
+					<font>Light25</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<label>12314</label>
+					<focusedcolor>white</focusedcolor>
+					<onright>15</onright>
+					<onup>11</onup>
+					<ondown>17</ondown>
+				</control>
+				<control type="button" id="15"><include>Button_TextOffset_Small</include>
+					<description>5 button</description>
+					<left>90</left>
+					<top>90</top>
+					<width>90</width>
+					<height>90</height>
+					<font>Light25</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<label>12315</label>
+					<focusedcolor>white</focusedcolor>
+					<onleft>14</onleft>
+					<onright>16</onright>
+					<onup>12</onup>
+					<ondown>18</ondown>
+				</control>
+				<control type="button" id="16"><include>Button_TextOffset_Small</include>
+					<description>6 button</description>
+					<left>180</left>
+					<top>90</top>
+					<width>90</width>
+					<height>90</height>
+					<font>Light25</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<label>12316</label>
+					<focusedcolor>white</focusedcolor>
+					<onleft>15</onleft>
+					<onright>23</onright>
+					<onup>13</onup>
+					<ondown>19</ondown>
+				</control>
+				<control type="button" id="17"><include>Button_TextOffset_Small</include>
+					<description>7 button</description>
+					<left>0</left>
+					<top>180</top>
+					<width>90</width>
+					<height>90</height>
+					<font>Light25</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<label>12317</label>
+					<focusedcolor>white</focusedcolor>
+					<onright>18</onright>
+					<onup>14</onup>
+					<ondown>20</ondown>
+				</control>
+				<control type="button" id="18"><include>Button_TextOffset_Small</include>
+					<description>8 button</description>
+					<left>90</left>
+					<top>180</top>
+					<width>90</width>
+					<height>90</height>
+					<font>Light25</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<label>12318</label>
+					<focusedcolor>white</focusedcolor>
+					<onleft>17</onleft>
+					<onright>19</onright>
+					<onup>15</onup>
+					<ondown>10</ondown>
+				</control>
+				<control type="button" id="19"><include>Button_TextOffset_Small</include>
+					<description>9 button</description>
+					<left>180</left>
+					<top>180</top>
+					<width>90</width>
+					<height>90</height>
+					<font>Light25</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<label>12319</label>
+					<focusedcolor>white</focusedcolor>
+					<onleft>18</onleft>
+					<onright>21</onright>
+					<onup>16</onup>
+					<ondown>22</ondown>
+				</control>
+				<control type="button" id="21"><include>Button_TextOffset_Small</include>
+					<description>Done button</description>
+					<left>270</left>
+					<top>180</top>
+					<width>136</width>
+					<height>180</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<onleft>19</onleft>
+					<onup>23</onup>
+				</control>
+				<control type="image">
+					<description>Done icon</description>
+					<left>315</left>
+					<top>248</top>
+					<width>45</width>
+					<height>45</height>
+					<texture>KeyboardDoneKey.png</texture>
+					<animation effect="fade" start="100" end="71" time="0" condition="!Control.HasFocus(21)">Conditional</animation>
+				</control>
+				<control type="button" id="20"><include>Button_TextOffset_Small</include>
+					<description>prev button</description>
+					<left>0</left>
+					<top>270</top>
+					<width>90</width>
+					<height>90</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<onright>10</onright>
+					<onup>17</onup>
+				</control>
+				<control type="button" id="10"><include>Button_TextOffset_Small</include>
+					<description>0 button</description>
+					<left>90</left>
+					<top>270</top>
+					<width>90</width>
+					<height>90</height>
+					<font>Light25</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<label>12310</label>
+					<focusedcolor>white</focusedcolor>
+					<onleft>20</onleft>
+					<onright>22</onright>
+					<onup>18</onup>
+				</control>
+				<control type="button" id="22"><include>Button_TextOffset_Small</include>
+					<description>next button</description>
+					<left>180</left>
+					<top>270</top>
+					<width>90</width>
+					<height>90</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texturenofocus />
+					<texturefocus border="15" colordiffuse="$VAR[accentColorDiffuse]">colors/white_border15.png</texturefocus>
+					<onleft>10</onleft>
+					<onright>21</onright>
+					<onup>19</onup>
+				</control>
+				
+				<control type="image">
+					<description>move left icon</description>
+					<left>21</left>
+					<top>291</top>
+					<width>45</width>
+					<height>45</height>
+					<texture>arrow-white-left.png</texture>
+					<animation effect="fade" start="100" end="71" time="0" condition="!Control.HasFocus(20)">Conditional</animation>
+				</control>
+				<control type="image">
+					<description>move right icon</description>
+					<left>204</left>
+					<top>291</top>
+					<width>45</width>
+					<height>45</height>
+					<texture flipx="true">arrow-white-left.png</texture>
+					<animation effect="fade" start="100" end="71" time="0" condition="!Control.HasFocus(22)">Conditional</animation>
+				</control>
+				
+			</control>
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

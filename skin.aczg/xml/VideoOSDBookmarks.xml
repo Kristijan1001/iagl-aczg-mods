@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">2</defaultcontrol>
+	
+	<onload condition="Window.IsVisible(VideoOSD)">Dialog.Close(VideoOSD)</onload>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="image">
+			
+			<include>BackgroundDimensions</include>
+			
+			<left>0</left>
+			<top>440</top>
+			
+			<texture>colors/black.png</texture>
+			<animation effect="fade" start="0" end="93" time="0" condition="true">Conditional</animation>
+			<include>dialogeffect</include>
+		</control>
+		
+		
+		
+		<control type="group">
+			<include>dialogeffectSlower</include>
+			<left>0</left>
+			<top>450</top>
+			<control type="label">
+				<description>header label</description>
+				<left>75</left>
+				<top>30</top>
+				<width>1740</width>
+				<height>45</height>
+				<font>Light26</font>
+				<label>$VAR[ChaptersOrBookmarksHeader]</label>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>white</textcolor>
+			</control>
+			<control type="fixedlist" id="11">
+				
+				<animation effect="slide" start="0,0" end="-189,0" time="0" condition="Integer.IsEqual(Container(11).NumItems,2)">Conditional</animation>
+				<animation effect="slide" start="0,0" end="-189,0" time="0" condition="Integer.IsEqual(Container(11).NumItems,4)">Conditional</animation>
+				
+				<left>0</left>
+				<top>104</top>
+				<width>1920</width>
+				<height>323</height>
+				<onleft>11</onleft>
+				<onright>11</onright>
+				<ondown>2</ondown>
+				<include>StandardScrollTime</include>
+				<pagecontrol>60</pagecontrol>
+				<orientation>horizontal</orientation>
+				<focusposition>2</focusposition>
+				<movement>2</movement>
+				
+				<include condition="[String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems1</include>
+				<include condition="![String.Contains(System.OSVersionInfo,avdvplus-axbmcuser) | String.StartsWith(System.BuildVersion,17.7) | String.Contains(System.BuildVersion,BetterGUI) | String.Contains(System.BuildVersion,BetterUI) | String.StartsWith(System.BuildAppName,KodiDS)]">preloaditems2</include>
+				
+				<itemlayout height="323" width="378">
+					<control type="group">
+						<left>12</left>
+						<control type="image">
+							<left>15</left>
+							<top>20</top>
+							<width>354</width>
+							<height>300</height>
+							<texture background="true" colordiffuse="FF111111" border="12">colors/white_border12.png</texture>
+						</control>
+						<control type="image">
+							<left>27</left>
+							<top>49</top>
+							<width>330</width>
+							<height>186</height>
+							<aspectratio scalediffuse="false">stretch</aspectratio>
+							<texture background="true" diffuse="colors/diffuse/330x186-rounded.png">colors/black.png</texture>
+						</control>
+						<control type="image">
+							<left>27</left>
+							<top>49</top>
+							<width>330</width>
+							<height>186</height>
+							<aspectratio scalediffuse="false">keep</aspectratio>
+							<texture background="true" diffuse="colors/diffuse/330x186-rounded.png">$INFO[ListItem.Icon]</texture>
+						</control>
+						<control type="label">
+							<left>22</left>
+							<top>277</top>
+							<width>341</width>
+							<height>22</height>
+							<font>Regular17</font>
+							<selectedcolor>selected</selectedcolor>
+							<align>center</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, [LIGHT](,)[/LIGHT]]</label>
+							<textcolor>grey</textcolor>
+						</control>
+					</control>
+				</itemlayout>
+				<focusedlayout height="323" width="378">
+					<control type="group">
+						<left>12</left>
+						<control type="image">
+							<left>15</left>
+							<top>20</top>
+							<width>354</width>
+							<height>300</height>
+							<texture colordiffuse="FF111111" border="12">colors/white_border12.png</texture>
+						</control>
+						<control type="group">
+							<control type="image">
+								<left>15</left>
+								<top>20</top>
+								<width>354</width>
+								<height>300</height>
+								<texture colordiffuse="$VAR[accentColorDiffuseSpecialWindow]" border="12">colors/white_border12.png</texture>
+								<!--<include>DimFocusTextureAdditionally</include>-->
+								<visible>Control.HasFocus(11)</visible>
+							</control>
+							<include>FocusAnimationType1</include>
+						</control>
+						<control type="image">
+							<left>27</left>
+							<top>49</top>
+							<width>330</width>
+							<height>186</height>
+							<aspectratio scalediffuse="false">stretch</aspectratio>
+							<texture background="true" diffuse="colors/diffuse/330x186-rounded.png">colors/black.png</texture>
+						</control>
+						<control type="image">
+							<left>27</left>
+							<top>49</top>
+							<width>330</width>
+							<height>186</height>
+							<aspectratio scalediffuse="false">keep</aspectratio>
+							<texture background="true" diffuse="colors/diffuse/330x186-rounded.png">$INFO[ListItem.Icon]</texture>
+						</control>
+						<control type="label">
+							<left>22</left>
+							<top>277</top>
+							<width>341</width>
+							<height>22</height>
+							<font>Regular17</font>
+							<selectedcolor>selected</selectedcolor>
+							<align>center</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, [LIGHT](,)[/LIGHT]]</label>
+							<textcolor>grey</textcolor>
+							<visible>!Control.HasFocus(11)</visible>
+						</control>
+						<control type="label">
+							<left>22</left>
+							<top>277</top>
+							<width>341</width>
+							<height>22</height>
+							<font>Regular17</font>
+							<selectedcolor>selected</selectedcolor>
+							<align>center</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]$INFO[ListItem.Label2, [LIGHT](,)[/LIGHT]]</label>
+							<visible>Control.HasFocus(11)</visible>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>27</left>
+				<top>450</top>
+				<width>1866</width>
+				<include>scrollBarStyleDefaultHeight</include>
+				
+				<onleft></onleft>
+				<onright></onright>
+				
+				<onup>11</onup>
+				
+				<showonepage>false</showonepage>
+				<animation effect="fade" end="75" time="0" condition="true">Conditional</animation>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			<control type="grouplist" id="9000">
+				<left>0</left>
+				<top>510</top>
+				<width>1920</width>
+				<height>72</height>
+				<itemgap>15</itemgap>
+				<align>center</align>
+				<orientation>horizontal</orientation>
+				<onleft>Noop</onleft>
+				<onright>Noop</onright>
+				<onup>11</onup>
+				<control type="button" id="2">
+					<description>Create Bookmark button</description>
+					<label>294</label>
+					<width>360</width>
+					<height>72</height>
+					<include>ButtonInfoDialogsCommonValues</include>
+				</control>
+				<control type="button" id="3">
+					<description>Clear Bookmark button</description>
+					<label>296</label>
+					<width>360</width>
+					<height>72</height>
+					<include>ButtonInfoDialogsCommonValues</include>
+				</control>
+				<control type="button" id="4">
+					<description>Set episode bookmark button</description>
+					<label>20406</label>
+					<width>360</width>
+					<height>72</height>
+					<include>ButtonInfoDialogsCommonValues</include>
+					<visible>VideoPlayer.Content(Episodes) + Control.IsEnabled(4)</visible>
+				</control>
+			</control>
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">3</defaultcontrol>
+	
+	<include>dialogeffect</include>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		
+		<!-- Behind Dialog darken-->
+		
+		<include>BehindDialogDarkBackground</include>
+		
+		
+		
+		<control type="group">
+			
+			<centerleft>50%</centerleft>
+			<centertop>49%</centertop>
+			<width>1431</width>
+			<height>884</height>
+			
+			<include content="DialogBackgroundCommons">
+				<param name="DialogBackgroundWidth" value="1471" />
+				<param name="DialogBackgroundHeight" value="924" />
+				<param name="DialogHeaderWidth" value="1411" />
+				<param name="DialogHeaderLabelWidth" value="1367" />
+				<param name="DialogHeaderId" value="2" />
+			</include>
+			
+			<control type="group">
+				
+				<left>45</left>
+				<top>110</top>
+				
+				
+				<control type="group">
+					<visible>Integer.IsGreater(Container(50).NumItems,0)</visible>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>321</width>
+						<height>482</height>
+						<texture background="true" diffuse="colors/diffuse/321x482-rounded.png">$VAR[VideoManagerPosterOrThumb]</texture>
+						<fadetime>250</fadetime>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<visible>!String.IsEmpty(Container(50).ListItem.Art(poster))</visible>
+						<include>VisibleFadeEffect</include>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>321</width>
+						<height>188</height>
+						<texture background="true" diffuse="colors/diffuse/321x188-rounded.png">$VAR[VideoManagerPosterOrThumb]</texture>
+						<fadetime>250</fadetime>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<visible>String.IsEmpty(Container(50).ListItem.Art(poster))</visible>
+						<include>VisibleFadeEffect</include>
+					</control>
+				</control>
+				
+				<control type="list" id="50">
+					<left>351</left>
+					<width>625</width>
+					<height>560</height>
+					
+					<onup>50</onup>
+					<ondown>50</ondown>
+					<onleft>noop</onleft>
+					<onright>21</onright>
+					
+					<pagecontrol>61</pagecontrol>
+					<include>ScrollTimeOld</include>
+					
+					<itemlayout height="140" width="625">
+						<control type="image">
+							<left>7</left>
+							<top>7</top>
+							<width>120</width>
+							<height>120</height>
+							<texture background="true" colordiffuse="ffcecece" diffuse="colors/diffuse/rounded-generic-1.png">$VAR[DialogSelectImage]</texture>
+							<aspectratio scalediffuse="true">keep</aspectratio>
+						</control>
+						<control type="label">
+							<left>135</left>
+							<top>3</top>
+							<width>478</width>
+							<height>45</height>
+							<font>Regular21</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label>$VAR[DialogSelectLabel1]</label>
+						</control>
+						<control type="textbox">
+							<left>135</left>
+							<top>46</top>
+							<width>478</width>
+							<font>Light17</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<align>left</align>
+							<label>$VAR[DialogSelectLabel2]</label>
+						</control>
+					</itemlayout>
+					
+					<focusedlayout height="140" width="625">
+						
+						<control type="group">
+							<control type="image">
+								<left>0</left>
+								<top>0</top>
+								<width>625</width>
+								<height>134</height>
+								<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+								<animation effect="fade" start="0" end="70" time="0">UnFocus</animation>
+								<animation effect="fade" start="70" end="0" time="0">Focus</animation>
+							</control>
+						</control>
+						
+						<control type="group">
+							<control type="image">
+								<left>0</left>
+								<top>0</top>
+								<width>625</width>
+								<height>134</height>
+								<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+								<animation effect="fade" start="100" end="50" time="0">UnFocus</animation>
+							</control>
+							<include>FocusAnimationType1</include>
+						</control>
+						
+						<control type="image">
+							<left>7</left>
+							<top>7</top>
+							<width>120</width>
+							<height>120</height>
+							<texture background="true" diffuse="colors/diffuse/rounded-generic-1.png">$VAR[DialogSelectImage]</texture>
+							<aspectratio scalediffuse="true">keep</aspectratio>
+						</control>
+						<control type="label">
+							<left>135</left>
+							<top>3</top>
+							<width>478</width>
+							<height>45</height>
+							<font>Regular21</font>
+							<selectedcolor>selected</selectedcolor>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label>$VAR[DialogSelectLabel1]</label>
+						</control>
+						<control type="textbox">
+							<left>135</left>
+							<top>46</top>
+							<width>478</width>
+							<font>Light17</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<align>left</align>
+							<label>$VAR[DialogSelectLabel2]</label>
+						</control>
+					</focusedlayout>
+					
+				</control>
+				
+				<control type="scrollbar" id="61">
+					<left>994</left>
+					<top>0</top>
+					<include>scrollBarStyleDefaultWidth</include>
+					<height>554</height>
+					
+					<onleft>50</onleft>
+					<onright>21</onright>
+					<ondown>61</ondown>
+					<onup>61</onup>
+					
+					<showonepage>false</showonepage>
+					<include>scrollBarStyleDefault</include>
+				</control>
+				
+				<control type="grouplist" id="90">
+					<left>1039</left>
+					<top>0</top>
+					
+					<onup>noop</onup>
+					<ondown>noop</ondown>
+					<onleft>50</onleft>
+					<onright>noop</onright>
+					
+					<itemgap>15</itemgap>
+					
+					<control type="button" id="21">
+						<description>Play button</description>
+						<width>300</width>
+						<height>67</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>$LOCALIZE[208]</label>
+					</control>
+					<control type="button" id="22">
+						<description>Add version button</description>
+						<width>300</width>
+						<height>67</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>$LOCALIZE[40014]</label>
+						<visible>Window.IsVisible(ManageVideoVersions)</visible>
+					</control>
+					<control type="button" id="23">
+						<description>Add extras button</description>
+						<width>300</width>
+						<height>67</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>$LOCALIZE[40015]</label>
+						<visible>Window.IsVisible(ManageVideoExtras)</visible>
+					</control>
+					<control type="button" id="27">
+						<description>Choose art button</description>
+						<width>300</width>
+						<height>67</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>$LOCALIZE[13511]</label>
+					</control>
+					<control type="button" id="24">
+						<description>Rename version button</description>
+						<width>300</width>
+						<height>67</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>$LOCALIZE[40004]</label>
+						<visible>Window.IsVisible(ManageVideoVersions)</visible>
+					</control>
+					<control type="button" id="28">
+						<description>Rename extra button</description>
+						<width>300</width>
+						<height>67</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>$LOCALIZE[118]</label>
+						<visible>Window.IsVisible(ManageVideoExtras)</visible>
+					</control>
+					<control type="button" id="26">
+						<description>Remove button</description>
+						<width>300</width>
+						<height>67</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>$LOCALIZE[15015]</label>
+					</control>
+					<control type="button" id="25">
+						<description>Set Default button</description>
+						<width>300</width>
+						<height>67</height>
+						<align>center</align>
+						<include>ButtonMediaSubCommonValues</include>
+						<label>$LOCALIZE[40023]</label>
+						<visible>Window.IsVisible(ManageVideoVersions)</visible>
+					</control>
+					
+				</control>
+				
+				<control type="label">
+					<top>572</top>
+					<width>1341</width>
+					<height>45</height>
+					<font>Light14</font>
+					<align>left</align>
+					<aligny>center</aligny>
+					<textcolor>grey</textcolor>
+					<selectedcolor>white</selectedcolor>
+					<scroll>false</scroll>
+					<label>$INFO[Container(50).ListItem.FileNameAndPath]</label>
+					<haspath>true</haspath>
+				</control>
+				
+			</control>
+			
+			
+			
+			<!-- Warning -->
+			<control type="group" id="242424">
+				
+				<left>30</left>
+				<top>740</top>
+				
+				<control type="image">
+					<left>15</left>
+					<top>9</top>
+					<width>1341</width>
+					<height>90</height>
+					<texture colordiffuse="cc111111" border="24">colors/white_border24.png</texture>
+				</control>
+				
+				<control type="image">
+					<left>43</left>
+					<top>29</top>
+					<width>50</width>
+					<height>50</height>
+					<texture>DefaultIconError-flag.png</texture>
+				</control>
+				<!-- line 1/2 -->
+				<control type="label">
+					<left>106</left>
+					<top>19</top>
+					<width>1341</width>
+					<font>Light18</font>
+					<label>It's strongly recommended [COLOR=redwarning]not[/COLOR] to use the Video Versions/Extras feature yet due to it's very early state.</label>
+					<textcolor>selected</textcolor>
+				</control>
+				<!-- line 2/2 -->
+				<control type="label">
+					<left>106</left>
+					<top>50</top>
+					<width>1341</width>
+					<font>Light18</font>
+					<label>Just use separate movies in your library to cover different movie versions as a proven solution instead.</label>
+					<textcolor>selected</textcolor>
+				</control>
+			</control>
+			
+		</control>
+	<!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

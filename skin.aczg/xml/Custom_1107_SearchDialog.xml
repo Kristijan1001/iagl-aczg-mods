@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="1107">
+	<defaultcontrol always="true">9001</defaultcontrol>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="button" id="9001">
+			<description>Make sure we hit the first button in the group list and not the close window button</description>
+			<left>-24</left>
+			<top>-24</top>
+			<width>6</width>
+			<height>6</height>
+			<label></label>
+			<font></font>
+			<onfocus>down</onfocus>
+			<texturefocus></texturefocus>
+			<texturenofocus></texturenofocus>
+			<onleft>9000</onleft>
+			<onright>9000</onright>
+			<onup>9000</onup>
+			<ondown>Control.SetFocus(2,0)</ondown>
+		</control>
+		
+		<include>CommonBackground</include>
+		<include>ContentPanelBackgrounds</include>
+		
+		<control type="group" id="9000">
+			
+			<include>Window_OpenClose_Animation</include>
+			
+			<left>458</left>
+			<top>345</top>
+			<width>1005</width>
+			
+			<animation effect="slide" end="0,-47" time="0" condition="Integer.IsGreater(Container(2).NumItems,4)">Conditional</animation>
+			<animation effect="slide" end="0,-47" time="0" condition="Integer.IsGreater(Container(2).NumItems,6)">Conditional</animation>
+			<animation effect="slide" end="0,-47" time="0" condition="Integer.IsGreater(Container(2).NumItems,8)">Conditional</animation>
+			
+			
+			
+			<control type="group">
+				<control type="image">
+					<description>Search Icon</description>
+					<left>470</left>
+					<top>15</top>
+					<width>51</width>
+					<height>51</height>
+					<aspectratio>keep</aspectratio>
+					<texture colordiffuse="ff3b3b3b">icon_search_large$VAR[isUhdScreenStringSuffix].png</texture>
+				</control>
+			</control>
+			
+			
+			
+			<control type="panel" id="2">
+				<left>45</left>
+				<top>105</top>
+				
+				<width>920</width>
+				<height>468</height>
+				
+				<scrolltime>0</scrolltime>
+				
+				<onleft>noop</onleft>
+				<onup>noop</onup>
+				<onright>noop</onright>
+				<ondown>noop</ondown>
+				
+				<itemlayout height="93" width="459">
+					
+					<control type="group">
+						
+						<control type="image">
+							<left>20</left>
+							<top>18</top>
+							<width>54</width>
+							<height>54</height>
+							<texture diffuse="colors/diffuse/54x54-rounded.png">$INFO[ListItem.Icon]</texture>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<animation effect="fade" start="100" end="70" time="0" condition="true">Conditional</animation>
+							<animation effect="fade" start="70" end="25" time="0" condition="[[!String.IsEmpty(ListItem.Property(pvrtv)) + !Pvr.HasTVChannels] | [!String.IsEmpty(ListItem.Property(pvrradio)) + !Pvr.HasRadioChannels]]">Conditional</animation>
+						</control>
+						
+						<control type="label">
+							<left>105</left>
+							<top>0</top>
+							<width>345</width>
+							<height>90</height>
+							<font>Light22</font>
+							<textcolor>grey2</textcolor>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]</label>
+							<description>$INFO[ListItem.Label2]</description>
+							<animation effect="fade" start="100" end="25" time="0" condition="[[!String.IsEmpty(ListItem.Property(pvrtv)) + !Pvr.HasTVChannels] | [!String.IsEmpty(ListItem.Property(pvrradio)) + !Pvr.HasRadioChannels]]">Conditional</animation>
+						</control>
+						
+						<animation effect="fade" start="100" end="75" time="0" condition="[[!String.IsEmpty(ListItem.Property(pvrtv)) + !Pvr.HasTVChannels] | [!String.IsEmpty(ListItem.Property(pvrradio)) + !Pvr.HasRadioChannels]]">Conditional</animation>
+						
+					</control>
+					
+				</itemlayout>
+				
+				<focusedlayout height="93" width="459">
+					
+					<control type="group">
+						
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>456</width>
+							<height>90</height>
+							<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+							<include>FocusAnimationTypeSimple1Slower</include>
+						</control>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>456</width>
+							<height>90</height>
+							<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+							<animation effect="fade" start="100" end="30" time="0" condition="true">Conditional</animation>
+							<visible>![[!String.IsEmpty(ListItem.Property(pvrtv)) + !Pvr.HasTVChannels] | [!String.IsEmpty(ListItem.Property(pvrradio)) + !Pvr.HasRadioChannels]]</visible>
+							<include>FocusAnimationTypeSimple1Slower</include>
+						</control>
+						
+						<control type="image">
+							<left>20</left>
+							<top>18</top>
+							<width>54</width>
+							<height>54</height>
+							<texture diffuse="colors/diffuse/54x54-rounded.png">$INFO[ListItem.Icon]</texture>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<animation effect="fade" start="100" end="70" time="0" condition="true">Conditional</animation>
+							<animation effect="fade" start="70" end="25" time="0" condition="[[!String.IsEmpty(ListItem.Property(pvrtv)) + !Pvr.HasTVChannels] | [!String.IsEmpty(ListItem.Property(pvrradio)) + !Pvr.HasRadioChannels]]">Conditional</animation>
+							<include>FocusAnimationType2_Reverse</include>
+						</control>
+						
+						<control type="image">
+							<left>20</left>
+							<top>18</top>
+							<width>54</width>
+							<height>54</height>
+							<texture diffuse="colors/diffuse/54x54-rounded.png">$INFO[ListItem.Icon]</texture>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<animation effect="fade" start="100" end="25" time="0" condition="[[!String.IsEmpty(ListItem.Property(pvrtv)) + !Pvr.HasTVChannels] | [!String.IsEmpty(ListItem.Property(pvrradio)) + !Pvr.HasRadioChannels]]">Conditional</animation>
+							<include>FocusAnimationType2</include>
+						</control>
+						
+						<control type="label">
+							<left>105</left>
+							<top>0</top>
+							<width>345</width>
+							<height>90</height>
+							<font>Light22</font>
+							<textcolor>grey2</textcolor>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]</label>
+							<description>$INFO[ListItem.Label2]</description>
+							<animation effect="fade" start="100" end="25" time="0" condition="[[!String.IsEmpty(ListItem.Property(pvrtv)) + !Pvr.HasTVChannels] | [!String.IsEmpty(ListItem.Property(pvrradio)) + !Pvr.HasRadioChannels]]">Conditional</animation>
+							<include>FocusAnimationType2_Reverse</include>
+						</control>
+						
+						<control type="label">
+							<left>105</left>
+							<top>0</top>
+							<width>345</width>
+							<height>90</height>
+							<font>Light22</font>
+							<textcolor>white</textcolor>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]</label>
+							<description>$INFO[ListItem.Label2]</description>
+							<animation effect="fade" start="100" end="25" time="0" condition="[[!String.IsEmpty(ListItem.Property(pvrtv)) + !Pvr.HasTVChannels] | [!String.IsEmpty(ListItem.Property(pvrradio)) + !Pvr.HasRadioChannels]]">Conditional</animation>
+							<include>FocusAnimationType2</include>
+						</control>
+						
+						<animation effect="fade" start="100" end="75" time="0" condition="[[!String.IsEmpty(ListItem.Property(pvrtv)) + !Pvr.HasTVChannels] | [!String.IsEmpty(ListItem.Property(pvrradio)) + !Pvr.HasRadioChannels]]">Conditional</animation>
+						
+					</control>
+					
+				</focusedlayout>
+				
+				
+				<content>
+					<item>
+						<label>$LOCALIZE[1212] $LOCALIZE[14022]</label>
+						<label2>Search Video Library</label2>
+						<icon>header_icons/icon_videos.png</icon>
+						
+						<onclick>SetProperty(SearchOpenedFromHome,true,home)</onclick>
+						<onclick>Dialog.Close(all)</onclick>
+						<onclick>Close</onclick>
+						<onclick>ActivateWindow(Videos,return)</onclick>
+						<onclick>VideoLibrary.Search</onclick>
+						
+						<visible>Library.HasContent(Movies) | Library.HasContent(TvShows)</visible>
+					</item>
+					<item>
+						<label>$LOCALIZE[1211] $LOCALIZE[14022]</label>
+						<label2>Search Music Library</label2>
+						<icon>header_icons/icon_music.png</icon>
+						
+						<onclick>SetProperty(SearchOpenedFromHome,true,home)</onclick>
+						<onclick>Dialog.Close(all)</onclick>
+						<onclick>Close</onclick>
+						<onclick>ActivateWindow(Music,return)</onclick>
+						<onclick>SendClick(10502,8)</onclick>
+						
+						<visible>Library.HasContent(Music)</visible>
+					</item>
+					<item>
+						<label>YouTube</label>
+						<label2>Search YouTube</label2>
+						<icon>_added_img/search/youtube$VAR[isUhdScreenStringSuffix].png</icon>
+						
+						<onclick>Dialog.Close(all)</onclick>
+						<onclick>Close</onclick>
+						<onclick condition="!System.HasAddon(plugin.video.youtube)">InstallAddon(plugin.video.youtube)</onclick>
+						<onclick condition="System.HasAddon(plugin.video.youtube)">ActivateWindow(Videos,plugin://plugin.video.youtube/kodion/search/list/,return)</onclick>
+					</item>
+					<item>
+						<label>The Movie DB</label>
+						<label2>Search TheMovieDb</label2>
+						<icon>_added_img/search/tmdb$VAR[isUhdScreenStringSuffix].png</icon>
+						
+						<onclick>Dialog.Close(all)</onclick>
+						<onclick>Close</onclick>
+						<onclick condition="!System.HasAddon(script.extendedinfo)">InstallAddon(script.extendedinfo)</onclick>
+						
+						
+						<!-- Kodi 19+ AddonIsEnabled check -->
+						<onclick condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.)] + !System.AddonIsEnabled(script.extendedinfo)">EnableAddon(script.extendedinfo)</onclick>
+						
+						<onclick condition="System.HasAddon(script.extendedinfo)">RunScript(script.extendedinfo,info=moviedbbrowser,search=True)</onclick>
+					</item>
+					<item>
+						<label>Netflix</label>
+						<label2>Search Netflix</label2>
+						<icon>_added_img/search/netflix$VAR[isUhdScreenStringSuffix].png</icon>
+						
+						<onclick>Dialog.Close(all)</onclick>
+						<onclick>Close</onclick>
+						<onclick>ActivateWindow(10025,plugin://plugin.video.netflix/directory/search/search/,return)</onclick>
+						
+						<visible>System.HasAddon(plugin.video.netflix)</visible>
+					</item>
+					<item>
+						<label>Prime Video</label>
+						<label2>Search Prime Video</label2>
+						<icon>_added_img/search/prime_video$VAR[isUhdScreenStringSuffix].png</icon>
+						
+						<onclick>Dialog.Close(all)</onclick>
+						<onclick>Close</onclick>
+						
+						<onclick>ActivateWindow(10025,plugin://plugin.video.amazon-test/pv/search/,return)</onclick>
+						
+						<visible>System.HasAddon(plugin.video.amazon-test)</visible>
+					</item>
+					<item>
+						<label>$LOCALIZE[24001]</label>
+						<label2>Search Add-ons</label2>
+						<icon>header_icons/icon_addons.png</icon>
+						
+						<onclick>SetProperty(SearchOpenedFromHome,true,home)</onclick>
+						<onclick>Dialog.Close(all)</onclick>
+						<onclick>Close</onclick>
+						<onclick>ActivateWindow(AddonBrowser,root)</onclick>
+						<onclick>ActivateWindow(AddonBrowser,addons://search/,return)</onclick>
+					</item>
+					
+					
+					
+					<item>
+						<label>Global Search</label>
+						<label2>Search Global Search</label2>
+						<icon>_added_img/search/script.globalsearch.png</icon>
+						
+						<onclick>Dialog.Close(all)</onclick>
+						<onclick>Close</onclick>
+						<onclick>RunScript(script.globalsearch)</onclick>
+						
+						<visible>System.HasAddon(script.globalsearch)</visible>
+					</item>
+					
+					
+					
+					<item>
+						<label>$LOCALIZE[19020]  EPG</label>
+						<label2>Search TV</label2>
+						<icon>header_icons/icon_pvr.png</icon>
+						
+						<onclick condition="Pvr.HasTVChannels">Dialog.Close(all)</onclick>
+						<onclick condition="Pvr.HasTVChannels">Close</onclick>
+						<onclick condition="Pvr.HasTVChannels">ActivateWindow(TVSearch)</onclick>
+						
+						<property name="pvrtv">true</property>
+						
+						<visible>System.HasPVRAddon</visible>
+						<include>PVRTVNoChannelsOnClickNotify</include>
+					</item>
+					<item>
+						<label>$LOCALIZE[19021]  EPG</label>
+						<label2>Search Radio</label2>
+						<icon>header_icons/icon_pvr_radio.png</icon>
+						
+						<onclick condition="Pvr.HasRadioChannels">Dialog.Close(all)</onclick>
+						<onclick condition="Pvr.HasRadioChannels">Close</onclick>
+						<onclick condition="Pvr.HasRadioChannels">ActivateWindow(RadioSearch)</onclick>
+						
+						<property name="pvrradio">true</property>
+						
+						<visible>System.HasPVRAddon</visible>
+						<include>PVRRadioNoChannelsOnClickNotify</include>
+					</item>
+					
+					
+					
+				</content>
+			</control>
+			
+			
+			
+		</control>
+		
+		
+		
+		<include>CommonNowPlaying_PIP</include>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">10</defaultcontrol>
+	<menucontrol>7000</menucontrol>
+	<views>10</views>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<include>CommonBackground</include>
+		<include>ContentPanelBackgrounds</include>
+		
+		<control type="group">
+			<include>Window_OpenClose_Animation</include>
+			<control type="group">
+				<include>Window_OpenClose_Animation</include>
+				<control type="group">
+					<include>VisibleFadeEffect</include>
+					<visible>!Control.IsVisible(10)</visible>
+				</control>
+				<control type="group">
+					<include>VisibleFadeEffect</include>
+					<visible>Control.IsVisible(10)</visible>
+				</control>
+			</control>
+		</control>
+		
+		<control type="group" id="50">
+			<include>Window_OpenClose_Animation</include>
+			
+			<include>PVRGuideViewTimeline</include>
+			
+			<!--
+			<include>PVRGuideViewNow</include>
+			<include>PVRGuideViewNext</include>
+			<include>PVRGuideViewChannel</include>
+			-->
+		</control>
+		
+		
+		<!--<include>ScrollOffsetLabel</include>-->
+		
+		<include>PVRHeader</include>
+		
+		
+		
+		<include>BehindDialogFadeOut_PVR</include>
+		
+		
+		
+		<include>PVRSideBlade</include>
+		
+		<include>FullScreenClock</include>
+		
+		
+		
+		<include>CommonNowPlaying_PIP</include>
+		
+		
+		
+		<include>BehindDialogFadeOut</include>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

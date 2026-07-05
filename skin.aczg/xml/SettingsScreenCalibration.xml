@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>8</defaultcontrol>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<!--
+		<control type="videowindow" id="20">
+			<description>videowindow</description>
+			<left>0</left>
+			<top>0</top>
+			<width>1920</width>
+			<height>1080</height>
+			<visible>Player.HasVideo</visible>
+		</control>
+		-->
+		<control type="group">
+			<!--<visible>!Player.HasVideo</visible>-->
+			<include>CommonBackground</include>
+		</control>
+		
+		<!-- Darkener Overlay -->
+		<control type="image">
+			<description>Overlay</description>
+			
+			<include>BackgroundDimensions_Plus_2px</include>
+			
+			<left>-1</left>
+			<top>-1</top>
+			
+			<texture>colors/black_70.png</texture>
+			<include>dialogeffect</include>
+		</control>
+		
+		<control type="mover" id="8">
+			<description>top left mover</description>
+			<left>0</left>
+			<top>0</top>
+			<width>192</width>
+			<height>192</height>
+			<texturefocus>calibrate/CalibrateTopLeft.png</texturefocus>
+			<texturenofocus></texturenofocus>
+			<!-- Kodi 20+ fix -->
+			<movingspeed acceleration="180" maxvelocity="300" resettimeout="200" delta="1">
+				<eventconfig type="up" />
+				<eventconfig type="down" />
+				<eventconfig type="left" />
+				<eventconfig type="right" />
+			</movingspeed>
+		</control>
+		
+		<control type="mover" id="9">
+			<description>right bottom mover</description>
+			<left>1050</left>
+			<top>750</top>
+			<width>192</width>
+			<height>192</height>
+			<texturefocus>calibrate/CalibrateBottomRight.png</texturefocus>
+			<texturenofocus></texturenofocus>
+			<!-- Kodi 20+ fix -->
+			<movingspeed acceleration="180" maxvelocity="300" resettimeout="200" delta="1">
+				<eventconfig type="up" />
+				<eventconfig type="down" />
+				<eventconfig type="left" />
+				<eventconfig type="right" />
+			</movingspeed>
+		</control>
+		
+		<control type="mover" id="10">
+			<description>subtitle position mover</description>
+			<left>300</left>
+			<top>750</top>
+			<width>768</width>
+			<height>192</height>
+			
+			<!-- Kodi 20+ fix (Also Kodi 17,18,19 compatible) -->
+			<include condition="[String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.)]">subtitlePositionMoverTexture</include>
+			<include condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.)]">subtitlePositionMoverTexture20</include>
+			
+			<texturenofocus></texturenofocus>
+			<!-- Kodi 20+ fix -->
+			<movingspeed acceleration="180" maxvelocity="300" resettimeout="200" delta="1">
+				<eventconfig type="up" />
+				<eventconfig type="down" />
+			</movingspeed>
+		</control>
+		
+		<control type="resize" id="11">
+			<description>pixel aspect ratio box</description>
+			<left>0</left>
+			<top>348</top>
+			<width>384</width>
+			<height>384</height>
+			<texturefocus>calibrate/CalibratePixelRatio.png</texturefocus>
+			<texturenofocus></texturenofocus>
+			<!-- Kodi 20+ fix -->
+			<movingspeed acceleration="140" maxvelocity="300" resettimeout="180" delta="1">
+				<eventconfig type="left" />
+				<eventconfig type="right" />
+			</movingspeed>
+		</control>
+		
+		<!-- Kodi 20+ fix -->
+		<control type="mover" id="12">
+			<description>reset calibration</description>
+			<posx>0</posx>
+			<posy>1350</posy>
+			<width>150</width>
+			<height>150</height>
+			<texturefocus colordiffuse="FF12b2e7">calibrate/CalibrateReset.png</texturefocus>
+			<texturenofocus colordiffuse="00FFFFFF">calibrate/CalibrateReset.png</texturenofocus>
+		</control>
+		
+		<control type="group">
+			<left>30</left>
+			<top>75</top>
+			<!-- Kodi 20+ fix -->
+			<animation effect="slide" end="0,-45" time="0" condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.)]">Conditional</animation>
+			<control type="label" id="2">
+				<description>coordinates label</description>
+				<left>0</left>
+				<top>30</top>
+				<width>1860</width>
+				<label></label>
+				<align>center</align>
+				<!-- Kodi 20+ fix (Also Kodi 17,18,19 compatible) -->
+				<include condition="[String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.)]">calibrationLabelFont</include>
+				<include condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.)]">calibrationLabelFont20</include>
+			</control>
+			<control type="label" id="3">
+				<description>help information</description>
+				<left>0</left>
+				<top>90</top>
+				<width>1860</width>
+				<label></label>
+				<align>center</align>
+				<font>Regular20</font>
+			</control>
+			<!-- Kodi 20+ fix -->
+			<control type="label" id="4">
+				<description>calibration value</description>
+				<posx>0</posx>
+				<posy>180</posy>
+				<width>150%</width>
+				<label></label>
+				<align>center</align>
+				<font>Regular20</font>
+				<textcolor>selected</textcolor>
+			</control>
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog">
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group" id="250">
+			
+			<depth>DepthDialog-</depth>
+			
+			<animation effect="fade" time="500" tween="quadratic" easing="out">WindowOpen</animation>
+			<animation effect="fade" time="500" tween="quadratic" easing="out">WindowClose</animation>
+			
+			<!-- background -->
+			<control type="image">
+				
+				<include>BackgroundDimensions</include>
+				
+				<left>0</left>
+				<top>0</top>
+				
+				<texture>colors/black.png</texture>
+			</control>
+			<control type="group">
+				<left>30</left>
+				<control type="group">
+					<left>-86</left>
+					<animation effect="slide" start="0,0" end="51,0" time="500" tween="quadratic" easing="out" reversible="true" condition="Control.HasFocus(150) | Control.HasFocus(160) | Control.HasFocus(8999) | !Integer.IsGreater(Container(120).NumItems,0)">Conditional</animation>
+					<control type="label">
+						<description>Video label</description>
+						<left>440</left>
+						<top>30</top>
+						<width>1430</width>
+						<height>45</height>
+						<font>Regular20</font>
+						<label>$INFO[Player.Filename]</label>
+						<align>left</align>
+						<aligny>center</aligny>
+						<textcolor>blue</textcolor>
+						<scroll>false</scroll>
+					</control>
+					<control type="image" id="110">
+						<description>Service Logo</description>
+						<left>440</left>
+						<top>86</top>
+						<width>1400</width>
+						<height>60</height>
+						<aspectratio align="left">keep</aspectratio>
+					</control>
+					<control type="label" id="100">
+						<description>header label</description>
+						<left>440</left>
+						<top>152</top>
+						<width>1400</width>
+						<height>45</height>
+						<font>Regular30</font>
+						<align>left</align>
+						<aligny>center</aligny>
+						<textcolor>white</textcolor>
+					</control>
+					<control type="label" id="140">
+						<description>textarea</description>
+						<left>440</left>
+						<top>217</top>
+						<width>1400</width>
+						<height>60</height>
+						<font>Regular20</font>
+						<textcolor>selected</textcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<wrapmultiline>true</wrapmultiline>
+					</control>
+				</control>
+				<control type="group">
+					<control type="list" id="120">
+						<left>45</left>
+						<top>309</top>
+						<width>1785</width>
+						<height>651</height>
+						<onleft>150</onleft>
+						<onright>121</onright>
+						<onup>120</onup>
+						<ondown>120</ondown>
+						<viewtype label="535">list</viewtype>
+						<pagecontrol>121</pagecontrol>
+						<include>ScrollTimeOld</include>
+						<animation type="Conditional" condition="Control.HasFocus(150) | Control.HasFocus(160) | Control.HasFocus(8999) | !Integer.IsGreater(Container(120).NumItems,0)" reversible="true">
+							<effect type="fade" start="100" end="8" time="0" />
+						</animation>
+						<itemlayout width="1785" height="54">
+							<control type="image">
+								<left>10</left>
+								<top>9</top>
+								<width>39</width>
+								<height>39</height>
+								<texture>subtitles/flags/$INFO[ListItem.Art(thumb)].png</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+							<control type="label">
+								<left>60</left>
+								<top>0</top>
+								<width>135</width>
+								<height>57</height>
+								<font>Regular20</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<align>left</align>
+								<info>ListItem.Label</info>
+							</control>
+							<control type="image">
+								<left>203</left>
+								<top>20</top>
+								<width>30</width>
+								<height>18</height>
+								<texture>subtitles/icon_close_caption.png</texture>
+								<visible>ListItem.property(hearing_imp)</visible>
+							</control>
+							<control type="image">
+								<left>240</left>
+								<top>20</top>
+								<width>60</width>
+								<height>18</height>
+								<texture>subtitles/icon_sync.png</texture>
+								<visible>ListItem.property(sync)</visible>
+							</control>
+							<control type="label">
+								<left>308</left>
+								<top>14</top>
+								<width>1328</width>
+								<height>28</height>
+								<font>Regular20</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<align>left</align>
+								<info>ListItem.Label2</info>
+							</control>
+							<control type="image">
+								<left>1635</left>
+								<top>17</top>
+								<width>135</width>
+								<height>26</height>
+								<texture>subtitles/rating$INFO[ListItem.ActualIcon].png</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+						</itemlayout>
+						<focusedlayout width="1785" height="54">
+							<control type="image">
+								<left>0</left>
+								<top>0</top>
+								<width>1770</width>
+								<height>57</height>
+								<texture border="12" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">MenuItemFO-rounded-10px-neutral.png</texture>
+								<visible>Control.HasFocus(120)</visible>
+							</control>
+							<control type="image">
+								<left>10</left>
+								<top>9</top>
+								<width>39</width>
+								<height>39</height>
+								<texture>subtitles/flags/$INFO[ListItem.Art(thumb)].png</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+							<control type="label">
+								<left>60</left>
+								<top>0</top>
+								<width>135</width>
+								<height>57</height>
+								<font>Regular20</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<align>left</align>
+								<info>ListItem.Label</info>
+							</control>
+							<control type="image">
+								<left>203</left>
+								<top>20</top>
+								<width>30</width>
+								<height>18</height>
+								<texture>subtitles/icon_close_caption.png</texture>
+								<visible>ListItem.property(hearing_imp)</visible>
+							</control>
+							<control type="image">
+								<left>240</left>
+								<top>20</top>
+								<width>60</width>
+								<height>18</height>
+								<texture>subtitles/icon_sync.png</texture>
+								<visible>ListItem.property(sync)</visible>
+							</control>
+							<control type="label">
+								<left>308</left>
+								<top>14</top>
+								<width>1328</width>
+								<height>28</height>
+								<font>Regular20</font>
+								<aligny>center</aligny>
+								<textcolor>white</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<align>left</align>
+								<info>ListItem.Label2</info>
+							</control>
+							<control type="image">
+								<left>1635</left>
+								<top>17</top>
+								<width>135</width>
+								<height>26</height>
+								<texture>subtitles/rating$INFO[ListItem.ActualIcon].png</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+						</focusedlayout>
+					</control>
+					
+					<control type="scrollbar" id="121">
+						<left>1836</left>
+						<top>309</top>
+						<include>scrollBarStyleDefaultWidth</include>
+						<height>651</height>
+						<showonepage>false</showonepage>
+						<visible>Control.IsVisible(120)</visible>
+						<animation type="Conditional" condition="Control.HasFocus(150) | Control.HasFocus(160) | Control.HasFocus(8999) | !Integer.IsGreater(Container(120).NumItems,0)" reversible="true">
+							<effect type="fade" start="100" end="8" time="0" />
+						</animation>
+						<include>scrollBarStyleDefault</include>
+						<onleft>120</onleft>
+					</control>
+					
+					<control type="group" id="130">
+						<left>-88</left>
+						<animation effect="slide" start="0,0" end="51,0" time="500" tween="quadratic" easing="out" reversible="true" condition="Control.HasFocus(150) | Control.HasFocus(160) | Control.HasFocus(8999) | !Integer.IsGreater(Container(120).NumItems,0)">Conditional</animation>
+						<control type="grouplist">
+							<left>433</left>
+							<top>990</top>
+							<width>1695</width>
+							<height>51</height>
+							<orientation>horizontal</orientation>
+							<itemgap>8</itemgap>
+							<align>left</align>
+							<control type="image">
+								<width>51</width>
+								<height>51</height>
+								<texture>DefaultIconInfo-circle.png</texture>
+							</control>
+							<control type="label">
+								<description>notification</description>
+								<width min="15" max="840">auto</width>
+								<height>51</height>
+								<font>Regular18</font>
+								<textcolor>grey2</textcolor>
+								<label>$LOCALIZE[31413]</label>
+								<aligny>center</aligny>
+							</control>
+						</control>
+					</control>
+				</control>
+			</control>
+			
+			
+			<control type="group">
+				
+				
+				<include condition="[String.IsEqual(Skin.AspectRatio,21:9) | [Skin.HasSetting(ForceCinemascope) + String.IsEqual(Skin.AspectRatio,16:9) + [String.IsEqual(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),-26) | [String.IsEmpty(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom)) + String.IsEqual(Skin.String(lookandfeel.skinzoom),-26)]]]]">SkinVariant_21by9_MoveLeft_330px</include>
+				
+				
+				<left>-380</left>
+				
+				<control type="button" id="8999">
+					<description>Fake button for mouse control</description>
+					<left>-1000</left>
+					<top>0</top>
+					
+					<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+					
+					<width>1409</width>
+					<height>1080</height>
+					<label></label>
+					<font></font>
+					<texturenofocus></texturenofocus>
+					<texturefocus></texturefocus>
+					<visible>true</visible>
+					<onfocus>SetFocus(150)</onfocus>
+				</control>
+				
+				<animation effect="slide" start="0,0" end="380,0" time="500" tween="quadratic" easing="out" reversible="true" condition="Control.HasFocus(150) | Control.HasFocus(160) | Control.HasFocus(8999) | !Integer.IsGreater(Container(120).NumItems,0)">Conditional</animation>
+				
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					
+					<include condition="String.IsEqual(Skin.AspectRatio,16:10)">SkinVariant_16by10_Background_Height_Plus_120px_And_MoveUp_60px</include>
+					
+					<width>410</width>
+					<height>1080</height>
+					<texture>colors/black.png</texture>
+				</control>
+				<control type="image">
+					<left>380</left>
+					<top>231</top>
+					<width>36</width>
+					<height>36</height>
+					<texture colordiffuse="$VAR[accentColorDiffuse]">scroll-left.png</texture>
+					<visible>![Control.HasFocus(150) | Control.HasFocus(160) | Control.HasFocus(8999) | !Integer.IsGreater(Container(120).NumItems,0)]</visible>
+				</control>
+				<control type="image">
+					<left>380</left>
+					<top>231</top>
+					<width>36</width>
+					<height>36</height>
+					<texture flipx="true" colordiffuse="$VAR[accentColorDiffuse]">scroll-left.png</texture>
+					<visible>Control.HasFocus(150) | Control.HasFocus(160) | Control.HasFocus(8999) | !Integer.IsGreater(Container(120).NumItems,0)</visible>
+				</control>
+				<control type="label">
+					<left>8</left>
+					<top>225</top>
+					<width>360</width>
+					<height>39</height>
+					<label>$LOCALIZE[24018]</label>
+					<font>Light21</font>
+					<align>center</align>
+					<aligny>top</aligny>
+					<textcolor>blue</textcolor>
+					<wrapmultiline>true</wrapmultiline>
+				</control>
+				<control type="list" id="150">
+					<left>0</left>
+					<top>309</top>
+					<width>375</width>
+					<height>525</height>
+					<onleft>noop</onleft>
+					<onright>120</onright>
+					<onup>noop</onup>
+					<ondown>160</ondown>
+					<viewtype label="535">list</viewtype>
+					<include>ScrollTimeOld</include>
+					<itemlayout width="600" height="75">
+						<control type="label">
+							<left>30</left>
+							<top>0</top>
+							<width>315</width>
+							<height>72</height>
+							<font>Regular20</font>
+							<aligny>center</aligny>
+							<textcolor>white</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<align>left</align>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="600" height="75">
+						<control type="image">
+							<left>15</left>
+							<top>0</top>
+							<width>345</width>
+							<height>72</height>
+							<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+							<visible>Control.HasFocus(150)</visible>
+						</control>
+						<control type="label">
+							<left>30</left>
+							<top>0</top>
+							<width>315</width>
+							<height>72</height>
+							<font>Regular20</font>
+							<aligny>center</aligny>
+							<textcolor>white</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<align>left</align>
+							<label>$INFO[ListItem.Label]</label>
+							<scroll>false</scroll>
+						</control>
+					</focusedlayout>
+				</control>
+				
+				<control type="button" id="160">
+					<description>Manual search button</description>
+					<left>15</left>
+					<top>891</top>
+					<width>345</width>
+					<height>72</height>
+					<onleft>noop</onleft>
+					<onright>120</onright>
+					<onup>150</onup>
+					<ondown>noop</ondown>
+					<label>$LOCALIZE[24120]</label>
+					<font>Regular21</font>
+					<textcolor>white</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<align>center</align>
+					<visible>!String.IsEqual(Control.GetLabel(140),$LOCALIZE[24114])</visible>
+				</control>
+				
+			</control>
+			
+			
+			
+		</control>
+		
+		
+		
+		<include condition="Integer.IsLess(Window(Home).Property(CinemaHelper.GetSettingValue.lookandfeel.skinzoom),0) | !String.IsEqual(Skin.AspectRatio,16:9)">SkinOutOfBoundsMasks</include>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	
+	<default type="image">
+		<texture></texture>
+	</default>
+	
+	
+	<default type="label">
+		<font>Regular20</font>
+		<textcolor>white</textcolor>
+		<disabledcolor>grey3.5</disabledcolor>
+	</default>
+	
+	
+	<default type="fadelabel">
+		<font>Regular20</font>
+		<textcolor>white</textcolor>
+		<disabledcolor>grey3.5</disabledcolor>
+	</default>
+	
+	
+	<default type="button">
+		<width>450</width>
+		<height>63</height>
+		<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+		<texturenofocus></texturenofocus>
+		<font>Regular20</font>
+		<textcolor>grey</textcolor>
+		<focusedcolor>white</focusedcolor>
+		<disabledcolor>grey3.5</disabledcolor>
+		<textoffsetx>26</textoffsetx>
+		<aligny>center</aligny>
+		<pulseonselect>false</pulseonselect>
+	</default>
+	
+	
+	<default type="togglebutton">
+		<width>30</width>
+		<height>30</height>
+		<textcolor>grey</textcolor>
+		<focusedcolor>white</focusedcolor>
+		<font>Regular20</font>
+		<disabledcolor>grey3.5</disabledcolor>
+		<pulseonselect>false</pulseonselect>
+	</default>
+	
+	
+	<default type="textbox">
+		<width>615</width>
+		<height>320</height>
+		<align>left</align>
+		<textcolor>white</textcolor>
+		<font>Regular20</font>
+		
+		<scrolltime tween="sine" easing="inout">275</scrolltime>
+		
+	</default>
+	
+	
+	<default type="progress">
+		<include>progressBarStyleDefault</include>
+		<lefttexture></lefttexture>
+		<righttexture></righttexture>
+		<overlaytexture></overlaytexture>
+	</default>
+	
+	
+	<default type="spincontrol">
+		
+		<textureupfocus>controls/spincontrol-up-focus.png</textureupfocus>
+		<textureup>controls/spincontrol-up.png</textureup>
+		
+		<texturedownfocus>controls/spincontrol-down-focus.png</texturedownfocus>
+		<texturedown>controls/spincontrol-down.png</texturedown>
+		
+		<textureupdisabled colordiffuse="40FFFFFF">controls/spincontrol-up.png</textureupdisabled>
+		<texturedowndisabled colordiffuse="40FFFFFF">controls/spincontrol-down.png</texturedowndisabled>
+		
+		<align>right</align>
+		<width>50</width>
+		<height>33</height>
+		<spinwidth>50</spinwidth>
+		<spinheight>33</spinheight>
+		<font>Regular20</font>
+		<reverse>yes</reverse>
+		<textcolor>grey</textcolor>
+		<focusedcolor>white</focusedcolor>
+		<disabledcolor>grey3.5</disabledcolor>
+		<subtype>text</subtype>
+		<textoffsetx>-8</textoffsetx>
+		<textoffsety>0</textoffsety>
+		<pulseonselect>false</pulseonselect>
+	</default>
+	
+	
+	<default type="spincontrolex">
+		<width>450</width>
+		<height>63</height>
+		<spinwidth>50</spinwidth>
+		<spinheight>33</spinheight>
+		<texturefocus colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+		<texturenofocus></texturenofocus>
+		
+		<textureupfocus>controls/spincontrol-up-focus.png</textureupfocus>
+		<textureup>controls/spincontrol-up.png</textureup>
+		
+		<texturedownfocus>controls/spincontrol-down-focus.png</texturedownfocus>
+		<texturedown>controls/spincontrol-down.png</texturedown>
+		
+		<textureupdisabled colordiffuse="40FFFFFF">controls/spincontrol-up.png</textureupdisabled>
+		<texturedowndisabled colordiffuse="40FFFFFF">controls/spincontrol-down.png</texturedowndisabled>
+		
+		<font>Regular20</font>
+		<textcolor>grey</textcolor>
+		<focusedcolor>white</focusedcolor>
+		<disabledcolor>grey3.5</disabledcolor>
+		<textoffsetx>26</textoffsetx>
+		<aligny>center</aligny>
+		<reverse>yes</reverse>
+		<pulseonselect>false</pulseonselect>
+	</default>
+	
+	
+	<default type="radiobutton">
+		
+		<width>45</width>
+		<height>63</height>
+		
+		<radiowidth>68</radiowidth>
+		<radioheight>34</radioheight>
+		
+		
+		
+		<include condition="[ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]">Radio_Button_Textures_4K</include>
+		
+		
+		<textureradioonfocus>controls/radiobutton-on.png</textureradioonfocus>
+		<textureradioonnofocus colordiffuse="FFc6c6c6">controls/radiobutton-on.png</textureradioonnofocus>
+		
+		<textureradioofffocus>controls/radiobutton-off-focus.png</textureradioofffocus>
+		<textureradiooffnofocus>controls/radiobutton-off.png</textureradiooffnofocus>
+		
+		<textureradioondisabled colordiffuse="40FFFFFF">controls/radiobutton-on.png</textureradioondisabled>
+		<textureradiooffdisabled colordiffuse="40FFFFFF">controls/radiobutton-off.png</textureradiooffdisabled>
+		
+		
+		
+		<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+		<texturenofocus></texturenofocus>
+		
+		<font>Regular20</font>
+		<textcolor>grey</textcolor>
+		<focusedcolor>white</focusedcolor>
+		<disabledcolor>grey3.5</disabledcolor>
+		
+		<textoffsetx>26</textoffsetx>
+		
+		<aligny>center</aligny>
+		<pulseonselect>false</pulseonselect>
+	</default>
+	
+	
+	<!-- Kodi 20+ -->
+	<default type="colorbutton">
+		
+		<width>450</width>
+		<height>63</height>
+		
+		<colorwidth>128</colorwidth>
+		<colorheight>64</colorheight>
+		
+		
+		<include condition="[ !String.IsEmpty(Window(10000).Property(CH.HiResScreen)) + String.IsEqual(Window(10000).Property(CH.RunningAmlogicBuild),False) ]">Defaults_colorbutton_4K</include>
+		
+		<texturecolormask>controls/colorbutton.png</texturecolormask>
+		<texturecolordisabledmask colordiffuse="40FFFFFF">controls/colorbutton.png</texturecolordisabledmask>
+		
+		
+		<texturefocus></texturefocus>
+		<texturenofocus></texturenofocus>
+		<font>Regular20</font>
+		<textcolor>grey</textcolor>
+		<focusedcolor>white</focusedcolor>
+		<disabledcolor>grey3.5</disabledcolor>
+		<textoffsetx>26</textoffsetx>
+		<aligny>center</aligny>
+		<pulseonselect>no</pulseonselect>
+	</default>
+	
+	
+	<default type="slider">
+		<controloffsetx>75</controloffsetx>
+		<controloffsety>0</controloffsety>
+		<orientation>horizontal</orientation>
+		<pulseonselect>false</pulseonselect>
+	</default>
+	
+	
+	<default type="sliderex">
+		<height>53</height>
+		<textoffsetx>26</textoffsetx>
+		<aligny>center</aligny>
+		<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+		<texturenofocus></texturenofocus>
+		<sliderwidth>225</sliderwidth>
+		<sliderheight>36</sliderheight>
+		
+		<!-- Kodi 21+ -->
+		<texturesliderbardisabled colordiffuse="82FFFFFF">osd/slider/slider-bg.png</texturesliderbardisabled>
+		<textureslidernibdisabled colordiffuse="FF828282">osd/slider/slider-nib.png</textureslidernibdisabled>
+		
+		<texturesliderbar>osd/slider/slider-bg.png</texturesliderbar>
+		<textureslidernib>osd/slider/slider-nib.png</textureslidernib>
+		
+		<textureslidernibfocus colordiffuse="$VAR[uiColorVariantSliderNibFocus]">osd/slider/slider-nib-focus-neutral.png</textureslidernibfocus>
+		
+		<font>Regular17</font>
+		<textcolor>grey</textcolor>
+		<focusedcolor>white</focusedcolor>
+		<disabledcolor>grey3.5</disabledcolor>
+		<pulseonselect>false</pulseonselect>
+	</default>
+	
+	
+	<default type="mover">
+		<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+		<texturenofocus></texturenofocus>
+	</default>
+	
+	
+	<default type="resize">
+		<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+		<texturenofocus></texturenofocus>
+	</default>
+	
+	
+	<default type="edit">
+		<width>450</width>
+		<height>63</height>
+		<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+		<texturenofocus></texturenofocus>
+		<font>Regular20</font>
+		<textcolor>grey</textcolor>
+		<focusedcolor>white</focusedcolor>
+		<disabledcolor>grey3.5</disabledcolor>
+		<invalidcolor>invalid</invalidcolor>
+		<textoffsetx>26</textoffsetx>
+		<aligny>center</aligny>
+		<pulseonselect>false</pulseonselect>
+	</default>
+	
+	
+</includes>

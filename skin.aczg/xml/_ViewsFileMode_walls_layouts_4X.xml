@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	
+	
+	
+	
+	
+	<include name="WallView_Layouts_4X_Default">
+		
+		
+		
+		<param name="item_width_1">171</param>
+		<param name="item_width_2">171</param>
+		<param name="item_width_3">156</param>
+		
+		<param name="item_height_1">1</param>
+		<param name="item_height_2">1</param>
+		<param name="item_height_3">1</param>
+		
+		<param name="item_top_1">67</param>
+		<param name="item_top_2">67</param>
+		<param name="item_top_3">67</param>
+		
+		
+		
+		<definition>
+		
+		
+		
+		<!-- itemlayouts -->
+		
+		<!-- normal wall density + poster -->
+		<itemlayout width="$PARAM[item_width_1]" height="$PARAM[item_height_1]" condition="String.IsEqual(Container.Content,Actors) | String.IsEqual(Container.Content,VideoVersions) | [ !Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)] ]">
+			<control type="group">
+				<top>$PARAM[item_top_1]</top>
+				<include>Wall_View_4X_itemLayout</include>
+			</control>
+		</itemlayout>
+		<!-- normal wall density + squared -->
+		<itemlayout width="$PARAM[item_width_2]" height="$PARAM[item_height_2]" condition="![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors) | String.IsEqual(Container.Content,VideoVersions)]">
+			<control type="group">
+				<top>$PARAM[item_top_2]</top>
+				<include>Wall_View_4X_itemLayout</include>
+			</control>
+		</itemlayout>
+		
+		<!-- higher wall density (poster only) -->
+		<itemlayout width="$PARAM[item_width_3]" height="$PARAM[item_height_3]" condition="Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)]">
+			<control type="group">
+				<top>$PARAM[item_top_3]</top>
+				<include>Wall_View_4X_itemLayout</include>
+			</control>
+		</itemlayout>
+		
+		
+		
+		<!-- focusedlayouts -->
+		
+		<!-- normal wall density + poster -->
+		<focusedlayout width="$PARAM[item_width_1]" height="$PARAM[item_height_1]" condition="String.IsEqual(Container.Content,Actors) | String.IsEqual(Container.Content,VideoVersions) | [ !Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)] ]">
+			<control type="group">
+				<top>$PARAM[item_top_1]</top>
+				<include>Wall_View_4X_focusedLayout</include>
+			</control>
+		</focusedlayout>
+		<!-- normal wall density + squared -->
+		<focusedlayout width="$PARAM[item_width_2]" height="$PARAM[item_height_2]" condition="![String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons) | String.IsEqual(Container.Content,Actors) | String.IsEqual(Container.Content,VideoVersions)]">
+			<control type="group">
+				<top>$PARAM[item_top_2]</top>
+				<include>Wall_View_4X_focusedLayout</include>
+			</control>
+		</focusedlayout>
+		
+		<!-- higher wall density (poster only) -->
+		<focusedlayout width="$PARAM[item_width_3]" height="$PARAM[item_height_3]" condition="Skin.HasSetting(WallViewsHigherDensity) + [String.IsEqual(Container.Content,Movies) | String.IsEqual(Container.Content,Sets) | String.IsEqual(Container.Content,TvShows) | String.IsEqual(Container.Content,Seasons)]">
+			<control type="group">
+				<top>$PARAM[item_top_3]</top>
+				<include>Wall_View_4X_focusedLayout</include>
+			</control>
+		</focusedlayout>
+		
+		
+		
+		</definition>
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="WallView_Layouts_4X">
+		<include content="WallView_Layouts_4X_Default">
+			
+			<param name="item_height_1">238</param>
+			<param name="item_height_2">234</param>
+			<param name="item_height_3">238</param>
+			
+		</include>
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="WallView_Layouts_4X_16by10">
+		<include content="WallView_Layouts_4X_Default">
+			
+			<param name="item_height_1">252</param>
+			<param name="item_height_2">258</param>
+			<param name="item_height_3">252</param>
+			
+		</include>
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="WallView_Layouts_4X_21by9">
+		<include content="WallView_Layouts_4X_Default">
+			
+			<param name="item_width_1">178</param>
+			<param name="item_width_2">178</param>
+			<param name="item_width_3">166</param>
+			
+			<param name="item_height_1">238</param>
+			<param name="item_height_2">234</param>
+			<param name="item_height_3">238</param>
+			
+		</include>
+	</include>
+	
+	
+	
+	
+	
+	
+</includes>

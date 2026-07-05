@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	
+	
+	<!-- Controls: Buttons -->
+	<include name="DialogGameControllers">
+		<control type="group" id="9000">
+			<left>7</left>
+			<top>120</top>
+			
+			<!-- left -->
+			<control type="image">
+				<left>31</left>
+				<top>60</top>
+				<width>520</width>
+				<height>712</height>
+				<texture border="24">colors/white_border24.png</texture>
+				<animation effect="fade" start="100" end="7" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="label">
+				<description>Controller types heading</description>
+				<top>0</top>
+				<left>51</left>
+				<width>480</width>
+				<height>38</height>
+				<font>Light21</font>
+				<label>35050</label>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>blue</textcolor>
+			</control>
+			<control type="grouplist" id="3">
+				<description>Controller types grouplist</description>
+				<left>51</left>
+				<top>92</top>
+				<width>480</width>
+				<height>648</height>
+				<onleft>noop</onleft>
+				<onright>5</onright>
+				<onup>noop</onup>
+				<ondown>noop</ondown>
+				<pagecontrol>30</pagecontrol>
+				<itemgap>0</itemgap>
+				<include>SimpleListViewsScrollTime</include>
+			</control>
+			<control type="button" id="10">
+				<description>Default controller types button</description>
+				<height>72</height>
+				<width>480</width>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>Regular21</font>
+				<textcolor>white</textcolor>
+			</control>
+			<control type="scrollbar" id="30">
+				<left>568</left>
+				<top>60</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>712</height>
+				<onleft>3</onleft>
+				<onright>5</onright>
+				<ondown></ondown>
+				<onup></onup>
+				<showonepage>false</showonepage>
+				<include>scrollBarStyleDefault</include>
+				<!--<animation effect="fade" start="100" end="0" time="0" condition="Integer.IsLess(Container(3).NumItems,10) | true">Conditional</animation>-->
+			</control>
+			
+			<!-- middle -->
+			<control type="group">
+				<left>601</left>
+				<top>200</top>
+				<!--
+				<control type="image">
+					<width>349</width>
+					<height>349</height>
+					<texture colordiffuse="c1ffffff">colors/white.png</texture>
+				</control>
+				-->
+				<control type="gamecontroller" id="31">
+					<width>349</width>
+					<height>349</height>
+					<include>VisibleFadeEffect</include>
+					<include>dialogeffectSlower</include>
+				</control>
+			</control>
+			
+			<control type="image">
+				<width>1489</width>
+				<height>136</height>
+				<top>792</top>
+				<left>31</left>
+				<texture border="24">colors/white_border24.png</texture>
+				<animation effect="fade" start="100" end="7" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="textbox" id="32">
+				<description>Controller description</description>
+				<width>1449</width>
+				<height>108</height>
+				<top>806</top>
+				<left>51</left>
+				<font>Light19</font>
+				<textcolor>grey</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+			</control>
+			
+			<!-- right -->
+			<control type="group">
+				<left>1000</left>
+				<control type="image">
+					<left>0</left>
+					<top>60</top>
+					<width>520</width>
+					<height>712</height>
+					<texture border="24">colors/white_border24.png</texture>
+					<animation effect="fade" start="100" end="7" time="0" condition="true">Conditional</animation>
+				</control>
+				<control type="label">
+					<description>Feature types heading</description>
+					<top>0</top>
+					<left>20</left>
+					<width>480</width>
+					<height>38</height>
+					<font>Light21</font>
+					<label>35059</label>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>blue</textcolor>
+				</control>
+				<control type="grouplist" id="5">
+					<description>Feature types grouplist</description>
+					<left>20</left>
+					<top>92</top>
+					<width>480</width>
+					<height>648</height>
+					<onleft>3</onleft>
+					<onright>18</onright>
+					<onup>noop</onup>
+					<ondown>noop</ondown>
+					<pagecontrol>50</pagecontrol>
+					<include>SimpleListViewsScrollTime</include>
+				</control>
+				<control type="label" id="8">
+					<description>Default feature types label</description>
+					<height>72</height>
+					<width>480</width>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>Light21</font>
+					<textcolor>blue</textcolor>
+				</control>
+				<control type="button" id="7">
+					<description>Default feature types button</description>
+					<height>72</height>
+					<width>480</width>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>Regular21</font>
+					<textcolor>white</textcolor>
+				</control>
+				<control type="scrollbar" id="50">
+					<left>537</left>
+					<top>60</top>
+					<include>scrollBarStyleDefaultWidth</include>
+					<height>712</height>
+					<onleft>5</onleft>
+					<onright>18</onright>
+					<ondown></ondown>
+					<onup></onup>
+					<showonepage>false</showonepage>
+					<include>scrollBarStyleDefault</include>
+					<!--<animation effect="fade" start="100" end="0" time="0" condition="Integer.IsLess(Container(5).NumItems,10)">Conditional</animation>-->
+				</control>
+			</control>
+			
+		</control>
+		
+		<!-- right buttons -->
+		<control type="grouplist" id="9001">
+			<left>1582</left>
+			<top>180</top>
+			
+			<onleft>5</onleft>
+			<ondown>noop</ondown>
+			<onup>noop</onup>
+			
+			<itemgap>15</itemgap>
+			
+			<control type="button" id="18">
+				<description>Ok Button</description>
+				<width>300</width>
+				<height>72</height>
+				<label>186</label>
+				<font>Regular21</font>
+				<include>ButtonInfoDialogsCommonValues</include>
+			</control>
+			<control type="button" id="19">
+				<description>Reset Button</description>
+				<width>300</width>
+				<height>72</height>
+				<label>13007</label>
+				<font>Regular21</font>
+				<include>ButtonInfoDialogsCommonValues</include>
+			</control>
+			<control type="button" id="21">
+				<description>Ignore Input button</description>
+				<height>72</height>
+				<width>300</width>
+				<font>Regular21</font>
+				<label>$LOCALIZE[35019]</label>
+				<include>ButtonInfoDialogsCommonValues</include>
+			</control>
+			<control type="button" id="20">
+				<description>Link to install more controllers</description>
+				<height>72</height>
+				<width>300</width>
+				<font>Regular21</font>
+				<label>$LOCALIZE[21452]</label>
+				<include>ButtonInfoDialogsCommonValues</include>
+			</control>
+			<control type="button" id="22">
+				<description>Link to install all controllers</description>
+				<height>72</height>
+				<width>300</width>
+				<font>Regular21</font>
+				<label>$LOCALIZE[35021]</label>
+				<include>ButtonInfoDialogsCommonValues</include>
+			</control>
+			<control type="button" id="17">
+				<description>Help button</description>
+				<height>72</height>
+				<width>300</width>
+				<font>Regular21</font>
+				<label>$LOCALIZE[10043]</label>
+				<include>ButtonInfoDialogsCommonValues</include>
+			</control>
+			
+		</control>
+	</include>
+	
+	
+	
+	<!-- Controls: Ports -->
+	<include name="DialogGameControllersPorts">
+		<control type="group">
+			<description>Content area</description>
+			<top>200</top>
+			<left>0</left>
+			<control type="group">
+				<description>Port list</description>
+				<width>1440</width>
+				<height>660</height>
+				<control type="panel" id="3">
+					<left>230</left>
+					<width>1440</width>
+					<height>660</height>
+					<description>Port item list</description>
+					<onright></onright>
+					<onup>noop</onup>
+					<ondown>18</ondown>
+					<pagecontrol>62</pagecontrol>
+					<scrolltime tween="sine" easing="inout">350</scrolltime>
+					<orientation>vertical</orientation>
+					
+					<itemlayout width="1400" height="110">
+						<control type="group">
+							<height>100</height>
+							<control type="image">
+								<width>1400</width>
+								<texture border="14">button.png</texture>
+							</control>
+							<control type="label">
+								<width>600</width>
+								<height>100</height>
+								<left>20</left>
+								<label>$INFO[ListItem.Label]</label>
+								<font>Regular21</font>
+								<aligny>center</aligny>
+							</control>
+							<control type="label">
+								<width>630</width>
+								<height>100</height>
+								<left>620</left>
+								<label>$INFO[ListItem.Label2]</label>
+								<font>Regular21</font>
+								<align>right</align>
+								<aligny>center</aligny>
+							</control>
+							<control type="image">
+								<width>100</width>
+								<height>90</height>
+								<top>10</top>
+								<left>1280</left>
+								<texture>$INFO[ListItem.Icon]</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+						</control>
+					</itemlayout>
+					<focusedlayout width="1400" height="110">
+						<control type="group">
+							<height>100</height>
+							<control type="image">
+								<width>1400</width>
+								<texture border="14">button.png</texture>
+							</control>
+							<control type="image">
+								<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+								<include>FocusAnimationType1</include>
+								<visible>Control.HasFocus(3)</visible>
+							</control>
+							<control type="label">
+								<width>600</width>
+								<height>100</height>
+								<left>20</left>
+								<label>$INFO[ListItem.Label]</label>
+								<font>Regular21</font>
+								<aligny>center</aligny>
+							</control>
+							<control type="label">
+								<width>630</width>
+								<height>100</height>
+								<left>620</left>
+								<label>$INFO[ListItem.Label2]</label>
+								<font>Regular21</font>
+								<align>right</align>
+								<aligny>center</aligny>
+							</control>
+							<control type="image">
+								<width>100</width>
+								<height>90</height>
+								<top>10</top>
+								<left>1280</left>
+								<texture>$INFO[ListItem.Icon]</texture>
+								<aspectratio>keep</aspectratio>
+							</control>
+						</control>
+					</focusedlayout>
+				</control>
+			</control>
+			<control type="scrollbar" id="62">
+				<left>1660</left>
+				<top>0</top>
+				<include>scrollBarStyleDefaultWidth</include>
+				<height>650</height>
+				<onleft>3</onleft>
+				<onright></onright>
+				<onup></onup>
+				<ondown></ondown>
+				<showonepage>false</showonepage>
+				<include>scrollBarStyleDefault</include>
+			</control>
+			
+			<!-- footer button -->
+			<control type="grouplist" id="9001">
+				<top>700</top>
+				<left>0</left>
+				<width>1920</width>
+				<itemgap>14</itemgap>
+				<orientation>horizontal</orientation>
+				<onup>3</onup>
+				<onleft>noop</onleft>
+				<onright>noop</onright>
+				<align>center</align>
+				<control type="button" id="18">
+					<description>Ok Button</description>
+					<width>300</width>
+					<height>72</height>
+					<label>186</label>
+					<font>Regular21</font>
+					<include>ButtonInfoDialogsCommonValues</include>
+				</control>
+				<control type="button" id="19">
+					<description>Reset Button</description>
+					<width>300</width>
+					<height>72</height>
+					<label>13007</label>
+					<font>Regular21</font>
+					<include>ButtonInfoDialogsCommonValues</include>
+				</control>
+			</control>
+			
+		</control>
+	</include>
+	
+	
+	
+	<!-- Players + Ports -->
+	<include name="GameDialogAgents">
+		
+		<control type="group">
+			<top>90</top>
+			<centerleft>50%</centerleft>
+			<width>1820</width>
+			<height>962</height>
+			
+			<control type="group">
+				<description>Content area</description>
+				<top>110</top>
+				<bottom>40</bottom>
+				<left>40</left>
+				<right>40</right>
+				
+				<control type="group">
+					<description>Area of the dialog for ports</description>
+					<height>100</height>
+					
+					<control type="button" id="3">
+						<description>Ports button</description>
+						
+						<width>1740</width>
+						<height>100</height>
+						
+						<ondown>7</ondown>
+						<label>$LOCALIZE[35110]</label>
+						<font>Regular21</font>
+						<onclick>ActivateWindow(GamePorts)</onclick>
+						
+						<texturenofocus border="14">button.png</texturenofocus>
+						<textcolor>selected</textcolor>
+						<focusedcolor>selected</focusedcolor>
+						
+						<textoffsetx>20</textoffsetx>
+						
+					</control>
+					
+					<control type="gamecontrollerlist" id="4">
+						<description>Active port list. Length should fit 13 listitems (12 controllers and one "controller disconnected" indicator).</description>
+						<right>20</right>
+						<width>1300</width>
+						<orientation>horizontal</orientation>
+						<align>right</align>
+						<enable>false</enable>
+						
+						<itemlayout width="100" height="100">
+							<control type="gamecontroller">
+								<texture>$INFO[ListItem.Icon]</texture>
+								<controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
+								<controlleraddress>$INFO[ListItem.FilenameAndPath]</controlleraddress>
+								<controllerdiffuse>FF12A0C7</controllerdiffuse>
+							</control>
+						</itemlayout>
+						
+						<focusedlayout width="100" height="100">
+							<control type="gamecontroller">
+								<texture>$INFO[ListItem.Icon]</texture>
+								<controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
+								<controlleraddress>$INFO[ListItem.FilenameAndPath]</controlleraddress>
+								<controllerdiffuse>FF12A0C7</controllerdiffuse>
+							</control>
+						</focusedlayout>
+						
+						<!--
+							Note to skinners: this control can be populated
+							with static content for testing.
+						-->
+						<!--
+						<content>
+							<item>
+								<icon>DefaultAddonNone.png</icon>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+							<item>
+								<property name="game.controllerid">game.controller.snes</property>
+							</item>
+						</content>
+						-->
+						
+					</control>
+				</control>
+				
+				<control type="group">
+					<description>Area of the dialog for player controllers</description>
+					<top>136</top>
+					<height>550</height>
+					
+					<control type="list" id="7">
+						<description>Controller list</description>
+						<onup>3</onup>
+						<ondown>10</ondown>
+						<pagecontrol>61</pagecontrol>
+						<scrolltime tween="sine">200</scrolltime>
+						<orientation>vertical</orientation>
+						
+						<itemlayout width="1740" height="110">
+							<control type="group">
+								<height>100</height>
+								
+								<control type="image">
+									<texture border="14">button.png</texture>
+								</control>
+								<include>AgentControllerList</include>
+							</control>
+						</itemlayout>
+						
+						<focusedlayout width="1740" height="110">
+							<control type="group">
+								<height>100</height>
+								
+								<control type="image">
+									<texture border="14">button.png</texture>
+								</control>
+								<control type="image">
+									<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+									<include>FocusAnimationType1</include>
+									<visible>Control.HasFocus(7)</visible>
+								</control>
+								<include>AgentControllerList</include>
+							</control>
+						</focusedlayout>
+						
+						<!--
+							Note to skinners: this control can be populated
+							with static content for testing.
+						-->
+						<!--
+						<content>
+							<item>
+								<label>Player 1</label>
+							</item>
+							<item>
+								<label>Player 2</label>
+							</item>
+							<item>
+								<label>Player 3</label>
+							</item>
+							<item>
+								<label>Player 4</label>
+							</item>
+							<item>
+								<label>Player 5</label>
+							</item>
+							<item>
+								<label>Player 6</label>
+							</item>
+							<item>
+								<label>Player 7</label>
+							</item>
+							<item>
+								<label>Player 8</label>
+							</item>
+							<item>
+								<label>Player 9</label>
+							</item>
+							<item>
+								<label>Player 10</label>
+							</item>
+							<item>
+								<label>Player 11</label>
+							</item>
+							<item>
+								<label>Player 12</label>
+							</item>
+						</content>
+						-->
+						
+					</control>
+				</control>
+				
+				<control type="scrollbar" id="61">
+					<right>-30</right>
+					<top>136</top>
+					<include>scrollBarStyleDefaultWidth</include>
+					<height>540</height>
+					<onleft>3</onleft>
+					<onright></onright>
+					<onup></onup>
+					<ondown></ondown>
+					<showonepage>false</showonepage>
+					<include>scrollBarStyleDefault</include>
+				</control>
+				
+				<control type="grouplist" id="10">
+					<top>726</top>
+					<left>0</left>
+					<itemgap>14</itemgap>
+					<orientation>horizontal</orientation>
+					<onup>7</onup>
+					<onleft>noop</onleft>
+					<onright>noop</onright>
+					<align>center</align>
+					
+					<control type="button" id="18">
+						<description>Ok Button</description>
+						<width>300</width>
+						<height>72</height>
+						<label>186</label>
+						<font>Regular21</font>
+						<include>ButtonInfoDialogsCommonValues</include>
+					</control>
+					
+				</control>
+				
+			</control>
+		</control>
+	</include>
+	
+	<include name="AgentControllerList">
+		
+		<control type="label">
+			<description>Controller name as reported by the driver</description>
+			<left>20</left>
+			<label>$INFO[ListItem.Label]</label>
+			<font>Regular21</font>
+			<aligny>center</aligny>
+		</control>
+		
+		<control type="gamecontrollerlist">
+			<description>Controller list which indicates the port a player's controller is connected to. Length should fit 13 listitems (12 controller items and one "input disabled" item).</description>
+			<right>20</right>
+			<width>1300</width>
+			<orientation>horizontal</orientation>
+			<align>right</align>
+			<enable>false</enable>
+			
+			<itemlayout width="100" height="100">
+				<control type="gamecontroller">
+					<texture>$INFO[ListItem.Icon]</texture>
+					<controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
+					<peripherallocation>$INFO[ListItem.FilenameAndPath]</peripherallocation>
+					<controllerdiffuse>FF12A0C7</controllerdiffuse>
+				</control>
+			</itemlayout>
+			
+			<focusedlayout width="100" height="100">
+				<control type="gamecontroller">
+					<texture>$INFO[ListItem.Icon]</texture>
+					<controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
+					<peripherallocation>$INFO[ListItem.FilenameAndPath]</peripherallocation>
+					<controllerdiffuse>FF12A0C7</controllerdiffuse>
+				</control>
+			</focusedlayout>
+			
+			<!--
+				Note to skinners: this control can be populated
+				with static content for testing.
+			-->
+			<!--
+			<content>
+				<item>
+					<icon>DefaultAddonNone.png</icon>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+				<item>
+					<property name="game.controllerid">game.controller.default</property>
+				</item>
+			</content>
+			-->
+			
+		</control>
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- Disc Manager -->
+	<include name="GameDialogDiscManager">
+		<control type="group">
+			<centertop>50%</centertop>
+			<centerleft>50%</centerleft>
+			<width>1118</width>
+			<height>630</height>
+			
+			<control type="group">
+				<description>Content area</description>
+				
+				<top>90</top>
+				
+				<bottom>0</bottom>
+				<left>0</left>
+				<right>0</right>
+				
+				<control type="group">
+					<width>1118</width>
+					<height>337</height>
+					
+					<control type="image">
+						<left>-51</left>
+						<top>-53</top>
+						<bottom>32</bottom>
+						<right>-51</right>
+						<texture border="54">DialogBack-rounded.png</texture>
+					</control>
+					
+					<control type="group">
+						<description>Visibility group for Disc Manager main menu</description>
+						
+						<visible>String.IsEqual(Window.Property(GameDiscManager.ShowMenu),true)</visible>
+						
+						<control type="button" id="3"><include>HiddenObject</include><include>ElementHasNoHitBox</include><!-- disable access by user -->
+							<onfocus condition="Control.IsEnabled(108327)">Control.SetFocus(108327)</onfocus>
+						</control>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<control type="group">
+							
+							<animation effect="fade" start="100" end="35" time="0" condition="!Control.IsEnabled(108325)">Conditional</animation>
+							
+							<animation effect="slide" start="0,0" end="1028,0" time="0" condition="true">Conditional</animation>
+							
+							<width>83</width>
+							<height>77</height>
+							
+							<control type="group">
+								
+								<animation effect="slide" start="0,0" end="70,-30" time="0" condition="true">Conditional</animation>
+								<animation effect="slide" start="0,0" end="0,87" time="0" condition="Control.HasFocus(10802)">Conditional</animation>
+								
+								<visible>Control.HasFocus(10801) | Control.HasFocus(10802)</visible>
+								<include>VisibleFadeEffect</include>
+								
+								<width>350</width>
+								<height>137</height>
+								
+								<control type="image">
+									<visible>Control.HasFocus(10801) | Control.HasFocus(10802)</visible>
+									
+									<texture border="54">DialogBack-rounded.png</texture>
+								</control>
+								
+								<control type="label">
+									<left>92</left>
+									<right>50</right>
+									<bottom>2</bottom>
+									
+									<label>$VAR[DiscManager_Tooltip]</label>
+									
+									<font>Regular19</font>
+									<textcolor>grey2</textcolor>
+									<aligny>center</aligny>
+								</control>
+								
+								<control type="image">
+									<visible>Control.HasFocus(10801) | Control.HasFocus(10802)</visible>
+									
+									<top>43</top>
+									<left>44</left>
+									
+									<width>50</width>
+									<height>50</height>
+									<texture>flagging/video/DISC.png</texture>
+									<aspectratio>keep</aspectratio>
+									
+									<animation effect="fade" start="100" end="60" time="0" condition="true">Conditional</animation>
+									
+								</control>
+								
+							</control>
+							
+							
+							<control type="button" id="10801">
+								<width>83</width>
+								<height>77</height>
+								<label></label><textcolor>invisible</textcolor><focusedcolor>invisible</focusedcolor>
+								<include>ButtonInfoDialogsCommonValues</include>
+								
+								<ondown>10802</ondown>
+								
+								<onleft condition="Control.IsEnabled(108323)">108323</onleft>
+								<onleft condition="!Control.IsEnabled(108323)">108324</onleft>
+								
+								<onclick>SendClick(108325)</onclick>
+								
+								<enable>Control.IsEnabled(108325)</enable>
+							</control>
+							<control type="button" id="10802">
+								
+								<animation effect="slide" start="0,0" end="0,87" time="0" condition="true">Conditional</animation>
+								
+								<width>83</width>
+								<height>77</height>
+								<label></label><textcolor>invisible</textcolor><focusedcolor>invisible</focusedcolor>
+								<include>ButtonInfoDialogsCommonValues</include>
+								
+								<onup>10801</onup>
+								
+								<onleft condition="Control.IsEnabled(108323)">108323</onleft>
+								<onleft condition="!Control.IsEnabled(108323)">108324</onleft>
+								
+								<onclick>SendClick(108326)</onclick>
+								
+								<enable>Control.IsEnabled(108325)</enable>
+							</control>
+							
+							<control type="group">
+								<animation effect="fade" start="100" end="20" time="0" condition="!Control.IsEnabled(108325)">Conditional</animation>
+								<!-- Add Icon -->
+								<control type="group">
+									<control type="image"><visible>!Control.HasFocus(10801)</visible><texture colordiffuse="c6ffffff">_added_img/icons/dialogselect-add.png</texture></control>
+									<control type="image"><visible>Control.HasFocus(10801)</visible><texture>_added_img/icons/dialogselect-add.png</texture></control>
+								</control>
+								<!-- Delete Icon -->
+								<control type="group">
+									
+									<left>7</left>
+									<top>5</top>
+									
+									<width>69</width>
+									<height>69</height>
+									
+									<animation effect="slide" start="0,0" end="0,87" time="0" condition="true">Conditional</animation>
+									
+									<control type="image"><visible>!Control.HasFocus(10802)</visible><texture colordiffuse="c6ffffff">icons/DiscManager_Remove.png</texture></control>
+									<control type="image"><visible>Control.HasFocus(10802)</visible><texture>icons/DiscManager_Remove.png</texture></control>
+								</control>
+							</control>
+						</control>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<control type="group">
+							
+							<control type="radiobutton" id="108323">
+								<height>77</height>
+								
+								<textcolor>selected</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<focusedcolor>selected</focusedcolor>
+							
+								<onup>Noop</onup>
+								<ondown>108324</ondown>
+								
+								<onright condition="Control.IsEnabled(108325)">10801</onright>
+								
+								<textureradioofffocus>flagging/video/DISC.png</textureradioofffocus>
+								<textureradiooffnofocus colordiffuse="B7FFFFFF">flagging/video/DISC.png</textureradiooffnofocus>
+								<textureradiooffdisabled colordiffuse="3bffffff">flagging/video/DISC.png</textureradiooffdisabled>
+								
+								<radiowidth>58</radiowidth>
+								<radioheight>60</radioheight>
+								
+								<radioposx>10</radioposx>
+								<radioposy>0</radioposy>
+								
+								<textoffsetx>70</textoffsetx><width>1000</width><include>GameOSDButtonStyleRadio</include>
+								
+								<label>$VAR[DiscManager_DiscSelection]</label>
+								<label2></label2>
+								
+								<enable>RetroPlayer.DiscEjected</enable>
+							</control>
+							
+							<control type="radiobutton" id="108324">
+								<height>77</height>
+								<animation effect="slide" start="0,0" end="0,87" time="0" condition="true">Conditional</animation>
+								
+								<onup>108323</onup>
+								<ondown>108325</ondown>
+								
+								<onright condition="Control.IsEnabled(108325)">10801</onright>
+								
+								<textureradioofffocus>icons/DiscManager_Eject.png</textureradioofffocus>
+								<textureradiooffnofocus colordiffuse="B7FFFFFF">icons/DiscManager_Eject.png</textureradiooffnofocus>
+								<textureradiooffdisabled colordiffuse="3bffffff">icons/DiscManager_Eject.png</textureradiooffdisabled>
+								
+								<radiowidth>60</radiowidth>
+								<radioheight>60</radioheight>
+								
+								<radioposx>9</radioposx>
+								<radioposy>0</radioposy>
+								
+								<textoffsetx>70</textoffsetx><width>1000</width><include>GameOSDButtonStyleRadio</include>
+								
+								<label>$LOCALIZE[35275]</label>
+								
+							</control>
+							
+							<control type="button" id="108325">
+								
+								<onup>108324</onup>
+								<ondown>108326</ondown>
+								
+								<label>$VAR[DiscManager_Add_Disc_Label]</label>
+								
+								<enable>RetroPlayer.DiscEjected</enable>
+								
+								<visible>false</visible>
+							</control>
+							
+							<control type="button" id="108326">
+								
+								<onup>108325</onup>
+								<ondown>108327</ondown>
+								
+								<label>$VAR[DiscManager_Delete_Disc_Label]</label>
+								
+								<enable>RetroPlayer.DiscEjected</enable>
+								
+								<visible>false</visible>
+							</control>
+							
+							<control type="radiobutton" id="108327">
+								<height>77</height>
+								<animation effect="slide" start="0,0" end="0,87" time="0" condition="true">Conditional</animation>
+								<animation effect="slide" start="0,0" end="0,87" time="0" condition="true">Conditional</animation>
+								
+								<onup>108326</onup>
+								<ondown>Noop</ondown>
+								
+								<onright condition="Control.IsEnabled(108325)">10801</onright>
+								
+								<textureradioofffocus>osd/buttons/fill/OSDPlayNF.png</textureradioofffocus>
+								<textureradiooffnofocus colordiffuse="B7FFFFFF">osd/buttons/fill/OSDPlayNF.png</textureradiooffnofocus>
+								<textureradiooffdisabled colordiffuse="3bffffff">osd/buttons/fill/OSDPlayNF.png</textureradiooffdisabled>
+								
+								<radiowidth>73</radiowidth>
+								<radioheight>73</radioheight>
+								
+								<radioposx>3</radioposx>
+								<radioposy>0</radioposy>
+								
+								<textoffsetx>70</textoffsetx><width>1000</width><include>GameOSDButtonStyleRadio</include>
+								
+								<label>$LOCALIZE[13404]</label>
+								
+							</control>
+							
+						</control>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					</control>
+					
+					
+					
+					
+					
+					
+					<control type="group">
+						
+						<right>24</right>
+						
+						<description>Visibility group for disc list</description>
+						
+						<visible>String.IsEqual(Window.Property(GameDiscManager.ShowDiscList),true)</visible>
+						
+						<control type="list" id="108321">
+							<description>Disc menu</description>
+							<animation effect="fade" time="1500">VisibleChange</animation>
+							<onup>108321</onup>
+							<ondown>108321</ondown>
+							<pagecontrol>108322</pagecontrol>
+							<scrolltime tween="sine">200</scrolltime>
+							<orientation>vertical</orientation>
+							
+							<height>254</height><!-- 252+2 to be safe -->
+							
+							<itemlayout height="63">
+								<control type="group">
+									<include>GameDiscManagerDiscItem</include>
+								</control>
+							</itemlayout>
+							
+							<focusedlayout height="63">
+								<control type="group">
+									<control type="image">
+										<top>0</top>
+										<bottom>0</bottom>
+										<left>0</left>
+										<right>0</right>
+										<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texture>
+										<visible>Control.HasFocus(108321)</visible>
+									</control>
+									<include>GameDiscManagerDiscItem</include>
+								</control>
+							</focusedlayout>
+							
+						</control>
+						<control type="scrollbar" id="108322">
+							<left>1111</left>
+							<top>0</top>
+							<include>scrollBarStyleDefaultWidth</include>
+							<height>252</height>
+							
+							<onleft>108321</onleft>
+							<onright></onright>
+							<ondown></ondown>
+							<onup></onup>
+							
+							<showonepage>true</showonepage>
+							<include>scrollBarStyleDefault</include>
+							
+							<animation effect="fade" start="100" end="10" time="0" condition="Integer.IsLessOrEqual(Container(108321).NumItems,4)">Conditional</animation>
+						</control>
+						
+					</control>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				</control>
+			</control>
+		</control>
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="GameDiscManagerDiscItem">
+		<control type="label">
+			<top>0</top>
+			<bottom>1</bottom>
+			<left>20</left>
+			<label>$INFO[ListItem.Label]$INFO[ListItem.Label2]</label>
+			<font>Regular20</font>
+			<align>left</align>
+			<aligny>center</aligny>
+			<textcolor>white</textcolor>
+			<selectedcolor>selected</selectedcolor>
+		</control>
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</includes>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="episodes">
+    <name>My List (Episodes)</name>
+    <match>all</match>
+    <rule field="userrating" operator="is">
+        <value>1</value>
+    </rule>
+    <!--
+    <rule field="userrating" operator="greaterthan">
+        <value>0</value>
+    </rule>
+    <rule field="userrating" operator="lessthan">
+        <value>0</value>
+    </rule>
+    <order direction="userrating">rating</order>
+    <order direction="descending">year</order>
+    -->
+    <order direction="ascending">name</order>
+</smartplaylist>

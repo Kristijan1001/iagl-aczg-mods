@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<depth>DepthDialog+</depth>
+	<defaultcontrol>11</defaultcontrol>
+	
+	<include>Window_OpenClose_Animation</include>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			
+			<left>608</left>
+			<top>12</top>
+			
+			<visible>!Skin.HasSetting(DevVolumeAmpFeaturesEnabled) | !String.IsEqual(Control.GetLabel(10),$LOCALIZE[660])</visible>
+			
+			<control type="image">
+				<left>-30</left>
+				<top>-30</top>
+				<width>750</width>
+				<height>165</height>
+				<texture border="54">OverlayDialogBackground.png</texture>
+			</control>
+			<control type="label" id="10">
+				<description>Dialog header</description>
+				<left>30</left>
+				<top>15</top>
+				<width>345</width>
+				<height>30</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>Regular19</font>
+				<textcolor>white</textcolor>
+			</control>
+			<control type="label" id="12">
+				<description>Slider Value</description>
+				<left>330</left>
+				<top>15</top>
+				<width>330</width>
+				<height>30</height>
+				<align>right</align>
+				<aligny>center</aligny>
+				<font>Regular19</font>
+				<textcolor>white</textcolor>
+			</control>
+			<control type="slider" id="11">
+				<description>Slider</description>
+				<left>30</left>
+				<top>53</top>
+				<width>630</width>
+				<height>36</height>
+				<aligny>center</aligny>
+				<texturefocus></texturefocus>
+				<texturenofocus></texturenofocus>
+				<texturesliderbar>osd/slider/slider-bg-large.png</texturesliderbar>
+				
+				<textureslidernib colordiffuse="$VAR[uiColorVariantSliderNibFocus]">osd/slider/slider-nib-focus-neutral.png</textureslidernib>
+				<textureslidernibfocus colordiffuse="$VAR[uiColorVariantSliderNibFocus]">osd/slider/slider-nib-focus-neutral.png</textureslidernibfocus>
+				
+				<onup>11</onup>
+				<ondown>11</ondown>
+				<onleft>11</onleft>
+				<onright>11</onright>
+			</control>
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">3</defaultcontrol>
+	
+	<include>dialogeffect</include>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<control type="group">
+			<include condition="!Window.Is(GameDiscManager)">BehindDialogBlackBackground</include>
+		</control>
+		
+		<control type="group">
+			<include condition="!Window.Is(GameDiscManager)" content="DialogBackgroundCommonsNoBackgroundFS">
+				<param name="DialogHeaderWidth" value="1920" />
+				<param name="DialogHeaderLabelWidth" value="1830" />
+				<param name="DialogHeaderLabel" value="$VAR[GameDialogsHeaderLabel]" />
+				<param name="DialogHeaderId" value="" />
+			</include>
+		</control>
+		
+		<!-- Game: Ports + Players -->
+		<include condition="Window.Is(GameAgents)">GameDialogAgents</include>
+		<!-- Game: Ports -->
+		<include condition="Window.Is(GamePorts)">DialogGameControllersPorts</include>
+		<!-- Game: Buttons -->
+		<include condition="Window.Is(GameControllers)">DialogGameControllers</include>
+		
+		<!-- Game: Disc Manager -->
+		<include condition="Window.Is(GameDiscManager)">GameDialogDiscManager</include>
+		
+		<!-- Game: Achievements + Leaderboards -->
+		<!-- To-do -->
+		
+		<include>BehindDialogFadeOut</include>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

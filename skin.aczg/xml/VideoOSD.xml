@@ -1,0 +1,1064 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	
+	<defaultcontrol always="true">100</defaultcontrol>
+	
+	<onload condition="!VideoPlayer.Content(LiveTV) + Player.PauseEnabled">SetFocus(202)</onload>
+	<onload condition="!VideoPlayer.Content(LiveTV) + !Player.PauseEnabled">SetFocus(203)</onload>
+	<onload condition="VideoPlayer.Content(LiveTV)">SetFocus(300)</onload>
+	
+	
+	<include>dialogeffectSlower</include>
+	
+	<depth>DepthOSD</depth>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		
+		
+		<control type="group">
+			
+			
+			<!-- Hide VideoOSD if a slider or similar is visible -->
+			
+			<visible>![Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDSubtitleSettings)]</visible>
+			<visible>!Window.IsVisible(SliderDialog)</visible>
+			<visible>!Window.IsVisible(PlayerProcessInfo)</visible>
+			
+			<visible>!Player.HasGame</visible><!-- Kodi 18+ -->
+			
+			
+			<include>VisibleFadeEffect4</include>
+			
+			
+			<control type="image" id="4010">
+				<description>Seekbar focus border for mouse</description>
+				<include>OSD_SeekBar_Focus_Dimensions</include>
+				<texture border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">_added_img/focus_border_2px-rounded-12px-neutral.png</texture>
+				<visible>Control.HasFocus(87) + System.GetBool(input.enablemouse) + ![Window.IsVisible(SliderDialog) | VideoPlayer.Content(LiveTV)] + [Window.IsActive(VideoOSD) | Window.IsActive(MusicOSD)]</visible>
+			</control>
+			
+			
+			<control type="slider" id="87">
+				<depth>DepthOSD+</depth>
+				<description>Seek Slider</description>
+				<include>OSD_SeekBar_Mouse_Dimensions</include>
+				<action>seek</action>
+				<texturesliderbar></texturesliderbar>
+				<textureslidernib></textureslidernib>
+				<textureslidernibfocus></textureslidernibfocus>
+				
+				<visible>System.GetBool(input.enablemouse) + ![Window.IsVisible(SliderDialog) | VideoPlayer.Content(LiveTV)]</visible>
+			</control>
+			
+			
+			
+			<!-- INVISIBLE LIST FOR INFO BUTTON -->
+			<include condition="[ VideoPlayer.Content(Movies) | VideoPlayer.Content(Episodes) ] + !String.IsEmpty(VideoPlayer.DBID) + VideoPlayer.HasInfo + !Player.IsInternetStream + !Pvr.IsPlayingRecording">VideoOsdInfoButtonList</include>
+			
+			
+			
+			<!-- OSD buttons | LEFT side -->
+			<control type="grouplist" id="100">
+				<orientation>horizontal</orientation>
+				<itemgap>0</itemgap>
+				
+				<left>239</left>
+				<top>117r</top>
+				
+				<onleft>10199</onleft>
+				<onright>10198</onright>
+				
+				<!-- nav dummy | first item -->
+				<control type="button" id="10098">
+					<description>Fake Button to fix Navigation</description>
+					<visible>false</visible>
+				</control>
+				
+				<!-- Channel Up -->
+				<control type="button" id="300">
+					<include>OSD_Button_Dimensions</include>
+					<label>210</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDChannelUP" /></include>
+					<onclick>ChannelUp</onclick>
+					<!-- PlayerControl(Next) -->
+					<visible>VideoPlayer.Content(LiveTV)</visible>
+				</control>
+				
+				<!-- Channel Down -->
+				<control type="button" id="301">
+					<include>OSD_Button_Dimensions</include>
+					<label>209</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDChannelDown" /></include>
+					<onclick>ChannelDown</onclick>
+					<!-- PlayerControl(Previous) -->
+					<visible>VideoPlayer.Content(LiveTV)</visible>
+				</control>
+				
+				<!-- Skip Previous -->
+				<control type="button" id="200">
+					<include>OSD_Button_Dimensions</include>
+					<label>210</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDPrevTrack" /></include>
+					<onclick>PlayerControl(Previous)</onclick>
+					<visible>!VideoPlayer.Content(LiveTV)</visible>
+				</control>
+				
+				<!-- Fast Rewind -->
+				<control type="button" id="201">
+					<include>OSD_Button_Dimensions</include>
+					<label>31354</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDRewind" /></include>
+					<onclick>PlayerControl(Rewind)</onclick>
+					<visible>Player.SeekEnabled + Skin.HasSetting(DisableFullScreenOsdButtonSimplicity)</visible>
+				</control>
+				
+				<!-- Play/Pause -->
+				<control type="togglebutton" id="202">
+					<include>OSD_Button_Dimensions</include>
+					<label>31351</label>
+					<altlabel>208</altlabel>
+					<font />
+					
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDPause" /></include>
+					
+					<usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
+					
+					<alttexturefocus>osd/buttons/OSDPlayFO.png</alttexturefocus>
+					<alttexturenofocus>osd/buttons/OSDPlayNF.png</alttexturenofocus>
+					
+					<onclick condition="Player.TempoEnabled + Player.IsTempo">PlayerControl(Tempo(1))</onclick>
+					<onclick>PlayerControl(Play)</onclick>
+					
+					<onup condition="Player.TempoEnabled + Player.Playing">PlayerControl(TempoUp)</onup>
+					<ondown condition="Player.TempoEnabled + Player.Playing">PlayerControl(TempoDown)</ondown>
+					
+					<visible>Player.PauseEnabled</visible>
+				</control>
+				
+				<!-- Stop -->
+				<control type="button" id="203">
+					<include>OSD_Button_Dimensions</include>
+					<label>31352</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDStop" /></include>
+					<onclick>PlayerControl(Stop)</onclick>
+				</control>
+				
+				<!-- Fast Forward -->
+				<control type="button" id="204">
+					<include>OSD_Button_Dimensions</include>
+					<label>31353</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDForward" /></include>
+					<onclick>PlayerControl(Forward)</onclick>
+					<visible>Player.SeekEnabled + Skin.HasSetting(DisableFullScreenOsdButtonSimplicity)</visible>
+				</control>
+				
+				<!-- Skip Forward -->
+				<control type="button" id="205">
+					<include>OSD_Button_Dimensions</include>
+					<label>209</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDNextTrack" /></include>
+					<onclick>PlayerControl(Next)</onclick>
+					<visible>!VideoPlayer.Content(LiveTV) + [Skin.HasSetting(DisableFullScreenOsdButtonSimplicity) | Integer.IsGreater(Playlist.Length(video),1)]</visible>
+				</control>
+				
+				<!-- BD/DVD Disc Menu -->
+				<control type="button" id="254">
+					<include>OSD_Button_Dimensions</include>
+					<label>31355</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDDisc" /></include>
+					<onclick>PlayerControl(ShowVideoMenu)</onclick>
+					<visible>!VideoPlayer.Content(LiveTV) + VideoPlayer.HasMenu</visible>
+				</control>
+				
+				
+				<!-- Add a bit of space before subcontextual buttons -->
+				<control type="image" id="1001">
+					<width>24</width>
+					<texture />
+				</control>
+				
+				
+				<!-- Live TV related buttons -->
+				<control type="button" id="306">
+					<include>OSD_Button_Dimensions</include>
+					<label>19019</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDChannelList" /></include>
+					<onclick>Dialog.Close(VideoOSD)</onclick>
+					<onclick>ActivateWindow(PVROSDChannels)</onclick>
+					<visible>VideoPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="button" id="307">
+					<include>OSD_Button_Dimensions</include>
+					<label>$LOCALIZE[19029]$INFO[VideoPlayer.ChannelName, – ]</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDepg" /></include>
+					<onclick>Dialog.Close(VideoOSD)</onclick>
+					<onclick>ActivateWindow(PVRChannelGuide)</onclick>
+					<visible>VideoPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="button" id="350">
+					<include>OSD_Button_Dimensions</include>
+					<label>31356</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDTeleText" /></include>
+					<onclick>Dialog.Close(VideoOSD)</onclick>
+					<onclick>ActivateWindow(Teletext)</onclick>
+					<visible>VideoPlayer.Content(LiveTV)</visible>
+				</control>
+				
+				<!-- Info Dialog (Movie/Episode) -->
+				<control type="button" id="207">
+					<include>OSD_Button_Dimensions</include>
+					<label>Info</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDinfodialog" /></include>
+					
+					<onclick>SetFocus(43260)</onclick>
+					<onclick>SetProperty(OSDinfodialogButtonActive,True,home)</onclick>
+					<onclick condition="Skin.HasSetting(FullScreenOsdInfoButtonPauseResume) + !Player.Paused">Pause</onclick>
+					<onclick>SetFocus(43260)</onclick>
+					<onclick>SetFocus(43260)</onclick>
+					<onclick>Action(Info)</onclick>
+					
+					<visible>[ VideoPlayer.Content(Movies) | VideoPlayer.Content(Episodes) ] + !String.IsEmpty(VideoPlayer.DBID) + VideoPlayer.HasInfo + !Player.IsInternetStream + !Pvr.IsPlayingRecording</visible>
+					<include>VisibleFadeEffect</include>
+					
+				</control>
+				
+				
+				
+				
+				
+				<!-- Add a bit of space before subcontextual buttons -->
+				<control type="image" id="1002">
+					<width>24</width>
+					<texture />
+					<visible>Skin.HasSetting(ForceCinemascope_Fullscreen_OSD_Button)</visible>
+				</control>
+				
+				<control type="togglebutton" id="241">
+					<include>OSD_Button_Dimensions</include>
+					<label>Cinemascope Mode</label>
+					<font />
+					
+					<include content="OSD_Button_Textures"><param name="texture" value="OSD-CinemascopeMode-" /></include>
+					
+					<usealttexture>Skin.HasSetting(ForceCinemascope)</usealttexture>
+					
+					<alttexturefocus>osd/buttons/OSD-CinemascopeMode-On-FO.png</alttexturefocus>
+					<alttexturenofocus>osd/buttons/OSD-CinemascopeMode-On-NF.png</alttexturenofocus>
+					
+					<onclick>Skin.ToggleSetting(ForceCinemascope)</onclick>
+					
+					<onclick condition="!Skin.HasSetting(ForceCinemascope)">RunScript("special://skin/xml/py/skinzoom_cinemascope.py")</onclick>
+					<onclick condition="Skin.HasSetting(ForceCinemascope)">RunScript("special://skin/xml/py/skinzoom_default.py")</onclick>
+					
+					<visible>Skin.HasSetting(ForceCinemascope_Fullscreen_OSD_Button)</visible>
+				</control>
+				
+				<control type="button" id="240">
+					<include>OSD_Button_Dimensions</include>
+					<label>Cinemascope Mask</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSD-CinemascopeMask-" /></include>
+					
+					<onclick condition="String.IsEqual(Skin.String(CinemascopeMask),2.40)">Skin.SetString(CinemascopeMask,2.35)</onclick>
+					<onclick condition="String.IsEqual(Skin.String(CinemascopeMask),2.35)">Skin.SetString(CinemascopeMask,2.33)</onclick>
+					<onclick condition="String.IsEqual(Skin.String(CinemascopeMask),2.33)">Skin.SetString(CinemascopeMask,2.00)</onclick>
+					<onclick condition="String.IsEqual(Skin.String(CinemascopeMask),2.00)">Skin.SetString(CinemascopeMask,1.78 (Pseudo 16:9))</onclick>
+					<onclick condition="String.StartsWith(Skin.String(CinemascopeMask),1.78)">Skin.SetString(CinemascopeMask,2.40)</onclick>
+					
+					<include>VisibleFadeEffect</include>
+					
+					<visible>Skin.HasSetting(ForceCinemascope)</visible>
+					<visible>Skin.HasSetting(ForceCinemascope_Fullscreen_OSD_Button)</visible>
+				</control>
+				
+				<control type="label" id="242">
+					
+					<width>200</width>
+					<height>80</height>
+					
+					<label> $VAR[Video_OSD_CinemascopeMask_Label]</label>
+					<font>Light17</font>
+					<textcolor>grey</textcolor>
+					
+					<aligny>center</aligny>
+					
+					<include>VisibleFadeEffect</include>
+					
+					<visible>Skin.HasSetting(ForceCinemascope)</visible>
+					<visible>Skin.HasSetting(ForceCinemascope_Fullscreen_OSD_Button)</visible>
+				</control>
+				
+				
+				
+				<!-- nav dummy | last item -->
+				<control type="button" id="10099">
+					<description>Fake Button to fix Navigation</description>
+					<visible>false</visible>
+				</control>
+				
+			</control>
+			
+			
+			
+			<!-- OSD buttons | RIGHT side -->
+			<control type="grouplist" id="101">
+				<orientation>horizontal</orientation>
+				<itemgap>0</itemgap>
+				
+				<left>239</left>
+				<top>117r</top>
+				
+				<width>1442</width>
+				<align>right</align>
+				
+				<onleft>10099</onleft>
+				<onright>10098</onright>
+				
+				
+				<!-- nav dummy | first item -->
+				<control type="button" id="10198">
+					<description>Fake Button to fix Navigation</description>
+					<visible>false</visible>
+				</control>
+				
+				<!--
+				Stream selectors + VS10 mode (Kodi 21+)
+				-->
+				<control type="button" id="777">
+					<include>OSD_Button_Dimensions</include>
+					<label>14200</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSD-MoreMenu-" /></include>
+					
+					
+					<onclick>Dialog.Close(VideoOSD)</onclick>
+					<onclick>ActivateWindow(PlayerProcessInfo)</onclick>
+					
+					<onup>705</onup>
+					
+					<ondown>PlayerDebug</ondown>
+					
+				</control>
+				
+				<!-- 3D -->
+				<control type="button" id="255">
+					<include>OSD_Button_Dimensions</include>
+					<label>36501</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDStereoscopic" /></include>
+					<onup>501</onup>
+					<visible>VideoPlayer.IsStereoscopic</visible>
+				</control>
+				
+				<!-- Subtitles -->
+				<control type="button" id="250">
+					<include>OSD_Button_Dimensions</include>
+					<label>31356</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSD-Subtitles-" /></include>
+					<onup>440</onup>
+					
+					<onclick>ActivateWindow(OSDSubtitleSettings)</onclick>
+					
+					<ondown>NextSubtitle</ondown>
+					
+				</control>
+				
+				<!-- Audio settings -->
+				<control type="button" id="252">
+					<include>OSD_Button_Dimensions</include>
+					<label>13396</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSD-AudioSettings-" /></include>
+					
+					<onclick>ActivateWindow(OSDAudioSettings)</onclick>
+					
+					<ondown condition="!String.IsEmpty(VideoPlayer.AudioLanguage) | !String.IsEmpty(VideoPlayer.AudioChannels)">AudioNextLanguage</ondown>
+					
+				</control>
+				
+				<!-- DRC -->
+				<control type="togglebutton" id="299">
+					<include>OSD_Button_Dimensions_Half</include>
+					<label>298</label>
+					<font />
+					
+					<include content="OSD_Button_Textures"><param name="texture" value="OSD-DRC-" /></include>
+					
+					<usealttexture>String.IsEqual(Window(Home).Property(DRC),True)</usealttexture>
+					
+					<alttexturefocus>osd/buttons/OSD-DRC-On-FO.png</alttexturefocus>
+					<alttexturenofocus>osd/buttons/OSD-DRC-On-NF.png</alttexturenofocus>
+					
+					<!-- include onclick actions -->
+					<include>VolumeAmplification_Preset_DRC_Toggle</include>
+					<visible>Skin.HasSetting(DevVolumeAmpFeaturesEnabled) + !Skin.HasSetting(DevVolumeAmpHideOSDToggle) + !VideoPlayer.Content(LiveTV)</visible>
+				</control>
+				
+				<!-- Video settings -->
+				<control type="button" id="251">
+					<include>OSD_Button_Dimensions</include>
+					<label>13395</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSD-VideoSettings-" /></include>
+					
+					<onclick>ActivateWindow(OSDVideoSettings)</onclick>
+					
+					<ondown>PlayerDebugVideo</ondown>
+					
+				</control>
+				
+				<!-- Bookmarks/Chapters -->
+				<control type="button" id="253">
+					<include>OSD_Button_Dimensions</include>
+					<label>298</label>
+					<font />
+					<include content="OSD_Button_Textures"><param name="texture" value="OSD-BookmarksChapters-" /></include>
+					<onclick>Dialog.Close(VideoOSD)</onclick>
+					<onclick>ActivateWindow(VideoBookmarks)</onclick>
+					<visible>!VideoPlayer.Content(LiveTV)</visible>
+				</control>
+				<control type="togglebutton" id="353">
+					<include>OSD_Button_Dimensions</include>
+					<label>264</label>
+					<altlabel>265</altlabel>
+					<font />
+					
+					<include content="OSD_Button_Textures"><param name="texture" value="OSDRecordOff" /></include>
+					
+					<usealttexture>PVR.IsRecordingPlayingChannel</usealttexture>
+					
+					<alttexturefocus>osd/buttons/OSDRecordOnFO.png</alttexturefocus>
+					<alttexturenofocus>osd/buttons/OSDRecordOnNF.png</alttexturenofocus>
+					
+					<onclick>PVR.ToggleRecordPlayingChannel</onclick>
+					<enable>PVR.CanRecordPlayingChannel</enable>
+					<animation effect="fade" start="100" end="20" time="0" condition="!PVR.CanRecordPlayingChannel">Conditional</animation>
+					<visible>VideoPlayer.Content(LiveTV)</visible>
+				</control>
+				
+				<!-- nav dummy | last item -->
+				<control type="button" id="10199">
+					<description>Fake Button to fix Navigation</description>
+					<visible>false</visible>
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!--
+			SUB MENU
+			Stream selectors + VS10 mode (Kodi 21+)
+			-->
+			
+			<control type="label" id="66601">
+				<label>HDR10+</label>
+				<visible>false</visible>
+			</control>
+			
+			<control type="label" id="66620">
+				<label>$VAR[StreamSelector_VS10_Label2_String]</label>
+				<visible>false</visible>
+			</control>
+			
+			<control type="button" id="720">
+				<description>Fake button for mouse control</description>
+				
+				<right>411</right>
+				<bottom>108</bottom>
+				<width>386</width>
+				
+				<height>371</height>
+				<!--<height>311</height>-->
+				
+				<!-- Move left if 3D button visible -->
+				<animation effect="slide" start="0,0" end="-81,0" time="0" condition="VideoPlayer.IsStereoscopic">Conditional</animation>
+				
+				<!-- Move left if DRC toggle visible -->
+				<animation effect="slide" start="0,0" end="-48,0" time="0" condition="!VideoPlayer.Content(LiveTV)   + Skin.HasSetting(DevVolumeAmpFeaturesEnabled) + !Skin.HasSetting(DevVolumeAmpHideOSDToggle)">Conditional</animation>
+				
+				<label />
+				<font />
+				<texturenofocus></texturenofocus>
+				<texturefocus></texturefocus>
+				
+				<visible>Control.HasFocus(777) | Control.HasFocus(720) | ControlGroup(700).HasFocus | Control.HasFocus(701) | Control.HasFocus(702) | Control.HasFocus(703) | Control.HasFocus(704) | Control.HasFocus(705)</visible>
+			</control>
+			
+			<control type="grouplist" id="700">
+				<depth>DepthOSD+</depth>
+				
+				<orientation>vertical</orientation>
+				<itemgap>0</itemgap>
+				
+				<right>390</right>
+				<bottom>17</bottom>
+				<width>OSD_SubMenu_Width_V2</width>
+				<height>402</height>
+				
+				<!-- Move left if 3D button visible -->
+				<animation effect="slide" start="0,0" end="-81,0" time="0" condition="VideoPlayer.IsStereoscopic">Conditional</animation>
+				
+				<!-- Move left if DRC toggle visible -->
+				<animation effect="slide" start="0,0" end="-48,0" time="0" condition="!VideoPlayer.Content(LiveTV)   + Skin.HasSetting(DevVolumeAmpFeaturesEnabled) + !Skin.HasSetting(DevVolumeAmpHideOSDToggle)">Conditional</animation>
+				
+				<!-- Move up for VS10 button -->
+				<animation effect="slide" start="0,0" end="0,-60" time="0" condition="[!String.IsEmpty(Player.Process(amlogic.vs10.mode)) | !String.IsEmpty(Player.Process(amlogic.vs10.mode.raw))]">Conditional</animation>
+				
+				<onleft>10198</onleft>
+				<onright>255</onright>
+				
+				<onup>noop</onup>
+				<ondown>777</ondown>
+				
+				<visible>Control.HasFocus(777) | Control.HasFocus(720) | ControlGroup(700).HasFocus | Control.HasFocus(701) | Control.HasFocus(702) | Control.HasFocus(703) | Control.HasFocus(704) | Control.HasFocus(705)</visible>
+				
+				<include>VisibleFadeEffectFullscreenOSDSubMenu</include>
+				
+				<control type="group">
+					<description>Header</description>
+					<width>OSD_SubMenu_Width_V2</width>
+					<height>83</height>
+					<control type="image">
+						<description>Header</description>
+						<left>0</left>
+						<top>0</top>
+						<width>OSD_SubMenu_Width_V2</width>
+						<height>83</height>
+						<texture border="51,51,51,0">SubMenuBack-Header.png</texture>
+					</control>
+					<control type="label">
+						<centerleft>49%</centerleft>
+						<top>48</top>
+						<width>OSD_SubMenu_Header_Label_Width_V2</width>
+						<height>24</height>
+						<font>Light18</font>
+						<label>$VAR[StreamSelector_Header_Label]</label>
+						<textcolor>blue</textcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+						<scroll>false</scroll>
+					</control>
+				</control>
+				
+				<control type="button" id="701">
+					<include>OSD_SubMenu_Button_Dimensions_V2</include>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_SubMenu_Buttons_CRT</include>
+					
+					<aligny>top</aligny>
+					<textoffsety>9</textoffsety>
+					
+					<font>Regular20</font>
+					<textoffsetx>66</textoffsetx>
+					
+					<texturenofocus border="62,0,62,0">SubMenuBack-MiddleNF.png</texturenofocus>
+					<texturefocus border="62,0,62,0">SubMenuBack-MiddleFO.png</texturefocus>
+					
+					<label>$VAR[StreamSelector_Subs_Label]</label>
+					
+					<label2>$VAR[StreamSelector_Subs_Label2]</label2>
+					<onclick condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]">DialogSelectSubtitle</onclick> 
+				</control>
+				<control type="button" id="702">
+					<include>OSD_SubMenu_Button_Dimensions_V2</include>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_SubMenu_Buttons_CRT</include>
+					
+					<aligny>top</aligny>
+					<textoffsety>9</textoffsety>
+					
+					<font>Regular20</font>
+					<textoffsetx>66</textoffsetx>
+					
+					<texturenofocus border="62,0,62,0">SubMenuBack-MiddleNF.png</texturenofocus>
+					<texturefocus border="62,0,62,0">SubMenuBack-MiddleFO.png</texturefocus>
+					
+					<label>$VAR[StreamSelector_Audio_Label]</label>
+					
+					<label2>$VAR[StreamSelector_Audio_Label2]</label2>
+					
+					<onclick condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]">DialogSelectAudio</onclick>
+				</control>
+				
+				<control type="button" id="703">
+					<include>OSD_SubMenu_Button_Dimensions_V2</include>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_SubMenu_Buttons_CRT</include>
+					
+					<aligny>top</aligny>
+					<textoffsety>9</textoffsety>
+					
+					<font>Regular20</font>
+					<textoffsetx>66</textoffsetx>
+					
+					<texturenofocus border="62,0,62,0">SubMenuBack-MiddleNF.png</texturenofocus>
+					<texturefocus border="62,0,62,0">SubMenuBack-MiddleFO.png</texturefocus>
+					
+					<label>$VAR[StreamSelector_Video_Label]</label>
+					
+					<label2>$VAR[StreamSelector_Video_Label2]</label2>
+					
+					<onclick condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]">DialogSelectVideo</onclick>
+				</control>
+				
+				<control type="button" id="704">
+					<include>OSD_SubMenu_Button_Dimensions_V2</include>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_SubMenu_Buttons_CRT</include>
+					
+					<aligny>top</aligny>
+					<textoffsety>9</textoffsety>
+					
+					<font>Regular20</font>
+					<textoffsetx>66</textoffsetx>
+					
+					<texturenofocus border="62,0,62,0">SubMenuBack-MiddleNF.png</texturenofocus>
+					<texturefocus border="62,0,62,0">SubMenuBack-MiddleFO.png</texturefocus>
+					
+					<label>VS10</label>
+					
+					<label2>$VAR[StreamSelector_VS10_Label2]</label2>
+					
+					<onclick>ActivateWindow(1189)</onclick>
+					
+					<visible>[!String.IsEmpty(Player.Process(amlogic.vs10.mode)) | !String.IsEmpty(Player.Process(amlogic.vs10.mode.raw))]</visible>
+					
+				</control>
+				
+				<control type="image" id="705">
+					<description>Footer</description>
+					<width>OSD_SubMenu_Width_V2</width>
+					<height>51</height>
+					<texture flipy="true" border="51,0,51,51">SubMenuBack-Header.png</texture>
+				</control>
+				
+			</control>
+			
+			<!-- VS10 Icon -->
+			<control type="group">
+				
+				
+				<animation effect="slide" start="0,0" end="5,0" time="0" condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),accessibility)">Conditional</animation>
+				<animation effect="slide" start="0,0" end="18,0" time="0" condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">Conditional</animation>
+				
+				
+				<right>394</right>
+				<bottom>17</bottom>
+				<width>OSD_SubMenu_Width_V2</width>
+				<height>402</height>
+				
+				<visible>[!String.IsEmpty(Player.Process(amlogic.vs10.mode)) | !String.IsEmpty(Player.Process(amlogic.vs10.mode.raw))]</visible>
+				
+				<visible>Control.HasFocus(777) | Control.HasFocus(720) | ControlGroup(700).HasFocus | Control.HasFocus(701) | Control.HasFocus(702) | Control.HasFocus(703) | Control.HasFocus(704) | Control.HasFocus(705)</visible>
+				
+				<include>VisibleFadeEffectFullscreenOSDSubMenu</include>
+				
+				<!-- Move left if 3D button visible -->
+				<animation effect="slide" start="0,0" end="-81,0" time="0" condition="VideoPlayer.IsStereoscopic">Conditional</animation>
+				
+				<!-- Move left if DRC toggle visible -->
+				<animation effect="slide" start="0,0" end="-48,0" time="0" condition="!VideoPlayer.Content(LiveTV)   + Skin.HasSetting(DevVolumeAmpFeaturesEnabled) + !Skin.HasSetting(DevVolumeAmpHideOSDToggle)">Conditional</animation>
+				
+				<!-- Move up for VS10 button -->
+				<animation effect="slide" start="0,0" end="0,-60" time="0" condition="[!String.IsEmpty(Player.Process(amlogic.vs10.mode)) | !String.IsEmpty(Player.Process(amlogic.vs10.mode.raw))]">Conditional</animation>
+			
+				<control type="label">
+					<left>140</left>
+					<top>278</top>
+					<label>$VAR[VS10_Mode_Var]</label>
+					<font>font_tiny_iconic_xl</font>
+					
+					<animation effect="fade" start="100" end="75" time="0" condition="!Control.HasFocus(704)">Conditional</animation>
+					
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!--
+			SUB MENU
+			Subtitles
+			-->
+			
+			<control type="button" id="410">
+				<description>Fake button for mouse control</description>
+				
+				<right>329</right>
+				<bottom>108</bottom>
+				<width>386</width>
+				<height>371</height>
+				
+				<!-- Move left if DRC toggle visible -->
+				<animation effect="slide" start="0,0" end="-48,0" time="0" condition="!VideoPlayer.Content(LiveTV)   + Skin.HasSetting(DevVolumeAmpFeaturesEnabled) + !Skin.HasSetting(DevVolumeAmpHideOSDToggle)">Conditional</animation>
+				
+				<label />
+				<font />
+				<texturenofocus></texturenofocus>
+				<texturefocus></texturefocus>
+				
+				<visible>![Window.IsVisible(DialogSelectVideo) | Window.IsVisible(DialogSelectAudio) | Window.IsVisible(DialogSelectSubtitle)] +           Integer.IsGreater(Container(400).NumItems,0) + ![VideoPlayer.Content(LiveTV) + !VideoPlayer.HasSubtitles] +   [   Control.HasFocus(410) | 
+							[ Control.HasFocus(250) + [ Skin.HasSetting(EnableVideoOSDEnableSubtitlesMiniSubMenu) | [ String.StartsWith(System.BuildVersion,17.) + !String.StartsWith(System.BuildVersion,17.7) + !String.StartsWith(System.BuildVersion,17.6 Git:20171126-13194ec) + !String.StartsWith(System.BuildVersion,17.9) ] ] ] 
+							| ControlGroup(400).HasFocus | Control.HasFocus(401) | Control.HasFocus(402) | Control.HasFocus(403) | Control.HasFocus(404)   ]</visible>
+			</control>
+			
+			<control type="grouplist" id="400">
+				<depth>DepthOSD+</depth>
+				
+				<orientation>vertical</orientation>
+				<itemgap>0</itemgap>
+				
+				<right>309</right>
+				<bottom>77</bottom>
+				<width>426</width>
+				<height>402</height>
+				
+				<animation effect="slide" start="0,0" end="0,60" time="0" condition="VideoPlayer.HasSubtitles + !VideoPlayer.SubtitlesEnabled">Conditional</animation>
+				<animation effect="slide" start="0,0" end="0,180" time="0" condition="!VideoPlayer.HasSubtitles">Conditional</animation>
+				<animation effect="slide" start="0,0" end="0,60" time="0" condition="![!VideoPlayer.Content(LiveTV) + [String.IsEmpty(Player.PluginName) + !String.StartsWith(Player.FolderPath,plugin://)]]">Conditional</animation>
+				<!-- Move left if DRC toggle visible -->
+				<animation effect="slide" start="0,0" end="-48,0" time="0" condition="!VideoPlayer.Content(LiveTV)   + Skin.HasSetting(DevVolumeAmpFeaturesEnabled) + !Skin.HasSetting(DevVolumeAmpHideOSDToggle)">Conditional</animation>
+				
+				<onleft>255</onleft>
+				<onright>252</onright>
+				
+				<onup>noop</onup>
+				<ondown>250</ondown>
+				
+				<visible>![Window.IsVisible(DialogSelectVideo) | Window.IsVisible(DialogSelectAudio) | Window.IsVisible(DialogSelectSubtitle)] +           Integer.IsGreater(Container(400).NumItems,0) + ![VideoPlayer.Content(LiveTV) + !VideoPlayer.HasSubtitles] +   [   Control.HasFocus(410) | 
+							[ Control.HasFocus(250) + [ Skin.HasSetting(EnableVideoOSDEnableSubtitlesMiniSubMenu) | [ String.StartsWith(System.BuildVersion,17.) + !String.StartsWith(System.BuildVersion,17.7) + !String.StartsWith(System.BuildVersion,17.6 Git:20171126-13194ec) + !String.StartsWith(System.BuildVersion,17.9) ] ] ] 
+							| ControlGroup(400).HasFocus | Control.HasFocus(401) | Control.HasFocus(402) | Control.HasFocus(403) | Control.HasFocus(404)   ]</visible>
+				<!--<include>VisibleFadeEffect</include>-->
+				<include>VisibleFadeEffectFullscreenOSDSubMenu</include>
+				
+				<control type="group">
+					<description>Header</description>
+					<width>426</width>
+					<height>83</height>
+					<control type="image">
+						<description>Header</description>
+						<left>0</left>
+						<top>0</top>
+						<width>426</width>
+						<height>83</height>
+						<texture border="51,51,51,0">SubMenuBack-Header.png</texture>
+					</control>
+					<control type="label">
+						<centerleft>49%</centerleft>
+						<top>48</top>
+						<width>OSD_SubMenu_Header_Label_Width</width>
+						<height>24</height>
+						<font>Light18</font>
+						<label>24012</label>
+						<textcolor>blue</textcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+					</control>
+				</control>
+				
+				<control type="button" id="401">
+					<description>Download with Subtitles script</description>
+					<include>OSD_SubMenu_Button_Dimensions</include>
+					<font>Regular20</font>
+					<label>33003</label>
+					<textoffsetx>66</textoffsetx>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_SubMenu_Buttons_CRT</include>
+					
+					<aligny>top</aligny>
+					<textoffsety>9</textoffsety>
+					
+					<texturenofocus border="62,0,62,0">SubMenuBack-MiddleNF.png</texturenofocus>
+					<texturefocus border="62,0,62,0">SubMenuBack-MiddleFO.png</texturefocus>
+					
+					<onclick>SetFocus(202)</onclick>
+					<onclick>Dialog.Close(VideoOSD)</onclick>
+					<onclick>ActivateWindow(SubtitleSearch)</onclick>
+					<!-- no point in downloading subtitles for live programs -->
+					<enable>!VideoPlayer.Content(LiveTV) + [String.IsEmpty(Player.PluginName) + !String.StartsWith(Player.FolderPath,plugin://)]</enable>
+					<visible>!VideoPlayer.Content(LiveTV) + [String.IsEmpty(Player.PluginName) + !String.StartsWith(Player.FolderPath,plugin://)]</visible>
+				</control>
+				
+				<control type="button" id="402">
+					<include>OSD_SubMenu_Button_Dimensions</include>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_SubMenu_Buttons_CRT</include>
+					
+					<aligny>top</aligny>
+					<textoffsety>9</textoffsety>
+					
+					<font>Regular20</font>
+					<textoffsetx>66</textoffsetx>
+					
+					<texturenofocus border="62,0,62,0">SubMenuBack-MiddleNF.png</texturenofocus>
+					<texturefocus border="62,0,62,0">SubMenuBack-MiddleFO.png</texturefocus>
+					
+					<label>22006</label>
+					<onclick>SubtitleDelay</onclick>
+					<visible>VideoPlayer.HasSubtitles + VideoPlayer.SubtitlesEnabled</visible>
+				</control>
+				
+				<control type="button" id="403">
+					<include>OSD_SubMenu_Button_Dimensions</include>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_SubMenu_Buttons_CRT</include>
+					
+					<aligny>top</aligny>
+					<textoffsety>9</textoffsety>
+					
+					<font>Regular20</font>
+					<textoffsetx>66</textoffsetx>
+					
+					<texturenofocus border="62,0,62,0">SubMenuBack-MiddleNF.png</texturenofocus>
+					<texturefocus border="62,0,62,0">SubMenuBack-MiddleFO.png</texturefocus>
+					
+					<label>$VAR[VideoOSDNextSubtitleLabel]</label>
+					<!-- 24012=Subtitles 209=Next 462=Subtitle -->
+					<onclick>NextSubtitle</onclick>
+					<visible>VideoPlayer.HasSubtitles</visible>
+				</control>
+				
+				<control type="radiobutton" id="404">
+					<include>OSD_SubMenu_Button_Dimensions</include>
+					<textoffsetx>66</textoffsetx>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_SubMenu_Buttons_CRT</include>
+					
+					<aligny>top</aligny>
+					<textoffsety>9</textoffsety>
+					
+					<font>Regular20</font>
+					<label>449</label>
+					
+					<textwidth>236</textwidth>
+					
+					<radioposx>309</radioposx>
+					
+					<texturenofocus border="62,0,62,0">SubMenuBack-MiddleNF.png</texturenofocus>
+					<texturefocus border="62,0,62,0">SubMenuBack-MiddleFO.png</texturefocus>
+					
+					<onclick>ShowSubtitles</onclick>
+					<selected>VideoPlayer.SubtitlesEnabled</selected>
+					<visible>VideoPlayer.HasSubtitles</visible>
+				</control>
+				
+				<control type="image" id="440">
+					<description>Footer</description>
+					<width>426</width>
+					<height>51</height>
+					<texture flipy="true" border="51,0,51,51">SubMenuBack-Header.png</texture>
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!--
+			SUB MENU
+			3D
+			-->
+			
+			<control type="button" id="520">
+				<description>Fake button for mouse control</description>
+				
+				<right>411</right>
+				<bottom>108</bottom>
+				<width>386</width>
+				<height>311</height>
+				
+				<!-- Move left if DRC toggle visible -->
+				<animation effect="slide" start="0,0" end="-48,0" time="0" condition="!VideoPlayer.Content(LiveTV)   + Skin.HasSetting(DevVolumeAmpFeaturesEnabled) + !Skin.HasSetting(DevVolumeAmpHideOSDToggle)">Conditional</animation>
+				
+				<label />
+				<font />
+				<texturenofocus></texturenofocus>
+				<texturefocus></texturefocus>
+				
+				<visible>Control.HasFocus(520) | Control.HasFocus(255) | ControlGroup(500).HasFocus | Control.HasFocus(501) | Control.HasFocus(502) | Control.HasFocus(503)</visible>
+			</control>
+			
+			<control type="grouplist" id="500">
+				<depth>DepthOSD+</depth>
+				
+				<orientation>vertical</orientation>
+				<itemgap>0</itemgap>
+				
+				<right>391</right>
+				<bottom>17</bottom>
+				<width>426</width>
+				<height>402</height>
+				
+				<!-- Move left if DRC toggle visible -->
+				<animation effect="slide" start="0,0" end="-48,0" time="0" condition="!VideoPlayer.Content(LiveTV)   + Skin.HasSetting(DevVolumeAmpFeaturesEnabled) + !Skin.HasSetting(DevVolumeAmpHideOSDToggle)">Conditional</animation>
+				
+				<onleft>777</onleft>
+				<onright>250</onright>
+				
+				<onup>noop</onup>
+				<ondown>255</ondown>
+				
+				<visible>VideoPlayer.IsStereoscopic + [Control.HasFocus(520) | Control.HasFocus(255) | ControlGroup(500).HasFocus | Control.HasFocus(501) | Control.HasFocus(502) | Control.HasFocus(503)]</visible>
+				<!--<include>VisibleFadeEffect</include>-->
+				<include>VisibleFadeEffectFullscreenOSDSubMenu</include>
+				
+				<control type="group">
+					<description>Header</description>
+					<width>426</width>
+					<height>83</height>
+					<control type="image">
+						<description>Header</description>
+						<left>0</left>
+						<top>0</top>
+						<width>426</width>
+						<height>83</height>
+						<texture border="51,51,51,0">SubMenuBack-Header.png</texture>
+					</control>
+					<control type="label">
+						<centerleft>49%</centerleft>
+						<top>48</top>
+						<width>OSD_SubMenu_Header_Label_Width</width>
+						<height>24</height>
+						<font>Light18</font>
+						<label>36501</label>
+						<textcolor>blue</textcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+					</control>
+				</control>
+				
+				<control type="radiobutton" id="503">
+					<include>OSD_SubMenu_Button_Dimensions</include>
+					<textoffsetx>66</textoffsetx>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_SubMenu_Buttons_CRT</include>
+					
+					<aligny>top</aligny>
+					<textoffsety>9</textoffsety>
+					
+					<font>Regular20</font>
+					<label>305</label>
+					
+					<textwidth>236</textwidth>
+					
+					<radioposx>309</radioposx>
+					
+					<texturenofocus border="62,0,62,0">SubMenuBack-MiddleNF.png</texturenofocus>
+					<texturefocus border="62,0,62,0">SubMenuBack-MiddleFO.png</texturefocus>
+					
+					<onclick>ToggleStereoMode</onclick>
+					<selected>Integer.IsGreater(System.StereoscopicMode,0)</selected>
+				</control>
+				
+				<control type="button" id="502">
+					<include>OSD_SubMenu_Button_Dimensions</include>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_SubMenu_Buttons_CRT</include>
+					
+					<aligny>top</aligny>
+					<textoffsety>9</textoffsety>
+					
+					<font>Regular20</font>
+					<textoffsetx>66</textoffsetx>
+					
+					<texturenofocus border="62,0,62,0">SubMenuBack-MiddleNF.png</texturenofocus>
+					<texturefocus border="62,0,62,0">SubMenuBack-MiddleFO.png</texturefocus>
+					
+					<label>31361</label>
+					<onclick>StereoMode</onclick>
+				</control>
+				
+				<control type="radiobutton" id="501">
+					<include>OSD_SubMenu_Button_Dimensions</include>
+					<textoffsetx>66</textoffsetx>
+					
+					<include condition="!String.IsEmpty(Skin.String(UIFontSize)) + String.IsEqual(Skin.String(UIFontSize),crt)">UIFontSize_Corrections_Fullscreen_OSD_SubMenu_Buttons_CRT</include>
+					
+					<aligny>top</aligny>
+					<textoffsety>9</textoffsety>
+					
+					<font>Regular20</font>
+					<label>31360</label>
+					
+					<textwidth>236</textwidth>
+					
+					<radioposx>309</radioposx>
+					
+					<texturenofocus border="62,0,62,0">SubMenuBack-MiddleNF.png</texturenofocus>
+					<texturefocus border="62,0,62,0">SubMenuBack-MiddleFO.png</texturefocus>
+					
+					<onclick>StereoModeToMono</onclick>
+					<selected>String.IsEqual(System.StereoscopicMode,9)</selected>
+				</control>
+				
+				<control type="image" id="549">
+					<description>Footer</description>
+					<width>426</width>
+					<height>51</height>
+					<texture flipy="true" border="51,0,51,51">SubMenuBack-Header.png</texture>
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<control type="image">
+				
+				<include>BackgroundDimensions_Can_Be_Max_For_Scope</include>
+				
+				<left>0</left>
+				<top>0</top>
+				
+				<texture>colors/black_70.png</texture>
+				<visible>Window.IsVisible(SelectDialog) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(OSDSubtitleSettings) | Window.IsVisible(DialogSelectVideo) | Window.IsVisible(DialogSelectAudio) | Window.IsVisible(DialogSelectSubtitle) | Window.IsVisible(1189)</visible>
+				
+				<animation effect="fade" time="300">VisibleChange</animation>
+				
+			</control>
+			
+			
+			
+		</control>
+		
+		
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

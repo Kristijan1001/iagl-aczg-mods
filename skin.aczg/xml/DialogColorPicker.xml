@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Kodi 20+ DialogColorPicker.xml -->
+<window>
+	<defaultcontrol always="true">6</defaultcontrol>
+	<include>dialogeffect</include>
+	
+	<controls><!-- WRAPPER START --><control type="group"><include>WrapperDimensions</include><!-- WRAPPER START -->
+		
+		<include>BehindDialogDarkBackgroundDarker</include>
+		<control type="label" id="1">
+			<description>header label</description>
+			<left>135</left>
+			<top>60</top>
+			<width>1650</width>
+			<height>60</height>
+			<font>Light35</font>
+			<label></label>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>white</textcolor>
+		</control>
+		<control type="group">
+			<left>165</left>
+			<top>90</top>
+			<!-- Color picker panel -->
+			<control type="panel" id="6">
+				<left>30</left>
+				<top>92</top>
+				<width>1545</width>
+				<bottom>39</bottom>
+				<onup>6</onup>
+				<ondown>6</ondown>
+				<onleft>9001</onleft>
+				<onright>61</onright>
+				<orientation>vertical</orientation>
+				<pagecontrol>61</pagecontrol>
+				<viewtype label="100">icon</viewtype>
+				<itemlayout width="90" height="74" >
+					<control type="group">
+						<control type="image">
+							<top>1</top>
+							<left>1</left>
+							<width>88</width>
+							<height>72</height>
+							<texture colordiffuse="35FFFFFF" diffuse="colors/diffuse/88x72-rounded.png">colors/white.png</texture>
+							<aspectratio scalediffuse="false">stretch</aspectratio>
+						</control>
+						<control type="image">
+							<top>3</top>
+							<left>3</left>
+							<width>84</width>
+							<height>68</height>
+							<texture diffuse="colors/diffuse/84x68-rounded.png">colors/white.png</texture>
+							<colordiffuse>$INFO[ListItem.Label2]</colordiffuse>
+							<aspectratio scalediffuse="false">stretch</aspectratio>
+						</control>
+					</control>
+				</itemlayout>
+				<focusedlayout width="90" height="74">
+					<control type="group">
+						<animation effect="zoom" delay="0" time="550" tween="sine" easing="out" start="100" end="186" center="auto">Focus</animation>
+						<control type="image">
+							<top>1</top>
+							<left>1</left>
+							<width>88</width>
+							<height>72</height>
+							<texture diffuse="colors/diffuse/88x72x1.86-rounded.png">colors/white.png</texture>
+							<aspectratio scalediffuse="false">stretch</aspectratio>
+						</control>
+						<control type="image">
+							<top>3</top>
+							<left>3</left>
+							<width>84</width>
+							<height>68</height>
+							<texture diffuse="colors/diffuse/84x68x1.86-rounded.png">colors/white.png</texture>
+							<colordiffuse>$INFO[ListItem.Label2]</colordiffuse>
+							<aspectratio scalediffuse="false">stretch</aspectratio>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="label">
+				<description>name of colour</description>
+				<left>1095</left>
+				<top>795</top>
+				<width>450</width>
+				<height>53</height>
+				<font>Regular17</font>
+				<align>right</align>
+				<aligny>center</aligny>
+				<scroll>false</scroll>
+				<textcolor>grey</textcolor>
+				<label>$INFO[Container(6).ListItem.Label]$INFO[Container(6).ListItem.Label2,  ·  #,]</label>
+			</control>
+		</control>
+		
+	<include condition="Skin.HasSetting(Enable_Debug_Overlay_Skin_And_Vars)">Debug_Overlay_Skin_And_Vars</include><include condition="Skin.HasSetting(Enable_Debug_Overlay_System_Load)">Debug_Overlay_System_Load</include><!-- WRAPPER STOP --></control><!-- WRAPPER STOP --></controls>
+</window>

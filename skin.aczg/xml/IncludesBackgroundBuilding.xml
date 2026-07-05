@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	<include name="CommonBackground">
+		
+		<!-- VISUALIZATION -->
+		<control type="visualisation">
+			
+			<include>BackgroundDimensions</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<visible>!Player.HasVideo + Player.HasAudio + Skin.HasSetting(ShowBackgroundVis) + !Slideshow.IsActive + !String.IsEmpty(Visualisation.Name) + Visualisation.Enabled</visible>
+			<visible>String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
+			
+		</control>
+		
+		
+		<!-- MakeTransparentForVisualization Replacement START -->
+		<control type="group">
+			
+			<!-- DEFAULT /backgrounds/background_XX BACKGROUND -->
+			<control type="image">
+				<depth>DepthBackground</depth>
+				<description>Default Backgrounds</description>
+				
+				<include>BackgroundDimensions</include>
+				
+				<aspectratio>stretch</aspectratio>
+				
+				<texture>$VAR[DefaultBackgroundX]</texture>
+				<visible>[ ![[!Player.HasVideo + Player.HasAudio + Skin.HasSetting(ShowBackgroundVis) + !Slideshow.IsActive + !String.IsEmpty(Visualisation.Name)] + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] | !Control.IsVisible(234237)] + 
+								![
+								[String.IsEqual(Skin.String(UseCustomBackground),1) + !String.IsEmpty(Skin.String(CustomBackgroundPath))] | 
+								[String.IsEqual(Skin.String(UseCustomBackground),2) + !String.IsEmpty(Skin.String(CustomBackgroundPathMultiple))]
+								] 
+								+ !String.IsEqual(Skin.String(BackgroundType),99)
+			</visible>
+				<include>VisibleFadeEffect</include>
+			</control>
+			
+			<!-- HEXAGONS SPECIAL -->
+			<include condition="String.IsEqual(Skin.String(BackgroundType),99) + [String.IsEqual(Skin.String(UseCustomBackground),0) | String.IsEmpty(Skin.String(UseCustomBackground))]">BackgroundHexagons</include>
+			
+			<!-- CUSTOM BACKGROUND - Single Image -->
+			<control type="image">
+				<depth>DepthBackground</depth>
+				<description>User Set Background Image</description>
+				
+				<include>BackgroundDimensions</include>
+				
+				<aspectratio>scale</aspectratio>
+				<texture>$INFO[Skin.String(CustomBackgroundPath)]</texture>
+				<visible>[ ![[!Player.HasVideo + Player.HasAudio + Skin.HasSetting(ShowBackgroundVis) + !Slideshow.IsActive + !String.IsEmpty(Visualisation.Name)] + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] | !Control.IsVisible(234237)] + 
+				String.IsEqual(Skin.String(UseCustomBackground),1) + !String.IsEmpty(Skin.String(CustomBackgroundPath))</visible>
+				<include>VisibleFadeEffect</include>
+			</control>
+			
+			<!-- CUSTOM BACKGROUND - Multiple Images -->
+			<control type="multiimage">
+				
+				<include>BackgroundDimensions</include>
+				
+				<imagepath background="true">$INFO[Skin.String(CustomBackgroundPathMultiple)]</imagepath>
+				<aspectratio>scale</aspectratio>
+				
+				<include condition="String.IsEqual(Skin.String(CustomBackgroundMultipleTimePerImage),0)">CustomBackgroundMultipleTimePerImage_Include_0</include>
+				<include condition="String.IsEqual(Skin.String(CustomBackgroundMultipleTimePerImage),1)">CustomBackgroundMultipleTimePerImage_Include_1</include>
+				<include condition="String.IsEqual(Skin.String(CustomBackgroundMultipleTimePerImage),2)">CustomBackgroundMultipleTimePerImage_Include_2</include>
+				<include condition="String.IsEqual(Skin.String(CustomBackgroundMultipleTimePerImage),3)">CustomBackgroundMultipleTimePerImage_Include_3</include>
+				<include condition="String.IsEqual(Skin.String(CustomBackgroundMultipleTimePerImage),4)">CustomBackgroundMultipleTimePerImage_Include_4</include>
+				<include condition="String.IsEqual(Skin.String(CustomBackgroundMultipleTimePerImage),5)">CustomBackgroundMultipleTimePerImage_Include_5</include>
+				<include condition="String.IsEqual(Skin.String(CustomBackgroundMultipleTimePerImage),6)">CustomBackgroundMultipleTimePerImage_Include_6</include>
+				
+				<randomize>true</randomize>
+				<fadetime>2500</fadetime>
+				
+				<visible>[ ![[!Player.HasVideo + Player.HasAudio + Skin.HasSetting(ShowBackgroundVis) + !Slideshow.IsActive + !String.IsEmpty(Visualisation.Name)] + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] | !Control.IsVisible(234237)] + 
+								String.IsEqual(Skin.String(UseCustomBackground),2) + !String.IsEmpty(Skin.String(CustomBackgroundPathMultiple)) 
+								+ !Slideshow.IsActive 
+								+ ![Player.HasVideo + String.IsEqual(Skin.String(ShowBackgroundVideoType),fullscreen)]</visible>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			<!-- FANART -->
+			
+			<!-- fanart check var -->
+			<control type="label" id="234235">
+				<label>$VAR[MediaFanartVar]</label>
+				<visible>false</visible>
+			</control>
+			
+			<control type="group">
+				
+				<control type="image" id="234237">
+					<depth>DepthBackground</depth>
+					
+					<include>BackgroundDimensions</include>
+					
+					<aspectratio>scale</aspectratio>
+					<texture background="true">$VAR[MediaFanartVar]</texture>
+					
+					<include>backgroundfade</include>
+					<fadetime>FanartCrossfadeTime</fadetime>
+					
+					<visible>
+					[!Control.IsVisible(508) + 
+					[[!Control.IsVisible(500) + !Control.IsVisible(908) + !Control.IsVisible(909) + !Control.IsVisible(910)] | [[Control.IsVisible(500) | Control.IsVisible(908) | Control.IsVisible(909) | Control.IsVisible(910)] + [ [Player.HasVideo + !String.IsEqual(Skin.String(ShowBackgroundVideoType),fullscreen) + [!String.IsEmpty(Player.Art(season.fanart)) | !String.IsEmpty(Player.Art(tvshow.fanart)) | !String.IsEmpty(Player.Art(fanart))] ] | String.IsEqual(Container.Content,Albums) | String.IsEqual(Container.Content,Artists) | [Player.HasAudio + [!String.IsEmpty(Player.Art(album.fanart)) | !String.IsEmpty(Player.Art(fanart))]]]] ]] 
+									+ [!Skin.HasSetting(HideBackGroundFanart) + !String.IsEmpty(Control.GetLabel(234235))] 
+									+ ![Player.HasVideo + String.IsEqual(Skin.String(ShowBackgroundVideoType),fullscreen)]</visible>
+					
+					
+					<visible>!Control.IsVisible(50) | [Control.IsVisible(50) + [!Skin.HasSetting(List_View_Fanart_Disable) | String.IsEqual(Container.PluginName,plugin.video.youtube)]]</visible>
+					<visible>!Control.IsVisible(51) | [Control.IsVisible(51) + [!Skin.HasSetting(List_Wide_View_Fanart_Disable) | String.IsEqual(Container.PluginName,plugin.video.youtube)]]</visible>
+					
+					
+				</control>
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			<!-- Further darken "List" and "List Wide" fanart because it's highly irritating otherwise -->
+			<control type="image">
+				
+				<include>BackgroundDimensions</include>
+				
+				<texture>colors/black.png</texture>
+				
+				<animation effect="fade" start="100" end="35" time="0" condition="true">Conditional</animation>
+				
+				<visible>Control.IsVisible(234237) + [Control.IsVisible(50) | Control.IsVisible(51)]</visible>
+				
+				<visible>![ [!Player.HasVideo + Player.HasAudio + Skin.HasSetting(ShowBackgroundVis) + !Slideshow.IsActive + !String.IsEmpty(Visualisation.Name)] + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia)) ]</visible>
+				
+			</control>
+			
+			
+			<!-- MakeTransparentForVisualization Replacement END -->
+			<animation effect="fade" start="100" end="50" time="0" condition="[!Player.HasVideo + Player.HasAudio + Skin.HasSetting(ShowBackgroundVis) + !Slideshow.IsActive + !String.IsEmpty(Visualisation.Name)] + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))">Conditional</animation>
+		</control>
+		
+		
+		
+		
+		
+		
+		<!-- black out everything behind playing video or playing audio-vis -->
+		<control type="image">
+			
+			<include>BackgroundDimensions</include>
+			
+			<texture>colors/black.png</texture>
+			<visible>[Player.HasVideo + String.IsEqual(Skin.String(ShowBackgroundVideoType),fullscreen)] + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
+		</control>
+		
+		
+		
+		<!-- VIDEO -->
+		<!-- default 16:9 variant -->
+		
+		<include condition="String.IsEqual(Skin.String(ShowBackgroundVideoType),fullscreen)">CommonBackground_videowindow</include>
+		
+		
+		
+		
+		<include condition="String.IsEqual(Skin.String(ShowBackgroundVideoType),disable)">CommonBackground_videowindow_disable</include>
+		
+		
+		
+		
+		<!-- GAME -->
+		<control type="image">
+			
+			<include>BackgroundDimensions</include>
+			
+			<texture>special://home/addons/resource.images.aczg/resources/backgrounds/$VAR[isUhdScreenStringFolder]fullscreengame$VAR[Is_21by9_StringSuffix].png</texture>
+			<visible>Player.HasGame</visible>
+			<aspectratio>scale</aspectratio>
+		</control>
+		
+		
+	</include>
+	
+	<include name="ContentPanelBackgrounds">
+		
+		<control type="group">
+			
+			<control type="group">
+				
+				<!-- semi-transparent IF VIDEO OR VIS SHOWING -->
+				<control type="image" id="9999991">
+					
+					<include>BackgroundDimensions_Plus_2px</include>
+					
+					<left>-1</left>
+					<top>-1</top>
+					
+					<texture>colors/black.png</texture>
+					
+					<visible>!Player.HasGame + Player.HasVideo + String.IsEqual(Skin.String(ShowBackgroundVideoType),fullscreen)</visible>
+					<!-- Kodi 18+ !Player.HasGame -->
+					<animation effect="fade" end="88" time="0" condition="true">Conditional</animation>
+					
+				</control>
+				
+				
+				
+				<!-- semi-transparent IF NO MOVING BACKGROUND -->
+				<control type="group">
+					<control type="image" id="9999992">
+						<include>BackgroundDimensions_Plus_2px</include>
+						
+						<left>-1</left>
+						<top>-1</top>
+						
+						<texture>colors/black.png</texture>
+						
+						<visible>!Control.IsVisible(9999991)</visible>
+						
+						<animation effect="fade" end="75" time="1500" condition="true">Conditional</animation>
+						
+					</control>
+					
+					<animation effect="fade" start="100"   end="0" time="1000" condition="Window.IsActive(SkinSettings) + !Skin.HasSetting(BackgroundsAutoPreviewOnSelectDisable) 
+						+ [Control.HasFocus(400) | Control.HasFocus(396) | Control.HasFocus(398) | Control.HasFocus(397) | Control.HasFocus(311) | Control.HasFocus(312) | Control.HasFocus(314) | Control.HasFocus(316) | Control.HasFocus(313) | Control.HasFocus(317)] 
+						+ String.IsEqual(Skin.String(BackgroundDarkenStrength),0)">Conditional</animation>
+					
+					
+					<animation effect="fade" start="100"  end="24" time="1000" condition="Window.IsActive(SkinSettings) + !Skin.HasSetting(BackgroundsAutoPreviewOnSelectDisable) 
+						+ [Control.HasFocus(400) | Control.HasFocus(396) | Control.HasFocus(398) | Control.HasFocus(397) | Control.HasFocus(311) | Control.HasFocus(312) | Control.HasFocus(314) | Control.HasFocus(316) | Control.HasFocus(313) | Control.HasFocus(317)] 
+						+ String.IsEqual(Skin.String(BackgroundDarkenStrength),4)">Conditional</animation>
+					<animation effect="fade" start="100"  end="42" time="1000" condition="Window.IsActive(SkinSettings) + !Skin.HasSetting(BackgroundsAutoPreviewOnSelectDisable) 
+						+ [Control.HasFocus(400) | Control.HasFocus(396) | Control.HasFocus(398) | Control.HasFocus(397) | Control.HasFocus(311) | Control.HasFocus(312) | Control.HasFocus(314) | Control.HasFocus(316) | Control.HasFocus(313) | Control.HasFocus(317)] 
+						+ String.IsEqual(Skin.String(BackgroundDarkenStrength),5)">Conditional</animation>
+					
+					
+					<animation effect="fade" start="100"  end="67" time="1000" condition="Window.IsActive(SkinSettings) + !Skin.HasSetting(BackgroundsAutoPreviewOnSelectDisable) 
+						+ [Control.HasFocus(400) | Control.HasFocus(396) | Control.HasFocus(398) | Control.HasFocus(397) | Control.HasFocus(311) | Control.HasFocus(312) | Control.HasFocus(314) | Control.HasFocus(316) | Control.HasFocus(313) | Control.HasFocus(317)] 
+						+ [String.IsEmpty(Skin.String(BackgroundDarkenStrength)) | String.IsEqual(Skin.String(BackgroundDarkenStrength),1)]">Conditional</animation>
+					<animation effect="fade" start="100"  end="83" time="1000" condition="Window.IsActive(SkinSettings) + !Skin.HasSetting(BackgroundsAutoPreviewOnSelectDisable) 
+						+ [Control.HasFocus(400) | Control.HasFocus(396) | Control.HasFocus(398) | Control.HasFocus(397) | Control.HasFocus(311) | Control.HasFocus(312) | Control.HasFocus(314) | Control.HasFocus(316) | Control.HasFocus(313) | Control.HasFocus(317)] 
+						+ String.IsEqual(Skin.String(BackgroundDarkenStrength),2)">Conditional</animation>
+					<animation effect="fade" start="100" end="100" time="1000" condition="Window.IsActive(SkinSettings) + !Skin.HasSetting(BackgroundsAutoPreviewOnSelectDisable) 
+						+ [Control.HasFocus(400) | Control.HasFocus(396) | Control.HasFocus(398) | Control.HasFocus(397) | Control.HasFocus(311) | Control.HasFocus(312) | Control.HasFocus(314) | Control.HasFocus(316) | Control.HasFocus(313) | Control.HasFocus(317)] 
+						+ String.IsEqual(Skin.String(BackgroundDarkenStrength),3)">Conditional</animation>
+					
+				</control>
+				
+				
+				
+			</control>
+			
+		</control>
+		
+	</include>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<include name="CommonBackground_videowindow_disable">
+		<control type="videowindow">
+			<width>1280</width>
+			<height>720</height>
+			<visible>false</visible>
+		</control>
+	</include>
+	
+	
+	
+	
+	
+	
+	<include name="CommonBackground_videowindow">
+		<control type="videowindow">
+			
+			<include>BackgroundDimensions_Can_Be_Max_For_Scope</include>
+			
+			<left>0</left>
+			<top>0</top>
+			
+			<visible>Player.HasVideo + String.IsEqual(Skin.String(ShowBackgroundVideoType),fullscreen) + !Slideshow.IsActive</visible>
+		</control>
+	</include>
+	
+	
+	
+</includes>

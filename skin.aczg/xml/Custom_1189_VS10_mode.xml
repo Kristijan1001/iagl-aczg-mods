@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="1189" type="dialog">
+	
+	
+	<defaultcontrol always="true">11500</defaultcontrol>
+	
+	<include>dialogeffect</include>
+	
+	<onload condition="Control.IsVisible(10001) + String.Contains(Control.GetLabel(10001), selected)">SetFocus(10001)</onload>
+	<onload condition="Control.IsVisible(10002) + String.Contains(Control.GetLabel(10002), selected)">SetFocus(10002)</onload>
+	<onload condition="Control.IsVisible(10003) + String.Contains(Control.GetLabel(10003), selected)">SetFocus(10003)</onload>
+	<onload condition="Control.IsVisible(10004) + String.Contains(Control.GetLabel(10004), selected)">SetFocus(10004)</onload>
+	
+	<controls>
+		
+		
+		
+		<control type="label" id="66601">
+			<label>HDR10+</label>
+			<visible>false</visible>
+		</control>
+		
+		
+		
+		<control type="group">
+			
+			<left>351</left>
+			<top>111</top>
+			
+			
+			<animation effect="slide" start="0,0" end="97,193" time="0"  condition="true">Conditional</animation>
+			
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="Integer.IsLess(Container(11500).NumItems,4)">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="Integer.IsLess(Container(11500).NumItems,3)">Conditional</animation>
+			<animation effect="slide" start="0,0" end="0,38" time="0" condition="Integer.IsLess(Container(11500).NumItems,2)">Conditional</animation>
+			
+			
+			<control type="group">
+				<include content="DialogBackgroundCommons">
+					<param name="DialogBackgroundWidth" value="1120" />
+					<param name="DialogBackgroundHeight" value="485" />
+					<param name="DialogHeaderWidth" value="1060" />
+					<param name="DialogHeaderLabelWidth" value="1000" />
+					<param name="DialogHeaderLabel" value="$VAR[LOCALIZE.32054] $VAR[LOCALIZE.32007]" />
+					<param name="DialogHeaderId" value="1" />
+				</include>
+				<visible>Integer.IsGreaterOrEqual(Container(11500).NumItems,4)</visible>
+			</control>
+			<control type="group">
+				<include content="DialogBackgroundCommons">
+					<param name="DialogBackgroundWidth" value="1120" />
+					<param name="DialogBackgroundHeight" value="409" />
+					<param name="DialogHeaderWidth" value="1060" />
+					<param name="DialogHeaderLabelWidth" value="1000" />
+					<param name="DialogHeaderLabel" value="$VAR[LOCALIZE.32054] $VAR[LOCALIZE.32007]" />
+					<param name="DialogHeaderId" value="1" />
+				</include>
+				<visible>Integer.IsEqual(Container(11500).NumItems,3)</visible>
+			</control>
+			<control type="group">
+				<include content="DialogBackgroundCommons">
+					<param name="DialogBackgroundWidth" value="1120" />
+					<param name="DialogBackgroundHeight" value="333" />
+					<param name="DialogHeaderWidth" value="1060" />
+					<param name="DialogHeaderLabelWidth" value="1000" />
+					<param name="DialogHeaderLabel" value="$VAR[LOCALIZE.32054] $VAR[LOCALIZE.32007]" />
+					<param name="DialogHeaderId" value="1" />
+				</include>
+				<visible>Integer.IsEqual(Container(11500).NumItems,2)</visible>
+			</control>
+			<control type="group">
+				<include content="DialogBackgroundCommons">
+					<param name="DialogBackgroundWidth" value="1120" />
+					<param name="DialogBackgroundHeight" value="257" />
+					<param name="DialogHeaderWidth" value="1060" />
+					<param name="DialogHeaderLabelWidth" value="1000" />
+					<param name="DialogHeaderLabel" value="$VAR[LOCALIZE.32054] $VAR[LOCALIZE.32007]" />
+					<param name="DialogHeaderId" value="1" />
+				</include>
+				<visible>Integer.IsLessOrEqual(Container(11500).NumItems,1)</visible>
+			</control>
+			
+			
+			
+			
+			
+			
+			<control type="grouplist" id="11500">
+				
+				<visible>Integer.IsGreater(Container(11500).NumItems,0)</visible>
+				
+				<left>40</left>
+				<top>105</top>
+				
+				<width>1000</width>
+				
+				<onleft>11500</onleft>
+				<onright>11500</onright>
+				
+				<onup>11500</onup>
+				<ondown>11500</ondown>
+				
+				<orientation>vertical</orientation>
+				
+				<itemgap>4</itemgap>
+				
+				
+				
+				
+				
+				
+				<!-- VS10 Dolby Vision -->
+				
+				<control type="button" id="10001">
+					<width>1000</width>
+					<height>72</height>
+					<font>fontContextMenu</font>
+					<align>left</align>
+					<textcolor>grey2</textcolor>
+					<selectedcolor>selected</selectedcolor>
+					<focusedcolor>white</focusedcolor>
+					<texturenofocus></texturenofocus>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<textoffsetx>24</textoffsetx>
+					
+					<visible>String.Contains(Player.Process(video.hdr.type),SDR) | String.Contains(Player.Process(video.hdr.type),HDR)</visible>
+					
+					<onclick>Action(vs10.dv)</onclick>
+					<onclick>Dialog.Close(all)</onclick>
+					
+					<label>$VAR[VS10_Button_DV_Label]</label>
+					
+				</control>
+				
+				
+				
+				<!-- VS10 HDR10 -->
+				
+				<control type="button" id="10002">
+					<width>1000</width>
+					<height>72</height>
+					<font>fontContextMenu</font>
+					<align>left</align>
+					<textcolor>grey2</textcolor>
+					<selectedcolor>selected</selectedcolor>
+					<focusedcolor>white</focusedcolor>
+					<texturenofocus></texturenofocus>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<textoffsetx>24</textoffsetx>
+					
+					<visible>[String.Contains(Player.Process(video.hdr.type),SDR) | String.Contains(Player.Process(video.hdr.type),HLG) | [String.IsEqual(Player.Process(video.hdr.type),HDR10) + !String.IsEmpty(Player.Process(video.source.hdr.type)) + !String.IsEqual(Player.Process(video.source.hdr.type),Control.GetLabel(66601))] ]</visible>
+					
+					<onclick>Action(vs10.hdr10)</onclick>
+					<onclick>Dialog.Close(all)</onclick>
+					
+					<label>$VAR[VS10_Button_HDR10_Label]</label>
+					
+				</control>
+				
+				
+				
+				<!-- VS10 SDR -->
+				
+				<control type="button" id="10003">
+					<width>1000</width>
+					<height>72</height>
+					<font>fontContextMenu</font>
+					<align>left</align>
+					<textcolor>grey2</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<selectedcolor>selected</selectedcolor>
+					<texturenofocus></texturenofocus>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<textoffsetx>24</textoffsetx>
+					
+					<onclick>Action(vs10.sdr)</onclick>
+					<onclick>Dialog.Close(all)</onclick>
+					
+					<label>$VAR[VS10_Button_SDR_Label]</label>
+					
+				</control>
+				
+				
+				
+				<!-- VS10 Original -->
+				
+				<control type="button" id="10004">
+					<width>1000</width>
+					<height>72</height>
+					<font>fontContextMenu</font>
+					<align>left</align>
+					<textcolor>grey2</textcolor>
+					<selectedcolor>selected</selectedcolor>
+					<focusedcolor>white</focusedcolor>
+					<texturenofocus></texturenofocus>
+					<texturefocus border="14" colordiffuse="$VAR[accentColorDiffuseForNeutralTextures]">button-focus-neutral.png</texturefocus>
+					<textoffsetx>24</textoffsetx>
+					
+					<onclick>Action(vs10.original)</onclick>
+					<onclick>Dialog.Close(all)</onclick>
+					
+					<label>$VAR[VS10_Button_Original_Label]</label>
+					
+				</control>
+				
+				
+				
+			</control>
+			
+			
+			
+			
+			
+			
+			
+			
+		</control>
+		
+		
+		
+		
+	</controls>
+</window>
+
+
