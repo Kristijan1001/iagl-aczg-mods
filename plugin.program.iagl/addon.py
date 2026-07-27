@@ -13,6 +13,7 @@ from resources.lib import post_process
 from resources.lib import launch
 from resources.lib import common
 from resources.lib import dialogs
+from resources.lib import minerva
 # ## Plugin Initialization Stuff ##
 # SLEEP_HACK=50  #https://github.com/xbmc/xbmc/issues/18576
 plugin = routing.Plugin()
@@ -25,12 +26,33 @@ nt = netplay.netplay(config=config)
 pp = post_process.post_process(config=config)
 ln = launch.launch(config=config,user_launch_os=cm.get_setting('user_launch_os'),kodi_suspend=cm.get_setting('kodi_suspend'),kodi_media_stop=cm.get_setting('kodi_media_stop'),kodi_saa=cm.get_setting('kodi_saa'),kodi_wfr=cm.get_setting('kodi_wfr'),ra_app_path=cm.get_setting('ra_app_path'),ra_cores_path_override=cm.get_setting('ra_cores_path_override'))
 dialogs = dialogs.dialogs(config=config)
+mn = minerva.minerva(config=config,cm=cm,db=db,pp=pp,ln=ln,plugin=plugin)
 
 if xbmc.getCondVisibility('Window.IsActive(okdialog)'): #Close Kodi playlist error message if it was open from last run
 	xbmc.log(msg='IAGL:  Closing leftover dialog',level=xbmc.LOGDEBUG)
 	xbmc.executebuiltin('Dialog.Close(okdialog)')
 
 # ## Plugin Routes ##
+@plugin.route('/minerva')
+def route_minerva():
+	mn.list_collections()
+
+@plugin.route('/minerva_browse')
+def route_minerva_browse():
+	mn.list_dir()
+
+@plugin.route('/minerva_play')
+def route_minerva_play():
+	mn.play()
+
+@plugin.route('/minerva_download')
+def route_minerva_download():
+	mn.download()
+
+@plugin.route('/minerva_clear_cache')
+def route_minerva_clear_cache():
+	mn.clear_cache()
+
 @plugin.route('/')
 def route_root():
 	xbmc.log(msg='IAGL:  Root',level=xbmc.LOGDEBUG)
@@ -65,6 +87,8 @@ def view_browse():
 				xbmcplugin.addDirectoryItems(plugin.handle,[(plugin.url_for_path('/history'),cm.get_history_li(),True)])
 			if cm.get_setting('show_lobby'):
 				xbmcplugin.addDirectoryItems(plugin.handle,[(plugin.url_for_path('/netplay_lobby'),cm.get_netplay_lobby_li(),True)])
+			xbmcplugin.addDirectoryItems(plugin.handle,[(plugin.url_for_path('/minerva'),mn.root_listitem(),True)])
+			xbmcplugin.addDirectoryItems(plugin.handle,[(plugin.url_for_path('/minerva_clear_cache'),mn.clear_cache_listitem(),False)])
 			xbmcplugin.endOfDirectory(plugin.handle)
 	else:
 		#Browse
@@ -74,6 +98,8 @@ def view_browse():
 			xbmcplugin.addDirectoryItems(plugin.handle,[(plugin.url_for_path('/history'),cm.get_history_li(),True)])
 		if cm.get_setting('show_lobby'):
 			xbmcplugin.addDirectoryItems(plugin.handle,[(plugin.url_for_path('/netplay_lobby'),cm.get_netplay_lobby_li(),True)])
+		xbmcplugin.addDirectoryItems(plugin.handle,[(plugin.url_for_path('/minerva'),mn.root_listitem(),True)])
+		xbmcplugin.addDirectoryItems(plugin.handle,[(plugin.url_for_path('/minerva_clear_cache'),mn.clear_cache_listitem(),False)])
 		xbmcplugin.endOfDirectory(plugin.handle)
 
 @plugin.route('/all')
@@ -1217,6 +1243,11 @@ def view_games_list_from_choice_paged(game_list_id,choose_id,choose_value,page_i
 @plugin.route('/play_game/<game_id>')
 def play_game(game_id):
 	xbmc.log(msg='IAGL:  /play_game/{}'.format(game_id),level=xbmc.LOGDEBUG)
+	_mpath = mn.minerva_rom_path(game_id)
+	if _mpath:
+		mn.play(full_path=_mpath)
+		xbmc.executebuiltin('Container.Refresh')
+		return
 	current_game_data = next(iter(db.get_game_launch_info_from_id(game_id=game_id)),None)
 	play_action = cm.get_setting('game_select_action')
 	if play_action == '1':

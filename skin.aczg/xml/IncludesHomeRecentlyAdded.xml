@@ -167,6 +167,135 @@
 				
 				
 				
+					<!-- UMBRELLA (Trakt Trending) -->
+					<control type="group">
+						<left>285</left>
+						<top>30</top>
+						<animation effect="zoom" center="285,30" start="100" end="68" time="0" condition="true">Conditional</animation>
+						<visible>Container(9000).Hasfocus(300)</visible>
+						<include>RecentlyAddedVisibleHiddenAnimations</include>
+					<control type="group">
+						<top>0</top>
+						<control type="label">
+							<left>-177</left><top>10</top><width>165</width><height>60</height>
+							<label>Trending Movies</label>
+							<align>right</align><aligny>top</aligny><font>Regular17</font><textcolor>white</textcolor><wrapmultiline>true</wrapmultiline>
+							<include>VisibleFadeEffect</include>
+						</control>
+						<control type="list" id="8300">
+							<left>0</left><top>2</top><width>2200</width><height>300</height>
+							<onleft>8300</onleft><onright>8300</onright><onup>9000</onup><ondown>8307</ondown><onback>9000</onback>
+							<viewtype label="535">list</viewtype><orientation>horizontal</orientation>
+							<include>StandardScrollTime</include>
+							<include content="HomeItemsWidgetLayoutType1"><param name="list_id" value="8300" /></include>
+							<content target="videos" limit="20" browse="never">plugin://plugin.video.umbrella/?action=movies&amp;url=https%3A%2F%2Fapi.trakt.tv%2Fmovies%2Ftrending%3Flimit%3D20%26page%3D1</content>
+						</control>
+					</control>
+					<control type="group">
+						<top>340</top>
+						<control type="label">
+							<left>-177</left><top>10</top><width>165</width><height>60</height>
+							<label>Trending Shows</label>
+							<align>right</align><aligny>top</aligny><font>Regular17</font><textcolor>white</textcolor><wrapmultiline>true</wrapmultiline>
+							<include>VisibleFadeEffect</include>
+						</control>
+						<control type="list" id="8307">
+							<left>0</left><top>2</top><width>2200</width><height>300</height>
+							<onleft>8307</onleft><onright>8307</onright><onup>8300</onup><ondown>8307</ondown><onback>9000</onback>
+							<viewtype label="535">list</viewtype><orientation>horizontal</orientation>
+							<include>StandardScrollTime</include>
+							<include content="HomeItemsWidgetLayoutType1"><param name="list_id" value="8307" /></include>
+							<content target="videos" limit="20" browse="never">plugin://plugin.video.umbrella/?action=tvshows&amp;url=https%3A%2F%2Fapi.trakt.tv%2Fshows%2Ftrending%3Flimit%3D20%26page%3D1</content>
+						</control>
+					</control>
+					</control>
+
+					<!-- OTAKU (Anime) -->
+					<control type="group">
+						<left>285</left>
+						<top>30</top>
+						<animation effect="zoom" center="285,30" start="100" end="68" time="0" condition="true">Conditional</animation>
+						<visible>Container(9000).Hasfocus(302)</visible>
+						<include>RecentlyAddedVisibleHiddenAnimations</include>
+					<control type="group">
+						<top>0</top>
+						<control type="label">
+							<left>-177</left><top>10</top><width>165</width><height>60</height>
+							<label>Airing This Season</label>
+							<align>right</align><aligny>top</aligny><font>Regular17</font><textcolor>white</textcolor><wrapmultiline>true</wrapmultiline>
+							<include>VisibleFadeEffect</include>
+						</control>
+						<control type="list" id="8320">
+							<left>0</left><top>2</top><width>2200</width><height>300</height>
+							<onleft>8320</onleft><onright>8320</onright><onup>9000</onup><ondown>8327</ondown><onback>9000</onback>
+							<viewtype label="535">list</viewtype><orientation>horizontal</orientation>
+							<include>StandardScrollTime</include>
+							<include content="HomeItemsWidgetLayoutType1"><param name="list_id" value="8320" /></include>
+							<content target="videos" limit="40" browse="never">plugin://plugin.video.otaku/airing_this_season</content>
+						</control>
+					</control>
+					<control type="group">
+						<top>340</top>
+						<control type="label">
+							<left>-177</left><top>10</top><width>165</width><height>60</height>
+							<label>Top 100</label>
+							<align>right</align><aligny>top</aligny><font>Regular17</font><textcolor>white</textcolor><wrapmultiline>true</wrapmultiline>
+							<include>VisibleFadeEffect</include>
+						</control>
+						<control type="list" id="8327">
+							<left>0</left><top>2</top><width>2200</width><height>300</height>
+							<onleft>8327</onleft><onright>8327</onright><onup>8320</onup><ondown>8327</ondown><onback>9000</onback>
+							<viewtype label="535">list</viewtype><orientation>horizontal</orientation>
+							<include>StandardScrollTime</include>
+							<include content="HomeItemsWidgetLayoutType1"><param name="list_id" value="8327" /></include>
+							<content target="videos" limit="40" browse="never">plugin://plugin.video.otaku/top_100</content>
+						</control>
+					</control>
+					</control>
+
+					<!-- IAGL (All Lists / By Playlist) -->
+					<control type="group">
+						<left>285</left>
+						<top>30</top>
+						<animation effect="zoom" center="285,30" start="100" end="68" time="0" condition="true">Conditional</animation>
+						<visible>Container(9000).Hasfocus(301)</visible>
+						<include>RecentlyAddedVisibleHiddenAnimations</include>
+					<control type="group">
+						<top>0</top>
+						<control type="label">
+							<left>-177</left><top>10</top><width>165</width><height>60</height>
+							<label>All Lists</label>
+							<align>right</align><aligny>top</aligny><font>Regular17</font><textcolor>white</textcolor><wrapmultiline>true</wrapmultiline>
+							<include>VisibleFadeEffect</include>
+						</control>
+						<control type="list" id="8310">
+							<left>0</left><top>2</top><width>2200</width><height>300</height>
+							<onleft>8310</onleft><onright>8310</onright><onup>9000</onup><ondown>8317</ondown><onback>9000</onback>
+							<viewtype label="535">list</viewtype><orientation>horizontal</orientation>
+							<include>StandardScrollTime</include>
+							<include content="HomeItemsWidgetLayoutType1"><param name="list_id" value="8310" /></include>
+							<content target="videos" limit="60" browse="never">plugin://plugin.program.iagl/all</content>
+						</control>
+					</control>
+					<control type="group">
+						<top>340</top>
+						<control type="label">
+							<left>-177</left><top>10</top><width>165</width><height>60</height>
+							<label>By Playlist</label>
+							<align>right</align><aligny>top</aligny><font>Regular17</font><textcolor>white</textcolor><wrapmultiline>true</wrapmultiline>
+							<include>VisibleFadeEffect</include>
+						</control>
+						<control type="list" id="8317">
+							<left>0</left><top>2</top><width>2200</width><height>300</height>
+							<onleft>8317</onleft><onright>8317</onright><onup>8310</onup><ondown>8317</ondown><onback>9000</onback>
+							<viewtype label="535">list</viewtype><orientation>horizontal</orientation>
+							<include>StandardScrollTime</include>
+							<include content="HomeItemsWidgetLayoutType1"><param name="list_id" value="8317" /></include>
+							<content target="videos" limit="60" browse="never">plugin://plugin.program.iagl/groups</content>
+						</control>
+					</control>
+					</control>
+
 				<!-- TV SHOWS -->
 				<control type="group">
 					<left>285</left>

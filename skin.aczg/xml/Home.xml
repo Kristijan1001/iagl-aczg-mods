@@ -949,6 +949,10 @@
 				<ondown condition="Container(9000).Hasfocus(14)">9020</ondown><!-- Games Kodi 18+ -->
 				<ondown condition="Container(9000).Hasfocus(19) | Container(9000).Hasfocus(199)">9019</ondown><!-- Favorites (1st or 2nd-to-last @ main menu) -->
 				
+				<ondown condition="Container(9000).Hasfocus(300)">8300</ondown>
+				<ondown condition="Container(9000).Hasfocus(301)">8310</ondown>
+				<ondown condition="Container(9000).Hasfocus(302)">8320</ondown>
+				
 				<ondown>9001</ondown>
 				
 				<scrolltime tween="sine" easing="inout">250</scrolltime>
@@ -1088,14 +1092,14 @@
 					
 					
 					<item id="19"><include>Home_Focus_Save_On_Click</include>
-						<label>IAGL</label>
+						<label>$LOCALIZE[1036]</label>
 						
 						<!-- Kodi 17-20 -->
-						<onclick condition="[String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]">RunAddon(plugin.program.iagl)</onclick>
+						<onclick condition="[String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]">ActivateWindow(Favourites)</onclick>
 						<!-- Kodi 21+ -->
-						<onclick condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]">RunAddon(plugin.program.iagl)</onclick>
+						<onclick condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]">ActivateWindow(FavouritesBrowser)</onclick>
 						
-						<icon>home_icons/uhd/_home_icon_games.png</icon>
+						<icon>home_icons/uhd/_home_icon_favorites.png</icon>
 						<visible>!Skin.HasSetting(HomeMenuNoFavoritesButton) + Skin.HasSetting(HomeMenuFavoritesButtonMakeFirstItem)</visible>
 					</item>
 					<item id="10"><include>Home_Focus_Save_On_Click</include>
@@ -1109,6 +1113,21 @@
 						<onclick>ActivateWindow(Videos,TVShowTitles,return)</onclick>
 						<icon>home_icons/uhd/_home_icon_tvshows.png</icon>
 						<visible>!Skin.HasSetting(HomeMenuNoTVShowButton) + Library.HasContent(TVShows)</visible>
+					</item>
+					<item id="300"><include>Home_Focus_Save_On_Click</include>
+						<label>Umbrella</label>
+						<onclick>ActivateWindow(Videos,plugin://plugin.video.umbrella/,return)</onclick>
+						<icon>home_icons/uhd/_home_icon_movies.png</icon>
+					</item>
+					<item id="302"><include>Home_Focus_Save_On_Click</include>
+						<label>Otaku</label>
+						<onclick>ActivateWindow(Videos,plugin://plugin.video.otaku/,return)</onclick>
+						<icon>home_icons/uhd/_home_icon_tvshows.png</icon>
+					</item>
+					<item id="301"><include>Home_Focus_Save_On_Click</include>
+						<label>IAGL</label>
+						<onclick>RunAddon(plugin.program.iagl)</onclick>
+						<icon>home_icons/uhd/_home_icon_games.png</icon>
 					</item>
 					<item id="2"><include>Home_Focus_Save_On_Click</include>
 						<label>3</label>
@@ -1173,14 +1192,14 @@
 						<visible>Skin.HasSetting(HomeMenuHasGamesButton)</visible>
 					</item>
 					<item id="199"><include>Home_Focus_Save_On_Click</include>
-						<label>IAGL</label>
+						<label>$LOCALIZE[1036]</label>
 						
 						<!-- Kodi 17-20 -->
-						<onclick condition="[String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]">RunAddon(plugin.program.iagl)</onclick>
+						<onclick condition="[String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]">ActivateWindow(Favourites)</onclick>
 						<!-- Kodi 21+ -->
-						<onclick condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]">RunAddon(plugin.program.iagl)</onclick>
+						<onclick condition="![String.StartsWith(System.BuildVersion,17.) | String.StartsWith(System.BuildVersion,18.) | String.StartsWith(System.BuildVersion,19.) | String.StartsWith(System.BuildVersion,20.)]">ActivateWindow(FavouritesBrowser)</onclick>
 						
-						<icon>home_icons/uhd/_home_icon_games.png</icon>
+						<icon>home_icons/uhd/_home_icon_favorites.png</icon>
 						<visible>!Skin.HasSetting(HomeMenuNoFavoritesButton) + !Skin.HasSetting(HomeMenuFavoritesButtonMakeFirstItem)</visible>
 					</item>
 					<item id="5"><include>Home_Focus_Save_On_Click</include>
